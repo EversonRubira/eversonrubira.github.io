@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Everson Rubira - Sistemas B2B para Importação & Exportação</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background: #fff;
+        }
+
+        /* LANGUAGE SWITCHER */
+        .language-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+            padding: 6px;
+            display: flex;
+            gap: 4px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .language-switcher button {
+            padding: 10px 24px;
+            border: none;
+            background: transparent;
+            color: #374151;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 24px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 15px;
+        }
+
+        .language-switcher button:hover {
+            background: rgba(15, 118, 110, 0.1);
+        }
+
+        .language-switcher button.active {
+            background: linear-gradient(135deg, #0d9488 0%, #14b8a6 100%);
+            color: white;
+            box-shadow: 0 4px 12px rgba(13, 148, 136, 0.3);
+        }
+
+        /* LANGUAGE CONTENT */
+        .language-content {
+            display: none;
+        }
+
+        .language-content.active {
+            display: block;
+        }
+
+        /* HERO SECTION - VERSÃO COM FOTO CONTAINERS */
+        .hero {
+            min-height: 100vh;
+            background-image: 
+                linear-gradient(
+                    135deg,
+                    rgba(15, 70, 66, 0.88) 0%,
+                    rgba(13, 100, 92, 0.85) 50%,
+                    rgba(15, 118, 110, 0.82) 100%
+                ),
+                url('foto-containers.jpg'); /* TROCA PELO NOME DA TUA FOTO */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            padding: 80px 20px;
+            position: relative;
+        }
+
+        /* Textura sutil */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(255,255,255,0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(255,255,255,0.05) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.8em;
+            font-weight: 700;
+            margin-bottom: 20px;
+            letter-spacing: -0.02em;
+            text-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero h2 {
+            font-size: 1.7em;
+            font-weight: 400;
+            margin-bottom: 28px;
+            opacity: 0.96;
+            text-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
+        }
+
+        .hero-subtitle {
+            font-size: 1.2em;
+            line-height: 1.8;
+            margin-bottom: 40px;
+            opacity: 0.93;
+            max-width: 750px;
+            margin-left: auto;
+            margin-right: auto;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* CONTATOS NO HERO */
+        .hero-contacts {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            margin-bottom: 36px;
+        }
+
+        .hero-contacts a {
+            width: 56px;
+            height: 56px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(12px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6em;
+            text-decoration: none;
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .hero-contacts a:hover {
+            background: rgba(255, 255, 255, 0.28);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 28px rgba(0,0,0,0.3);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* BOTÃO CTA */
+        .cta-btn {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.96);
+            color: #0f766e;
+            padding: 18px 48px;
+            font-size: 1.12em;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 14px;
+            border: 1px solid rgba(255,255,255,0.4);
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 8px 28px rgba(0,0,0,0.25);
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 14px 40px rgba(0,0,0,0.35);
+            background: white;
+        }
+
+        /* SCROLL INDICATOR */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 35px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2em;
+            opacity: 0.8;
+            animation: bounce 2.5s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-12px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-6px);
+            }
+        }
+
+        /* SEÇÃO SOBRE */
+        .about {
+            padding: 100px 20px;
+            background: #fafafa;
+        }
+
+        .about .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .about h2 {
+            font-size: 2.8em;
+            text-align: center;
+            margin-bottom: 50px;
+            color: #0f766e;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+
+        .about-intro {
+            text-align: center;
+            font-size: 1.2em;
+            color: #374151;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            line-height: 1.8;
+        }
+
+        /* CARDS DE PROBLEMAS */
+        .pain-points {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 28px;
+            margin: 60px 0;
+        }
+
+        .pain-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 36px 28px;
+            border-radius: 16px;
+            border: 1px solid rgba(15, 118, 110, 0.1);
+            box-shadow: 0 6px 24px rgba(15, 118, 110, 0.08);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border-left: 4px solid #14b8a6;
+        }
+
+        .pain-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 14px 40px rgba(15, 118, 110, 0.15);
+            background: white;
+        }
+
+        .pain-card h3 {
+            color: #0f766e;
+            margin-bottom: 14px;
+            font-size: 1.2em;
+            font-weight: 600;
+        }
+
+        .pain-card p {
+            color: #6b7280;
+            font-size: 1.02em;
+            line-height: 1.6;
+        }
+
+        .about-conclusion {
+            text-align: center;
+            font-size: 1.25em;
+            color: #0f766e;
+            margin-top: 50px;
+            font-weight: 500;
+            line-height: 1.7;
+            max-width: 850px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* SEÇÃO SOLUÇÕES */
+        .solutions {
+            padding: 100px 20px;
+            background: white;
+        }
+
+        .solutions .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .solutions h2 {
+            font-size: 2.8em;
+            text-align: center;
+            margin-bottom: 70px;
+            color: #0f766e;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+
+        .solutions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 32px;
+        }
+
+        .solution-card {
+            background: #fafafa;
+            padding: 42px 34px;
+            border-radius: 16px;
+            border-left: 4px solid #14b8a6;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+        }
+
+        .solution-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 14px 42px rgba(15, 118, 110, 0.12);
+            background: white;
+        }
+
+        .solution-card h3 {
+            color: #0f766e;
+            margin-bottom: 18px;
+            font-size: 1.4em;
+            font-weight: 600;
+        }
+
+        .solution-card p {
+            color: #4b5563;
+            font-size: 1.05em;
+            line-height: 1.7;
+        }
+
+        /* SEÇÃO PROJETOS */
+        .projects {
+            padding: 100px 20px;
+            background: #fafafa;
+        }
+
+        .projects .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .projects h2 {
+            font-size: 2.8em;
+            margin-bottom: 36px;
+            color: #0f766e;
+            font-weight: 600;
+        }
+
+        .projects p {
+            font-size: 1.2em;
+            color: #6b7280;
+            line-height: 1.8;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* FOOTER / CONTATO */
+        footer {
+            padding: 100px 20px;
+            background: linear-gradient(180deg, #0f766e 0%, #0d9488 100%);
+            color: white;
+            text-align: center;
+            position: relative;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 30% 40%, rgba(255,255,255,0.06) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        footer .container {
+            position: relative;
+            z-index: 1;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        footer h2 {
+            font-size: 2.6em;
+            margin-bottom: 24px;
+            font-weight: 600;
+        }
+
+        footer p {
+            font-size: 1.18em;
+            margin-bottom: 50px;
+            opacity: 0.94;
+            line-height: 1.8;
+        }
+
+        .footer-contacts {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            margin-bottom: 50px;
+        }
+
+        .footer-contact-link {
+            background: rgba(255, 255, 255, 0.14);
+            backdrop-filter: blur(12px);
+            color: white;
+            padding: 20px 36px;
+            text-decoration: none;
+            border-radius: 14px;
+            font-size: 1.08em;
+            font-weight: 500;
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid rgba(255, 255, 255, 0.22);
+        }
+
+        .footer-contact-link:hover {
+            background: rgba(255, 255, 255, 0.24);
+            transform: translateX(6px);
+            box-shadow: 0 10px 28px rgba(0,0,0,0.2);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+
+        .footer-copy {
+            margin-top: 40px;
+            opacity: 0.75;
+            font-size: 0.95em;
+        }
+
+        /* RESPONSIVO */
+        @media (max-width: 768px) {
+            .hero {
+                min-height: auto;
+                padding: 100px 20px 80px;
+            }
+            
+            .hero h1 {
+                font-size: 2.4em;
+            }
+            
+            .hero h2 {
+                font-size: 1.35em;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.08em;
+            }
+            
+            .hero-contacts {
+                gap: 12px;
+            }
+            
+            .hero-contacts a {
+                width: 52px;
+                height: 52px;
+                font-size: 1.4em;
+            }
+            
+            .about h2,
+            .solutions h2,
+            .projects h2,
+            footer h2 {
+                font-size: 2.2em;
+            }
+            
+            .pain-points,
+            .solutions-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .language-switcher {
+                top: 12px;
+                right: 12px;
+            }
+            
+            .about,
+            .solutions,
+            .projects,
+            footer {
+                padding: 70px 20px;
+            }
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        ::selection {
+            background: #14b8a6;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <!-- LANGUAGE SWITCHER -->
+    <div class="language-switcher">
+        <button onclick="switchLanguage('pt')" id="btn-pt" class="active">PT</button>
+        <button onclick="switchLanguage('en')" id="btn-en">EN</button>
+    </div>
+
+    <!-- CONTEÚDO EM PORTUGUÊS -->
+    <div id="content-pt" class="language-content active">
+        <!-- HERO -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>EVERSON RUBIRA</h1>
+                <h2>Sistemas B2B para Importação & Exportação</h2>
+                <p class="hero-subtitle">
+                    15 anos gerenciando operações de importação/exportação.<br>
+                    Hoje desenvolvo sistemas que automatizam processos complexos<br>
+                    de empresas B2B no setor de comércio exterior.
+                </p>
+                
+                <div class="hero-contacts">
+                    <a href="mailto:eversonrubira@gmail.com" title="Email">📧</a>
+                    <a href="https://wa.me/351910625090" title="WhatsApp" target="_blank">📱</a>
+                    <a href="https://linkedin.com/in/eversonrubira" title="LinkedIn" target="_blank">💼</a>
+                    <a href="https://github.com/EversonRubira" title="GitHub" target="_blank">💻</a>
+                </div>
+                
+                <a href="#contato-pt" class="cta-btn">Agendar Conversa</a>
+            </div>
+            <div class="scroll-indicator">↓</div>
+        </section>
+
+        <!-- SOBRE -->
+        <section class="about">
+            <div class="container">
+                <h2>Experiência Operacional + Capacidade Técnica</h2>
+                <p class="about-intro">
+                    Construí departamentos de importação do zero. Gerenciei fornecedores na China. 
+                    Negociei contratos internacionais. Otimizei cadeias logísticas complexas.
+                </p>
+                <p class="about-intro">
+                    <strong>Durante 15 anos, identifiquei os mesmos problemas em empresas do setor:</strong>
+                </p>
+                
+                <div class="pain-points">
+                    <div class="pain-card">
+                        <h3>Controle de estoque manual</h3>
+                        <p>Contagem física recorrente, divergências constantes, perda de visibilidade</p>
+                    </div>
+                    <div class="pain-card">
+                        <h3>Gestão de pedidos fragmentada</h3>
+                        <p>WhatsApp, email, telefone - informação dispersa, sem rastreabilidade</p>
+                    </div>
+                    <div class="pain-card">
+                        <h3>Falta de dados em tempo real</h3>
+                        <p>Decisões operacionais baseadas em informação desatualizada</p>
+                    </div>
+                    <div class="pain-card">
+                        <h3>Perda de eficiência operacional</h3>
+                        <p>Processos que poderiam ser automatizados consumindo horas diárias</p>
+                    </div>
+                </div>
+
+                <p class="about-conclusion">
+                    Combinação única: conhecimento profundo de operações B2B + desenvolvimento backend 
+                    (Java, Spring Boot, APIs, bancos de dados) para criar sistemas que resolvem 
+                    problemas reais do setor.
+                </p>
+            </div>
+        </section>
+
+        <!-- SOLUÇÕES -->
+        <section class="solutions">
+            <div class="container">
+                <h2>O Que Desenvolvo</h2>
+                
+                <div class="solutions-grid">
+                    <div class="solution-card">
+                        <h3>Gestão de Estoque Inteligente</h3>
+                        <p>Sistemas que eliminam contagem manual. Atualização em tempo real, alertas de estoque mínimo, histórico completo de movimentações.</p>
+                    </div>
+
+                    <div class="solution-card">
+                        <h3>Portais B2B para Revendedores</h3>
+                        <p>Seus clientes fazem pedidos online, veem estoque disponível, acompanham histórico. Menos WhatsApp, mais eficiência.</p>
+                    </div>
+
+                    <div class="solution-card">
+                        <h3>Automação de Processos</h3>
+                        <p>Importação de planilhas, integração com ERPs, relatórios automáticos, dashboards gerenciais.</p>
+                    </div>
+
+                    <div class="solution-card">
+                        <h3>Sistemas Customizados</h3>
+                        <p>Cada negócio é único. Desenvolvo soluções sob medida para problemas específicos de importação/exportação.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROJETOS -->
+        <section class="projects">
+            <div class="container">
+                <h2>Projetos em Desenvolvimento</h2>
+                <p>
+                    Desenvolvendo soluções customizadas para empresas do setor.<br>
+                    Portfólio de projetos completos disponível mediante solicitação.
+                </p>
+            </div>
+        </section>
+
+        <!-- FOOTER / CONTATO -->
+        <footer id="contato-pt">
+            <div class="container">
+                <h2>Agende uma Conversa</h2>
+                <p>
+                    30 minutos para discutir seus processos atuais<br>
+                    e avaliar se faz sentido desenvolver uma solução customizada.
+                </p>
+
+                <div class="footer-contacts">
+                    <a href="mailto:eversonrubira@gmail.com" class="footer-contact-link">📧 eversonrubira@gmail.com</a>
+                    <a href="https://wa.me/351910625090" class="footer-contact-link" target="_blank">📱 +351 910 625 090 (WhatsApp)</a>
+                    <a href="https://linkedin.com/in/eversonrubira" class="footer-contact-link" target="_blank">💼 linkedin.com/in/eversonrubira</a>
+                    <a href="https://github.com/EversonRubira" class="footer-contact-link" target="_blank">💻 github.com/EversonRubira</a>
+                </div>
+
+                <p class="footer-copy">&copy; 2026 Everson Rubira. Seixal/Lisboa, Portugal.</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- CONTEÚDO EM INGLÊS -->
+    <div id="content-en" class="language-content">
+        <!-- HERO -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>EVERSON RUBIRA</h1>
+                <h2>B2B Systems for Import & Export Companies</h2>
+                <p class="hero-subtitle">
+                    15 years managing import/export operations.<br>
+                    Today I develop systems that automate complex processes<br>
+                    for B2B companies in international trade.
+                </p>
+                
+                <div class="hero-contacts">
+                    <a href="mailto:eversonrubira@gmail.com" title="Email">📧</a>
+                    <a href="https://wa.me/351910625090" title="WhatsApp" target="_blank">📱</a>
+                    <a href="https://linkedin.com/in/eversonrubira" title="LinkedIn" target="_blank">💼</a>
+                    <a href="https://github.com/EversonRubira" title="GitHub" target="_blank">💻</a>
+                </div>
+                
+                <a href="#contato-en" class="cta-btn">Schedule a Call</a>
+            </div>
+            <div class="scroll-indicator">↓</div>
+        </section>
+
+        <!-- ABOUT -->
+        <section class="about">
+            <div class="container">
+                <h2>Operational Experience + Technical Capability</h2>
+                <p class="about-intro">
+                    Built import departments from scratch. Managed suppliers in China. 
+                    Negotiated international contracts. Optimized complex supply chains.
+                </p>
+                <p class="about-intro">
+                    <strong>Over 15 years, I identified the same problems across companies in the sector:</strong>
+                </p>
+                
+                <div class="pain-points">
+                    <div class="pain-card">
+                        <h3>Manual inventory control</h3>
+                        <p>Recurring physical counts, constant discrepancies, loss of visibility</p>
+                    </div>
+                    <div class="pain-card">
+                        <h3>Fragmented order management</h3>
+                        <p>WhatsApp, email, phone - scattered information, no traceability</p>
+                    </div>
+                    <div class="pain-card">
+                        <h3>Lack of real-time data</h3>
+                        <p>Operational decisions based on outdated information</p>
+                    </div>
+                    <div class="pain-card">
+                        <h3>Loss of operational efficiency</h3>
+                        <p>Processes that could be automated consuming hours daily</p>
+                    </div>
+                </div>
+
+                <p class="about-conclusion">
+                    Unique combination: deep knowledge of B2B operations + backend development 
+                    (Java, Spring Boot, APIs, databases) to build systems that solve 
+                    real problems in the sector.
+                </p>
+            </div>
+        </section>
+
+        <!-- SOLUTIONS -->
+        <section class="solutions">
+            <div class="container">
+                <h2>What I Build</h2>
+                
+                <div class="solutions-grid">
+                    <div class="solution-card">
+                        <h3>Smart Inventory Management</h3>
+                        <p>Systems that eliminate manual counting. Real-time updates, minimum stock alerts, complete movement history.</p>
+                    </div>
+
+                    <div class="solution-card">
+                        <h3>B2B Portals for Resellers</h3>
+                        <p>Your clients place orders online, see available stock, track history. Less WhatsApp, more efficiency.</p>
+                    </div>
+
+                    <div class="solution-card">
+                        <h3>Process Automation</h3>
+                        <p>Spreadsheet imports, ERP integration, automatic reports, management dashboards.</p>
+                    </div>
+
+                    <div class="solution-card">
+                        <h3>Custom Systems</h3>
+                        <p>Every business is unique. I develop tailored solutions for specific import/export challenges.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROJECTS -->
+        <section class="projects">
+            <div class="container">
+                <h2>Projects in Development</h2>
+                <p>
+                    Developing custom solutions for companies in the sector.<br>
+                    Complete project portfolio available upon request.
+                </p>
+            </div>
+        </section>
+
+        <!-- FOOTER / CONTACT -->
+        <footer id="contato-en">
+            <div class="container">
+                <h2>Schedule a Call</h2>
+                <p>
+                    30 minutes to discuss your current processes<br>
+                    and assess if it makes sense to develop a custom solution.
+                </p>
+
+                <div class="footer-contacts">
+                    <a href="mailto:eversonrubira@gmail.com" class="footer-contact-link">📧 eversonrubira@gmail.com</a>
+                    <a href="https://wa.me/351910625090" class="footer-contact-link" target="_blank">📱 +351 910 625 090 (WhatsApp)</a>
+                    <a href="https://linkedin.com/in/eversonrubira" class="footer-contact-link" target="_blank">💼 linkedin.com/in/eversonrubira</a>
+                    <a href="https://github.com/EversonRubira" class="footer-contact-link" target="_blank">💻 github.com/EversonRubira</a>
+                </div>
+
+                <p class="footer-copy">&copy; 2026 Everson Rubira. Seixal/Lisboa, Portugal.</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        function switchLanguage(lang) {
+            document.getElementById('content-pt').classList.remove('active');
+            document.getElementById('content-en').classList.remove('active');
+            document.getElementById('btn-pt').classList.remove('active');
+            document.getElementById('btn-en').classList.remove('active');
+            
+            if (lang === 'pt') {
+                document.getElementById('content-pt').classList.add('active');
+                document.getElementById('btn-pt').classList.add('active');
+                document.documentElement.lang = 'pt-PT';
+                localStorage.setItem('language', 'pt');
+            } else {
+                document.getElementById('content-en').classList.add('active');
+                document.getElementById('btn-en').classList.add('active');
+                document.documentElement.lang = 'en';
+                localStorage.setItem('language', 'en');
+            }
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('language') || 'pt';
+            switchLanguage(savedLang);
+        });
+    </script>
+</body>
+</html>
