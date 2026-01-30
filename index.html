@@ -1065,57 +1065,70 @@
 </div>
 
     <script>
-        function switchLanguage(lang) {
-            document.getElementById('content-pt').classList.remove('active');
-            document.getElementById('content-en').classList.remove('active');
-            document.getElementById('btn-pt').classList.remove('active');
-            document.getElementById('btn-en').classList.remove('active');
-            
-            // MUDA O LINK DA FOTO TAMBÉM
-            const photoLink = document.querySelector('.profile-photo-link');
-            
-            if (lang === 'pt') {
-                document.getElementById('content-pt').classList.add('active');
-                document.getElementById('btn-pt').classList.add('active');
-                document.documentElement.lang = 'pt-PT';
-                localStorage.setItem('language', 'pt');
-                photoLink.setAttribute('href', '#contato-pt');
-            } else {
-                document.getElementById('content-en').classList.add('active');
-                document.getElementById('btn-en').classList.add('active');
-                document.documentElement.lang = 'en';
-                localStorage.setItem('language', 'en');
-                photoLink.setAttribute('href', '#contato-en');
-            }
-            
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+    function switchLanguage(lang) {
+        document.getElementById('content-pt').classList.remove('active');
+        document.getElementById('content-en').classList.remove('active');
+        document.getElementById('btn-pt').classList.remove('active');
+        document.getElementById('btn-en').classList.remove('active');
+        
+        const photoLink = document.querySelector('.profile-photo-link');
+        
+        if (lang === 'pt') {
+            document.getElementById('content-pt').classList.add('active');
+            document.getElementById('btn-pt').classList.add('active');
+            document.documentElement.lang = 'pt-PT';
+            localStorage.setItem('language', 'pt');
+            photoLink.setAttribute('href', '#contato-pt');
+        } else {
+            document.getElementById('content-en').classList.add('active');
+            document.getElementById('btn-en').classList.add('active');
+            document.documentElement.lang = 'en';
+            localStorage.setItem('language', 'en');
+            photoLink.setAttribute('href', '#contato-en');
         }
+        
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
 
-        window.addEventListener('DOMContentLoaded', () => {
-            const savedLang = localStorage.getItem('language') || 'pt';
-            switchLanguage(savedLang);
-        });
+    window.addEventListener('DOMContentLoaded', () => {
+        const savedLang = localStorage.getItem('language') || 'pt';
+        switchLanguage(savedLang);
+    });
 
-        // TOGGLE: Foto clica → vai pro footer OU volta pro topo
-        document.querySelector('.profile-photo-link').addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            const scrollPosition = window.scrollY;
-            const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
-            
-            if (scrollPosition > documentHeight - 100) {
-                // Já está no footer → Volta pro topo
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            } else {
-                // Não está no footer → Vai pro footer
-                const lang = document.documentElement.lang === 'pt-PT' ? 'pt' : 'en';
-                const targetId = lang === 'pt' ? 'contato-pt' : 'contato-en';
-                document.getElementById(targetId).scrollIntoView({ behavior: 'smooth' });
-            }
-        });
-    </script>
+    // TOGGLE FOTO (Desktop e Mobile)
+    document.querySelector('.profile-photo-link').addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const scrollPosition = window.scrollY;
+        const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
+        
+        if (scrollPosition > documentHeight - 100) {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else {
+            const lang = document.documentElement.lang === 'pt-PT' ? 'pt' : 'en';
+            const targetId = lang === 'pt' ? 'contato-pt' : 'contato-en';
+            document.getElementById(targetId).scrollIntoView({ behavior: 'smooth' });
+        }
+    });
+
+    // BOTÃO VOLTAR AO TOPO - MOBILE
+    const backToTopBtn = document.getElementById('backToTop');
+    
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+            backToTopBtn.classList.add('show');
+        } else {
+            backToTopBtn.classList.remove('show');
+        }
+    });
+    
+    backToTopBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+</script>
 </body>
 </html>
+
 
 
 
