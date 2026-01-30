@@ -1095,9 +1095,28 @@
             const savedLang = localStorage.getItem('language') || 'pt';
             switchLanguage(savedLang);
         });
+
+        // TOGGLE: Foto clica → vai pro footer OU volta pro topo
+        document.querySelector('.profile-photo-link').addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const scrollPosition = window.scrollY;
+            const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
+            
+            if (scrollPosition > documentHeight - 100) {
+                // Já está no footer → Volta pro topo
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } else {
+                // Não está no footer → Vai pro footer
+                const lang = document.documentElement.lang === 'pt-PT' ? 'pt' : 'en';
+                const targetId = lang === 'pt' ? 'contato-pt' : 'contato-en';
+                document.getElementById(targetId).scrollIntoView({ behavior: 'smooth' });
+            }
+        });
     </script>
 </body>
 </html>
+
 
 
 
