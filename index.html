@@ -3,20 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- SEO -->
     <title>Everson Rubira - Sistemas B2B para Importação & Exportação</title>
     <meta name="description" content="Desenvolvedor especializado em sistemas para empresas de importação e exportação. 15 anos de experiência operacional + capacidade técnica.">
     <meta name="keywords" content="sistemas B2B, importação, exportação, desenvolvimento backend, automação">
     <meta name="author" content="Everson Rubira">
     
-    <!-- Favicon -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' style='stop-color:%231e40af'/><stop offset='100%' style='stop-color:%233b82f6'/></linearGradient></defs><rect width='100' height='100' fill='url(%23g)'/><text x='50%' y='50%' text-anchor='middle' dy='.35em' font-size='50' fill='white' font-family='system-ui, -apple-system, sans-serif' font-weight='700'>ER</text></svg>">
     
-    <!-- Mobile -->
     <link rel="apple-touch-icon" href="foto-perfil.jpeg">
     <meta name="theme-color" content="#1e40af">
     
-    <!-- Open Graph -->
     <meta property="og:title" content="Everson Rubira - Sistemas B2B">
     <meta property="og:description" content="Sistemas customizados para importação e exportação">
     <meta property="og:image" content="https://eversonrubira.github.io/foto-perfil.jpeg">
@@ -254,18 +250,6 @@
             position: relative;
         }
 
-        .how-it-works::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: 
-                radial-gradient(circle at 20% 30%, rgba(59, 130, 246, 0.08) 0%, transparent 50%);
-            pointer-events: none;
-        }
-
         .how-it-works .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -310,7 +294,6 @@
             box-shadow: 0 16px 48px rgba(0, 0, 0, 0.3);
         }
 
-        /* ÍCONES PROFISSIONAIS MAIORES */
         .step-icon {
             width: 90px;
             height: 90px;
@@ -322,11 +305,6 @@
             margin: 0 auto 28px;
             box-shadow: 0 12px 32px rgba(59, 130, 246, 0.4);
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .step-card:hover .step-icon {
-            transform: translateY(-6px);
-            box-shadow: 0 16px 48px rgba(59, 130, 246, 0.5);
         }
 
         .step-icon svg {
@@ -343,22 +321,13 @@
             font-weight: 600;
         }
 
-        .step-card p {
-            opacity: 0.85;
-            line-height: 1.7;
-            font-size: 1.05em;
-        }
-
-        /* SOBRE */
+        /* SOBRE & DOR */
         .about {
             padding: 100px 20px;
             background: #f9fafb;
         }
 
-        .about .container {
-            max-width: 1100px;
-            margin: 0 auto;
-        }
+        .about .container { max-width: 1100px; margin: 0 auto; }
 
         .about h2 {
             font-size: 2.8em;
@@ -366,19 +335,8 @@
             margin-bottom: 50px;
             color: #1e40af;
             font-weight: 600;
-            letter-spacing: -0.02em;
         }
 
-        .about-intro {
-            text-align: center;
-            font-size: 1.2em;
-            color: #374151;
-            max-width: 800px;
-            margin: 0 auto 30px;
-            line-height: 1.8;
-        }
-
-        /* EXPERIENCE HIGHLIGHTS */
         .experience-highlights {
             background: white;
             padding: 40px 50px;
@@ -389,19 +347,11 @@
             border-left: 4px solid #3b82f6;
         }
 
-        .experience-highlights ul {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-
         .experience-highlights li {
-            font-size: 1.1em;
-            color: #374151;
+            list-style: none;
             margin-bottom: 16px;
             padding-left: 24px;
             position: relative;
-            line-height: 1.6;
         }
 
         .experience-highlights li:before {
@@ -410,14 +360,8 @@
             left: 0;
             color: #3b82f6;
             font-weight: 700;
-            font-size: 1.2em;
         }
 
-        .experience-highlights li:last-child {
-            margin-bottom: 0;
-        }
-
-        /* PAIN POINTS */
         .pain-points {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
@@ -430,19 +374,13 @@
             padding: 40px 32px;
             border-radius: 16px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.06);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             border-top: 3px solid #3b82f6;
-        }
-
-        .pain-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 16px 48px rgba(30, 64, 175, 0.12);
         }
 
         .pain-icon {
             width: 50px;
             height: 50px;
-            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+            background: #dbeafe;
             border-radius: 12px;
             display: flex;
             align-items: center;
@@ -450,277 +388,42 @@
             margin-bottom: 20px;
         }
 
-        .pain-icon svg {
-            width: 26px;
-            height: 26px;
-            stroke: #1e40af;
-            fill: none;
-            stroke-width: 2;
-        }
-
-        .pain-card h3 {
-            color: #1e40af;
-            margin-bottom: 14px;
-            font-size: 1.25em;
-            font-weight: 600;
-        }
-
-        .pain-card p {
-            color: #6b7280;
-            font-size: 1.02em;
-            line-height: 1.7;
-        }
-
-        .about-conclusion {
-            text-align: center;
-            font-size: 1.28em;
-            color: #1e40af;
-            margin-top: 60px;
-            font-weight: 500;
-            line-height: 1.8;
-            max-width: 850px;
-            margin-left: auto;
-            margin-right: auto;
-        }
+        .pain-icon svg { width: 26px; height: 26px; stroke: #1e40af; fill: none; stroke-width: 2; }
 
         /* SOLUÇÕES */
-        .solutions {
-            padding: 100px 20px;
-            background: white;
-        }
-
-        .solutions .container {
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
-        .solutions h2 {
-            font-size: 2.8em;
-            text-align: center;
-            margin-bottom: 70px;
-            color: #1e40af;
-            font-weight: 600;
-        }
-
-        .solutions-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 36px;
-        }
-
-        .solution-card {
-            background: #f9fafb;
-            padding: 44px 36px;
-            border-radius: 16px;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 2px 12px rgba(0,0,0,0.04);
-            border-top: 3px solid #3b82f6;
-        }
-
-        .solution-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 16px 48px rgba(30, 64, 175, 0.1);
-            background: white;
-        }
-
-        .solution-icon {
-            width: 54px;
-            height: 54px;
-            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 22px;
-        }
-
-        .solution-icon svg {
-            width: 28px;
-            height: 28px;
-            stroke: white;
-            fill: none;
-            stroke-width: 2;
-        }
-
-        .solution-card h3 {
-            color: #1e40af;
-            margin-bottom: 18px;
-            font-size: 1.4em;
-            font-weight: 600;
-        }
-
-        .solution-card p {
-            color: #4b5563;
-            font-size: 1.05em;
-            line-height: 1.7;
-        }
-
-        /* PROJETOS */
-        .projects {
-            padding: 100px 20px;
-            background: #f9fafb;
-        }
-
-        .projects .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .projects h2 {
-            font-size: 2.8em;
-            margin-bottom: 36px;
-            color: #1e40af;
-            font-weight: 600;
-        }
-
-        .projects p {
-            font-size: 1.2em;
-            color: #6b7280;
-            line-height: 1.8;
-            max-width: 700px;
-            margin: 0 auto;
-        }
+        .solutions { padding: 100px 20px; background: white; }
+        .solutions .container { max-width: 1100px; margin: 0 auto; }
+        .solutions h2 { font-size: 2.8em; text-align: center; margin-bottom: 70px; color: #1e40af; }
+        .solutions-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 36px; }
+        .solution-card { background: #f9fafb; padding: 44px 36px; border-radius: 16px; border-top: 3px solid #3b82f6; }
+        .solution-icon { width: 54px; height: 54px; background: #3b82f6; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 22px; }
+        .solution-icon svg { width: 28px; height: 28px; stroke: white; fill: none; stroke-width: 2; }
 
         /* FOOTER */
-        footer {
-            padding: 100px 20px;
-            background-image: 
-                linear-gradient(
-                    100deg,
-                    rgba(15, 23, 42, 0.92) 0%,
-                    rgba(30, 41, 59, 0.85) 40%,
-                    rgba(30, 64, 175, 0.75) 70%,
-                    rgba(59, 130, 246, 0.60) 100%
-                ),
-                url('foto-containers.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            color: white;
-            text-align: center;
-            position: relative;
-        }
+        footer { padding: 100px 20px; background: #0f172a; color: white; text-align: center; }
+        .footer-contact-link { background: rgba(255,255,255,0.1); padding: 15px; border-radius: 10px; color: white; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 10px; }
 
-        footer .container {
-            position: relative;
-            z-index: 1;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        footer h2 {
-            font-size: 2.6em;
-            margin-bottom: 24px;
-            font-weight: 600;
-            text-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
-        }
-
-        footer p {
-            font-size: 1.18em;
-            margin-bottom: 50px;
-            opacity: 0.95;
-            line-height: 1.8;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
-        }
-
-        .footer-contacts {
-            display: flex;
-            flex-direction: column;
-            gap: 18px;
-            margin-bottom: 50px;
-        }
-
-        .footer-contact-link {
-            background: rgba(255, 255, 255, 0.10);
-            backdrop-filter: blur(12px);
-            color: white;
-            padding: 20px 36px;
-            text-decoration: none;
-            border-radius: 12px;
-            font-size: 1.08em;
-            font-weight: 500;
-            transition: all 0.35s;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-        }
-
-        .footer-contact-link:hover {
-            background: rgba(59, 130, 246, 0.20);
-            transform: translateX(6px);
-            box-shadow: 0 8px 24px rgba(0,0,0,0.3);
-            border-color: rgba(59, 130, 246, 0.4);
-        }
-
-        .footer-contact-link svg {
-            width: 20px;
-            height: 20px;
-            stroke: white;
-            fill: none;
-            stroke-width: 2;
-        }
-
-        .footer-copy {
-            margin-top: 40px;
-            opacity: 0.8;
-            font-size: 0.95em;
-            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
-        }
-
-        /* RESPONSIVO */
+        /* MOBILE */
         @media (max-width: 768px) {
-            .hero {
-                padding: 100px 20px 80px;
-            }
             .hero h1 { font-size: 2.6em; }
-            .hero h2 { font-size: 1.4em; }
-            .hero-subtitle { font-size: 1.1em; }
-            .hero-contacts { gap: 16px; }
-            .contact-icon { width: 50px; height: 50px; }
-            .about h2, .solutions h2, .projects h2, footer h2, .how-it-works h2 { font-size: 2.2em; }
-            .pain-points, .solutions-grid, .steps-grid { grid-template-columns: 1fr; }
-            .language-switcher { top: 12px; right: 12px; }
-            .about, .solutions, .projects, footer, .how-it-works { padding: 70px 20px; }
-            
-            .profile-photo-link {
-                top: 12px;
-                left: 12px;
-            }
-            
-            .profile-photo {
-                width: 65px;
-                height: 65px;
-                border-width: 2px;
-            }
-
-            .experience-highlights {
-                padding: 30px 25px;
-            }
-
-            .step-icon {
-                width: 75px;
-                height: 75px;
-            }
+            .profile-photo { width: 80px; height: 80px; }
+            .steps-grid, .pain-points, .solutions-grid { grid-template-columns: 1fr; }
         }
 
         html { scroll-behavior: smooth; }
-        ::selection { background: #3b82f6; color: white; }
     </style>
 </head>
 <body>
+
     <div class="language-switcher">
         <button onclick="switchLanguage('pt')" id="btn-pt" class="active">PT</button>
         <button onclick="switchLanguage('en')" id="btn-en">EN</button>
     </div>
 
-    <a href="#contato-pt" class="profile-photo-link">
+    <a href="#footer" class="profile-photo-link">
         <img src="foto-perfil.jpeg" alt="Everson Rubira" class="profile-photo">
     </a>
 
-    <!-- PORTUGUÊS -->
     <div id="content-pt" class="language-content active">
         <section class="hero">
             <div class="hero-content">
@@ -745,25 +448,11 @@
                         </div>
                         <span class="contact-label">WhatsApp</span>
                     </a>
-                    <a href="https://linkedin.com/in/eversonrubira" class="contact-item" target="_blank">
-                        <div class="contact-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-                        </div>
-                        <span class="contact-label">LinkedIn</span>
-                    </a>
-                    <a href="https://github.com/EversonRubira" class="contact-item" target="_blank">
-                        <div class="contact-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
-                        </div>
-                        <span class="contact-label">GitHub</span>
-                    </a>
                 </div>
-                
-                <a href="#contato-pt" class="cta-btn">Agendar Conversa</a>
+                <a href="#footer" class="cta-btn">Agendar Conversa</a>
             </div>
         </section>
 
-        <!-- COMO FUNCIONA -->
         <section class="how-it-works">
             <div class="container">
                 <h2>Como Funciona</h2>
@@ -772,9 +461,10 @@
                 <div class="steps-grid">
                     <div class="step-card">
                         <div class="step-icon">
-                            <!-- Ícone MessageCircle para Conversa -->
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22z"/>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                                <path d="M8 9h8"></path>
+                                <path d="M8 13h6"></path>
                             </svg>
                         </div>
                         <h3>Conversa Inicial</h3>
@@ -783,13 +473,11 @@
                     
                     <div class="step-card">
                         <div class="step-icon">
-                            <!-- Ícone FileText para Análise & Proposta -->
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/>
-                                <path d="m15 2 5 5"/>
-                                <path d="M10 9h4"/>
-                                <path d="M10 13h4"/>
-                                <path d="M10 17h2"/>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                <polyline points="14 2 14 8 20 8"></polyline>
+                                <line x1="16" y1="13" x2="8" y2="13"></line>
+                                <line x1="16" y1="17" x2="8" y2="17"></line>
                             </svg>
                         </div>
                         <h3>Análise & Proposta</h3>
@@ -798,10 +486,10 @@
                     
                     <div class="step-card">
                         <div class="step-icon">
-                            <!-- Ícone Code para Desenvolvimento -->
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <polyline points="16 18 22 12 16 6"/>
-                                <polyline points="8 6 2 12 8 18"/>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="16 18 22 12 16 6"></polyline>
+                                <polyline points="8 6 2 12 8 18"></polyline>
+                                <line x1="12" y1="2" x2="12" y2="22"></line>
                             </svg>
                         </div>
                         <h3>Desenvolvimento</h3>
@@ -810,12 +498,10 @@
                     
                     <div class="step-card">
                         <div class="step-icon">
-                            <!-- Ícone Rocket para Entrega & Suporte -->
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09Z"/>
-                                <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2Z"/>
-                                <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/>
-                                <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 11V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h6"></path>
+                                <path d="m12 13 4 4 4-4"></path>
+                                <path d="M16 17V3"></path>
                             </svg>
                         </div>
                         <h3>Entrega & Suporte</h3>
@@ -825,444 +511,59 @@
             </div>
         </section>
 
-        <!-- SOBRE -->
         <section class="about">
             <div class="container">
                 <h2>Experiência Operacional + Capacidade Técnica</h2>
-                <p class="about-intro">
-                    <strong>Experiência Operacional Sólida:</strong>
-                </p>
-                
                 <div class="experience-highlights">
                     <ul>
                         <li>15+ anos gerenciando operações internacionais</li>
-                        <li>Viagens frequentes para Ásia, Europa, Oriente Médio</li>
                         <li>Negociação de contratos complexos multi-continentais</li>
-                        <li>25-30% crescimento anual através de otimização estratégica</li>
-                        <li>100% compliance record em operações internacionais</li>
-                        <li>Fundou e liderou duas empresas de trading internacional, estruturando operações completas desde compliance regulatório até relacionamento com fornecedores globais</li>
+                        <li>Fundou e liderou empresas de trading internacional</li>
                     </ul>
                 </div>
-                
-                <p class="about-intro">
-                    <strong>Durante 15 anos, identifiquei os mesmos problemas em empresas do setor:</strong>
-                </p>
-                
+
                 <div class="pain-points">
                     <div class="pain-card">
-                        <div class="pain-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="7.5 4.21 12 6.81 16.5 4.21"/><polyline points="7.5 19.79 7.5 14.6 3 12"/><polyline points="21 12 16.5 14.6 16.5 19.79"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
-                        </div>
-                        <h3>Controle de estoque manual</h3>
-                        <p>Contagem física recorrente, divergências constantes, perda de visibilidade em tempo real</p>
-                    </div>
-                    <div class="pain-card">
-                        <div class="pain-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-                        </div>
-                        <h3>Gestão de pedidos fragmentada</h3>
-                        <p>WhatsApp, email, telefone - informação dispersa sem rastreabilidade ou histórico</p>
-                    </div>
-                    <div class="pain-card">
-                        <div class="pain-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-                        </div>
-                        <h3>Falta de dados em tempo real</h3>
-                        <p>Decisões operacionais baseadas em informação desatualizada ou incompleta</p>
-                    </div>
-                    <div class="pain-card">
-                        <div class="pain-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                        </div>
-                        <h3>Perda de eficiência operacional</h3>
-                        <p>Processos manuais que poderiam ser automatizados consumindo horas diárias</p>
+                        <div class="pain-icon"><svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div>
+                        <h3>Controle manual</h3>
+                        <p>Divergências constantes e perda de visibilidade.</p>
                     </div>
                 </div>
-
-                <p class="about-conclusion">
-                    Combinação única: conhecimento profundo de operações B2B + desenvolvimento backend 
-                    (Java, Spring Boot, APIs, bancos de dados) para criar sistemas que resolvem 
-                    problemas reais do setor.
-                </p>
             </div>
         </section>
 
-        <!-- SOLUÇÕES -->
         <section class="solutions">
             <div class="container">
                 <h2>O Que Desenvolvo</h2>
-                
                 <div class="solutions-grid">
                     <div class="solution-card">
-                        <div class="solution-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
-                        </div>
-                        <h3>Gestão de Estoque Inteligente</h3>
-                        <p>Sistemas que eliminam contagem manual. Atualização em tempo real, alertas de estoque mínimo, histórico completo de movimentações.</p>
-                    </div>
-
-                    <div class="solution-card">
-                        <div class="solution-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-                        </div>
-                        <h3>Portais B2B para Revendedores</h3>
-                        <p>Seus clientes fazem pedidos online, veem estoque disponível, acompanham histórico. Menos WhatsApp, mais eficiência.</p>
-                    </div>
-
-                    <div class="solution-card">
-                        <div class="solution-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-                        </div>
-                        <h3>Automação de Processos</h3>
-                        <p>Importação de planilhas, integração com ERPs, relatórios automáticos, dashboards gerenciais em tempo real.</p>
-                    </div>
-
-                    <div class="solution-card">
-                        <div class="solution-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-                        </div>
-                        <h3>Sistemas Customizados</h3>
-                        <p>Cada negócio é único. Desenvolvo soluções sob medida para problemas específicos de importação e exportação.</p>
+                        <div class="solution-icon"><svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg></div>
+                        <h3>Estoque Inteligente</h3>
+                        <p>Atualização em tempo real e alertas de estoque mínimo.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- PROJETOS -->
-        <section class="projects">
+        <footer id="footer">
             <div class="container">
-                <h2>Projetos em Desenvolvimento</h2>
-                <p>
-                    Desenvolvendo soluções customizadas para empresas do setor.<br>
-                    Portfólio de projetos completos disponível mediante solicitação.
-                </p>
-            </div>
-        </section>
-
-        <!-- FOOTER -->
-        <footer id="contato-pt">
-            <div class="container">
-                <h2>Agende uma Conversa</h2>
-                <p>
-                    30 minutos para discutir seus processos atuais<br>
-                    e avaliar se faz sentido desenvolver uma solução customizada.
-                </p>
-
+                <h2>Vamos Otimizar Sua Operação?</h2>
                 <div class="footer-contacts">
-                    <a href="mailto:eversonrubira@gmail.com" class="footer-contact-link">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-                        eversonrubira@gmail.com
-                    </a>
-                    <a href="https://wa.me/351910625090" class="footer-contact-link" target="_blank">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
-                        +351 910 625 090 (WhatsApp)
-                    </a>
-                    <a href="https://linkedin.com/in/eversonrubira" class="footer-contact-link" target="_blank">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-                        linkedin.com/in/eversonrubira
-                    </a>
-                    <a href="https://github.com/EversonRubira" class="footer-contact-link" target="_blank">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
-                        github.com/EversonRubira
-                    </a>
+                    <a href="mailto:eversonrubira@gmail.com" class="footer-contact-link">eversonrubira@gmail.com</a>
+                    <a href="https://wa.me/351910625090" class="footer-contact-link">WhatsApp: +351 910 625 090</a>
                 </div>
-
-                <p class="footer-copy">&copy; 2026 Everson Rubira. Seixal/Lisboa, Portugal.</p>
-            </div>
-        </footer>
-    </div>
-
-    <!-- INGLÊS -->
-    <div id="content-en" class="language-content">
-        <section class="hero">
-            <div class="hero-content">
-                <h1>EVERSON RUBIRA</h1>
-                <h2>B2B Systems for Import & Export Companies</h2>
-                <p class="hero-subtitle">
-                    15 years managing import/export operations.<br>
-                    I develop systems that automate complex processes<br>
-                    for B2B companies in international trade.
-                </p>
-                
-                <div class="hero-contacts">
-                    <a href="mailto:eversonrubira@gmail.com" class="contact-item">
-                        <div class="contact-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-                        </div>
-                        <span class="contact-label">Email</span>
-                    </a>
-                    <a href="https://wa.me/351910625090" class="contact-item" target="_blank">
-                        <div class="contact-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
-                        </div>
-                        <span class="contact-label">WhatsApp</span>
-                    </a>
-                    <a href="https://linkedin.com/in/eversonrubira" class="contact-item" target="_blank">
-                        <div class="contact-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-                        </div>
-                        <span class="contact-label">LinkedIn</span>
-                    </a>
-                    <a href="https://github.com/EversonRubira" class="contact-item" target="_blank">
-                        <div class="contact-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
-                        </div>
-                        <span class="contact-label">GitHub</span>
-                    </a>
-                </div>
-                
-                <a href="#contato-en" class="cta-btn">Schedule a Call</a>
-            </div>
-        </section>
-
-        <section class="how-it-works">
-            <div class="container">
-                <h2>How It Works</h2>
-                <p class="section-intro">Simple process, professional results</p>
-                
-                <div class="steps-grid">
-                    <div class="step-card">
-                        <div class="step-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22z"/>
-                            </svg>
-                        </div>
-                        <h3>Initial Conversation</h3>
-                        <p>30 minutes to understand your current processes and identify operational bottlenecks</p>
-                    </div>
-                    
-                    <div class="step-card">
-                        <div class="step-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/>
-                                <path d="m15 2 5 5"/>
-                                <path d="M10 9h4"/>
-                                <path d="M10 13h4"/>
-                                <path d="M10 17h2"/>
-                            </svg>
-                        </div>
-                        <h3>Analysis & Proposal</h3>
-                        <p>Map workflows, define features and estimate timelines and necessary investment</p>
-                    </div>
-                    
-                    <div class="step-card">
-                        <div class="step-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <polyline points="16 18 22 12 16 6"/>
-                                <polyline points="8 6 2 12 8 18"/>
-                            </svg>
-                        </div>
-                        <h3>Development</h3>
-                        <p>Iterative construction with partial demonstrations and adjustments throughout the process</p>
-                    </div>
-                    
-                    <div class="step-card">
-                        <div class="step-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09Z"/>
-                                <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2Z"/>
-                                <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/>
-                                <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/>
-                            </svg>
-                        </div>
-                        <h3>Delivery & Support</h3>
-                        <p>Team training, complete documentation and ongoing post-implementation support</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="about">
-            <div class="container">
-                <h2>Operational Experience + Technical Capability</h2>
-                <p class="about-intro">
-                    <strong>Solid Operational Experience:</strong>
-                </p>
-                
-                <div class="experience-highlights">
-                    <ul>
-                        <li>15+ years managing international operations</li>
-                        <li>Frequent travel to Asia, Europe, Middle East</li>
-                        <li>Multi-continental complex contract negotiation</li>
-                        <li>25-30% annual growth through strategic optimization</li>
-                        <li>100% compliance record in international operations</li>
-                        <li>Founded and led two international trading companies, structuring complete operations from regulatory compliance to global supplier relationships</li>
-                    </ul>
-                </div>
-                
-                <p class="about-intro">
-                    <strong>Over 15 years, I identified the same problems across companies in the sector:</strong>
-                </p>
-                
-                <div class="pain-points">
-                    <div class="pain-card">
-                        <div class="pain-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="7.5 4.21 12 6.81 16.5 4.21"/><polyline points="7.5 19.79 7.5 14.6 3 12"/><polyline points="21 12 16.5 14.6 16.5 19.79"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
-                        </div>
-                        <h3>Manual inventory control</h3>
-                        <p>Recurring physical counts, constant discrepancies, loss of real-time visibility</p>
-                    </div>
-                    <div class="pain-card">
-                        <div class="pain-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-                        </div>
-                        <h3>Fragmented order management</h3>
-                        <p>WhatsApp, email, phone - scattered information without traceability or history</p>
-                    </div>
-                    <div class="pain-card">
-                        <div class="pain-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-                        </div>
-                        <h3>Lack of real-time data</h3>
-                        <p>Operational decisions based on outdated or incomplete information</p>
-                    </div>
-                    <div class="pain-card">
-                        <div class="pain-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                        </div>
-                        <h3>Loss of operational efficiency</h3>
-                        <p>Manual processes that could be automated consuming hours daily</p>
-                    </div>
-                </div>
-
-                <p class="about-conclusion">
-                    Unique combination: deep knowledge of B2B operations + backend development 
-                    (Java, Spring Boot, APIs, databases) to build systems that solve 
-                    real problems in the sector.
-                </p>
-            </div>
-        </section>
-
-        <section class="solutions">
-            <div class="container">
-                <h2>What I Build</h2>
-                
-                <div class="solutions-grid">
-                    <div class="solution-card">
-                        <div class="solution-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
-                        </div>
-                        <h3>Smart Inventory Management</h3>
-                        <p>Systems that eliminate manual counting. Real-time updates, minimum stock alerts, complete movement history.</p>
-                    </div>
-
-                    <div class="solution-card">
-                        <div class="solution-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-                        </div>
-                        <h3>B2B Portals for Resellers</h3>
-                        <p>Your clients place orders online, see available stock, track history. Less WhatsApp, more efficiency.</p>
-                    </div>
-
-                    <div class="solution-card">
-                        <div class="solution-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-                        </div>
-                        <h3>Process Automation</h3>
-                        <p>Spreadsheet imports, ERP integration, automatic reports, real-time management dashboards.</p>
-                    </div>
-
-                    <div class="solution-card">
-                        <div class="solution-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-                        </div>
-                        <h3>Custom Systems</h3>
-                        <p>Every business is unique. I develop tailored solutions for specific import and export challenges.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="projects">
-            <div class="container">
-                <h2>Projects in Development</h2>
-                <p>
-                    Developing custom solutions for companies in the sector.<br>
-                    Complete project portfolio available upon request.
-                </p>
-            </div>
-        </section>
-
-        <footer id="contato-en">
-            <div class="container">
-                <h2>Schedule a Call</h2>
-                <p>
-                    30 minutes to discuss your current processes<br>
-                    and assess if it makes sense to develop a custom solution.
-                </p>
-
-                <div class="footer-contacts">
-                    <a href="mailto:eversonrubira@gmail.com" class="footer-contact-link">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-                        eversonrubira@gmail.com
-                    </a>
-                    <a href="https://wa.me/351910625090" class="footer-contact-link" target="_blank">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
-                        +351 910 625 090 (WhatsApp)
-                    </a>
-                    <a href="https://linkedin.com/in/eversonrubira" class="footer-contact-link" target="_blank">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-                        linkedin.com/in/eversonrubira
-                    </a>
-                    <a href="https://github.com/EversonRubira" class="footer-contact-link" target="_blank">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
-                        github.com/EversonRubira
-                    </a>
-                </div>
-
-                <p class="footer-copy">&copy; 2026 Everson Rubira. Seixal/Lisboa, Portugal.</p>
+                <p class="footer-copy">&copy; 2025 Everson Rubira. Todos os direitos reservados.</p>
             </div>
         </footer>
     </div>
 
     <script>
-function switchLanguage(lang) {
-    document.getElementById('content-pt').classList.remove('active');
-    document.getElementById('content-en').classList.remove('active');
-    document.getElementById('btn-pt').classList.remove('active');
-    document.getElementById('btn-en').classList.remove('active');
-    
-    const photoLink = document.querySelector('.profile-photo-link');
-    
-    if (lang === 'pt') {
-        document.getElementById('content-pt').classList.add('active');
-        document.getElementById('btn-pt').classList.add('active');
-        document.documentElement.lang = 'pt-PT';
-        localStorage.setItem('language', 'pt');
-        photoLink.setAttribute('href', '#contato-pt');
-    } else {
-        document.getElementById('content-en').classList.add('active');
-        document.getElementById('btn-en').classList.add('active');
-        document.documentElement.lang = 'en';
-        localStorage.setItem('language', 'en');
-        photoLink.setAttribute('href', '#contato-en');
-    }
-    
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-window.addEventListener('DOMContentLoaded', () => {
-    const savedLang = localStorage.getItem('language') || 'pt';
-    switchLanguage(savedLang);
-});
-
-document.querySelector('.profile-photo-link').addEventListener('click', function(e) {
-    e.preventDefault();
-    
-    const lang = document.documentElement.lang === 'pt-PT' ? 'pt' : 'en';
-    const targetId = lang === 'pt' ? 'contato-pt' : 'contato-en';
-    const footerElement = document.getElementById(targetId);
-    
-    const footerTop = footerElement.offsetTop;
-    const scrollPosition = window.scrollY;
-    const windowHeight = window.innerHeight;
-    
-    if (scrollPosition + windowHeight >= footerTop - 200) {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    } else {
-        footerElement.scrollIntoView({ behavior: 'smooth' });
-    }
-});
-</script>
+        function switchLanguage(lang) {
+            document.querySelectorAll('.language-content').forEach(c => c.classList.remove('active'));
+            document.getElementById('content-' + lang).classList.add('active');
+            document.getElementById('btn-pt').classList.toggle('active', lang === 'pt');
+            document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+        }
+    </script>
 </body>
 </html>
