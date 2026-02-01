@@ -772,69 +772,97 @@
                 <div class="steps-grid">
                     <div class="step-card">
                         <div class="step-icon">
-                            <!-- Ícone MessageCircle para Conversa -->
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22z"/>
+                            <!-- Duas pessoas conversando com balões -->
+                            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                                <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <!-- Balão esquerdo -->
+                                    <path d="M8 8h16c2 0 3 1 3 3v10c0 2-1 3-3 3h-3l-4 4v-4H8c-2 0-3-1-3-3V11c0-2 1-3 3-3z"/>
+                                    <!-- Balão direito -->
+                                    <path d="M40 8h16c2 0 3 1 3 3v10c0 2-1 3-3 3h-9v4l-4-4h-3c-2 0-3-1-3-3V11c0-2 1-3 3-3z"/>
+                                    <!-- Pessoa esquerda -->
+                                    <circle cx="20" cy="38" r="6"/>
+                                    <path d="M8 58c0-7 5-12 12-12s12 5 12 12"/>
+                                    <!-- Pessoa direita -->
+                                    <circle cx="44" cy="38" r="6"/>
+                                    <path d="M32 58c0-7 5-12 12-12s12 5 12 12"/>
+                                </g>
                             </svg>
                         </div>
                         <h3>Conversa Inicial</h3>
                         <p>30 minutos para entender seus processos atuais e mapear oportunidades de melhoria</p>
                     </div>
-                    
+
                     <div class="step-card">
                         <div class="step-icon">
-                            <!-- Ícone Documento + Lupa para Análise & Proposta -->
+                            <!-- Documento com checklist + lupa -->
                             <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
                                 <g fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M18 10h20l8 8v26c0 2.2-1.8 4-4 4H18c-2.2 0-4-1.8-4-4V14c0-2.2 1.8-4 4-4z"/>
-                                    <path d="M38 10v8h8"/>
-                                    <line x1="22" y1="22" x2="34" y2="22"/>
-                                    <line x1="22" y1="28" x2="34" y2="28"/>
-                                    <line x1="22" y1="34" x2="30" y2="34"/>
-                                    <circle cx="40" cy="38" r="6"/>
-                                    <line x1="44" y1="42" x2="50" y2="48"/>
+                                    <!-- Documento -->
+                                    <path d="M10 6h28l10 10v42c0 2-2 4-4 4H10c-2 0-4-2-4-4V10c0-2 2-4 4-4z"/>
+                                    <path d="M38 6v10h10"/>
+                                    <!-- Linhas de texto -->
+                                    <line x1="14" y1="24" x2="32" y2="24"/>
+                                    <line x1="14" y1="32" x2="28" y2="32"/>
+                                    <!-- Checkbox marcado -->
+                                    <rect x="14" y="40" width="10" height="10" rx="2"/>
+                                    <path d="M16 45l3 3 5-6"/>
+                                    <!-- Lupa grande -->
+                                    <circle cx="48" cy="44" r="10"/>
+                                    <line x1="55" y1="51" x2="62" y2="58"/>
                                 </g>
                             </svg>
                         </div>
                         <h3>Análise & Proposta</h3>
                         <p>Documentar requisitos, projetar solução técnica e apresentar cronograma com investimento detalhado</p>
                     </div>
-                    
+
                     <div class="step-card">
                         <div class="step-icon">
-                            <!-- Ícone Monitor + Engrenagem para Desenvolvimento -->
+                            <!-- Monitor com engrenagem e código -->
                             <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
                                 <g fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                    <rect x="10" y="14" width="44" height="28" rx="3" ry="3"/>
-                                    <line x1="18" y1="46" x2="46" y2="46"/>
-                                    <rect x="26" y="42" width="12" height="4" rx="1" ry="1"/>
-                                    <circle cx="32" cy="28" r="6"/>
-                                    <line x1="32" y1="20" x2="32" y2="18"/>
-                                    <line x1="32" y1="38" x2="32" y2="36"/>
-                                    <line x1="26" y1="28" x2="24" y2="28"/>
-                                    <line x1="40" y1="28" x2="38" y2="28"/>
-                                    <line x1="27.5" y1="23.5" x2="26" y2="22"/>
-                                    <line x1="36.5" y1="23.5" x2="38" y2="22"/>
-                                    <line x1="27.5" y1="32.5" x2="26" y2="34"/>
-                                    <line x1="36.5" y1="32.5" x2="38" y2="34"/>
+                                    <!-- Monitor -->
+                                    <rect x="4" y="8" width="56" height="36" rx="3"/>
+                                    <line x1="24" y1="44" x2="24" y2="52"/>
+                                    <line x1="40" y1="44" x2="40" y2="52"/>
+                                    <line x1="16" y1="52" x2="48" y2="52"/>
+                                    <!-- Engrenagem central -->
+                                    <circle cx="24" cy="26" r="8"/>
+                                    <circle cx="24" cy="26" r="3"/>
+                                    <line x1="24" y1="16" x2="24" y2="14"/>
+                                    <line x1="24" y1="38" x2="24" y2="36"/>
+                                    <line x1="14" y1="26" x2="12" y2="26"/>
+                                    <line x1="36" y1="26" x2="34" y2="26"/>
+                                    <line x1="18" y1="20" x2="16" y2="18"/>
+                                    <line x1="32" y1="32" x2="30" y2="34"/>
+                                    <line x1="18" y1="32" x2="16" y2="34"/>
+                                    <line x1="32" y1="20" x2="30" y2="18"/>
+                                    <!-- Código < > -->
+                                    <path d="M44 20l-5 6 5 6"/>
+                                    <path d="M52 20l5 6-5 6"/>
                                 </g>
                             </svg>
                         </div>
                         <h3>Desenvolvimento</h3>
                         <p>Construção iterativa com demonstrações parciais e ajustes contínuos baseados no seu feedback</p>
                     </div>
-                    
+
                     <div class="step-card">
                         <div class="step-icon">
-                            <!-- Ícone Caixa + Chave Inglesa para Entrega & Suporte -->
+                            <!-- Caixa 3D com chave inglesa -->
                             <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
                                 <g fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M14 24l18-10 18 10-18 10-18-10z"/>
-                                    <path d="M32 34v16"/>
-                                    <path d="M14 24v16l18 10 18-10V24"/>
-                                    <path d="M44 14a5 5 0 0 1 7 7l-6 6-5-5 6-6"/>
-                                    <circle cx="38" cy="24" r="2"/>
-                                    <line x1="36.5" y1="25.5" x2="32" y2="30"/>
+                                    <!-- Caixa 3D -->
+                                    <path d="M8 20l24-12 24 12v28l-24 12-24-12V20z"/>
+                                    <path d="M8 20l24 12 24-12"/>
+                                    <line x1="32" y1="32" x2="32" y2="60"/>
+                                    <!-- Fita da caixa -->
+                                    <line x1="32" y1="8" x2="32" y2="32"/>
+                                    <path d="M20 14l12 6 12-6"/>
+                                    <!-- Chave inglesa -->
+                                    <path d="M48 36c4-4 10-4 12 0l-8 8-6-6z"/>
+                                    <line x1="46" y1="44" x2="38" y2="52"/>
+                                    <circle cx="36" cy="54" r="3"/>
                                 </g>
                             </svg>
                         </div>
@@ -1043,68 +1071,97 @@
                 <div class="steps-grid">
                     <div class="step-card">
                         <div class="step-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22z"/>
+                            <!-- Two people talking with speech bubbles -->
+                            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                                <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <!-- Left speech bubble -->
+                                    <path d="M8 8h16c2 0 3 1 3 3v10c0 2-1 3-3 3h-3l-4 4v-4H8c-2 0-3-1-3-3V11c0-2 1-3 3-3z"/>
+                                    <!-- Right speech bubble -->
+                                    <path d="M40 8h16c2 0 3 1 3 3v10c0 2-1 3-3 3h-9v4l-4-4h-3c-2 0-3-1-3-3V11c0-2 1-3 3-3z"/>
+                                    <!-- Left person -->
+                                    <circle cx="20" cy="38" r="6"/>
+                                    <path d="M8 58c0-7 5-12 12-12s12 5 12 12"/>
+                                    <!-- Right person -->
+                                    <circle cx="44" cy="38" r="6"/>
+                                    <path d="M32 58c0-7 5-12 12-12s12 5 12 12"/>
+                                </g>
                             </svg>
                         </div>
                         <h3>Initial Conversation</h3>
                         <p>30 minutes to understand your current processes and identify operational bottlenecks</p>
                     </div>
-                    
+
                     <div class="step-card">
                         <div class="step-icon">
-                            <!-- Document + Magnifier icon for Analysis & Proposal -->
+                            <!-- Document with checklist + magnifier -->
                             <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
                                 <g fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M18 10h20l8 8v26c0 2.2-1.8 4-4 4H18c-2.2 0-4-1.8-4-4V14c0-2.2 1.8-4 4-4z"/>
-                                    <path d="M38 10v8h8"/>
-                                    <line x1="22" y1="22" x2="34" y2="22"/>
-                                    <line x1="22" y1="28" x2="34" y2="28"/>
-                                    <line x1="22" y1="34" x2="30" y2="34"/>
-                                    <circle cx="40" cy="38" r="6"/>
-                                    <line x1="44" y1="42" x2="50" y2="48"/>
+                                    <!-- Document -->
+                                    <path d="M10 6h28l10 10v42c0 2-2 4-4 4H10c-2 0-4-2-4-4V10c0-2 2-4 4-4z"/>
+                                    <path d="M38 6v10h10"/>
+                                    <!-- Text lines -->
+                                    <line x1="14" y1="24" x2="32" y2="24"/>
+                                    <line x1="14" y1="32" x2="28" y2="32"/>
+                                    <!-- Checked checkbox -->
+                                    <rect x="14" y="40" width="10" height="10" rx="2"/>
+                                    <path d="M16 45l3 3 5-6"/>
+                                    <!-- Large magnifier -->
+                                    <circle cx="48" cy="44" r="10"/>
+                                    <line x1="55" y1="51" x2="62" y2="58"/>
                                 </g>
                             </svg>
                         </div>
                         <h3>Analysis & Proposal</h3>
                         <p>Map workflows, define features and estimate timelines and necessary investment</p>
                     </div>
-                    
+
                     <div class="step-card">
                         <div class="step-icon">
-                            <!-- Monitor + Gear icon for Development -->
+                            <!-- Monitor with gear and code -->
                             <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
                                 <g fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                    <rect x="10" y="14" width="44" height="28" rx="3" ry="3"/>
-                                    <line x1="18" y1="46" x2="46" y2="46"/>
-                                    <rect x="26" y="42" width="12" height="4" rx="1" ry="1"/>
-                                    <circle cx="32" cy="28" r="6"/>
-                                    <line x1="32" y1="20" x2="32" y2="18"/>
-                                    <line x1="32" y1="38" x2="32" y2="36"/>
-                                    <line x1="26" y1="28" x2="24" y2="28"/>
-                                    <line x1="40" y1="28" x2="38" y2="28"/>
-                                    <line x1="27.5" y1="23.5" x2="26" y2="22"/>
-                                    <line x1="36.5" y1="23.5" x2="38" y2="22"/>
-                                    <line x1="27.5" y1="32.5" x2="26" y2="34"/>
-                                    <line x1="36.5" y1="32.5" x2="38" y2="34"/>
+                                    <!-- Monitor -->
+                                    <rect x="4" y="8" width="56" height="36" rx="3"/>
+                                    <line x1="24" y1="44" x2="24" y2="52"/>
+                                    <line x1="40" y1="44" x2="40" y2="52"/>
+                                    <line x1="16" y1="52" x2="48" y2="52"/>
+                                    <!-- Central gear -->
+                                    <circle cx="24" cy="26" r="8"/>
+                                    <circle cx="24" cy="26" r="3"/>
+                                    <line x1="24" y1="16" x2="24" y2="14"/>
+                                    <line x1="24" y1="38" x2="24" y2="36"/>
+                                    <line x1="14" y1="26" x2="12" y2="26"/>
+                                    <line x1="36" y1="26" x2="34" y2="26"/>
+                                    <line x1="18" y1="20" x2="16" y2="18"/>
+                                    <line x1="32" y1="32" x2="30" y2="34"/>
+                                    <line x1="18" y1="32" x2="16" y2="34"/>
+                                    <line x1="32" y1="20" x2="30" y2="18"/>
+                                    <!-- Code < > -->
+                                    <path d="M44 20l-5 6 5 6"/>
+                                    <path d="M52 20l5 6-5 6"/>
                                 </g>
                             </svg>
                         </div>
                         <h3>Development</h3>
                         <p>Iterative construction with partial demonstrations and adjustments throughout the process</p>
                     </div>
-                    
+
                     <div class="step-card">
                         <div class="step-icon">
-                            <!-- Box + Wrench icon for Delivery & Support -->
+                            <!-- 3D box with wrench -->
                             <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
                                 <g fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M14 24l18-10 18 10-18 10-18-10z"/>
-                                    <path d="M32 34v16"/>
-                                    <path d="M14 24v16l18 10 18-10V24"/>
-                                    <path d="M44 14a5 5 0 0 1 7 7l-6 6-5-5 6-6"/>
-                                    <circle cx="38" cy="24" r="2"/>
-                                    <line x1="36.5" y1="25.5" x2="32" y2="30"/>
+                                    <!-- 3D Box -->
+                                    <path d="M8 20l24-12 24 12v28l-24 12-24-12V20z"/>
+                                    <path d="M8 20l24 12 24-12"/>
+                                    <line x1="32" y1="32" x2="32" y2="60"/>
+                                    <!-- Box tape -->
+                                    <line x1="32" y1="8" x2="32" y2="32"/>
+                                    <path d="M20 14l12 6 12-6"/>
+                                    <!-- Wrench -->
+                                    <path d="M48 36c4-4 10-4 12 0l-8 8-6-6z"/>
+                                    <line x1="46" y1="44" x2="38" y2="52"/>
+                                    <circle cx="36" cy="54" r="3"/>
                                 </g>
                             </svg>
                         </div>
