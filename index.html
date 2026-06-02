@@ -336,24 +336,80 @@ footer { background: var(--bg-surface); border-top: 1px solid var(--border); pad
 
 /* PRINT */
 @media print {
+  /* Esconder tudo excepto conteúdo essencial */
   nav, #hero-canvas, #scroll-top, .hamburger, .mobile-menu,
-  .hero-btns, .gh-strip, .cv-download { display: none !important; }
-  body { background: #fff; color: #000; font-size: 10.5pt; }
-  #hero { padding: 0; }
-  .hero-inner { grid-template-columns: 1fr; padding: 20pt 0; }
-  .hero-photo { display: none; }
-  .hero-h1 { font-size: 22pt; color: #000; }
-  .hero-label, .hero-subtitle, .hero-para { color: #333; }
-  section { padding: 16pt 0; page-break-inside: avoid; }
-  .section-inner { padding: 0; }
-  .sobre-grid { grid-template-columns: 1fr; gap: 16pt; }
-  .metric-card, .edu-block, .project-card, .contact-card { border: 1px solid #ccc; background: #fff; }
-  .projects-grid { grid-template-columns: 1fr 1fr; }
-  .stack-grid { grid-template-columns: 1fr 1fr 1fr; }
-  .contact-grid { grid-template-columns: 1fr 1fr; max-width: 100%; }
-  #contacto { background: #fff; }
-  .learning-now { border: 1px solid #999; background: #f9f9f9; }
-  @page { margin: 14mm; }
+  .hero-btns, .gh-strip, .cv-download, .hero-photo-pills,
+  .hero-subtitle-wrap, .hero-socials, .context-pills,
+  .projects-featured, #projetos, #stack,
+  .fade-in { display: none !important; }
+
+  * { opacity: 1 !important; transform: none !important; }
+  body { background: #fff !important; color: #111 !important; font-size: 9.5pt; font-family: 'Inter', sans-serif; line-height: 1.5; }
+
+  @page { margin: 12mm 14mm; size: A4; }
+
+  /* HERO como cabeçalho de CV */
+  #hero { padding: 0 0 10pt 0 !important; background: #fff !important; border-bottom: 2px solid #6366f1; margin-bottom: 10pt; }
+  .hero-inner { grid-template-columns: 1fr auto !important; gap: 16pt !important; padding: 10pt 0 !important; align-items: start; }
+  .hero-photo { display: flex !important; }
+  .hero-photo img { max-width: 70pt !important; border-radius: 50% !important; border: 1.5pt solid #6366f1 !important; box-shadow: none !important; }
+  .hero-h1 { font-size: 18pt !important; color: #111 !important; margin-bottom: 4pt !important; }
+  .hero-label { font-size: 7pt !important; color: #6366f1 !important; margin-bottom: 6pt !important; }
+  .hero-para { font-size: 8.5pt !important; color: #444 !important; margin-bottom: 0 !important; max-width: 100% !important; }
+  .hero-role-print { display: block !important; font-size: 9pt; color: #6366f1; font-weight: 500; margin-bottom: 4pt; }
+
+  /* Secções */
+  section { padding: 0 !important; background: #fff !important; }
+  .section-inner { padding: 0 !important; }
+  .section-label { font-size: 6.5pt !important; color: #6366f1 !important; margin-bottom: 2pt !important; }
+  .section-title { font-size: 11pt !important; margin-bottom: 8pt !important; border-bottom: 0.5pt solid #ddd; padding-bottom: 3pt; }
+
+  /* Sobre — compacto */
+  #sobre { background: #fff !important; padding: 8pt 0 !important; page-break-inside: avoid; }
+  .sobre-grid { grid-template-columns: 60% 38% !important; gap: 12pt !important; }
+  .sobre-text p { font-size: 8.5pt !important; margin-bottom: 5pt !important; color: #333 !important; }
+  .metrics-grid { gap: 6pt !important; }
+  .metric-card { padding: 6pt 8pt !important; border: 0.5pt solid #ddd !important; background: #fff !important; border-radius: 4pt !important; }
+  .metric-number { font-size: 13pt !important; }
+  .metric-label { font-size: 7pt !important; }
+
+  /* Experiência */
+  #experiencia { padding: 6pt 0 !important; page-break-inside: avoid; }
+  .timeline { padding-left: 14pt !important; }
+  .timeline::before { background: #ddd !important; }
+  .timeline-dot { background: #6366f1 !important; left: -18pt !important; width: 6pt !important; height: 6pt !important; }
+  .timeline-entry { margin-bottom: 10pt !important; }
+  .timeline-date { font-size: 7pt !important; }
+  .timeline-title { font-size: 9.5pt !important; }
+  .timeline-role { font-size: 8pt !important; margin-bottom: 4pt !important; }
+  .timeline-bullets li { font-size: 8pt !important; padding: 1pt 0 1pt 12pt !important; color: #333 !important; }
+  .tag { font-size: 7pt !important; padding: 1pt 5pt !important; border: 0.5pt solid #ddd !important; background: #f5f5f5 !important; }
+  .badge { font-size: 6.5pt !important; padding: 1pt 5pt !important; }
+
+  /* Formação — compacto */
+  #formacao { padding: 6pt 0 !important; }
+  .edu-block { padding: 8pt 10pt !important; margin-bottom: 6pt !important; border: 0.5pt solid #ddd !important; background: #fff !important; border-radius: 4pt !important; page-break-inside: avoid; }
+  .edu-institution { font-size: 9.5pt !important; }
+  .edu-degree { font-size: 8pt !important; }
+  .edu-period { font-size: 7pt !important; }
+  .edu-note { font-size: 7.5pt !important; margin-bottom: 6pt !important; }
+  .cert-group-label { font-size: 7.5pt !important; }
+  .cert-group-items { font-size: 7.5pt !important; }
+  .cert-link { font-size: 7.5pt !important; }
+  .learning-now { padding: 6pt 8pt !important; border: 0.5pt solid #6366f1 !important; background: #f8f8ff !important; }
+  .learning-now-label { font-size: 7pt !important; }
+  .learning-now-items { font-size: 7.5pt !important; line-height: 1.6 !important; }
+
+  /* Contacto */
+  #contacto { padding: 6pt 0 !important; page-break-inside: avoid; }
+  .contact-subtitle { font-size: 8pt !important; margin-bottom: 8pt !important; }
+  .contact-grid { grid-template-columns: repeat(2,1fr) !important; gap: 6pt !important; max-width: 100% !important; }
+  .contact-card { padding: 6pt 8pt !important; border: 0.5pt solid #ddd !important; background: #fff !important; border-radius: 4pt !important; }
+  .contact-label { font-size: 6.5pt !important; }
+  .contact-value { font-size: 8pt !important; }
+  .contact-icon svg { width: 12pt !important; height: 12pt !important; }
+
+  footer { display: none !important; }
 }
 
 /* RESPONSIVE */
@@ -419,6 +475,7 @@ footer { background: var(--bg-surface); border-top: 1px solid var(--border); pad
     <div class="hero-content">
       <div class="hero-label" data-pt="DISPONÍVEL PARA OPORTUNIDADES" data-en="OPEN TO OPPORTUNITIES">DISPONÍVEL PARA OPORTUNIDADES</div>
       <h1 class="hero-h1">Everson Rubira</h1>
+      <span class="hero-role-print" style="display:none">Backend Developer · Java · Python · AI Integration</span>
       <div class="hero-subtitle-wrap">
         <span class="hero-subtitle" id="sub0">Backend Developer</span>
         <span class="hero-subtitle" id="sub1">Java · Python · AI Integration</span>
