@@ -135,11 +135,12 @@ nav.scrolled {
   font-size: 3rem; font-weight: 600; letter-spacing: -0.02em;
   color: var(--text-primary); line-height: 1.1; margin-bottom: 16px;
 }
-.hero-subtitle-wrap { height: 2rem; margin-bottom: 20px; position: relative; overflow: hidden; }
+.hero-subtitle-wrap { height: 2.2rem; margin-bottom: 20px; position: relative; overflow: hidden; }
 .hero-subtitle {
-  font-size: 1.25rem; font-weight: 500; color: var(--text-secondary);
+  font-size: 1.1rem; font-weight: 500; color: var(--text-secondary);
   position: absolute; top: 0; left: 0; width: 100%;
   opacity: 0; transition: opacity 0.6s ease;
+  white-space: nowrap;
 }
 .hero-subtitle.visible { opacity: 1; }
 .hero-para { font-size: 1rem; color: var(--text-secondary); max-width: 480px; margin-bottom: 32px; }
@@ -164,13 +165,14 @@ nav.scrolled {
   font-size: 0.875rem; color: var(--text-secondary); transition: color 0.15s;
 }
 .hero-socials a:hover { color: var(--accent); }
-.hero-photo { display: flex; justify-content: center; }
+.hero-photo { display: flex; flex-direction: column; align-items: center; gap: 16px; }
 .hero-photo img {
   width: 100%; max-width: 260px; border-radius: 50%;
   border: 3px solid var(--accent); display: block;
   aspect-ratio: 1/1; object-fit: cover;
   box-shadow: 0 0 0 6px var(--accent-light);
 }
+.hero-photo-pills { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; }
 
 /* SECTIONS */
 section { padding: 80px 0; }
@@ -225,9 +227,18 @@ section { padding: 80px 0; }
 
 /* PROJETOS */
 #projetos { background: var(--bg-surface); }
+.projects-featured {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 20px; margin-bottom: 20px;
+}
 .projects-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
 .project-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 24px; transition: border-color 0.2s; }
 .project-card:hover { border-color: var(--accent); }
+.project-card.featured {
+  border-color: color-mix(in srgb, var(--accent) 40%, transparent);
+  background: color-mix(in srgb, var(--accent) 3%, var(--bg-card));
+}
+.project-card.featured:hover { border-color: var(--accent); }
 .project-card-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; }
 .project-name { font-size: 1rem; font-weight: 600; color: var(--text-primary); }
 .project-desc { font-size: 0.875rem; color: var(--text-secondary); margin-bottom: 16px; }
@@ -355,6 +366,7 @@ footer { background: var(--bg-surface); border-top: 1px solid var(--border); pad
   .hero-photo img { max-width: 160px; }
   .hero-h1 { font-size: 2.25rem; }
   .sobre-grid { grid-template-columns: 1fr; gap: 32px; }
+  .projects-featured { grid-template-columns: 1fr; }
   .projects-grid { grid-template-columns: 1fr; }
   .stack-grid { grid-template-columns: 1fr; }
   .contact-grid { grid-template-columns: 1fr; }
@@ -435,6 +447,11 @@ footer { background: var(--bg-surface); border-top: 1px solid var(--border); pad
     </div>
     <div class="hero-photo">
       <img src="foto-perfil.jpeg" alt="Everson Rubira">
+      <div class="hero-photo-pills">
+        <span class="pill">Seixal / Lisboa</span>
+        <span class="pill">PT · EN · ES</span>
+        <span class="pill">Remoto OK</span>
+      </div>
     </div>
   </div>
 </section>
@@ -555,6 +572,37 @@ footer { background: var(--bg-surface); border-top: 1px solid var(--border); pad
   <div class="section-inner fade-in">
     <div class="section-label" data-pt="PORTFÓLIO" data-en="PORTFOLIO">PORTFÓLIO</div>
     <h2 class="section-title" data-pt="Projetos" data-en="Projects">Projetos</h2>
+
+    <!-- Destaque -->
+    <div class="projects-featured">
+
+      <div class="project-card featured">
+        <div class="project-card-top">
+          <div class="project-name">FitCheck</div>
+          <span class="badge badge-success">AI Integration</span>
+        </div>
+        <div class="project-desc" data-pt="Integração real da Claude API via Anthropic SDK. Recomendações de treino geradas por IA com base no perfil do utilizador. Projecto académico com AI aplicada." data-en="Real Claude API integration via Anthropic SDK. AI-generated training recommendations based on user profile. Academic project with applied AI.">Integração real da Claude API via Anthropic SDK. Recomendações de treino geradas por IA com base no perfil do utilizador. Projecto académico com AI aplicada.</div>
+        <div class="tags"><span class="tag">Node.js</span><span class="tag">MySQL</span><span class="tag">Sequelize</span><span class="tag">Anthropic API</span></div>
+        <div class="project-footer">
+          <a href="https://github.com/EversonRubira/fitcheck" target="_blank" rel="noopener" class="project-link" data-pt="Ver no GitHub" data-en="View on GitHub">Ver no GitHub <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+        </div>
+      </div>
+
+      <div class="project-card featured">
+        <div class="project-card-top">
+          <div class="project-name">Sulav Sushi Bar</div>
+          <span class="badge badge-success" data-pt="Em produção · ImplementIQ" data-en="Live · ImplementIQ">Em produção · ImplementIQ</span>
+        </div>
+        <div class="project-desc" data-pt="Cliente real em produção. Site bilíngue PT/EN com integrações Uber Eats, Glovo e Bolt Food. Entregue pela ImplementIQ Systems." data-en="Real client in production. Bilingual PT/EN site with Uber Eats, Glovo and Bolt Food integrations. Delivered by ImplementIQ Systems.">Cliente real em produção. Site bilíngue PT/EN com integrações Uber Eats, Glovo e Bolt Food. Entregue pela ImplementIQ Systems.</div>
+        <div class="tags"><span class="tag">GitHub Pages</span><span class="tag">Supabase</span><span class="tag">SEO</span></div>
+        <div class="project-footer">
+          <a href="https://sulavsushibar.pt" target="_blank" rel="noopener" class="project-link" data-pt="Ver site" data-en="View site">Ver site <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Restantes -->
     <div class="projects-grid">
 
       <div class="project-card">
@@ -583,34 +631,10 @@ footer { background: var(--bg-surface); border-top: 1px solid var(--border); pad
 
       <div class="project-card">
         <div class="project-card-top">
-          <div class="project-name">FitCheck</div>
-          <span class="badge badge-success">AI Integration</span>
-        </div>
-        <div class="project-desc" data-pt="App de fitness com integração real da Claude API via Anthropic SDK. Recomendações de treino geradas por IA." data-en="Fitness app with real Claude API integration via Anthropic SDK. AI-generated training recommendations.">App de fitness com integração real da Claude API via Anthropic SDK. Recomendações de treino geradas por IA.</div>
-        <div class="tags"><span class="tag">Node.js</span><span class="tag">MySQL</span><span class="tag">Sequelize</span><span class="tag">Anthropic API</span></div>
-        <div class="project-footer">
-          <a href="https://github.com/EversonRubira/fitcheck" target="_blank" rel="noopener" class="project-link" data-pt="Ver no GitHub" data-en="View on GitHub">Ver no GitHub <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
-        </div>
-      </div>
-
-      <div class="project-card">
-        <div class="project-card-top">
-          <div class="project-name">Sulav Sushi Bar</div>
-          <span class="badge badge-success" data-pt="Em produção" data-en="Live">Em produção</span>
-        </div>
-        <div class="project-desc" data-pt="Site completo em produção. Bilíngue PT/EN com integrações Uber Eats, Glovo e Bolt Food." data-en="Full site in production. Bilingual PT/EN with Uber Eats, Glovo and Bolt Food integrations.">Site completo em produção. Bilíngue PT/EN com integrações Uber Eats, Glovo e Bolt Food.</div>
-        <div class="tags"><span class="tag">GitHub Pages</span><span class="tag">Supabase</span><span class="tag">SEO</span></div>
-        <div class="project-footer">
-          <a href="https://sulavsushibar.pt" target="_blank" rel="noopener" class="project-link" data-pt="Ver site" data-en="View site">Ver site <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
-        </div>
-      </div>
-
-      <div class="project-card">
-        <div class="project-card-top">
           <div class="project-name">Wedding Clinic</div>
           <span class="badge badge-warning" data-pt="Em desenvolvimento" data-en="In development">Em desenvolvimento</span>
         </div>
-        <div class="project-desc" data-pt="Site institucional em desenvolvimento para cliente real no sector de casamentos." data-en="Institutional site in development for a real client in the wedding sector.">Site institucional em desenvolvimento para cliente real no sector de casamentos.</div>
+        <div class="project-desc" data-pt="Site institucional em desenvolvimento para cliente real no sector de casamentos. ImplementIQ Systems." data-en="Institutional site in development for a real client in the wedding sector. ImplementIQ Systems.">Site institucional em desenvolvimento para cliente real no sector de casamentos. ImplementIQ Systems.</div>
         <div class="tags"><span class="tag">GitHub Pages</span><span class="tag">Supabase</span><span class="tag">HTML/CSS</span></div>
       </div>
 
@@ -710,6 +734,11 @@ footer { background: var(--bg-surface); border-top: 1px solid var(--border); pad
       </div>
       <a href="https://cursos.alura.com.br/certificate/08a1ebdc-8676-4e47-ad7d-0ddcebff3b77" target="_blank" rel="noopener" class="cert-link" data-pt="Ver certificado LangChain" data-en="View LangChain certificate">Ver certificado LangChain</a>
 
+      <div class="cert-group" style="margin-top:16px">
+        <div class="cert-group-label">Anthropic Academy</div>
+        <div class="cert-group-items">Claude 101 · Claude Code in Action · AI Fluency Framework &amp; Foundations</div>
+      </div>
+
       <div class="learning-now">
         <div class="learning-now-label" data-pt="Em aprendizagem agora" data-en="Currently learning">Em aprendizagem agora</div>
         <div class="learning-now-items">
@@ -719,12 +748,6 @@ footer { background: var(--bg-surface); border-top: 1px solid var(--border); pad
           Introduction to MCP &nbsp;·&nbsp; Anthropic Academy
         </div>
       </div>
-    </div>
-
-    <div class="edu-block">
-      <div class="edu-institution">Anthropic Academy</div>
-      <div class="edu-degree" data-pt="Certificações Claude & AI Engineering" data-en="Claude & AI Engineering Certifications">Certificações Claude &amp; AI Engineering</div>
-      <div class="edu-note">Skilljar · Claude 101 · Claude Code in Action · AI Fluency Framework &amp; Foundations</div>
     </div>
 
   </div>
