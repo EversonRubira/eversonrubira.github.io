@@ -938,7 +938,7 @@ footer { background: var(--bg-surface); border-top: 1px solid var(--border); pad
   document.querySelectorAll('.fade-in').forEach(function (el) { fadeObserver.observe(el); });
 
   // HERO SUBTITLE CROSSFADE
-  var subs = [document.getElementById('sub0'), document.getElementById('sub1'), document.getElementById('sub2')];
+  var subs = [document.getElementById('sub0'), document.getElementById('sub1')];
   var cur = 0;
   subs[0].classList.add('visible');
   setInterval(function () {
