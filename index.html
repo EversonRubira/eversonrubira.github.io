@@ -18,10 +18,10 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --bg-base: #ffffff;
-  --bg-surface: #f8fafc;
-  --bg-card: #ffffff;
-  --border: #e2e8f0;
+  --bg-base: #faf8f4;
+  --bg-surface: #f1ede6;
+  --bg-card: #faf8f4;
+  --border: #e0d9ce;
   --text-primary: #0f172a;
   --text-secondary: #64748b;
   --text-muted: #94a3b8;
@@ -476,9 +476,9 @@ footer { background: var(--bg-surface); border-top: 1px solid var(--border); pad
             <div class="metric-number">2</div>
             <div class="metric-label" data-pt="Clientes em produção" data-en="Clients in production">Clientes em produção</div>
           </div>
-          <div class="metric-card">
-            <div class="metric-number">5+</div>
-            <div class="metric-label" data-pt="Projetos no GitHub" data-en="GitHub projects">Projetos no GitHub</div>
+          <div class="metric-card" id="metric-github" style="cursor:pointer" onclick="window.open('https://github.com/EversonRubira','_blank')">
+            <div class="metric-number" id="github-count">—</div>
+            <div class="metric-label" data-pt="Repos no GitHub ↗" data-en="GitHub repos ↗">Repos no GitHub ↗</div>
           </div>
           <div class="metric-card">
             <div class="metric-number">640h</div>
@@ -734,11 +734,6 @@ footer { background: var(--bg-surface); border-top: 1px solid var(--border); pad
       </div>
       <a href="https://cursos.alura.com.br/certificate/08a1ebdc-8676-4e47-ad7d-0ddcebff3b77" target="_blank" rel="noopener" class="cert-link" data-pt="Ver certificado LangChain" data-en="View LangChain certificate">Ver certificado LangChain</a>
 
-      <div class="cert-group" style="margin-top:16px">
-        <div class="cert-group-label">Anthropic Academy</div>
-        <div class="cert-group-items">Claude 101 · Claude Code in Action · AI Fluency Framework &amp; Foundations</div>
-      </div>
-
       <div class="learning-now">
         <div class="learning-now-label" data-pt="Em aprendizagem agora" data-en="Currently learning">Em aprendizagem agora</div>
         <div class="learning-now-items">
@@ -748,6 +743,26 @@ footer { background: var(--bg-surface); border-top: 1px solid var(--border); pad
           Introduction to MCP &nbsp;·&nbsp; Anthropic Academy
         </div>
       </div>
+    </div>
+
+    <div class="edu-block" style="border-color: color-mix(in srgb, var(--accent) 35%, transparent);">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:6px">
+        <div class="edu-institution">Anthropic Academy</div>
+        <span class="badge badge-success" style="font-size:0.65rem" data-pt="Certificado" data-en="Certified">Certificado</span>
+      </div>
+      <div class="edu-degree" data-pt="Claude & AI Engineering" data-en="Claude & AI Engineering">Claude &amp; AI Engineering</div>
+      <div class="edu-period">2025 — 2026</div>
+      <div style="margin-top:12px">
+        <div class="cert-group">
+          <div class="cert-group-label" data-pt="Certificações concluídas" data-en="Completed certifications">Certificações concluídas</div>
+          <div class="cert-group-items">Claude 101 · Claude Code in Action · AI Fluency Framework &amp; Foundations · AI Fluency for Students</div>
+        </div>
+        <div class="cert-group" style="margin-top:10px">
+          <div class="cert-group-label" data-pt="Em curso" data-en="In progress">Em curso</div>
+          <div class="cert-group-items">Building with the Claude API · Introduction to MCP · MCP Advanced Topics</div>
+        </div>
+      </div>
+      <div style="margin-top:12px;font-size:0.8rem;color:var(--text-muted)" data-pt="Anthropic é a empresa criadora do Claude — certificações directamente do fabricante do modelo." data-en="Anthropic is the company behind Claude — certifications directly from the model maker.">Anthropic é a empresa criadora do Claude — certificações directamente do fabricante do modelo.</div>
     </div>
 
   </div>
@@ -959,9 +974,14 @@ footer { background: var(--bg-surface); border-top: 1px solid var(--border); pad
 
   // GITHUB API
   var pinned = ['boardly','gestao','fitcheck','sulav','rentwatch','wedding','eversonrubira.github'];
-  fetch('https://api.github.com/users/EversonRubira/repos?sort=updated&per_page=24')
+  fetch('https://api.github.com/users/EversonRubira/repos?sort=updated&per_page=100')
     .then(function(r) { return r.json(); })
     .then(function(repos) {
+      // Actualizar contador
+      var total = repos.filter(function(r) { return !r.fork; }).length;
+      var el = document.getElementById('github-count');
+      if (el) el.textContent = total + '+';
+      // Repos automáticos
       var container = document.getElementById('github-repos');
       var filtered = repos.filter(function(r) {
         var n = r.name.toLowerCase();
