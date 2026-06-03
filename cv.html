@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CV — Everson Rubira</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --accent: #1e3a5f;
+      --teal: #0d7377;
+      --text: #1a1a2e;
+      --muted: #4a5568;
+      --light: #718096;
+      --border: #e2e8f0;
+      --bg-tag: #edf2f7;
+    }
+
+    html { font-size: 14px; }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      color: var(--text);
+      background: #fff;
+      line-height: 1.6;
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+
+    /* ===== PRINT BUTTON (apenas no ecrã) ===== */
+    .print-bar {
+      background: var(--accent);
+      color: #fff;
+      padding: 10px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 0.875rem;
+    }
+    .print-bar span { opacity: 0.85; }
+    .btn-print {
+      background: #fff;
+      color: var(--accent);
+      border: none;
+      border-radius: 6px;
+      padding: 7px 18px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .btn-print:hover { background: #f0f4ff; }
+    .btn-back {
+      color: rgba(255,255,255,0.8);
+      font-size: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      transition: color 0.15s;
+    }
+    .btn-back:hover { color: #fff; }
+
+    /* ===== PÁGINA ===== */
+    .page {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 40px 48px 48px;
+      background: #fff;
+    }
+
+    /* ===== HEADER ===== */
+    .cv-header {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 24px;
+      align-items: start;
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 20px;
+      margin-bottom: 24px;
+    }
+    .cv-name {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      line-height: 1.1;
+      margin-bottom: 4px;
+    }
+    .cv-title {
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+    .cv-tagline {
+      font-size: 0.875rem;
+      color: var(--muted);
+      max-width: 500px;
+    }
+    .cv-contacts {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      text-align: right;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+    .cv-contacts a { color: var(--muted); }
+    .cv-contacts a:hover { color: var(--accent); }
+    .cv-contacts span { display: flex; align-items: center; gap: 5px; justify-content: flex-end; }
+
+    /* ===== SECÇÕES ===== */
+    .cv-section {
+      margin-bottom: 24px;
+    }
+    .cv-section-title {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 12px;
+      padding-bottom: 5px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* ===== SOBRE ===== */
+    .cv-about {
+      font-size: 0.875rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+    .cv-about strong { color: var(--text); font-weight: 600; }
+
+    /* ===== EXPERIÊNCIA ===== */
+    .exp-item {
+      margin-bottom: 18px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--border);
+    }
+    .exp-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+    .exp-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin-bottom: 2px;
+    }
+    .exp-company {
+      font-size: 0.975rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .exp-period {
+      font-size: 0.78rem;
+      color: var(--light);
+      white-space: nowrap;
+    }
+    .exp-role {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+    .exp-location {
+      font-size: 0.78rem;
+      color: var(--light);
+      margin-bottom: 8px;
+    }
+    .exp-bullets {
+      list-style: none;
+      margin-bottom: 8px;
+    }
+    .exp-bullets li {
+      font-size: 0.84rem;
+      color: var(--muted);
+      padding: 2px 0 2px 14px;
+      position: relative;
+      line-height: 1.55;
+    }
+    .exp-bullets li::before {
+      content: '·';
+      position: absolute;
+      left: 3px;
+      color: var(--teal);
+      font-weight: 700;
+    }
+    .exp-tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+    }
+    .tag {
+      font-size: 0.72rem;
+      font-weight: 500;
+      padding: 2px 8px;
+      border-radius: 4px;
+      background: var(--bg-tag);
+      color: var(--accent);
+      border: 1px solid #c7d2fe;
+    }
+
+    /* ===== PROJETOS ===== */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .proj-item {
+      padding: 12px 14px;
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      border-left: 3px solid var(--accent);
+    }
+    .proj-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 4px;
+      gap: 8px;
+    }
+    .proj-name {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .proj-badge {
+      font-size: 0.68rem;
+      font-weight: 600;
+      padding: 2px 7px;
+      border-radius: 10px;
+      white-space: nowrap;
+    }
+    .proj-badge.live { background: #d1fae5; color: #065f46; }
+    .proj-badge.wip { background: #fef3c7; color: #92400e; }
+    .proj-badge.backend { background: #e0e7ff; color: #3730a3; }
+    .proj-desc {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 7px;
+      line-height: 1.5;
+    }
+    .proj-link {
+      font-size: 0.75rem;
+      color: var(--teal);
+      font-weight: 500;
+    }
+
+    /* ===== STACK ===== */
+    .stack-rows {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+    .stack-row {
+      display: grid;
+      grid-template-columns: 130px 1fr;
+      gap: 8px;
+      align-items: start;
+    }
+    .stack-label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--muted);
+      padding-top: 2px;
+    }
+    .stack-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+
+    /* ===== FORMAÇÃO ===== */
+    .edu-item {
+      margin-bottom: 14px;
+    }
+    .edu-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+    .edu-degree {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .edu-period {
+      font-size: 0.78rem;
+      color: var(--light);
+    }
+    .edu-school {
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--accent);
+      margin-bottom: 3px;
+    }
+    .edu-note {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    /* ===== CERTIFICAÇÕES ===== */
+    .cert-block {
+      margin-bottom: 10px;
+    }
+    .cert-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 5px;
+    }
+    .cert-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+
+    /* ===== APRENDIZAGEM ===== */
+    .learning-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .learning-item {
+      display: grid;
+      grid-template-columns: 1fr 90px 70px;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.82rem;
+    }
+    .learning-name { color: var(--text); font-weight: 500; }
+    .learning-source { color: var(--light); font-size: 0.78rem; }
+    .learning-bar-wrap {
+      height: 5px;
+      background: var(--border);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    .learning-bar {
+      height: 100%;
+      border-radius: 3px;
+      background: var(--teal);
+      print-color-adjust: exact;
+      -webkit-print-color-adjust: exact;
+    }
+    .learning-bar.complete { background: #10b981; }
+    .learning-pct {
+      font-size: 0.75rem;
+      color: var(--light);
+      text-align: right;
+    }
+
+    /* ===== FOOTER CV ===== */
+    .cv-footer {
+      margin-top: 28px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+      font-size: 0.75rem;
+      color: var(--light);
+      text-align: center;
+    }
+
+    /* ===== PRINT ===== */
+    @media print {
+      .print-bar { display: none !important; }
+
+      html { font-size: 12px; }
+
+      .page {
+        max-width: 100%;
+        padding: 20pt 24pt 24pt;
+      }
+
+      .proj-badge.live,
+      .proj-badge.wip,
+      .proj-badge.backend,
+      .tag,
+      .learning-bar {
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+      }
+
+      .exp-item,
+      .proj-item,
+      .edu-item {
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+    }
+
+    @media screen {
+      body { background: #f1f5f9; }
+      .page {
+        margin: 24px auto;
+        box-shadow: 0 4px 24px rgba(0,0,0,0.1);
+        border-radius: 4px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Barra de acções (só no ecrã) -->
+<div class="print-bar">
+  <a href="index.html" class="btn-back">
+    ← Voltar ao portfólio
+  </a>
+  <span>Curriculum Vitae — Everson Rubira</span>
+  <button class="btn-print" onclick="window.print()">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+    Imprimir / Guardar PDF
+  </button>
+</div>
+
+<div class="page">
+
+  <!-- CABEÇALHO -->
+  <header class="cv-header">
+    <div>
+      <h1 class="cv-name">Everson Rubira</h1>
+      <div class="cv-title">Junior Backend Developer &amp; QA Engineer</div>
+      <p class="cv-tagline">Em transição para tech — Java, Spring Boot, QA Automation e IA aplicada. Baseado em Seixal / Lisboa, Portugal.</p>
+    </div>
+    <div class="cv-contacts">
+      <span>📧 <a href="mailto:eversonrubira@gmail.com">eversonrubira@gmail.com</a></span>
+      <span>📱 +351 910 625 090</span>
+      <span>🔗 <a href="https://linkedin.com/in/eversonrubira" target="_blank">linkedin.com/in/eversonrubira</a></span>
+      <span>💻 <a href="https://github.com/EversonRubira" target="_blank">github.com/EversonRubira</a></span>
+      <span>🌐 <a href="https://eversonrubira.github.io" target="_blank">eversonrubira.github.io</a></span>
+    </div>
+  </header>
+
+  <!-- SOBRE MIM -->
+  <section class="cv-section">
+    <div class="cv-section-title">Sobre mim</div>
+    <p class="cv-about">
+      Brasileiro em Portugal, construo a minha transição para tech com consistência.
+      <strong>15 anos em operações internacionais B2B</strong> ensinaram-me a pensar em sistemas, identificar falhas e trabalhar com precisão — competências que agora aplico em código.
+      Estou a completar o <strong>TeSP em Programação e Sistemas de Informação no IPS</strong> (conclusão prevista: Dez 2026), com estágio curricular ativo em Java/Spring Boot e Angular na Pipoca Ágil.
+      Co-fundei a <strong>ImplementIQ Systems</strong>, com clientes reais em produção.
+      Foco atual: backend Java sólido, QA com automação e integração com IA (LangChain, Claude API).
+    </p>
+  </section>
+
+  <!-- EXPERIÊNCIA -->
+  <section class="cv-section">
+    <div class="cv-section-title">Experiência</div>
+
+    <div class="exp-item">
+      <div class="exp-header">
+        <span class="exp-company">Pipoca Ágil</span>
+        <span class="exp-period">Fev 2026 – presente</span>
+      </div>
+      <div class="exp-role">Estágio Curricular — Full-Stack Developer</div>
+      <div class="exp-location">Remoto · Brasil</div>
+      <ul class="exp-bullets">
+        <li>Arquitetura Hexagonal + DDD em projeto real de e-commerce</li>
+        <li>Migração de schema com Flyway; catálogo de produtos completo</li>
+        <li>Carrinho de compras backend + frontend com 7 testes Vitest</li>
+        <li>Integração MapStruct para mapeamento de entidades e testes JUnit 5</li>
+        <li>Ferramentas: Jira, GitHub, Discord</li>
+      </ul>
+      <div class="exp-tech">
+        <span class="tag">Java 21</span><span class="tag">Spring Boot</span><span class="tag">PostgreSQL</span>
+        <span class="tag">Flyway</span><span class="tag">JUnit 5</span><span class="tag">Angular 21</span>
+        <span class="tag">TypeScript</span><span class="tag">PrimeNG</span><span class="tag">Vitest</span><span class="tag">Docker</span>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-header">
+        <span class="exp-company">ImplementIQ Systems</span>
+        <span class="exp-period">Jan 2024 – presente</span>
+      </div>
+      <div class="exp-role">Co-fundador &amp; Developer</div>
+      <div class="exp-location">Seixal, Portugal</div>
+      <ul class="exp-bullets">
+        <li>Consultoria tech para PMEs portuguesas — da relação com cliente às entregas em produção</li>
+        <li><strong>Sulav Sushi Bar</strong> (sulavsushibar.pt) — site bilíngue PT/EN com Uber Eats, Glovo, Bolt Food e Google Maps</li>
+        <li><strong>Wedding Clinic</strong> (weddingclinic.pt) — site institucional em produção para cliente real</li>
+        <li>Desenvolvimento frontend, SEO técnico e integrações de terceiros</li>
+      </ul>
+      <div class="exp-tech">
+        <span class="tag">GitHub Pages</span><span class="tag">Supabase</span>
+        <span class="tag">HTML/CSS/JS</span><span class="tag">SEO</span>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-header">
+        <span class="exp-company">Accenture Lisboa</span>
+        <span class="exp-period">atual</span>
+      </div>
+      <div class="exp-role">Trust &amp; Safety Associate</div>
+      <div class="exp-location">Lisboa, Portugal</div>
+      <ul class="exp-bullets">
+        <li>Revisão e moderação de conteúdo em ambiente de alta responsabilidade</li>
+        <li>Análise de risco com base em políticas internacionais</li>
+        <li>Coordenação cross-timezone em ambiente multicultural</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- PROJETOS -->
+  <section class="cv-section">
+    <div class="cv-section-title">Projetos</div>
+    <div class="projects-grid">
+
+      <div class="proj-item">
+        <div class="proj-header">
+          <span class="proj-name">Boardly</span>
+          <span class="proj-badge backend">Backend</span>
+        </div>
+        <p class="proj-desc">Gestão de tarefas com JWT e Clean Architecture.</p>
+        <div class="exp-tech" style="margin-bottom:5px;">
+          <span class="tag">Java 17</span><span class="tag">Spring Boot</span><span class="tag">MongoDB</span><span class="tag">JWT</span>
+        </div>
+        <a href="https://github.com/EversonRubira/boardly" class="proj-link" target="_blank">github.com/EversonRubira/boardly</a>
+      </div>
+
+      <div class="proj-item">
+        <div class="proj-header">
+          <span class="proj-name">GestaoSaudeMental</span>
+          <span class="proj-badge backend">API REST</span>
+        </div>
+        <p class="proj-desc">API REST para gestão de saúde mental, foco em boas práticas de backend.</p>
+        <div class="exp-tech" style="margin-bottom:5px;">
+          <span class="tag">Java</span><span class="tag">Spring Boot</span><span class="tag">MySQL</span>
+        </div>
+        <a href="https://github.com/EversonRubira/GestaoSaudeMental" class="proj-link" target="_blank">github.com/EversonRubira/GestaoSaudeMental</a>
+      </div>
+
+      <div class="proj-item">
+        <div class="proj-header">
+          <span class="proj-name">FitCheck</span>
+          <span class="proj-badge wip">Em desenvolvimento</span>
+        </div>
+        <p class="proj-desc">App de fitness com integração de IA via Claude API.</p>
+        <div class="exp-tech" style="margin-bottom:5px;">
+          <span class="tag">Node.js</span><span class="tag">MySQL</span><span class="tag">Anthropic API</span>
+        </div>
+        <a href="https://github.com/EversonRubira/fitcheck" class="proj-link" target="_blank">github.com/EversonRubira/fitcheck</a>
+      </div>
+
+      <div class="proj-item">
+        <div class="proj-header">
+          <span class="proj-name">Sulav Sushi Bar</span>
+          <span class="proj-badge live">Em produção</span>
+        </div>
+        <p class="proj-desc">Site PT/EN em produção com Uber Eats, Glovo e Bolt Food.</p>
+        <div class="exp-tech" style="margin-bottom:5px;">
+          <span class="tag">GitHub Pages</span><span class="tag">Supabase</span><span class="tag">SEO</span>
+        </div>
+        <a href="https://sulavsushibar.pt" class="proj-link" target="_blank">sulavsushibar.pt</a>
+      </div>
+
+      <div class="proj-item">
+        <div class="proj-header">
+          <span class="proj-name">Wedding Clinic</span>
+          <span class="proj-badge live">Em produção</span>
+        </div>
+        <p class="proj-desc">Site institucional em produção para cliente real.</p>
+        <div class="exp-tech" style="margin-bottom:5px;">
+          <span class="tag">GitHub Pages</span><span class="tag">Supabase</span>
+        </div>
+        <a href="https://weddingclinic.pt" class="proj-link" target="_blank">weddingclinic.pt</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- STACK TÉCNICA -->
+  <section class="cv-section">
+    <div class="cv-section-title">Stack Técnica</div>
+    <div class="stack-rows">
+      <div class="stack-row">
+        <span class="stack-label">Backend</span>
+        <div class="stack-tags">
+          <span class="tag">Java 17/21</span><span class="tag">Spring Boot</span><span class="tag">Node.js</span><span class="tag">Python</span><span class="tag">FastAPI</span>
+        </div>
+      </div>
+      <div class="stack-row">
+        <span class="stack-label">Frontend</span>
+        <div class="stack-tags">
+          <span class="tag">Angular</span><span class="tag">TypeScript</span><span class="tag">PrimeNG</span><span class="tag">HTML/CSS</span><span class="tag">JavaScript</span>
+        </div>
+      </div>
+      <div class="stack-row">
+        <span class="stack-label">Bases de dados</span>
+        <div class="stack-tags">
+          <span class="tag">PostgreSQL</span><span class="tag">MySQL</span><span class="tag">MongoDB</span><span class="tag">Supabase</span>
+        </div>
+      </div>
+      <div class="stack-row">
+        <span class="stack-label">Testes &amp; QA</span>
+        <div class="stack-tags">
+          <span class="tag">JUnit 5</span><span class="tag">Vitest</span><span class="tag">Postman</span><span class="tag">Robot Framework</span><span class="tag">Cypress</span>
+        </div>
+      </div>
+      <div class="stack-row">
+        <span class="stack-label">DevOps</span>
+        <div class="stack-tags">
+          <span class="tag">Docker</span><span class="tag">Git</span><span class="tag">GitHub</span><span class="tag">Jira</span><span class="tag">Linux</span>
+        </div>
+      </div>
+      <div class="stack-row">
+        <span class="stack-label">IA &amp; Automação</span>
+        <div class="stack-tags">
+          <span class="tag">LangChain</span><span class="tag">Claude API</span><span class="tag">Anthropic SDK</span><span class="tag">Prompt Engineering</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FORMAÇÃO -->
+  <section class="cv-section">
+    <div class="cv-section-title">Formação</div>
+
+    <div class="edu-item">
+      <div class="edu-header">
+        <span class="edu-degree">TeSP em Programação e Sistemas de Informação</span>
+        <span class="edu-period">2024 – Dez 2026 (previsto)</span>
+      </div>
+      <div class="edu-school">Instituto Politécnico de Setúbal (IPS)</div>
+      <div class="edu-note">3.º semestre — 7 UCs em curso + estágio curricular ativo na Pipoca Ágil</div>
+    </div>
+
+    <div class="edu-item">
+      <div class="edu-header">
+        <span class="edu-degree">Certificações Alura</span>
+        <span class="edu-period">2023 – presente</span>
+      </div>
+      <div class="edu-school">Alura (Grupo AOVS — plataforma brasileira de tecnologia)</div>
+    </div>
+
+    <div class="cert-block">
+      <div class="cert-label">Java &amp; Spring Boot</div>
+      <div class="cert-tags">
+        <span class="tag">OOP</span><span class="tag">Collections</span><span class="tag">Streams</span><span class="tag">SOLID</span>
+        <span class="tag">TDD/JUnit</span><span class="tag">Spring Boot ×3</span><span class="tag">DDD</span>
+        <span class="tag">Clean Architecture</span><span class="tag">Microservices</span><span class="tag">RabbitMQ</span>
+      </div>
+    </div>
+    <div class="cert-block">
+      <div class="cert-label">QA &amp; Testes</div>
+      <div class="cert-tags">
+        <span class="tag">Gestão de bugs</span><span class="tag">QA Automação</span><span class="tag">Cypress</span><span class="tag">Robot Framework</span>
+      </div>
+    </div>
+    <div class="cert-block">
+      <div class="cert-label">Outras linguagens</div>
+      <div class="cert-tags">
+        <span class="tag">Python OOP</span><span class="tag">Python TDD</span><span class="tag">Go API</span>
+        <span class="tag">Go OOP</span><span class="tag">C (3 cursos)</span><span class="tag">JavaScript</span><span class="tag">TypeScript</span>
+      </div>
+    </div>
+    <div class="cert-block">
+      <div class="cert-label">Cloud, DevOps &amp; IA — Alura</div>
+      <div class="cert-tags">
+        <span class="tag">AZ-900</span><span class="tag">Docker</span><span class="tag">Linux</span><span class="tag">Git/GitHub</span>
+        <span class="tag">HTTP</span><span class="tag">Prompt Engineering</span><span class="tag">Generative AI</span><span class="tag">LangChain + OpenAI</span>
+      </div>
+    </div>
+    <div class="cert-block">
+      <div class="cert-label">Anthropic Academy</div>
+      <div class="cert-tags">
+        <span class="tag">Claude 101</span><span class="tag">Claude Code in Action</span>
+        <span class="tag">AI Fluency: Framework &amp; Foundations</span><span class="tag">AI Fluency for Students</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- APRENDIZAGEM EM PROGRESSO -->
+  <section class="cv-section">
+    <div class="cv-section-title">Em aprendizagem activa</div>
+    <div class="learning-list">
+      <div class="learning-item">
+        <div>
+          <div class="learning-name">LangChain: Agentes de IA</div>
+          <div class="learning-source">Alura</div>
+        </div>
+        <div class="learning-bar-wrap"><div class="learning-bar" style="width:61%"></div></div>
+        <div class="learning-pct">61%</div>
+      </div>
+      <div class="learning-item">
+        <div>
+          <div class="learning-name">Building with the Claude API</div>
+          <div class="learning-source">Anthropic Academy</div>
+        </div>
+        <div class="learning-bar-wrap"><div class="learning-bar" style="width:10%"></div></div>
+        <div class="learning-pct">Inscrito</div>
+      </div>
+      <div class="learning-item">
+        <div>
+          <div class="learning-name">Introduction to MCP</div>
+          <div class="learning-source">Anthropic Academy</div>
+        </div>
+        <div class="learning-bar-wrap"><div class="learning-bar" style="width:5%"></div></div>
+        <div class="learning-pct">A iniciar</div>
+      </div>
+      <div class="learning-item">
+        <div>
+          <div class="learning-name">MCP: Advanced Topics</div>
+          <div class="learning-source">Anthropic Academy</div>
+        </div>
+        <div class="learning-bar-wrap"><div class="learning-bar" style="width:5%"></div></div>
+        <div class="learning-pct">A iniciar</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- IDIOMAS & INFO -->
+  <section class="cv-section" style="margin-bottom:0">
+    <div class="cv-section-title">Idiomas &amp; Disponibilidade</div>
+    <div class="stack-rows">
+      <div class="stack-row">
+        <span class="stack-label">Idiomas</span>
+        <div class="stack-tags">
+          <span class="tag">Português — nativo</span>
+          <span class="tag">Inglês — profissional</span>
+          <span class="tag">Espanhol — básico</span>
+        </div>
+      </div>
+      <div class="stack-row">
+        <span class="stack-label">Disponibilidade</span>
+        <div style="font-size:0.82rem;color:var(--muted);padding-top:2px;">
+          Imediata · Portugal, Espanha ou remoto · Presencial, híbrido ou remoto
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="cv-footer">
+    CV actualizado em Junho 2026 · eversonrubira.github.io/cv · eversonrubira@gmail.com
+  </div>
+
+</div>
+
+<script>
+  // Atalho de teclado Ctrl+P já abre o diálogo nativo, mas garantimos que o botão também funciona
+  document.querySelector('.btn-print').addEventListener('click', () => window.print());
+</script>
+</body>
+</html>
