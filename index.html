@@ -433,6 +433,194 @@ footer { background: var(--bg-surface); border-top: 1px solid var(--border); pad
   .hero-h1 { font-size: 1.9rem; }
   .metrics-grid { grid-template-columns: 1fr 1fr; }
 }
+
+@media print {
+  /* Reset de cores para impressão */
+  :root {
+    --bg-base: #ffffff;
+    --bg-surface: #f8fafc;
+    --bg-card: #ffffff;
+    --border: #e2e8f0;
+    --text-primary: #0f172a;
+    --text-secondary: #374151;
+    --text-muted: #6b7280;
+    --accent: #4338ca;
+    --success: #065f46;
+  }
+
+  /* Forçar todos os elementos fade-in a ficarem visíveis */
+  .fade-in,
+  .fade-in.visible,
+  [class*="fade"] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  /* Ocultar elementos que não fazem sentido em impressão */
+  nav,
+  #hero-canvas,
+  #back-to-top,
+  .btn-theme,
+  .btn-lang,
+  .hamburger,
+  .mobile-menu,
+  .hero-btns,
+  .scroll-hint {
+    display: none !important;
+  }
+
+  /* Corpo e layout base */
+  body {
+    font-size: 10pt;
+    line-height: 1.5;
+    color: #0f172a;
+    background: #fff;
+  }
+
+  /* Remover padding de secções */
+  section {
+    padding: 20pt 0 !important;
+    break-inside: avoid;
+  }
+
+  .section-inner {
+    max-width: 100%;
+    padding: 0 24pt;
+  }
+
+  /* Hero ajustado */
+  #hero {
+    padding: 16pt 0 12pt !important;
+    min-height: unset !important;
+  }
+
+  .hero-inner {
+    display: block !important;
+  }
+
+  .hero-photo {
+    display: none !important;
+  }
+
+  .hero-h1 {
+    font-size: 22pt !important;
+    margin-bottom: 4pt;
+  }
+
+  .hero-subtitle-wrap {
+    height: auto !important;
+    overflow: visible !important;
+    margin-bottom: 8pt;
+  }
+
+  .hero-subtitle {
+    position: static !important;
+    opacity: 1 !important;
+    font-size: 13pt;
+  }
+
+  .hero-subtitle:not(:first-child) { display: none; }
+
+  .hero-para {
+    font-size: 10pt;
+    margin-bottom: 10pt;
+  }
+
+  .hero-socials {
+    gap: 12pt;
+    font-size: 9pt;
+  }
+
+  /* Grids linearizados */
+  .sobre-grid,
+  .formacao-grid,
+  .contacto-inner,
+  .projects-grid,
+  .stack-grid,
+  .learning-grid,
+  .metrics-grid {
+    display: block !important;
+    columns: unset !important;
+  }
+
+  /* Cards */
+  .project-card,
+  .edu-card,
+  .learning-card,
+  .stack-category,
+  .highlight-card,
+  .contact-item,
+  .timeline-card {
+    border: 1px solid #e2e8f0 !important;
+    background: #fff !important;
+    box-shadow: none !important;
+    margin-bottom: 10pt;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  /* Timeline */
+  .timeline {
+    padding-left: 16pt;
+  }
+
+  /* Barras de progresso — mostrar largura como texto */
+  .progress-bar-wrap {
+    height: 4px;
+    background: #e2e8f0 !important;
+  }
+
+  .progress-bar-fill {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  .progress-bar-outer {
+    height: 4px;
+    background: #e2e8f0 !important;
+  }
+
+  .progress-bar-inner {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  /* Badges e chips */
+  .badge, .tech-chip, .stack-chip, .cert-tag {
+    border: 1px solid #c7d2fe !important;
+    background: #eef2ff !important;
+    color: #3730a3 !important;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  /* Links — mostrar URL */
+  a[href^="http"]::after {
+    content: none;
+  }
+
+  /* Cores de destaque preservadas na impressão */
+  .section-label,
+  .hero-label,
+  .cert-area-label {
+    color: #3730a3 !important;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  /* Quebras de página entre secções principais */
+  #experiencia, #projetos, #formacao {
+    break-before: auto;
+    page-break-before: auto;
+  }
+
+  /* Não quebrar no meio de cards de experiência */
+  .timeline-item {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+}
 </style>
 </head>
 <body>
@@ -484,7 +672,7 @@ footer { background: var(--bg-surface); border-top: 1px solid var(--border); pad
       <div class="hero-btns">
         <a href="#projetos" class="btn-primary" data-pt="Ver Projetos" data-en="View Projects">Ver Projetos</a>
         <a href="#contacto" class="btn-outline" data-pt="Contacto" data-en="Contact">Contacto</a>
-        <a href="#" class="btn-outline" onclick="window.print();return false;" data-pt="Imprimir CV" data-en="Print CV">Imprimir CV</a>
+        <a href="cv.html" class="btn-outline" target="_blank" style="display:inline-flex;align-items:center;gap:6px;" data-pt="Ver CV" data-en="View CV"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>Ver CV</a>
       </div>
       <div class="hero-socials">
         <a href="https://linkedin.com/in/eversonrubira" target="_blank" rel="noopener">
