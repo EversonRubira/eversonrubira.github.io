@@ -1205,7 +1205,7 @@ footer { background: var(--bg-surface); border-top: 1px solid var(--border); pad
   startCanvas();
 
   // GITHUB API
-  var pinned = ['boardly','gestao','fitcheck','sulav','rentwatch','wedding','eversonrubira.github'];
+  var pinned = ['boardly','gestao','fitcheck','sulav','wedding','eversonrubira.github'];
   fetch('https://api.github.com/users/EversonRubira/repos?sort=updated&per_page=100')
     .then(function(r) { return r.json(); })
     .then(function(repos) {
