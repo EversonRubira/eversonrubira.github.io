@@ -311,14 +311,6 @@ section { padding: 80px 0; }
 .contact-icon { flex-shrink: 0; color: var(--accent); }
 .contact-label { font-size: 0.7rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-muted); margin-bottom: 2px; }
 .contact-value { font-size: 0.875rem; font-weight: 500; color: var(--text-primary); }
-.cv-download {
-  display: inline-flex; align-items: center; gap: 8px;
-  margin-top: 28px; background: var(--accent); color: #fff;
-  border: none; border-radius: 8px; padding: 11px 24px;
-  font-family: 'Inter', sans-serif; font-size: 0.875rem; font-weight: 500;
-  cursor: pointer; transition: background 0.15s;
-}
-.cv-download:hover { background: var(--accent-hover); }
 
 /* FOOTER */
 footer { background: var(--bg-surface); border-top: 1px solid var(--border); padding: 24px; text-align: center; font-size: 0.8rem; color: var(--text-muted); line-height: 1.8; }
@@ -338,7 +330,7 @@ footer { background: var(--bg-surface); border-top: 1px solid var(--border); pad
 @media print {
   /* Esconder tudo excepto conteúdo essencial */
   nav, #hero-canvas, #scroll-top, .hamburger, .mobile-menu,
-  .hero-btns, .gh-strip, .cv-download, .hero-photo-pills,
+  .hero-btns, .gh-strip, .hero-photo-pills,
   .hero-subtitle-wrap, .hero-socials, .context-pills,
   .projects-featured, #projetos, #stack,
   .fade-in { display: none !important; }
@@ -1035,10 +1027,6 @@ footer { background: var(--bg-surface); border-top: 1px solid var(--border); pad
         <div><div class="contact-label">GitHub</div><div class="contact-value">github.com/EversonRubira</div></div>
       </a>
     </div>
-    <a href="#" onclick="window.print();return false;" class="cv-download">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-      <span data-pt="Guardar como PDF" data-en="Save as PDF">Guardar como PDF</span>
-    </a>
   </div>
 </section>
 
