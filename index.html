@@ -246,7 +246,7 @@ nav {
   font-weight: 700; line-height: 1;
   letter-spacing: -0.03em; color: var(--ink);
   margin-bottom: 12px; white-space: nowrap;
-  animation: glitch 9s ease-in-out infinite;
+  animation: glitch 10s ease-in-out infinite;
 }
 .hero-role {
   font-family: var(--mono); font-size: clamp(0.85rem, 1.5vw, 1rem);
@@ -261,18 +261,16 @@ nav {
 
 /* ─── GLITCH ─── */
 @keyframes glitch {
-  0%, 77%, 100% { text-shadow: none; clip-path: none; transform: none; }
-  78%  { text-shadow: -4px 0 rgba(255,0,80,0.85), 4px 0 rgba(0,200,255,0.85); transform: translateX(2px); }
-  80%  { text-shadow: 4px 0 rgba(255,0,80,0.85), -4px 0 rgba(0,200,255,0.85); clip-path: inset(15% 0 65% 0); transform: translateX(-2px); }
-  82%  { text-shadow: none; clip-path: inset(55% 0 10% 0); transform: none; }
-  84%  { text-shadow: -3px 0 rgba(0,200,255,0.9); clip-path: none; }
-  87%  { text-shadow: none; transform: translateX(1px); }
-  89%  { text-shadow: 3px 0 rgba(255,0,80,0.7), -2px 0 rgba(0,200,255,0.6); clip-path: inset(35% 0 40% 0); }
-  91%  { text-shadow: none; clip-path: none; transform: none; }
-  93%  { text-shadow: -4px 0 rgba(255,0,80,0.6), 3px 0 rgba(0,200,255,0.5); transform: translateX(-1px); }
-  95%  { text-shadow: none; transform: none; }
-  97%  { text-shadow: 2px 0 rgba(0,200,255,0.7); clip-path: inset(70% 0 5% 0); }
-  99%  { text-shadow: none; clip-path: none; }
+  0%, 90%, 100% { text-shadow: none; clip-path: none; transform: none; }
+  91%  { text-shadow: -4px 0 rgba(255,0,80,0.85), 4px 0 rgba(0,200,255,0.85); transform: translateX(2px); }
+  92%  { text-shadow: 4px 0 rgba(255,0,80,0.85), -4px 0 rgba(0,200,255,0.85); clip-path: inset(20% 0 60% 0); transform: translateX(-2px); }
+  93%  { text-shadow: none; clip-path: inset(60% 0 10% 0); transform: none; }
+  94%  { text-shadow: -3px 0 rgba(0,200,255,0.9); clip-path: none; }
+  95%  { text-shadow: none; }
+  96%  { text-shadow: 3px 0 rgba(255,0,80,0.7), -2px 0 rgba(0,200,255,0.6); clip-path: inset(35% 0 40% 0); }
+  97%  { text-shadow: none; clip-path: none; }
+  98%  { text-shadow: -2px 0 rgba(0,200,255,0.6); transform: translateX(1px); }
+  99%  { text-shadow: none; transform: none; }
 }
 
 .hero-desc {
