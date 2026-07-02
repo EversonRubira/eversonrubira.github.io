@@ -687,36 +687,54 @@ footer {
   .nav-cv { display: none; }
   .ham { display: flex; }
   .hero-body { grid-template-columns: 1fr; padding: 60px 24px 40px; }
-  .hero-right { align-items: flex-start; flex-direction: row; padding-left: 0; }
-  .photo-frame { width: 140px; }
-  .photo-frame img { width: 140px; height: 172px; }
+  .hero-right { align-items: flex-start; flex-direction: row; padding-left: 0; gap: 16px; }
+  .photo-frame { width: 130px; }
   .photo-frame::after { top: 8px; left: 8px; right: -8px; bottom: -8px; }
-  .hero-bar { padding: 14px 24px; }
-  .sec-wrap { padding: 0 24px; }
-  .sobre-grid, .form-grid, .contact-inner { grid-template-columns: 1fr; gap: 48px; }
+  #ascii-canvas { width: 130px !important; height: 160px !important; }
+  #ascii-photo  { width: 130px !important; height: 160px !important; }
+  .hero-bar { padding: 14px 24px; flex-direction: column; align-items: flex-start; gap: 8px; }
+  .hero-bar-tags { font-size: 0.58rem; line-height: 1.8; }
+  .sec-wrap { padding: 0 20px; }
+  .sobre-grid, .form-grid, .contact-inner { grid-template-columns: 1fr; gap: 40px; }
   .stack-grid { grid-template-columns: 1fr; gap: 0; }
   .stack-row:first-child { border-top: 1px solid var(--line); }
-  .princ-item { grid-template-columns: 1fr; gap: 24px; }
+  .princ-item { grid-template-columns: 1fr; gap: 20px; }
   .princ-left { position: static; }
   .proj-item { grid-template-columns: 1fr; }
-  .proj-spec { border-left: none; border-top: 1px solid var(--line); padding: 24px 0 0; }
-  .proj-main { padding: 36px 0 20px; }
-  .exp-item { grid-template-columns: 1fr; gap: 6px; }
-  .contact-inner { padding: 72px 24px; }
-  footer { padding: 20px 24px; }
-  .nav-inner { padding: 0 24px; }
-  .mob-menu { padding: 12px 24px 20px; }
+  .proj-spec { border-left: none; border-top: 1px solid var(--line); padding: 20px 0 0; }
+  .proj-main { padding: 28px 0 16px; }
+  .exp-item { grid-template-columns: 1fr; gap: 4px; }
+  .contact-inner { padding: 60px 20px; }
+  footer { padding: 20px 20px; }
+  .nav-inner { padding: 0 20px; }
+  .mob-menu { padding: 12px 20px 20px; }
   .learn-item { grid-template-columns: 1fr 52px; }
   .learn-bar { display: none; }
+  .hero-chips { gap: 4px; }
+  .chip { font-size: 0.55rem; padding: 3px 8px; }
+  .hero-actions { gap: 8px; }
+  .btn-fill, .btn-ghost { font-size: 0.68rem; padding: 9px 16px; }
+  .sobre-quote { font-size: 1rem; }
+  .proj-link { font-size: 0.58rem; padding: 6px 12px; }
 }
 @media (max-width: 600px) {
   .gl { display: none; }
-  .hero-name { font-size: 2.8rem; }
-  .blob-a { width: 340px; height: 340px; top: -80px; left: -80px; }
-  .blob-b { width: 280px; height: 280px; right: -80px; }
-  .blob-c { width: 240px; height: 240px; }
-  .photo-frame { width: 120px; }
-  .photo-frame img { width: 120px; height: 148px; }
+  .hero-name { font-size: 2.2rem; white-space: normal; }
+  .hero-role { font-size: 0.78rem; }
+  .blob-a { width: 300px; height: 300px; top: -60px; left: -60px; }
+  .blob-b { width: 240px; height: 240px; right: -60px; }
+  .blob-c { width: 200px; height: 200px; }
+  .photo-frame { width: 110px; }
+  #ascii-canvas { width: 110px !important; height: 136px !important; }
+  #ascii-photo  { width: 110px !important; height: 136px !important; }
+  .hero-right { flex-direction: column; }
+  .hero-socials { flex-direction: row; flex-wrap: wrap; gap: 12px; }
+  section { padding: 64px 0; }
+  .sec-title { font-size: 1.4rem; }
+  .contact-val { font-size: 0.78rem; }
+  .princ-quote { font-size: 0.9rem; }
+  .princ-body { font-size: 0.82rem; }
+  .form-grid { gap: 32px; }
 }
 </style>
 </head>
@@ -1621,12 +1639,21 @@ btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth'
   loader.src = photo.src;
   loader.onload = () => buildFromImage(loader);
 
-  // Click toggle — lock/unlock photo
-  frame.addEventListener('click', () => frame.classList.toggle('locked'));
+  // Desktop: click toggle lock
+  frame.addEventListener('click', (e) => {
+    if (e.pointerType === 'touch') return; // handled by touch below
+    frame.classList.toggle('locked');
+  });
 
-  // Touch toggle for mobile (hover não existe em touch)
-  frame.addEventListener('touchstart', () => frame.classList.add('touched'),    { passive: true });
-  frame.addEventListener('touchend',   () => frame.classList.remove('touched'), { passive: true });
+  // Mobile: tap toggles locked (ignores hover)
+  let touchMoved = false;
+  frame.addEventListener('touchstart', () => { touchMoved = false; }, { passive: true });
+  frame.addEventListener('touchmove',  () => { touchMoved = true;  }, { passive: true });
+  frame.addEventListener('touchend', (e) => {
+    if (touchMoved) return;
+    e.preventDefault();
+    frame.classList.toggle('locked');
+  });
 })();
 
 // Progress bars
