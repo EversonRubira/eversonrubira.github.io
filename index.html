@@ -31,15 +31,15 @@ button { cursor: pointer; font-family: inherit; }
   --bg:        #16141a;
   --bg-1:      #1d1b22;
   --bg-2:      #252329;
-  --ink:       #e4e1e6;
-  --ink-2:     #8a8a92;
-  --ink-3:     #44444c;
-  --line:      #2a2a2e;
-  --line-2:    rgba(255,255,255,0.06);
+  --ink:       #e8e5ea;
+  --ink-2:     #b0adb8;
+  --ink-3:     #55525e;
+  --line:      #2e2b34;
+  --line-2:    rgba(255,255,255,0.07);
   --white:     #ffffff;
-  --nav-bg:    rgba(19,19,22,0.92);
-  --grid-line: rgba(255,255,255,0.035);
-  --scan-clr:  rgba(255,255,255,0.04);
+  --nav-bg:    rgba(22,20,26,0.92);
+  --grid-line: rgba(255,255,255,0.05);
+  --scan-clr:  rgba(255,255,255,0.05);
   --tag-live:  rgba(255,255,255,0.12);
   --tag-live-c:#fff;
   --tag-wip-c: #8a8a92;
@@ -52,10 +52,10 @@ button { cursor: pointer; font-family: inherit; }
   --bg:        #f4f2ee;
   --bg-1:      #edeae4;
   --bg-2:      #e2dfd8;
-  --ink:       #0f0f12;
-  --ink-2:     #5a5a62;
-  --ink-3:     #aaaaaa;
-  --line:      #d6d3cc;
+  --ink:       #0d0d10;
+  --ink-2:     #38363f;
+  --ink-3:     #999299;
+  --line:      #ccc9c2;
   --line-2:    rgba(0,0,0,0.06);
   --white:     #0f0f12;
   --nav-bg:    rgba(244,242,238,0.92);
@@ -225,6 +225,7 @@ nav {
   font-weight: 700; line-height: 0.95;
   letter-spacing: -0.03em; color: var(--ink);
   margin-bottom: 12px;
+  animation: glitch 12s ease-in-out infinite;
 }
 .hero-role {
   font-family: var(--mono); font-size: clamp(0.85rem, 1.5vw, 1rem);
@@ -236,6 +237,18 @@ nav {
   animation: cblink 1s step-end infinite;
 }
 @keyframes cblink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+/* ─── GLITCH ─── */
+@keyframes glitch {
+  0%, 89%, 100% { text-shadow: none; clip-path: none; }
+  90%  { text-shadow: -3px 0 rgba(255,0,80,0.7), 3px 0 rgba(0,200,255,0.7); }
+  91%  { text-shadow: 3px 0 rgba(255,0,80,0.7), -3px 0 rgba(0,200,255,0.7); clip-path: inset(20% 0 60% 0); }
+  92%  { text-shadow: none; clip-path: inset(60% 0 10% 0); }
+  93%  { text-shadow: -2px 0 rgba(0,200,255,0.8); clip-path: none; }
+  94%  { text-shadow: none; }
+  95%  { text-shadow: 2px 0 rgba(255,0,80,0.6), -1px 0 rgba(0,200,255,0.5); }
+  96%  { text-shadow: none; }
+}
 .hero-desc {
   font-size: 0.92rem; color: var(--ink-2); line-height: 1.8;
   max-width: 440px; margin-bottom: 36px;
@@ -500,11 +513,13 @@ section { padding: 96px 0; }
 .proj-tag.wip  { background: var(--tag-wip);  color: var(--tag-wip-c); }
 .proj-tag.done { background: var(--tag-wip);  color: var(--tag-wip-c); }
 .proj-link {
-  font-family: var(--mono); font-size: 0.62rem; color: var(--ink-3);
-  letter-spacing: 0.06em; display: flex; align-items: center; gap: 4px;
-  transition: color 0.15s;
+  font-family: var(--mono); font-size: 0.62rem; font-weight: 700;
+  letter-spacing: 0.08em; color: var(--ink-2);
+  display: inline-flex; align-items: center; gap: 6px;
+  border: 1px solid var(--line); padding: 7px 16px; border-radius: 2px;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
 }
-.proj-link:hover { color: var(--ink); }
+.proj-link:hover { background: var(--ink); color: var(--bg); border-color: var(--ink); }
 .proj-link svg { width: 10px; height: 10px; fill: none; stroke: currentColor; stroke-width: 2; }
 
 /* ─── STACK ─── */
