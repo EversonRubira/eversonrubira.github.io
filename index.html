@@ -349,8 +349,10 @@ nav {
   pointer-events: none; white-space: nowrap;
   backdrop-filter: blur(4px);
 }
+.photo-hint.visible { opacity: 1; }
 .photo-frame:hover .photo-hint { opacity: 1; }
-.photo-frame.locked .photo-hint { opacity: 0; }
+.photo-frame.locked .photo-hint,
+.photo-frame.locked:hover .photo-hint { opacity: 0; }
 .hero-socials { display: flex; gap: 16px; }
 .hero-socials a {
   font-family: var(--mono); font-size: 0.62rem;
@@ -805,8 +807,7 @@ footer {
         <span class="cursor-blink" data-i18n="hero-cursor">Java · Spring Boot · Node.js · Claude API</span>
       </div>
       <p class="hero-desc reveal" data-i18n="hero-desc">
-        15 anos a operar sistemas B2B —
-        agora <strong>construo os sistemas.</strong><br>
+        15 anos a operar sistemas B2B. Agora <strong>construo os sistemas.</strong><br>
         Em transição deliberada, com entregas reais em produção.<br>
         Seixal / Lisboa, Portugal.
       </p>
@@ -858,10 +859,10 @@ footer {
     <div class="sobre-grid">
       <div class="sobre-quote reveal" data-i18n="sobre-quote">
         "15 anos a operar sistemas B2B ensinaram-me a pensar
-        <em>antes</em> de construir — agora aplico isso em código."
+        <em>antes</em> de construir. Agora aplico isso em código."
       </div>
       <div class="sobre-body reveal">
-        <p data-i18n="sobre-p1">Brasileiro em Portugal. Construo a minha transição para tech com consistência. Não saí do zero — trago experiência real em identificar falhas, trabalhar com precisão e entregar sob pressão.</p>
+        <p data-i18n="sobre-p1">Brasileiro em Portugal. Construo a minha transição para tech com consistência. Não saí do zero: trago experiência real em identificar falhas, trabalhar com precisão e entregar sob pressão.</p>
         <p data-i18n="sobre-p2">Estou a completar o <strong>TeSP em Programação e Sistemas de Informação no IPS</strong>, com estágio curricular activo em Java/Spring Boot e Angular na Pipoca Ágil. Co-fundei a <strong>ImplementIQ Systems</strong> com clientes reais em produção.</p>
         <div class="fact-table">
           <div class="fact-row">
@@ -903,9 +904,9 @@ footer {
         </div>
         <div class="princ-right">
           <div class="princ-quote" data-i18n="princ-02a-quote">
-            "Nunca deixar o cliente sem resposta. Nunca dizer que não vai dar — encontrar o caminho."
+            "Nunca deixar o cliente sem resposta. Nunca dizer que não vai dar: encontrar o caminho."
           </div>
-          <p class="princ-body" data-i18n="princ-02a-body">15 anos a lidar com clientes ensinaram-me que o silêncio é sempre a pior resposta. Quando um sistema falha sem dizer porquê, quando uma API retorna 500 sem contexto, quando o utilizador clica e não acontece nada — isso é um bug de comunicação antes de ser um bug de código. O sistema tem a obrigação de responder, sempre. Graceful degradation não é uma feature opcional; é o contrato mínimo com quem usa o que construímos.</p>
+          <p class="princ-body" data-i18n="princ-02a-body">15 anos a lidar com clientes ensinaram-me que o silêncio é sempre a pior resposta. Quando um sistema falha sem dizer porquê, quando uma API retorna 500 sem contexto, quando o utilizador clica e não acontece nada: isso é um bug de comunicação antes de ser um bug de código. O sistema tem a obrigação de responder, sempre. Graceful degradation não é uma feature opcional; é o contrato mínimo com quem usa o que construímos.</p>
           <div class="princ-spec">
             <div class="spec-row">
               <span class="spec-k" data-i18n="spec-nunca">nunca</span>
@@ -932,7 +933,7 @@ footer {
           <div class="princ-quote" data-i18n="princ-02b-quote">
             "Primeiro ponho-me no lugar de quem tem o problema. Depois papel. Depois código."
           </div>
-          <p class="princ-body" data-i18n="princ-02b-body">O editor abre por último. Antes de escrever uma linha, preciso de perceber exactamente o que dói — não o que o cliente descreveu, mas o problema real que está por trás do pedido. Operações B2B ensinaram-me que o que é pedido e o que é necessário raramente são a mesma coisa. Em engenharia isso traduz-se em: mapear o domínio antes de modelar, entender o fluxo antes de criar o endpoint, questionar o requisito antes de o implementar.</p>
+          <p class="princ-body" data-i18n="princ-02b-body">O editor abre por último. Antes de escrever uma linha, preciso de perceber exactamente o que dói, não o que o cliente descreveu, mas o problema real que está por trás do pedido. Operações B2B ensinaram-me que o que é pedido e o que é necessário raramente são a mesma coisa. Em engenharia isso traduz-se em: mapear o domínio antes de modelar, entender o fluxo antes de criar o endpoint, questionar o requisito antes de o implementar.</p>
           <div class="princ-spec">
             <div class="spec-row">
               <span class="spec-k" data-i18n="spec-sequencia">sequência</span>
@@ -959,7 +960,7 @@ footer {
           <div class="princ-quote" data-i18n="princ-02c-quote">
             "Um ataque man-in-the-middle num pagamento ensinou-me a nunca assumir que o canal é seguro."
           </div>
-          <p class="princ-body" data-i18n="princ-02c-body">A lição mais cara que aprendi não foi técnica — foi operacional. Um pagamento intercetado, dinheiro desviado, horas de gestão de crise. Recuperei, mas nunca esqueci. Desde então: verifico múltiplas vezes antes de qualquer acção irreversível. Em engenharia isso significa: validar inputs nas fronteiras do sistema, nunca confiar em dados não verificados, tratar toda a entrada externa como hostil até prova em contrário. Zero trust não é paranoia — é disciplina.</p>
+          <p class="princ-body" data-i18n="princ-02c-body">A lição mais cara que aprendi não foi técnica: foi operacional. Um pagamento intercetado, dinheiro desviado, horas de gestão de crise. Recuperei, mas nunca esqueci. Desde então: verifico múltiplas vezes antes de qualquer acção irreversível. Em engenharia isso significa: validar inputs nas fronteiras do sistema, nunca confiar em dados não verificados, tratar toda a entrada externa como hostil até prova em contrário. Zero trust não é paranoia: é disciplina.</p>
           <div class="princ-spec">
             <div class="spec-row">
               <span class="spec-k" data-i18n="spec-premissa">premissa</span>
@@ -999,7 +1000,7 @@ footer {
           <ul class="exp-bullets">
             <li data-i18n="exp-pipoca-b1">Arquitectura Hexagonal + DDD em projecto real de e-commerce</li>
             <li data-i18n="exp-pipoca-b2">Migração de schema com Flyway; catálogo de produtos completo</li>
-            <li data-i18n="exp-pipoca-b3">Carrinho de compras — backend + frontend — com 7 testes Vitest</li>
+            <li data-i18n="exp-pipoca-b3">Carrinho de compras (backend e frontend) com 7 testes Vitest</li>
             <li data-i18n="exp-pipoca-b4">MapStruct, JUnit 5, Jira, GitHub, Docker</li>
           </ul>
           <div class="exp-tech">Java 21 · Spring Boot · PostgreSQL · Flyway · Angular 21 · TypeScript · PrimeNG · Vitest · Docker</div>
@@ -1012,9 +1013,9 @@ footer {
           <div class="exp-company">ImplementIQ Systems <span class="exp-status" data-i18n="exp-status-active">activo</span></div>
           <div class="exp-role" data-i18n="exp-role-impl">Co-fundador &amp; Developer · Seixal, Portugal</div>
           <ul class="exp-bullets">
-            <li data-i18n="exp-impl-b1">Consultoria tech para PMEs portuguesas — da relação com cliente à entrega</li>
-            <li data-i18n="exp-impl-b2">Sulav Sushi Bar — site PT/EN em produção com Uber Eats, Glovo e Bolt Food</li>
-            <li data-i18n="exp-impl-b3">Wedding Clinic — site institucional em desenvolvimento para cliente real</li>
+            <li data-i18n="exp-impl-b1">Consultoria tech para PMEs portuguesas, da relação com cliente à entrega</li>
+            <li data-i18n="exp-impl-b2">Sulav Sushi Bar, site PT/EN em produção com Uber Eats, Glovo e Bolt Food</li>
+            <li data-i18n="exp-impl-b3">Wedding Clinic, site institucional em desenvolvimento para cliente real</li>
           </ul>
           <div class="exp-tech">GitHub Pages · Supabase · HTML/CSS/JS · SEO</div>
         </div>
@@ -1188,7 +1189,7 @@ footer {
           <div class="edu-degree" data-i18n="edu-degree-ips">TeSP em Programação e Sistemas de Informação</div>
           <div class="edu-school">Instituto Politécnico de Setúbal (IPS)</div>
           <div class="edu-period" data-i18n="edu-period-ips">2024 – Dez 2026 (previsto)</div>
-          <div class="edu-note" data-i18n="edu-note-ips">3.º semestre — 7 UCs em curso + estágio curricular activo na Pipoca Ágil.</div>
+          <div class="edu-note" data-i18n="edu-note-ips">3.º semestre, 7 UCs em curso + estágio curricular activo na Pipoca Ágil.</div>
         </div>
         <div class="edu-block" style="border-bottom:none">
           <div class="edu-degree">Anthropic Academy</div>
@@ -1248,7 +1249,7 @@ footer {
     <div class="reveal">
       <div class="contact-lbl" data-i18n="contact-lbl">[ contacto ]</div>
       <h2 class="contact-title" data-i18n="contact-title">Vamos<br>conversar.</h2>
-      <p class="contact-sub" data-i18n="contact-sub">Aberto a oportunidades Junior em QA, Backend Java ou IA aplicada — Portugal, Espanha ou remoto.</p>
+      <p class="contact-sub" data-i18n="contact-sub">Aberto a oportunidades Junior em QA, Backend Java ou IA aplicada. Portugal, Espanha ou remoto.</p>
       <p class="contact-note" data-i18n="contact-note">Disponível para começar imediatamente.</p>
     </div>
     <div class="contact-rows reveal">
@@ -1315,7 +1316,7 @@ const i18n = {
 
     'hero-role': 'Backend Dev · QA Engineer · IA aplicada',
     'hero-cursor': 'Java · Spring Boot · Node.js · Claude API',
-    'hero-desc': '15 anos a operar sistemas B2B — agora <strong>construo os sistemas.</strong><br>Em transição deliberada, com entregas reais em produção.<br>Seixal / Lisboa, Portugal.',
+    'hero-desc': '15 anos a operar sistemas B2B. Agora <strong>construo os sistemas.</strong><br>Em transição deliberada, com entregas reais em produção.<br>Seixal / Lisboa, Portugal.',
     'hero-btn-proj': 'ver projetos →',
     'hero-btn-contact': 'contacto',
     'hero-bar-tags': '<span>Backend</span> · Java · Spring Boot · Node.js &nbsp;·&nbsp; <span>QA</span> · JUnit · Cypress · Robot Framework &nbsp;·&nbsp; <span>IA</span> · LangChain · Claude API',
@@ -1328,8 +1329,8 @@ const i18n = {
     'sec-stack': 'Stack Técnica',
     'sec-formacao': 'Formação &amp; Certificações',
 
-    'sobre-quote': '"15 anos a operar sistemas B2B ensinaram-me a pensar <em>antes</em> de construir — agora aplico isso em código."',
-    'sobre-p1': 'Brasileiro em Portugal. Construo a minha transição para tech com consistência. Não saí do zero — trago experiência real em identificar falhas, trabalhar com precisão e entregar sob pressão.',
+    'sobre-quote': '"15 anos a operar sistemas B2B ensinaram-me a pensar <em>antes</em> de construir. Agora aplico isso em código."',
+    'sobre-p1': 'Brasileiro em Portugal. Construo a minha transição para tech com consistência. Não saí do zero: trago experiência real em identificar falhas, trabalhar com precisão e entregar sob pressão.',
     'sobre-p2': 'Estou a completar o <strong>TeSP em Programação e Sistemas de Informação no IPS</strong>, com estágio curricular activo em Java/Spring Boot e Angular na Pipoca Ágil. Co-fundei a <strong>ImplementIQ Systems</strong> com clientes reais em produção.',
     'fact-localizacao': 'localização',
     'fact-procuro': 'procuro',
@@ -1340,14 +1341,14 @@ const i18n = {
     'fact-idiomas-v': 'PT nativo · EN profissional · ES básico',
 
     'princ-02a-label': 'Feedback<br>é inegociável',
-    'princ-02a-quote': '"Nunca deixar o cliente sem resposta. Nunca dizer que não vai dar — encontrar o caminho."',
-    'princ-02a-body': '15 anos a lidar com clientes ensinaram-me que o silêncio é sempre a pior resposta. Quando um sistema falha sem dizer porquê, quando uma API retorna 500 sem contexto, quando o utilizador clica e não acontece nada — isso é um bug de comunicação antes de ser um bug de código. O sistema tem a obrigação de responder, sempre. Graceful degradation não é uma feature opcional; é o contrato mínimo com quem usa o que construímos.',
+    'princ-02a-quote': '"Nunca deixar o cliente sem resposta. Nunca dizer que não vai dar: encontrar o caminho."',
+    'princ-02a-body': '15 anos a lidar com clientes ensinaram-me que o silêncio é sempre a pior resposta. Quando um sistema falha sem dizer porquê, quando uma API retorna 500 sem contexto, quando o utilizador clica e não acontece nada: isso é um bug de comunicação antes de ser um bug de código. O sistema tem a obrigação de responder, sempre. Graceful degradation não é uma feature opcional; é o contrato mínimo com quem usa o que construímos.',
     'princ-02b-label': 'Problema<br>antes de código',
     'princ-02b-quote': '"Primeiro ponho-me no lugar de quem tem o problema. Depois papel. Depois código."',
-    'princ-02b-body': 'O editor abre por último. Antes de escrever uma linha, preciso de perceber exactamente o que dói — não o que o cliente descreveu, mas o problema real que está por trás do pedido. Operações B2B ensinaram-me que o que é pedido e o que é necessário raramente são a mesma coisa. Em engenharia isso traduz-se em: mapear o domínio antes de modelar, entender o fluxo antes de criar o endpoint, questionar o requisito antes de o implementar.',
+    'princ-02b-body': 'O editor abre por último. Antes de escrever uma linha, preciso de perceber exactamente o que dói, não o que o cliente descreveu, mas o problema real que está por trás do pedido. Operações B2B ensinaram-me que o que é pedido e o que é necessário raramente são a mesma coisa. Em engenharia isso traduz-se em: mapear o domínio antes de modelar, entender o fluxo antes de criar o endpoint, questionar o requisito antes de o implementar.',
     'princ-02c-label': 'Verificar<br>antes de agir',
     'princ-02c-quote': '"Um ataque man-in-the-middle num pagamento ensinou-me a nunca assumir que o canal é seguro."',
-    'princ-02c-body': 'A lição mais cara que aprendi não foi técnica — foi operacional. Um pagamento intercetado, dinheiro desviado, horas de gestão de crise. Recuperei, mas nunca esqueci. Desde então: verifico múltiplas vezes antes de qualquer acção irreversível. Em engenharia isso significa: validar inputs nas fronteiras do sistema, nunca confiar em dados não verificados, tratar toda a entrada externa como hostil até prova em contrário. Zero trust não é paranoia — é disciplina.',
+    'princ-02c-body': 'A lição mais cara que aprendi não foi técnica: foi operacional. Um pagamento intercetado, dinheiro desviado, horas de gestão de crise. Recuperei, mas nunca esqueci. Desde então: verifico múltiplas vezes antes de qualquer acção irreversível. Em engenharia isso significa: validar inputs nas fronteiras do sistema, nunca confiar em dados não verificados, tratar toda a entrada externa como hostil até prova em contrário. Zero trust não é paranoia: é disciplina.',
     'spec-nunca': 'nunca',
     'spec-sempre': 'sempre',
     'spec-padrao': 'padrão',
@@ -1378,12 +1379,12 @@ const i18n = {
     'exp-role-pipoca': 'Estágio Curricular · Full-Stack Developer · Remoto (Brasil)',
     'exp-pipoca-b1': 'Arquitectura Hexagonal + DDD em projecto real de e-commerce',
     'exp-pipoca-b2': 'Migração de schema com Flyway; catálogo de produtos completo',
-    'exp-pipoca-b3': 'Carrinho de compras — backend + frontend — com 7 testes Vitest',
+    'exp-pipoca-b3': 'Carrinho de compras (backend e frontend) com 7 testes Vitest',
     'exp-pipoca-b4': 'MapStruct, JUnit 5, Jira, GitHub, Docker',
     'exp-role-impl': 'Co-fundador &amp; Developer · Seixal, Portugal',
-    'exp-impl-b1': 'Consultoria tech para PMEs portuguesas — da relação com cliente à entrega',
-    'exp-impl-b2': 'Sulav Sushi Bar — site PT/EN em produção com Uber Eats, Glovo e Bolt Food',
-    'exp-impl-b3': 'Wedding Clinic — site institucional em desenvolvimento para cliente real',
+    'exp-impl-b1': 'Consultoria tech para PMEs portuguesas, da relação com cliente à entrega',
+    'exp-impl-b2': 'Sulav Sushi Bar, site PT/EN em produção com Uber Eats, Glovo e Bolt Food',
+    'exp-impl-b3': 'Wedding Clinic, site institucional em desenvolvimento para cliente real',
     'exp-role-acc': 'Trust &amp; Safety Associate · Lisboa',
     'exp-acc-b1': 'Revisão e moderação de conteúdo em ambiente de alta responsabilidade',
     'exp-acc-b2': 'Análise de risco com base em políticas internacionais',
@@ -1406,7 +1407,7 @@ const i18n = {
     'stack-ia': 'ia &amp; automação',
 
     'edu-degree-ips': 'TeSP em Programação e Sistemas de Informação',
-    'edu-note-ips': '3.º semestre — 7 UCs em curso + estágio curricular activo na Pipoca Ágil.',
+    'edu-note-ips': '3.º semestre, 7 UCs em curso + estágio curricular activo na Pipoca Ágil.',
     'edu-school-anthropic': 'Cursos concluídos · 2026',
     'micro-learning': 'em aprendizagem activa',
     'learn-inscrito': 'inscrito',
@@ -1418,7 +1419,7 @@ const i18n = {
 
     'contact-lbl': '[ contacto ]',
     'contact-title': 'Vamos<br>conversar.',
-    'contact-sub': 'Aberto a oportunidades Junior em QA, Backend Java ou IA aplicada — Portugal, Espanha ou remoto.',
+    'contact-sub': 'Aberto a oportunidades Junior em QA, Backend Java ou IA aplicada. Portugal, Espanha ou remoto.',
     'contact-note': 'Disponível para começar imediatamente.',
 
     'foot-left': '© 2026 Everson Rubira · Seixal, Portugal',
@@ -1438,7 +1439,7 @@ const i18n = {
 
     'hero-role': 'Backend Dev · QA Engineer · Applied AI',
     'hero-cursor': 'Java · Spring Boot · Node.js · Claude API',
-    'hero-desc': '15 years operating B2B systems — now <strong>I build them.</strong><br>A deliberate transition, with real deliveries in production.<br>Seixal / Lisbon, Portugal.',
+    'hero-desc': '15 years operating B2B systems. Now <strong>I build them.</strong><br>A deliberate transition, with real deliveries in production.<br>Seixal / Lisbon, Portugal.',
     'hero-btn-proj': 'view projects →',
     'hero-btn-contact': 'contact',
     'hero-bar-tags': '<span>Backend</span> · Java · Spring Boot · Node.js &nbsp;·&nbsp; <span>QA</span> · JUnit · Cypress · Robot Framework &nbsp;·&nbsp; <span>AI</span> · LangChain · Claude API',
@@ -1451,8 +1452,8 @@ const i18n = {
     'sec-stack': 'Tech Stack',
     'sec-formacao': 'Education &amp; Certifications',
 
-    'sobre-quote': '"15 years operating B2B systems taught me to think <em>before</em> building — now I apply that in code."',
-    'sobre-p1': 'Brazilian in Portugal. Building my transition into tech with consistency. I didn\'t start from zero — I bring real experience identifying failures, working with precision, and delivering under pressure.',
+    'sobre-quote': '"15 years operating B2B systems taught me to think <em>before</em> building. Now I apply that in code."',
+    'sobre-p1': 'Brazilian in Portugal. Building my transition into tech with consistency. I didn\'t start from zero: I bring real experience identifying failures, working with precision, and delivering under pressure.',
     'sobre-p2': 'I\'m completing a <strong>degree in Programming and Information Systems at IPS</strong>, with an active internship in Java/Spring Boot and Angular at Pipoca Ágil. I co-founded <strong>ImplementIQ Systems</strong> with real clients in production.',
     'fact-localizacao': 'location',
     'fact-procuro': 'seeking',
@@ -1463,14 +1464,14 @@ const i18n = {
     'fact-idiomas-v': 'PT native · EN professional · ES basic',
 
     'princ-02a-label': 'Feedback<br>is non-negotiable',
-    'princ-02a-quote': '"Never leave the client without a response. Never say it can\'t be done — find the way."',
-    'princ-02a-body': '15 years dealing with clients taught me that silence is always the worst response. When a system fails without saying why, when an API returns 500 without context, when the user clicks and nothing happens — that\'s a communication bug before it\'s a code bug. The system has an obligation to respond, always. Graceful degradation isn\'t an optional feature; it\'s the minimum contract with whoever uses what we build.',
+    'princ-02a-quote': '"Never leave the client without a response. Never say it can\'t be done: find the way."',
+    'princ-02a-body': '15 years dealing with clients taught me that silence is always the worst response. When a system fails without saying why, when an API returns 500 without context, when the user clicks and nothing happens: that\'s a communication bug before it\'s a code bug. The system has an obligation to respond, always. Graceful degradation isn\'t an optional feature; it\'s the minimum contract with whoever uses what we build.',
     'princ-02b-label': 'Problem<br>before code',
     'princ-02b-quote': '"First I put myself in the shoes of whoever has the problem. Then paper. Then code."',
-    'princ-02b-body': 'The editor opens last. Before writing a line, I need to understand exactly what hurts — not what the client described, but the real problem behind the request. B2B operations taught me that what is asked and what is needed are rarely the same thing. In engineering that translates to: map the domain before modelling, understand the flow before creating the endpoint, question the requirement before implementing it.',
+    'princ-02b-body': 'The editor opens last. Before writing a line, I need to understand exactly what hurts, not what the client described, but the real problem behind the request. B2B operations taught me that what is asked and what is needed are rarely the same thing. In engineering that translates to: map the domain before modelling, understand the flow before creating the endpoint, question the requirement before implementing it.',
     'princ-02c-label': 'Verify<br>before acting',
     'princ-02c-quote': '"A man-in-the-middle attack on a payment taught me to never assume the channel is safe."',
-    'princ-02c-body': 'The most expensive lesson I learned wasn\'t technical — it was operational. A payment intercepted, money diverted, hours of crisis management. I recovered, but never forgot. Since then: I verify multiple times before any irreversible action. In engineering that means: validate inputs at system boundaries, never trust unverified data, treat all external input as hostile until proven otherwise. Zero trust isn\'t paranoia — it\'s discipline.',
+    'princ-02c-body': 'The most expensive lesson I learned wasn\'t technical: it was operational. A payment intercepted, money diverted, hours of crisis management. I recovered, but never forgot. Since then: I verify multiple times before any irreversible action. In engineering that means: validate inputs at system boundaries, never trust unverified data, treat all external input as hostile until proven otherwise. Zero trust isn\'t paranoia: it\'s discipline.',
     'spec-nunca': 'never',
     'spec-sempre': 'always',
     'spec-padrao': 'pattern',
@@ -1501,12 +1502,12 @@ const i18n = {
     'exp-role-pipoca': 'Internship · Full-Stack Developer · Remote (Brazil)',
     'exp-pipoca-b1': 'Hexagonal Architecture + DDD on a real e-commerce project',
     'exp-pipoca-b2': 'Schema migration with Flyway; complete product catalogue',
-    'exp-pipoca-b3': 'Shopping cart — backend + frontend — with 7 Vitest tests',
+    'exp-pipoca-b3': 'Shopping cart (backend and frontend) with 7 Vitest tests',
     'exp-pipoca-b4': 'MapStruct, JUnit 5, Jira, GitHub, Docker',
     'exp-role-impl': 'Co-founder &amp; Developer · Seixal, Portugal',
-    'exp-impl-b1': 'Tech consultancy for Portuguese SMEs — from client relationship to delivery',
-    'exp-impl-b2': 'Sulav Sushi Bar — PT/EN site in production with Uber Eats, Glovo and Bolt Food',
-    'exp-impl-b3': 'Wedding Clinic — institutional site in development for a real client',
+    'exp-impl-b1': 'Tech consultancy for Portuguese SMEs, from client relationship to delivery',
+    'exp-impl-b2': 'Sulav Sushi Bar, PT/EN site in production with Uber Eats, Glovo and Bolt Food',
+    'exp-impl-b3': 'Wedding Clinic, institutional site in development for a real client',
     'exp-role-acc': 'Trust &amp; Safety Associate · Lisbon',
     'exp-acc-b1': 'Content review and moderation in a high-responsibility environment',
     'exp-acc-b2': 'Risk analysis based on international policies',
@@ -1529,7 +1530,7 @@ const i18n = {
     'stack-ia': 'ai &amp; automation',
 
     'edu-degree-ips': 'Degree in Programming and Information Systems',
-    'edu-note-ips': '3rd semester — 7 ongoing modules + active internship at Pipoca Ágil.',
+    'edu-note-ips': '3rd semester, 7 ongoing modules + active internship at Pipoca Ágil.',
     'edu-school-anthropic': 'Completed courses · 2026',
     'micro-learning': 'actively learning',
     'learn-inscrito': 'enrolled',
@@ -1541,7 +1542,7 @@ const i18n = {
 
     'contact-lbl': '[ contact ]',
     'contact-title': 'Let\'s<br>talk.',
-    'contact-sub': 'Open to Junior opportunities in QA, Backend Java or Applied AI — Portugal, Spain or remote.',
+    'contact-sub': 'Open to Junior opportunities in QA, Backend Java or Applied AI. Portugal, Spain or remote.',
     'contact-note': 'Available to start immediately.',
 
     'foot-left': '© 2026 Everson Rubira · Seixal, Portugal',
@@ -1680,16 +1681,30 @@ btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth'
     ctx.globalAlpha = 1;
   }
 
+  const hint = document.getElementById('photo-hint');
+
   // Load the photo and build ASCII
   const loader = new Image();
   loader.crossOrigin = 'anonymous';
   loader.src = photo.src;
-  loader.onload = () => buildFromImage(loader);
+  loader.onload = () => {
+    buildFromImage(loader);
+    // Show hint briefly on load (works on mobile too)
+    if (hint) {
+      hint.classList.add('visible');
+      setTimeout(() => hint.classList.remove('visible'), 2500);
+    }
+  };
+
+  function hideHintPermanently() {
+    if (hint) { hint.classList.remove('visible'); hint.style.display = 'none'; }
+  }
 
   // Desktop: click toggle lock
   frame.addEventListener('click', (e) => {
-    if (e.pointerType === 'touch') return; // handled by touch below
+    if (e.pointerType === 'touch') return;
     frame.classList.toggle('locked');
+    hideHintPermanently();
   });
 
   // Mobile: tap toggles locked (ignores hover)
@@ -1700,6 +1715,7 @@ btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth'
     if (touchMoved) return;
     e.preventDefault();
     frame.classList.toggle('locked');
+    hideHintPermanently();
   });
 })();
 
