@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt" data-theme="dark">
+<html lang="pt" data-theme="dark" data-lang="pt">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -134,6 +134,14 @@ nav {
 }
 .nav-links a:hover, .nav-links a.active { color: var(--ink); }
 .nav-right { display: flex; align-items: center; gap: 8px; margin-left: 16px; }
+#lang-btn {
+  font-family: var(--mono); font-size: 0.62rem; font-weight: 700;
+  letter-spacing: 0.1em; background: none;
+  border: 1px solid var(--line); padding: 5px 10px; border-radius: 2px;
+  color: var(--ink-3); transition: border-color 0.15s, color 0.15s;
+}
+#lang-btn:hover { border-color: var(--ink-2); color: var(--ink); }
+[data-lang="en"] #lang-btn { color: var(--ink); border-color: var(--ink-2); }
 #theme-btn {
   width: 32px; height: 32px; background: none;
   border: 1px solid var(--line); border-radius: 2px;
@@ -690,32 +698,33 @@ footer {
   <div class="nav-inner">
     <span class="nav-logo">er<span class="dim">.</span>dev</span>
     <ul class="nav-links">
-      <li><a href="#sobre">sobre</a></li>
-      <li><a href="#filosofia">filosofia</a></li>
-      <li><a href="#experiencia">exp</a></li>
-      <li><a href="#projetos">projetos</a></li>
-      <li><a href="#stack">stack</a></li>
-      <li><a href="#formacao">formação</a></li>
-      <li><a href="#contacto">contacto</a></li>
+      <li><a href="#sobre" data-i18n="nav-sobre">sobre</a></li>
+      <li><a href="#filosofia" data-i18n="nav-filosofia">filosofia</a></li>
+      <li><a href="#experiencia" data-i18n="nav-exp">exp</a></li>
+      <li><a href="#projetos" data-i18n="nav-projetos">projetos</a></li>
+      <li><a href="#stack" data-i18n="nav-stack">stack</a></li>
+      <li><a href="#formacao" data-i18n="nav-formacao">formação</a></li>
+      <li><a href="#contacto" data-i18n="nav-contacto">contacto</a></li>
     </ul>
     <div class="nav-right">
+      <button id="lang-btn" aria-label="Switch language">EN</button>
       <button id="theme-btn" aria-label="Alternar tema">
         <svg class="i-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
         <svg class="i-sun"  viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
       </button>
-      <a href="cv.html" target="_blank" class="nav-cv">cv ↗</a>
+      <a href="cv.html" target="_blank" class="nav-cv" data-i18n="nav-cv">cv ↗</a>
       <button class="ham" id="ham" aria-label="Menu"><span></span><span></span><span></span></button>
     </div>
   </div>
   <div class="mob-menu" id="mob">
-    <a href="#sobre">sobre</a>
-    <a href="#filosofia">filosofia</a>
-    <a href="#experiencia">experiência</a>
-    <a href="#projetos">projetos</a>
-    <a href="#stack">stack</a>
-    <a href="#formacao">formação</a>
-    <a href="#contacto">contacto</a>
-    <a href="cv.html" target="_blank">ver cv ↗</a>
+    <a href="#sobre" data-i18n="nav-sobre">sobre</a>
+    <a href="#filosofia" data-i18n="nav-filosofia">filosofia</a>
+    <a href="#experiencia" data-i18n="mob-experiencia">experiência</a>
+    <a href="#projetos" data-i18n="nav-projetos">projetos</a>
+    <a href="#stack" data-i18n="nav-stack">stack</a>
+    <a href="#formacao" data-i18n="nav-formacao">formação</a>
+    <a href="#contacto" data-i18n="nav-contacto">contacto</a>
+    <a href="cv.html" target="_blank" data-i18n="mob-cv">ver cv ↗</a>
   </div>
 </nav>
 
@@ -725,19 +734,19 @@ footer {
     <div class="hero-text">
       <h1 class="hero-name reveal">Everson<br>Rubira</h1>
       <div class="hero-role reveal">
-        Backend Dev · QA Engineer · IA aplicada<br>
-        <span class="cursor-blink">Java · Spring Boot · Node.js · Claude API</span>
+        <span data-i18n="hero-role">Backend Dev · QA Engineer · IA aplicada</span><br>
+        <span class="cursor-blink" data-i18n="hero-cursor">Java · Spring Boot · Node.js · Claude API</span>
       </div>
-      <p class="hero-desc reveal">
+      <p class="hero-desc reveal" data-i18n="hero-desc">
         15 anos a operar sistemas B2B —
         agora <strong>construo os sistemas.</strong><br>
         Em transição deliberada, com entregas reais em produção.<br>
         Seixal / Lisboa, Portugal.
       </p>
       <div class="hero-actions reveal">
-        <a href="#projetos" class="btn-fill">ver projetos →</a>
-        <a href="#contacto" class="btn-ghost">contacto</a>
-        <a href="cv.html" target="_blank" class="btn-ghost">cv ↗</a>
+        <a href="#projetos" class="btn-fill" data-i18n="hero-btn-proj">ver projetos →</a>
+        <a href="#contacto" class="btn-ghost" data-i18n="hero-btn-contact">contacto</a>
+        <a href="cv.html" target="_blank" class="btn-ghost" data-i18n="nav-cv">cv ↗</a>
       </div>
       <div class="hero-chips reveal">
         <span class="chip">Java 17/21</span>
@@ -760,12 +769,12 @@ footer {
     </div>
   </div>
   <div class="hero-bar">
-    <div class="hero-bar-tags">
+    <div class="hero-bar-tags" data-i18n="hero-bar-tags">
       <span>Backend</span> · Java · Spring Boot · Node.js &nbsp;·&nbsp;
       <span>QA</span> · JUnit · Cypress · Robot Framework &nbsp;·&nbsp;
       <span>IA</span> · LangChain · Claude API
     </div>
-    <span class="status-pill">Disponível agora</span>
+    <span class="status-pill" data-i18n="hero-status">Disponível agora</span>
   </div>
 </section>
 
@@ -774,35 +783,34 @@ footer {
   <div class="sec-wrap">
     <div class="sec-head reveal">
       <span class="sec-num">[ 01 ]</span>
-      <h2 class="sec-title">Sobre</h2>
+      <h2 class="sec-title" data-i18n="sec-sobre">Sobre</h2>
       <div class="sec-rule"></div>
     </div>
     <div class="sobre-grid">
-      <div class="sobre-quote reveal">
+      <div class="sobre-quote reveal" data-i18n="sobre-quote">
         "15 anos a operar sistemas B2B ensinaram-me a pensar
         <em>antes</em> de construir — agora aplico isso em código."
       </div>
       <div class="sobre-body reveal">
-        <p>Brasileiro em Portugal. Construo a minha transição para tech com consistência. Não saí do zero — trago experiência real em identificar falhas, trabalhar com precisão e entregar sob pressão.</p>
-        <p>Estou a completar o <strong>TeSP em Programação e Sistemas de Informação no IPS</strong>, com estágio curricular activo em Java/Spring Boot e Angular na Pipoca Ágil. Co-fundei a <strong>ImplementIQ Systems</strong> com clientes reais em produção.</p>
+        <p data-i18n="sobre-p1">Brasileiro em Portugal. Construo a minha transição para tech com consistência. Não saí do zero — trago experiência real em identificar falhas, trabalhar com precisão e entregar sob pressão.</p>
+        <p data-i18n="sobre-p2">Estou a completar o <strong>TeSP em Programação e Sistemas de Informação no IPS</strong>, com estágio curricular activo em Java/Spring Boot e Angular na Pipoca Ágil. Co-fundei a <strong>ImplementIQ Systems</strong> com clientes reais em produção.</p>
         <div class="fact-table">
           <div class="fact-row">
-            <span class="fact-k">localização</span>
+            <span class="fact-k" data-i18n="fact-localizacao">localização</span>
             <span class="fact-v">Seixal / Lisboa, Portugal</span>
           </div>
           <div class="fact-row">
-            <span class="fact-k">procuro</span>
-            <span class="fact-v">Junior QA · Backend Java · IA aplicada</span>
+            <span class="fact-k" data-i18n="fact-procuro">procuro</span>
+            <span class="fact-v" data-i18n="fact-procuro-v">Junior QA · Backend Java · IA aplicada</span>
           </div>
           <div class="fact-row">
-            <span class="fact-k">modalidade</span>
-            <span class="fact-v">Presencial · Híbrido · Remoto</span>
+            <span class="fact-k" data-i18n="fact-modalidade">modalidade</span>
+            <span class="fact-v" data-i18n="fact-modalidade-v">Presencial · Híbrido · Remoto</span>
           </div>
           <div class="fact-row">
-            <span class="fact-k">idiomas</span>
-            <span class="fact-v">PT nativo · EN profissional · ES básico</span>
+            <span class="fact-k" data-i18n="fact-idiomas">idiomas</span>
+            <span class="fact-v" data-i18n="fact-idiomas-v">PT nativo · EN profissional · ES básico</span>
           </div>
-
         </div>
       </div>
     </div>
@@ -814,7 +822,7 @@ footer {
   <div class="sec-wrap">
     <div class="sec-head reveal">
       <span class="sec-num">[ 02 ]</span>
-      <h2 class="sec-title">Princípios de Engenharia</h2>
+      <h2 class="sec-title" data-i18n="sec-filosofia">Princípios de Engenharia</h2>
       <div class="sec-rule"></div>
     </div>
     <div class="princ-list">
@@ -822,24 +830,24 @@ footer {
       <div class="princ-item reveal">
         <div class="princ-left">
           <div class="princ-code">[ 02.A ]</div>
-          <div class="princ-label">Feedback<br>é inegociável</div>
+          <div class="princ-label" data-i18n="princ-02a-label">Feedback<br>é inegociável</div>
         </div>
         <div class="princ-right">
-          <div class="princ-quote">
+          <div class="princ-quote" data-i18n="princ-02a-quote">
             "Nunca deixar o cliente sem resposta. Nunca dizer que não vai dar — encontrar o caminho."
           </div>
-          <p class="princ-body">15 anos a lidar com clientes ensinaram-me que o silêncio é sempre a pior resposta. Quando um sistema falha sem dizer porquê, quando uma API retorna 500 sem contexto, quando o utilizador clica e não acontece nada — isso é um bug de comunicação antes de ser um bug de código. O sistema tem a obrigação de responder, sempre. Graceful degradation não é uma feature opcional; é o contrato mínimo com quem usa o que construímos.</p>
+          <p class="princ-body" data-i18n="princ-02a-body">15 anos a lidar com clientes ensinaram-me que o silêncio é sempre a pior resposta. Quando um sistema falha sem dizer porquê, quando uma API retorna 500 sem contexto, quando o utilizador clica e não acontece nada — isso é um bug de comunicação antes de ser um bug de código. O sistema tem a obrigação de responder, sempre. Graceful degradation não é uma feature opcional; é o contrato mínimo com quem usa o que construímos.</p>
           <div class="princ-spec">
             <div class="spec-row">
-              <span class="spec-k">nunca</span>
+              <span class="spec-k" data-i18n="spec-nunca">nunca</span>
               <span class="spec-v">falha silenciosa · timeout sem feedback · estado indefinido</span>
             </div>
             <div class="spec-row">
-              <span class="spec-k">sempre</span>
+              <span class="spec-k" data-i18n="spec-sempre">sempre</span>
               <span class="spec-v">mensagem de erro útil · fallback explícito · estado comunicado</span>
             </div>
             <div class="spec-row">
-              <span class="spec-k">padrão</span>
+              <span class="spec-k" data-i18n="spec-padrao">padrão</span>
               <span class="spec-v">graceful degradation · circuit breaker · logging estruturado</span>
             </div>
           </div>
@@ -849,24 +857,24 @@ footer {
       <div class="princ-item reveal">
         <div class="princ-left">
           <div class="princ-code">[ 02.B ]</div>
-          <div class="princ-label">Problema<br>antes de código</div>
+          <div class="princ-label" data-i18n="princ-02b-label">Problema<br>antes de código</div>
         </div>
         <div class="princ-right">
-          <div class="princ-quote">
+          <div class="princ-quote" data-i18n="princ-02b-quote">
             "Primeiro ponho-me no lugar de quem tem o problema. Depois papel. Depois código."
           </div>
-          <p class="princ-body">O editor abre por último. Antes de escrever uma linha, preciso de perceber exactamente o que dói — não o que o cliente descreveu, mas o problema real que está por trás do pedido. Operações B2B ensinaram-me que o que é pedido e o que é necessário raramente são a mesma coisa. Em engenharia isso traduz-se em: mapear o domínio antes de modelar, entender o fluxo antes de criar o endpoint, questionar o requisito antes de o implementar.</p>
+          <p class="princ-body" data-i18n="princ-02b-body">O editor abre por último. Antes de escrever uma linha, preciso de perceber exactamente o que dói — não o que o cliente descreveu, mas o problema real que está por trás do pedido. Operações B2B ensinaram-me que o que é pedido e o que é necessário raramente são a mesma coisa. Em engenharia isso traduz-se em: mapear o domínio antes de modelar, entender o fluxo antes de criar o endpoint, questionar o requisito antes de o implementar.</p>
           <div class="princ-spec">
             <div class="spec-row">
-              <span class="spec-k">sequência</span>
+              <span class="spec-k" data-i18n="spec-sequencia">sequência</span>
               <span class="spec-v">empatia → mapeamento → papel → código</span>
             </div>
             <div class="spec-row">
-              <span class="spec-k">ferramenta</span>
+              <span class="spec-k" data-i18n="spec-ferramenta">ferramenta</span>
               <span class="spec-v">domain modelling · event storming · diagrama antes de IDE</span>
             </div>
             <div class="spec-row">
-              <span class="spec-k">alerta</span>
+              <span class="spec-k" data-i18n="spec-alerta">alerta</span>
               <span class="spec-v">implementar o pedido literal sem questionar o porquê</span>
             </div>
           </div>
@@ -876,24 +884,24 @@ footer {
       <div class="princ-item reveal">
         <div class="princ-left">
           <div class="princ-code">[ 02.C ]</div>
-          <div class="princ-label">Verificar<br>antes de agir</div>
+          <div class="princ-label" data-i18n="princ-02c-label">Verificar<br>antes de agir</div>
         </div>
         <div class="princ-right">
-          <div class="princ-quote">
+          <div class="princ-quote" data-i18n="princ-02c-quote">
             "Um ataque man-in-the-middle num pagamento ensinou-me a nunca assumir que o canal é seguro."
           </div>
-          <p class="princ-body">A lição mais cara que aprendi não foi técnica — foi operacional. Um pagamento intercetado, dinheiro desviado, horas de gestão de crise. Recuperei, mas nunca esqueci. Desde então: verifico múltiplas vezes antes de qualquer acção irreversível. Em engenharia isso significa: validar inputs nas fronteiras do sistema, nunca confiar em dados não verificados, tratar toda a entrada externa como hostil até prova em contrário. Zero trust não é paranoia — é disciplina.</p>
+          <p class="princ-body" data-i18n="princ-02c-body">A lição mais cara que aprendi não foi técnica — foi operacional. Um pagamento intercetado, dinheiro desviado, horas de gestão de crise. Recuperei, mas nunca esqueci. Desde então: verifico múltiplas vezes antes de qualquer acção irreversível. Em engenharia isso significa: validar inputs nas fronteiras do sistema, nunca confiar em dados não verificados, tratar toda a entrada externa como hostil até prova em contrário. Zero trust não é paranoia — é disciplina.</p>
           <div class="princ-spec">
             <div class="spec-row">
-              <span class="spec-k">premissa</span>
+              <span class="spec-k" data-i18n="spec-premissa">premissa</span>
               <span class="spec-v">toda a entrada externa é potencialmente hostil</span>
             </div>
             <div class="spec-row">
-              <span class="spec-k">padrão</span>
+              <span class="spec-k" data-i18n="spec-padrao">padrão</span>
               <span class="spec-v">validação na fronteira · zero trust · confirmação antes de irreversível</span>
             </div>
             <div class="spec-row">
-              <span class="spec-k">aplica-se</span>
+              <span class="spec-k" data-i18n="spec-aplica-se">aplica-se</span>
               <span class="spec-v">APIs · pagamentos · autenticação · migrações de dados</span>
             </div>
           </div>
@@ -909,7 +917,7 @@ footer {
   <div class="sec-wrap">
     <div class="sec-head reveal">
       <span class="sec-num">[ 03 ]</span>
-      <h2 class="sec-title">Experiência</h2>
+      <h2 class="sec-title" data-i18n="sec-experiencia">Experiência</h2>
       <div class="sec-rule"></div>
     </div>
     <div class="exp-list">
@@ -917,13 +925,13 @@ footer {
       <div class="exp-item reveal">
         <div class="exp-year">2026<br>presente</div>
         <div>
-          <div class="exp-company">Pipoca Ágil <span class="exp-status">activo</span></div>
-          <div class="exp-role">Estágio Curricular · Full-Stack Developer · Remoto (Brasil)</div>
+          <div class="exp-company">Pipoca Ágil <span class="exp-status" data-i18n="exp-status-active">activo</span></div>
+          <div class="exp-role" data-i18n="exp-role-pipoca">Estágio Curricular · Full-Stack Developer · Remoto (Brasil)</div>
           <ul class="exp-bullets">
-            <li>Arquitectura Hexagonal + DDD em projecto real de e-commerce</li>
-            <li>Migração de schema com Flyway; catálogo de produtos completo</li>
-            <li>Carrinho de compras — backend + frontend — com 7 testes Vitest</li>
-            <li>MapStruct, JUnit 5, Jira, GitHub, Docker</li>
+            <li data-i18n="exp-pipoca-b1">Arquitectura Hexagonal + DDD em projecto real de e-commerce</li>
+            <li data-i18n="exp-pipoca-b2">Migração de schema com Flyway; catálogo de produtos completo</li>
+            <li data-i18n="exp-pipoca-b3">Carrinho de compras — backend + frontend — com 7 testes Vitest</li>
+            <li data-i18n="exp-pipoca-b4">MapStruct, JUnit 5, Jira, GitHub, Docker</li>
           </ul>
           <div class="exp-tech">Java 21 · Spring Boot · PostgreSQL · Flyway · Angular 21 · TypeScript · PrimeNG · Vitest · Docker</div>
         </div>
@@ -932,12 +940,12 @@ footer {
       <div class="exp-item reveal">
         <div class="exp-year">2024<br>presente</div>
         <div>
-          <div class="exp-company">ImplementIQ Systems <span class="exp-status">activo</span></div>
-          <div class="exp-role">Co-fundador &amp; Developer · Seixal, Portugal</div>
+          <div class="exp-company">ImplementIQ Systems <span class="exp-status" data-i18n="exp-status-active">activo</span></div>
+          <div class="exp-role" data-i18n="exp-role-impl">Co-fundador &amp; Developer · Seixal, Portugal</div>
           <ul class="exp-bullets">
-            <li>Consultoria tech para PMEs portuguesas — da relação com cliente à entrega</li>
-            <li>Sulav Sushi Bar — site PT/EN em produção com Uber Eats, Glovo e Bolt Food</li>
-            <li>Wedding Clinic — site institucional em desenvolvimento para cliente real</li>
+            <li data-i18n="exp-impl-b1">Consultoria tech para PMEs portuguesas — da relação com cliente à entrega</li>
+            <li data-i18n="exp-impl-b2">Sulav Sushi Bar — site PT/EN em produção com Uber Eats, Glovo e Bolt Food</li>
+            <li data-i18n="exp-impl-b3">Wedding Clinic — site institucional em desenvolvimento para cliente real</li>
           </ul>
           <div class="exp-tech">GitHub Pages · Supabase · HTML/CSS/JS · SEO</div>
         </div>
@@ -947,11 +955,11 @@ footer {
         <div class="exp-year">actual</div>
         <div>
           <div class="exp-company">Accenture Lisboa</div>
-          <div class="exp-role">Trust &amp; Safety Associate · Lisboa</div>
+          <div class="exp-role" data-i18n="exp-role-acc">Trust &amp; Safety Associate · Lisboa</div>
           <ul class="exp-bullets">
-            <li>Revisão e moderação de conteúdo em ambiente de alta responsabilidade</li>
-            <li>Análise de risco com base em políticas internacionais</li>
-            <li>Coordenação cross-timezone em ambiente multicultural</li>
+            <li data-i18n="exp-acc-b1">Revisão e moderação de conteúdo em ambiente de alta responsabilidade</li>
+            <li data-i18n="exp-acc-b2">Análise de risco com base em políticas internacionais</li>
+            <li data-i18n="exp-acc-b3">Coordenação cross-timezone em ambiente multicultural</li>
           </ul>
         </div>
       </div>
@@ -965,7 +973,7 @@ footer {
   <div class="sec-wrap">
     <div class="sec-head reveal">
       <span class="sec-num">[ 04 ]</span>
-      <h2 class="sec-title">Projetos</h2>
+      <h2 class="sec-title" data-i18n="sec-projetos">Projetos</h2>
       <div class="sec-rule"></div>
     </div>
     <div class="proj-list">
@@ -974,9 +982,9 @@ footer {
         <div class="proj-main">
           <div class="proj-id">ID_01</div>
           <div class="proj-name">Boardly</div>
-          <p class="proj-desc">Gestão de tarefas com autenticação JWT e Clean Architecture. Projecto independente para praticar segurança e boas práticas de API REST.</p>
+          <p class="proj-desc" data-i18n="proj-boardly-desc">Gestão de tarefas com autenticação JWT e Clean Architecture. Projecto independente para praticar segurança e boas práticas de API REST.</p>
           <div class="proj-footer">
-            <span class="proj-tag done">concluído</span>
+            <span class="proj-tag done" data-i18n="proj-tag-done">concluído</span>
             <a href="https://github.com/EversonRubira/boardly" target="_blank" rel="noopener" class="proj-link">GitHub <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
           </div>
         </div>
@@ -994,9 +1002,9 @@ footer {
         <div class="proj-main">
           <div class="proj-id">ID_02</div>
           <div class="proj-name">GestaoSaudeMental</div>
-          <p class="proj-desc">API REST para gestão de saúde mental, com foco em boas práticas de backend, estrutura de dados e design de endpoints coesos.</p>
+          <p class="proj-desc" data-i18n="proj-gestao-desc">API REST para gestão de saúde mental, com foco em boas práticas de backend, estrutura de dados e design de endpoints coesos.</p>
           <div class="proj-footer">
-            <span class="proj-tag done">concluído</span>
+            <span class="proj-tag done" data-i18n="proj-tag-done">concluído</span>
             <a href="https://github.com/EversonRubira/GestaoSaudeMental" target="_blank" rel="noopener" class="proj-link">GitHub <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
           </div>
         </div>
@@ -1014,9 +1022,9 @@ footer {
         <div class="proj-main">
           <div class="proj-id">ID_03</div>
           <div class="proj-name">FitCheck</div>
-          <p class="proj-desc">App de fitness com integração de IA via Claude API. Combina Node.js com inteligência artificial para personalização de treinos.</p>
+          <p class="proj-desc" data-i18n="proj-fitcheck-desc">App de fitness com integração de IA via Claude API. Combina Node.js com inteligência artificial para personalização de treinos.</p>
           <div class="proj-footer">
-            <span class="proj-tag wip">em desenvolvimento</span>
+            <span class="proj-tag wip" data-i18n="proj-tag-wip">em desenvolvimento</span>
             <a href="https://github.com/EversonRubira/fitcheck" target="_blank" rel="noopener" class="proj-link">GitHub <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
           </div>
         </div>
@@ -1034,9 +1042,9 @@ footer {
         <div class="proj-main">
           <div class="proj-id">ID_04</div>
           <div class="proj-name">Sulav Sushi Bar</div>
-          <p class="proj-desc">Site completo em produção para restaurante português. Bilíngue PT/EN com Uber Eats, Glovo, Bolt Food e Google Maps integrados.</p>
+          <p class="proj-desc" data-i18n="proj-sulav-desc">Site completo em produção para restaurante português. Bilíngue PT/EN com Uber Eats, Glovo, Bolt Food e Google Maps integrados.</p>
           <div class="proj-footer">
-            <span class="proj-tag live">produção</span>
+            <span class="proj-tag live" data-i18n="proj-tag-live">produção</span>
             <a href="https://sulavsushibar.pt" target="_blank" rel="noopener" class="proj-link">sulavsushibar.pt <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
           </div>
         </div>
@@ -1054,9 +1062,9 @@ footer {
         <div class="proj-main">
           <div class="proj-id">ID_05</div>
           <div class="proj-name">Wedding Clinic</div>
-          <p class="proj-desc">Site institucional em desenvolvimento para cliente real no sector de casamentos. Entrega completa da ImplementIQ Systems.</p>
+          <p class="proj-desc" data-i18n="proj-wedding-desc">Site institucional em desenvolvimento para cliente real no sector de casamentos. Entrega completa da ImplementIQ Systems.</p>
           <div class="proj-footer">
-            <span class="proj-tag wip">em desenvolvimento</span>
+            <span class="proj-tag wip" data-i18n="proj-tag-wip">em desenvolvimento</span>
             <a href="https://weddingclinic.pt" target="_blank" rel="noopener" class="proj-link">weddingclinic.pt <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
           </div>
         </div>
@@ -1079,19 +1087,19 @@ footer {
   <div class="sec-wrap">
     <div class="sec-head reveal">
       <span class="sec-num">[ 05 ]</span>
-      <h2 class="sec-title">Stack Técnica</h2>
+      <h2 class="sec-title" data-i18n="sec-stack">Stack Técnica</h2>
       <div class="sec-rule"></div>
     </div>
     <div class="stack-grid reveal">
       <div>
-        <div class="stack-row"><span class="stack-k">backend</span><span class="stack-v">Java 17/21, Spring Boot, Node.js, Python, FastAPI</span></div>
-        <div class="stack-row"><span class="stack-k">frontend</span><span class="stack-v">Angular, TypeScript, PrimeNG, HTML/CSS, JavaScript</span></div>
-        <div class="stack-row"><span class="stack-k">databases</span><span class="stack-v">PostgreSQL, MySQL, MongoDB, Supabase</span></div>
+        <div class="stack-row"><span class="stack-k" data-i18n="stack-backend">backend</span><span class="stack-v">Java 17/21, Spring Boot, Node.js, Python, FastAPI</span></div>
+        <div class="stack-row"><span class="stack-k" data-i18n="stack-frontend">frontend</span><span class="stack-v">Angular, TypeScript, PrimeNG, HTML/CSS, JavaScript</span></div>
+        <div class="stack-row"><span class="stack-k" data-i18n="stack-databases">databases</span><span class="stack-v">PostgreSQL, MySQL, MongoDB, Supabase</span></div>
       </div>
       <div>
-        <div class="stack-row"><span class="stack-k">testes &amp; qa</span><span class="stack-v">JUnit 5, Vitest, Postman, Cypress, Robot Framework</span></div>
-        <div class="stack-row"><span class="stack-k">devops</span><span class="stack-v">Docker, Git, GitHub Actions, Jira, Linux</span></div>
-        <div class="stack-row"><span class="stack-k">ia &amp; automação</span><span class="stack-v">LangChain, Claude API, Anthropic SDK, Prompt Engineering</span></div>
+        <div class="stack-row"><span class="stack-k" data-i18n="stack-testes">testes &amp; qa</span><span class="stack-v">JUnit 5, Vitest, Postman, Cypress, Robot Framework</span></div>
+        <div class="stack-row"><span class="stack-k" data-i18n="stack-devops">devops</span><span class="stack-v">Docker, Git, GitHub Actions, Jira, Linux</span></div>
+        <div class="stack-row"><span class="stack-k" data-i18n="stack-ia">ia &amp; automação</span><span class="stack-v">LangChain, Claude API, Anthropic SDK, Prompt Engineering</span></div>
       </div>
     </div>
   </div>
@@ -1102,23 +1110,23 @@ footer {
   <div class="sec-wrap">
     <div class="sec-head reveal">
       <span class="sec-num">[ 06 ]</span>
-      <h2 class="sec-title">Formação &amp; Certificações</h2>
+      <h2 class="sec-title" data-i18n="sec-formacao">Formação &amp; Certificações</h2>
       <div class="sec-rule"></div>
     </div>
     <div class="form-grid">
       <div class="reveal">
         <div class="edu-block">
-          <div class="edu-degree">TeSP em Programação e Sistemas de Informação</div>
+          <div class="edu-degree" data-i18n="edu-degree-ips">TeSP em Programação e Sistemas de Informação</div>
           <div class="edu-school">Instituto Politécnico de Setúbal (IPS)</div>
           <div class="edu-period">2024 – Dez 2026 (previsto)</div>
-          <div class="edu-note">3.º semestre — 7 UCs em curso + estágio curricular activo na Pipoca Ágil.</div>
+          <div class="edu-note" data-i18n="edu-note-ips">3.º semestre — 7 UCs em curso + estágio curricular activo na Pipoca Ágil.</div>
         </div>
         <div class="edu-block" style="border-bottom:none">
           <div class="edu-degree">Anthropic Academy</div>
-          <div class="edu-school">Cursos concluídos · 2026</div>
+          <div class="edu-school" data-i18n="edu-school-anthropic">Cursos concluídos · 2026</div>
           <div class="edu-period">Claude 101 · Claude Code in Action · AI Fluency: Framework &amp; Foundations · AI Fluency for Students</div>
         </div>
-        <div class="micro-label">em aprendizagem activa</div>
+        <div class="micro-label" data-i18n="micro-learning">em aprendizagem activa</div>
         <div class="learn-list">
           <div class="learn-item">
             <div><div class="learn-name">LangChain: Agentes de IA</div><div class="learn-src">Alura</div></div>
@@ -1128,36 +1136,36 @@ footer {
           <div class="learn-item">
             <div><div class="learn-name">Building with the Claude API</div><div class="learn-src">Anthropic Academy</div></div>
             <div class="learn-bar"><div class="learn-fill" data-w="10"></div></div>
-            <div class="learn-pct">inscrito</div>
+            <div class="learn-pct" data-i18n="learn-inscrito">inscrito</div>
           </div>
           <div class="learn-item">
             <div><div class="learn-name">Introduction to MCP</div><div class="learn-src">Anthropic Academy</div></div>
             <div class="learn-bar"><div class="learn-fill" data-w="5"></div></div>
-            <div class="learn-pct">a iniciar</div>
+            <div class="learn-pct" data-i18n="learn-iniciando">a iniciar</div>
           </div>
           <div class="learn-item">
             <div><div class="learn-name">MCP: Advanced Topics</div><div class="learn-src">Anthropic Academy</div></div>
             <div class="learn-bar"><div class="learn-fill" data-w="5"></div></div>
-            <div class="learn-pct">a iniciar</div>
+            <div class="learn-pct" data-i18n="learn-iniciando">a iniciar</div>
           </div>
         </div>
       </div>
       <div class="reveal">
         <div class="micro-label" style="margin-top:0">Certificações Alura</div>
         <div class="cert-group">
-          <div class="cert-group-k">Java &amp; Spring Boot</div>
+          <div class="cert-group-k" data-i18n="cert-java">Java &amp; Spring Boot</div>
           <div class="cert-group-v">OOP · Collections · Streams · SOLID · TDD/JUnit · Spring Boot ×3 · DDD · Clean Architecture · Microservices · RabbitMQ</div>
         </div>
         <div class="cert-group">
-          <div class="cert-group-k">QA &amp; Testes</div>
+          <div class="cert-group-k" data-i18n="cert-qa">QA &amp; Testes</div>
           <div class="cert-group-v">Gestão de bugs · QA Automação · Cypress · Robot Framework</div>
         </div>
         <div class="cert-group">
-          <div class="cert-group-k">Outras linguagens</div>
+          <div class="cert-group-k" data-i18n="cert-outras">Outras linguagens</div>
           <div class="cert-group-v">Python OOP · Python TDD · Go API · Go OOP · C (3 cursos) · JavaScript · TypeScript</div>
         </div>
         <div class="cert-group">
-          <div class="cert-group-k">Cloud, DevOps &amp; IA</div>
+          <div class="cert-group-k" data-i18n="cert-cloud">Cloud, DevOps &amp; IA</div>
           <div class="cert-group-v">AZ-900 · Docker · Linux · Git/GitHub · HTTP · Prompt Engineering · Generative AI · LangChain + OpenAI</div>
         </div>
       </div>
@@ -1169,10 +1177,10 @@ footer {
 <section id="contacto">
   <div class="contact-inner">
     <div class="reveal">
-      <div class="contact-lbl">[ contacto ]</div>
-      <h2 class="contact-title">Vamos<br>conversar.</h2>
-      <p class="contact-sub">Aberto a oportunidades Junior em QA, Backend Java ou IA aplicada — Portugal, Espanha ou remoto.</p>
-      <p class="contact-note">Disponível para começar imediatamente.</p>
+      <div class="contact-lbl" data-i18n="contact-lbl">[ contacto ]</div>
+      <h2 class="contact-title" data-i18n="contact-title">Vamos<br>conversar.</h2>
+      <p class="contact-sub" data-i18n="contact-sub">Aberto a oportunidades Junior em QA, Backend Java ou IA aplicada — Portugal, Espanha ou remoto.</p>
+      <p class="contact-note" data-i18n="contact-note">Disponível para começar imediatamente.</p>
     </div>
     <div class="contact-rows reveal">
       <a href="mailto:eversonrubira@gmail.com" class="contact-row">
@@ -1201,8 +1209,8 @@ footer {
 
 <footer>
   <div class="foot-inner">
-    <span class="foot-left">© 2026 Everson Rubira · Seixal, Portugal</span>
-    <a href="cv.html" target="_blank" class="foot-right">ver cv completo →</a>
+    <span class="foot-left" data-i18n="foot-left">© 2026 Everson Rubira · Seixal, Portugal</span>
+    <a href="cv.html" target="_blank" class="foot-right" data-i18n="foot-right">ver cv completo →</a>
   </div>
 </footer>
 
@@ -1220,6 +1228,243 @@ themeBtn.addEventListener('click', () => {
   const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
   html.setAttribute('data-theme', next);
   localStorage.setItem('er-theme', next);
+});
+
+// ─── i18n ───
+const i18n = {
+  pt: {
+    'nav-sobre': 'sobre',
+    'nav-filosofia': 'filosofia',
+    'nav-exp': 'exp',
+    'nav-projetos': 'projetos',
+    'nav-stack': 'stack',
+    'nav-formacao': 'formação',
+    'nav-contacto': 'contacto',
+    'nav-cv': 'cv ↗',
+    'mob-experiencia': 'experiência',
+    'mob-cv': 'ver cv ↗',
+
+    'hero-role': 'Backend Dev · QA Engineer · IA aplicada',
+    'hero-cursor': 'Java · Spring Boot · Node.js · Claude API',
+    'hero-desc': '15 anos a operar sistemas B2B — agora <strong>construo os sistemas.</strong><br>Em transição deliberada, com entregas reais em produção.<br>Seixal / Lisboa, Portugal.',
+    'hero-btn-proj': 'ver projetos →',
+    'hero-btn-contact': 'contacto',
+    'hero-bar-tags': '<span>Backend</span> · Java · Spring Boot · Node.js &nbsp;·&nbsp; <span>QA</span> · JUnit · Cypress · Robot Framework &nbsp;·&nbsp; <span>IA</span> · LangChain · Claude API',
+    'hero-status': 'Disponível agora',
+
+    'sec-sobre': 'Sobre',
+    'sec-filosofia': 'Princípios de Engenharia',
+    'sec-experiencia': 'Experiência',
+    'sec-projetos': 'Projetos',
+    'sec-stack': 'Stack Técnica',
+    'sec-formacao': 'Formação &amp; Certificações',
+
+    'sobre-quote': '"15 anos a operar sistemas B2B ensinaram-me a pensar <em>antes</em> de construir — agora aplico isso em código."',
+    'sobre-p1': 'Brasileiro em Portugal. Construo a minha transição para tech com consistência. Não saí do zero — trago experiência real em identificar falhas, trabalhar com precisão e entregar sob pressão.',
+    'sobre-p2': 'Estou a completar o <strong>TeSP em Programação e Sistemas de Informação no IPS</strong>, com estágio curricular activo em Java/Spring Boot e Angular na Pipoca Ágil. Co-fundei a <strong>ImplementIQ Systems</strong> com clientes reais em produção.',
+    'fact-localizacao': 'localização',
+    'fact-procuro': 'procuro',
+    'fact-procuro-v': 'Junior QA · Backend Java · IA aplicada',
+    'fact-modalidade': 'modalidade',
+    'fact-modalidade-v': 'Presencial · Híbrido · Remoto',
+    'fact-idiomas': 'idiomas',
+    'fact-idiomas-v': 'PT nativo · EN profissional · ES básico',
+
+    'princ-02a-label': 'Feedback<br>é inegociável',
+    'princ-02a-quote': '"Nunca deixar o cliente sem resposta. Nunca dizer que não vai dar — encontrar o caminho."',
+    'princ-02a-body': '15 anos a lidar com clientes ensinaram-me que o silêncio é sempre a pior resposta. Quando um sistema falha sem dizer porquê, quando uma API retorna 500 sem contexto, quando o utilizador clica e não acontece nada — isso é um bug de comunicação antes de ser um bug de código. O sistema tem a obrigação de responder, sempre. Graceful degradation não é uma feature opcional; é o contrato mínimo com quem usa o que construímos.',
+    'princ-02b-label': 'Problema<br>antes de código',
+    'princ-02b-quote': '"Primeiro ponho-me no lugar de quem tem o problema. Depois papel. Depois código."',
+    'princ-02b-body': 'O editor abre por último. Antes de escrever uma linha, preciso de perceber exactamente o que dói — não o que o cliente descreveu, mas o problema real que está por trás do pedido. Operações B2B ensinaram-me que o que é pedido e o que é necessário raramente são a mesma coisa. Em engenharia isso traduz-se em: mapear o domínio antes de modelar, entender o fluxo antes de criar o endpoint, questionar o requisito antes de o implementar.',
+    'princ-02c-label': 'Verificar<br>antes de agir',
+    'princ-02c-quote': '"Um ataque man-in-the-middle num pagamento ensinou-me a nunca assumir que o canal é seguro."',
+    'princ-02c-body': 'A lição mais cara que aprendi não foi técnica — foi operacional. Um pagamento intercetado, dinheiro desviado, horas de gestão de crise. Recuperei, mas nunca esqueci. Desde então: verifico múltiplas vezes antes de qualquer acção irreversível. Em engenharia isso significa: validar inputs nas fronteiras do sistema, nunca confiar em dados não verificados, tratar toda a entrada externa como hostil até prova em contrário. Zero trust não é paranoia — é disciplina.',
+    'spec-nunca': 'nunca',
+    'spec-sempre': 'sempre',
+    'spec-padrao': 'padrão',
+    'spec-sequencia': 'sequência',
+    'spec-ferramenta': 'ferramenta',
+    'spec-alerta': 'alerta',
+    'spec-premissa': 'premissa',
+    'spec-aplica-se': 'aplica-se',
+
+    'exp-status-active': 'activo',
+    'exp-role-pipoca': 'Estágio Curricular · Full-Stack Developer · Remoto (Brasil)',
+    'exp-pipoca-b1': 'Arquitectura Hexagonal + DDD em projecto real de e-commerce',
+    'exp-pipoca-b2': 'Migração de schema com Flyway; catálogo de produtos completo',
+    'exp-pipoca-b3': 'Carrinho de compras — backend + frontend — com 7 testes Vitest',
+    'exp-pipoca-b4': 'MapStruct, JUnit 5, Jira, GitHub, Docker',
+    'exp-role-impl': 'Co-fundador &amp; Developer · Seixal, Portugal',
+    'exp-impl-b1': 'Consultoria tech para PMEs portuguesas — da relação com cliente à entrega',
+    'exp-impl-b2': 'Sulav Sushi Bar — site PT/EN em produção com Uber Eats, Glovo e Bolt Food',
+    'exp-impl-b3': 'Wedding Clinic — site institucional em desenvolvimento para cliente real',
+    'exp-role-acc': 'Trust &amp; Safety Associate · Lisboa',
+    'exp-acc-b1': 'Revisão e moderação de conteúdo em ambiente de alta responsabilidade',
+    'exp-acc-b2': 'Análise de risco com base em políticas internacionais',
+    'exp-acc-b3': 'Coordenação cross-timezone em ambiente multicultural',
+
+    'proj-boardly-desc': 'Gestão de tarefas com autenticação JWT e Clean Architecture. Projecto independente para praticar segurança e boas práticas de API REST.',
+    'proj-gestao-desc': 'API REST para gestão de saúde mental, com foco em boas práticas de backend, estrutura de dados e design de endpoints coesos.',
+    'proj-fitcheck-desc': 'App de fitness com integração de IA via Claude API. Combina Node.js com inteligência artificial para personalização de treinos.',
+    'proj-sulav-desc': 'Site completo em produção para restaurante português. Bilíngue PT/EN com Uber Eats, Glovo, Bolt Food e Google Maps integrados.',
+    'proj-wedding-desc': 'Site institucional em desenvolvimento para cliente real no sector de casamentos. Entrega completa da ImplementIQ Systems.',
+    'proj-tag-done': 'concluído',
+    'proj-tag-wip': 'em desenvolvimento',
+    'proj-tag-live': 'produção',
+
+    'stack-backend': 'backend',
+    'stack-frontend': 'frontend',
+    'stack-databases': 'databases',
+    'stack-testes': 'testes &amp; qa',
+    'stack-devops': 'devops',
+    'stack-ia': 'ia &amp; automação',
+
+    'edu-degree-ips': 'TeSP em Programação e Sistemas de Informação',
+    'edu-note-ips': '3.º semestre — 7 UCs em curso + estágio curricular activo na Pipoca Ágil.',
+    'edu-school-anthropic': 'Cursos concluídos · 2026',
+    'micro-learning': 'em aprendizagem activa',
+    'learn-inscrito': 'inscrito',
+    'learn-iniciando': 'a iniciar',
+    'cert-java': 'Java &amp; Spring Boot',
+    'cert-qa': 'QA &amp; Testes',
+    'cert-outras': 'Outras linguagens',
+    'cert-cloud': 'Cloud, DevOps &amp; IA',
+
+    'contact-lbl': '[ contacto ]',
+    'contact-title': 'Vamos<br>conversar.',
+    'contact-sub': 'Aberto a oportunidades Junior em QA, Backend Java ou IA aplicada — Portugal, Espanha ou remoto.',
+    'contact-note': 'Disponível para começar imediatamente.',
+
+    'foot-left': '© 2026 Everson Rubira · Seixal, Portugal',
+    'foot-right': 'ver cv completo →',
+  },
+  en: {
+    'nav-sobre': 'about',
+    'nav-filosofia': 'principles',
+    'nav-exp': 'exp',
+    'nav-projetos': 'projects',
+    'nav-stack': 'stack',
+    'nav-formacao': 'education',
+    'nav-contacto': 'contact',
+    'nav-cv': 'cv ↗',
+    'mob-experiencia': 'experience',
+    'mob-cv': 'ver cv ↗',
+
+    'hero-role': 'Backend Dev · QA Engineer · Applied AI',
+    'hero-cursor': 'Java · Spring Boot · Node.js · Claude API',
+    'hero-desc': '15 years operating B2B systems — now <strong>I build them.</strong><br>A deliberate transition, with real deliveries in production.<br>Seixal / Lisbon, Portugal.',
+    'hero-btn-proj': 'view projects →',
+    'hero-btn-contact': 'contact',
+    'hero-bar-tags': '<span>Backend</span> · Java · Spring Boot · Node.js &nbsp;·&nbsp; <span>QA</span> · JUnit · Cypress · Robot Framework &nbsp;·&nbsp; <span>AI</span> · LangChain · Claude API',
+    'hero-status': 'Available now',
+
+    'sec-sobre': 'About',
+    'sec-filosofia': 'Engineering Principles',
+    'sec-experiencia': 'Experience',
+    'sec-projetos': 'Projects',
+    'sec-stack': 'Tech Stack',
+    'sec-formacao': 'Education &amp; Certifications',
+
+    'sobre-quote': '"15 years operating B2B systems taught me to think <em>before</em> building — now I apply that in code."',
+    'sobre-p1': 'Brazilian in Portugal. Building my transition into tech with consistency. I didn\'t start from zero — I bring real experience identifying failures, working with precision, and delivering under pressure.',
+    'sobre-p2': 'I\'m completing a <strong>degree in Programming and Information Systems at IPS</strong>, with an active internship in Java/Spring Boot and Angular at Pipoca Ágil. I co-founded <strong>ImplementIQ Systems</strong> with real clients in production.',
+    'fact-localizacao': 'location',
+    'fact-procuro': 'seeking',
+    'fact-procuro-v': 'Junior QA · Backend Java · Applied AI',
+    'fact-modalidade': 'work mode',
+    'fact-modalidade-v': 'On-site · Hybrid · Remote',
+    'fact-idiomas': 'languages',
+    'fact-idiomas-v': 'PT native · EN professional · ES basic',
+
+    'princ-02a-label': 'Feedback<br>is non-negotiable',
+    'princ-02a-quote': '"Never leave the client without a response. Never say it can\'t be done — find the way."',
+    'princ-02a-body': '15 years dealing with clients taught me that silence is always the worst response. When a system fails without saying why, when an API returns 500 without context, when the user clicks and nothing happens — that\'s a communication bug before it\'s a code bug. The system has an obligation to respond, always. Graceful degradation isn\'t an optional feature; it\'s the minimum contract with whoever uses what we build.',
+    'princ-02b-label': 'Problem<br>before code',
+    'princ-02b-quote': '"First I put myself in the shoes of whoever has the problem. Then paper. Then code."',
+    'princ-02b-body': 'The editor opens last. Before writing a line, I need to understand exactly what hurts — not what the client described, but the real problem behind the request. B2B operations taught me that what is asked and what is needed are rarely the same thing. In engineering that translates to: map the domain before modelling, understand the flow before creating the endpoint, question the requirement before implementing it.',
+    'princ-02c-label': 'Verify<br>before acting',
+    'princ-02c-quote': '"A man-in-the-middle attack on a payment taught me to never assume the channel is safe."',
+    'princ-02c-body': 'The most expensive lesson I learned wasn\'t technical — it was operational. A payment intercepted, money diverted, hours of crisis management. I recovered, but never forgot. Since then: I verify multiple times before any irreversible action. In engineering that means: validate inputs at system boundaries, never trust unverified data, treat all external input as hostile until proven otherwise. Zero trust isn\'t paranoia — it\'s discipline.',
+    'spec-nunca': 'never',
+    'spec-sempre': 'always',
+    'spec-padrao': 'pattern',
+    'spec-sequencia': 'sequence',
+    'spec-ferramenta': 'tooling',
+    'spec-alerta': 'warning',
+    'spec-premissa': 'premise',
+    'spec-aplica-se': 'applies to',
+
+    'exp-status-active': 'active',
+    'exp-role-pipoca': 'Internship · Full-Stack Developer · Remote (Brazil)',
+    'exp-pipoca-b1': 'Hexagonal Architecture + DDD on a real e-commerce project',
+    'exp-pipoca-b2': 'Schema migration with Flyway; complete product catalogue',
+    'exp-pipoca-b3': 'Shopping cart — backend + frontend — with 7 Vitest tests',
+    'exp-pipoca-b4': 'MapStruct, JUnit 5, Jira, GitHub, Docker',
+    'exp-role-impl': 'Co-founder &amp; Developer · Seixal, Portugal',
+    'exp-impl-b1': 'Tech consultancy for Portuguese SMEs — from client relationship to delivery',
+    'exp-impl-b2': 'Sulav Sushi Bar — PT/EN site in production with Uber Eats, Glovo and Bolt Food',
+    'exp-impl-b3': 'Wedding Clinic — institutional site in development for a real client',
+    'exp-role-acc': 'Trust &amp; Safety Associate · Lisbon',
+    'exp-acc-b1': 'Content review and moderation in a high-responsibility environment',
+    'exp-acc-b2': 'Risk analysis based on international policies',
+    'exp-acc-b3': 'Cross-timezone coordination in a multicultural environment',
+
+    'proj-boardly-desc': 'Task management with JWT authentication and Clean Architecture. Independent project to practice security and REST API best practices.',
+    'proj-gestao-desc': 'REST API for mental health management, focused on backend best practices, data structure and cohesive endpoint design.',
+    'proj-fitcheck-desc': 'Fitness app with AI integration via Claude API. Combines Node.js with artificial intelligence for workout personalization.',
+    'proj-sulav-desc': 'Full production site for a Portuguese restaurant. Bilingual PT/EN with Uber Eats, Glovo, Bolt Food and Google Maps integrated.',
+    'proj-wedding-desc': 'Institutional site in development for a real client in the weddings sector. Full delivery by ImplementIQ Systems.',
+    'proj-tag-done': 'completed',
+    'proj-tag-wip': 'in development',
+    'proj-tag-live': 'production',
+
+    'stack-backend': 'backend',
+    'stack-frontend': 'frontend',
+    'stack-databases': 'databases',
+    'stack-testes': 'testing &amp; qa',
+    'stack-devops': 'devops',
+    'stack-ia': 'ai &amp; automation',
+
+    'edu-degree-ips': 'Degree in Programming and Information Systems',
+    'edu-note-ips': '3rd semester — 7 ongoing modules + active internship at Pipoca Ágil.',
+    'edu-school-anthropic': 'Completed courses · 2026',
+    'micro-learning': 'actively learning',
+    'learn-inscrito': 'enrolled',
+    'learn-iniciando': 'starting',
+    'cert-java': 'Java &amp; Spring Boot',
+    'cert-qa': 'QA &amp; Testing',
+    'cert-outras': 'Other languages',
+    'cert-cloud': 'Cloud, DevOps &amp; AI',
+
+    'contact-lbl': '[ contact ]',
+    'contact-title': 'Let\'s<br>talk.',
+    'contact-sub': 'Open to Junior opportunities in QA, Backend Java or Applied AI — Portugal, Spain or remote.',
+    'contact-note': 'Available to start immediately.',
+
+    'foot-left': '© 2026 Everson Rubira · Seixal, Portugal',
+    'foot-right': 'view full cv →',
+  }
+};
+
+const langBtn = document.getElementById('lang-btn');
+
+function applyLang(lang) {
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.dataset.i18n;
+    if (i18n[lang] && i18n[lang][key]) el.innerHTML = i18n[lang][key];
+  });
+  html.setAttribute('data-lang', lang);
+  langBtn.textContent = lang === 'pt' ? 'EN' : 'PT';
+  localStorage.setItem('er-lang', lang);
+}
+
+// Init language
+const savedLang = localStorage.getItem('er-lang') || 'pt';
+applyLang(savedLang);
+
+langBtn.addEventListener('click', () => {
+  const current = html.getAttribute('data-lang') || 'pt';
+  applyLang(current === 'pt' ? 'en' : 'pt');
 });
 
 // Reveal
