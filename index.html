@@ -149,9 +149,8 @@ body {
 
 /* ─── SPIRAL ─── */
 #spiral-canvas {
-  position: absolute; inset: 0;
-  width: 100%; height: 100%;
-  pointer-events: none; z-index: 0;
+  position: absolute; top: 0; left: 0;
+  pointer-events: none; z-index: 0; display: block;
 }
 
 /* ─── REVEAL ─── */
@@ -1595,8 +1594,9 @@ btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth'
   }
 
   function resize() {
-    W = canvas.width  = canvas.offsetWidth;
-    H = canvas.height = canvas.offsetHeight;
+    const hero = document.getElementById('hero');
+    W = canvas.width  = hero.offsetWidth  || window.innerWidth;
+    H = canvas.height = hero.offsetHeight || window.innerHeight;
     buildFragments();
   }
 
@@ -1640,9 +1640,13 @@ btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth'
   hero.addEventListener('mouseleave', () => { mx = -9999; my = -9999; }, { passive: true });
   hero.addEventListener('touchmove', trackTouch, { passive: true });
 
-  resize();
   window.addEventListener('resize', resize, { passive: true });
-  draw();
+  // defer until layout is complete
+  if (document.readyState === 'complete') {
+    resize(); draw();
+  } else {
+    window.addEventListener('load', () => { resize(); draw(); });
+  }
 })();
 
 // Progress bars
