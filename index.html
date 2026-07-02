@@ -1724,20 +1724,33 @@ btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth'
   });
 })();
 
-// Typewriter on hero cursor line
+// Typewriter on both hero-role lines
 window.addEventListener('load', function() {
-  const el = document.querySelector('.cursor-blink');
-  if (!el) return;
-  const full = el.textContent.trim();
-  el.textContent = '';
+  const spans = document.querySelectorAll('.hero-role span');
+  const line1 = spans[0];
+  const line2 = spans[1];
+  if (!line1 || !line2) return;
+  const text1 = line1.textContent.trim();
+  const text2 = line2.textContent.trim();
+  line1.textContent = '';
+  line2.textContent = '';
   let i = 0;
-  function type() {
-    if (i < full.length) {
-      el.textContent = full.slice(0, ++i);
-      setTimeout(type, 58);
+  function typeLine2() {
+    if (i < text2.length) {
+      line2.textContent = text2.slice(0, ++i);
+      setTimeout(typeLine2, 55);
     }
   }
-  setTimeout(type, 500);
+  function typeLine1() {
+    if (i < text1.length) {
+      line1.textContent = text1.slice(0, ++i);
+      setTimeout(typeLine1, 45);
+    } else {
+      i = 0;
+      setTimeout(typeLine2, 180);
+    }
+  }
+  setTimeout(typeLine1, 400);
 });
 
 // Progress bars
