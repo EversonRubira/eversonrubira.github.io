@@ -28,24 +28,27 @@ button { cursor: pointer; font-family: inherit; }
 }
 
 [data-theme="dark"] {
-  --bg:        #16141a;
-  --bg-1:      #1d1b22;
-  --bg-2:      #252329;
-  --ink:       #e8e5ea;
-  --ink-2:     #b0adb8;
-  --ink-3:     #55525e;
-  --line:      #2e2b34;
+  --bg:        #0c0a14;
+  --bg-1:      #131120;
+  --bg-2:      #1b1928;
+  --ink:       #eceaf2;
+  --ink-2:     #b8b5c4;
+  --ink-3:     #5a5768;
+  --line:      #2a2738;
   --line-2:    rgba(255,255,255,0.07);
   --white:     #ffffff;
-  --nav-bg:    rgba(22,20,26,0.92);
-  --grid-line: rgba(255,255,255,0.05);
+  --nav-bg:    rgba(12,10,20,0.92);
+  --grid-line: rgba(255,255,255,0.04);
   --scan-clr:  rgba(255,255,255,0.05);
   --tag-live:  rgba(255,255,255,0.12);
   --tag-live-c:#fff;
-  --tag-wip-c: #8a8a92;
+  --tag-wip-c: #9a98a8;
   --tag-wip:   rgba(255,255,255,0.05);
   --photo-f:   grayscale(100%) contrast(1.05);
-  --frame-b:   rgba(255,255,255,0.08);
+  --frame-b:   rgba(255,255,255,0.1);
+  --blob-a:    rgba(80,60,160,0.18);
+  --blob-b:    rgba(50,30,120,0.14);
+  --blob-c:    rgba(100,70,180,0.1);
 }
 
 [data-theme="light"] {
@@ -101,6 +104,48 @@ body {
 .gl-1 { left: 48px; }
 .gl-2 { right: 48px; }
 .gl-3 { left: calc(50% - 1px); }
+
+/* ─── BLOBS ─── */
+.blob {
+  position: fixed; border-radius: 50%;
+  filter: blur(90px); pointer-events: none; z-index: 0;
+  will-change: transform;
+}
+[data-theme="dark"] .blob { opacity: 1; }
+[data-theme="light"] .blob { display: none; }
+.blob-a {
+  width: 700px; height: 700px;
+  background: var(--blob-a);
+  top: -200px; left: -150px;
+  animation: blobA 22s ease-in-out infinite;
+}
+.blob-b {
+  width: 550px; height: 550px;
+  background: var(--blob-b);
+  top: 40%; right: -180px;
+  animation: blobB 28s ease-in-out infinite;
+}
+.blob-c {
+  width: 450px; height: 450px;
+  background: var(--blob-c);
+  bottom: 5%; left: 25%;
+  animation: blobC 20s ease-in-out infinite;
+}
+@keyframes blobA {
+  0%,100% { transform: translate(0,0) scale(1); }
+  33%      { transform: translate(60px,50px) scale(1.08); }
+  66%      { transform: translate(-30px,80px) scale(0.94); }
+}
+@keyframes blobB {
+  0%,100% { transform: translate(0,0) scale(1); }
+  33%      { transform: translate(-50px,-70px) scale(1.06); }
+  66%      { transform: translate(40px,30px) scale(1.1); }
+}
+@keyframes blobC {
+  0%,100% { transform: translate(0,0) scale(1); }
+  33%      { transform: translate(70px,-40px) scale(0.92); }
+  66%      { transform: translate(-40px,20px) scale(1.08); }
+}
 
 /* ─── REVEAL ─── */
 .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.65s ease, transform 0.65s ease; }
@@ -188,22 +233,6 @@ nav {
   display: flex; flex-direction: column;
   background: var(--bg);
 }
-/* animated grid */
-#hero::before {
-  content: '';
-  position: absolute; inset: 0;
-  background-image:
-    linear-gradient(var(--grid-line) 1px, transparent 1px),
-    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
-  background-size: 64px 64px;
-  animation: grid-drift 30s linear infinite;
-  pointer-events: none;
-  z-index: 0;
-}
-@keyframes grid-drift {
-  0%   { background-position: 0 0; }
-  100% { background-position: 64px 64px; }
-}
 .hero-body {
   position: relative; z-index: 1;
   flex: 1; display: grid;
@@ -272,7 +301,7 @@ nav {
 }
 .btn-fill:hover { opacity: 0.8; }
 .btn-ghost {
-  font-family: var(--mono); font-size: 0.72rem;
+  font-family: var(--mono); font-size: 0.72rem; font-weight: 700;
   letter-spacing: 0.08em; color: var(--ink-2);
   border: 1px solid var(--line); padding: 10px 22px; border-radius: 2px;
   transition: border-color 0.15s, color 0.15s;
@@ -294,7 +323,7 @@ nav {
   padding-left: 40px;
 }
 .photo-frame {
-  position: relative; width: 200px; flex-shrink: 0;
+  position: relative; width: 180px; flex-shrink: 0;
 }
 .photo-frame::after {
   content: '';
@@ -304,9 +333,9 @@ nav {
 }
 .photo-frame img {
   position: relative; z-index: 1;
-  width: 200px; height: 248px;
+  width: 180px; height: 222px;
   object-fit: cover; object-position: center 12%;
-  border-radius: 2px; filter: var(--photo-f);
+  border-radius: 12px; filter: var(--photo-f);
   transition: filter 0.3s;
 }
 .hero-socials { display: flex; gap: 16px; }
@@ -682,6 +711,11 @@ footer {
 @media (max-width: 600px) {
   .gl { display: none; }
   .hero-name { font-size: 2.8rem; }
+  .blob-a { width: 340px; height: 340px; top: -80px; left: -80px; }
+  .blob-b { width: 280px; height: 280px; right: -80px; }
+  .blob-c { width: 240px; height: 240px; }
+  .photo-frame { width: 120px; }
+  .photo-frame img { width: 120px; height: 148px; }
 }
 </style>
 </head>
@@ -692,6 +726,9 @@ footer {
 <div class="gl gl-1"></div>
 <div class="gl gl-2"></div>
 <div class="gl gl-3"></div>
+<div class="blob blob-a"></div>
+<div class="blob blob-b"></div>
+<div class="blob blob-c"></div>
 
 <!-- NAV -->
 <nav id="nav">
