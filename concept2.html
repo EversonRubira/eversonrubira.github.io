@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Everson Rubira — concept2</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─── Reset ─────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ─── Tokens ─────────────────────────────────────────────── */
+    :root {
+      --bg:         #0f0e13;
+      --ink:        #efefef;
+      --ink-2:      #a8a6b2;
+      --ink-3:      #52505a;
+      --line:       #1e1c24;
+      --accent:     #7c6fff;
+      --accent-dim: rgba(124, 111, 255, 0.08);
+      --mono:       'JetBrains Mono', monospace;
+      --sans:       'Space Grotesk', sans-serif;
+    }
+
+    /* ─── Base ───────────────────────────────────────────────── */
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 0.9rem;
+      line-height: 1.85;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ─── NAV ────────────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.4rem 3rem;
+      border-bottom: 1px solid transparent;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      background: rgba(15, 14, 19, 0.72);
+      transition: border-color 0.3s;
+    }
+
+    nav:hover { border-color: var(--line); }
+
+    .nav-logo {
+      font-family: var(--mono);
+      font-size: 0.85rem;
+      color: var(--ink);
+      letter-spacing: 0.04em;
+    }
+
+    .nav-logo span { color: var(--accent); }
+
+    .nav-links {
+      display: flex;
+      gap: 2.4rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-2);
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--ink); }
+
+    /* ─── SECTION LABEL ──────────────────────────────────────── */
+    .section-label {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--ink-3);
+      margin-bottom: 3.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--line);
+    }
+
+    /* ─── HR DIVIDER ─────────────────────────────────────────── */
+    .hr {
+      border: none;
+      border-top: 1px solid var(--line);
+      margin: 0;
+    }
+
+    /* ─── HERO ───────────────────────────────────────────────── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 0 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-top-label {
+      padding-top: calc(5rem + 3.5rem);
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      color: var(--ink-3);
+    }
+
+    .hero-center {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-bottom: 1rem;
+    }
+
+    .hero-name {
+      font-size: clamp(5rem, 14vw, 12rem);
+      font-weight: 700;
+      line-height: 0.88;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+      color: var(--ink);
+      position: relative;
+      display: inline-block;
+      user-select: none;
+    }
+
+    /* Glitch effect */
+    .hero-name-wrap {
+      position: relative;
+    }
+
+    .glitch {
+      position: relative;
+      display: inline-block;
+    }
+
+    .glitch::before,
+    .glitch::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      color: var(--ink);
+      font-size: inherit;
+      font-weight: inherit;
+      line-height: inherit;
+      letter-spacing: inherit;
+    }
+
+    .glitch::before {
+      clip-path: polygon(0 30%, 100% 30%, 100% 55%, 0 55%);
+      animation: glitch-top 8s infinite linear;
+      color: var(--accent);
+      opacity: 0.7;
+    }
+
+    .glitch::after {
+      clip-path: polygon(0 60%, 100% 60%, 100% 80%, 0 80%);
+      animation: glitch-bot 8s infinite linear;
+      color: var(--accent);
+      opacity: 0.5;
+    }
+
+    @keyframes glitch-top {
+      0%, 90%, 100% { transform: translate(0); opacity: 0; }
+      92%            { transform: translate(-3px, 1px); opacity: 0.7; }
+      94%            { transform: translate(3px, -1px); opacity: 0.7; }
+      96%            { transform: translate(-2px, 0); opacity: 0.7; }
+      98%            { transform: translate(0); opacity: 0; }
+    }
+
+    @keyframes glitch-bot {
+      0%, 91%, 100% { transform: translate(0); opacity: 0; }
+      93%            { transform: translate(3px, 2px); opacity: 0.5; }
+      95%            { transform: translate(-3px, -1px); opacity: 0.5; }
+      97%            { transform: translate(2px, 0); opacity: 0.5; }
+      99%            { transform: translate(0); opacity: 0; }
+    }
+
+    .hero-tagline {
+      margin-top: 1.8rem;
+      font-size: 1rem;
+      font-weight: 400;
+      color: var(--ink-2);
+      letter-spacing: 0.01em;
+      font-style: italic;
+    }
+
+    .hero-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.4rem 0 2rem;
+      border-top: 1px solid var(--line);
+    }
+
+    .hero-location,
+    .hero-scroll {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.14em;
+      color: var(--ink-3);
+    }
+
+    /* ─── PHILOSOPHY ─────────────────────────────────────────── */
+    #philosophy {
+      padding: 7rem 3rem;
+    }
+
+    .principle-row {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 4rem;
+      align-items: start;
+      position: relative;
+    }
+
+    .principle-code-block {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .principle-big-code {
+      font-family: var(--mono);
+      font-size: 4.5rem;
+      font-weight: 500;
+      color: var(--ink);
+      opacity: 0.06;
+      line-height: 1;
+      letter-spacing: -0.02em;
+      pointer-events: none;
+    }
+
+    .principle-tag {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      color: var(--accent);
+      border: 1px solid rgba(124, 111, 255, 0.3);
+      display: inline-block;
+      padding: 0.3rem 0.6rem;
+      border-radius: 2px;
+    }
+
+    .principle-content { padding-top: 0.4rem; }
+
+    .principle-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 1rem;
+      letter-spacing: -0.01em;
+    }
+
+    .principle-quote {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--accent);
+      border-left: 2px solid var(--accent);
+      padding-left: 1rem;
+      margin-bottom: 1.4rem;
+      line-height: 1.6;
+    }
+
+    .principle-text {
+      color: var(--ink-2);
+      font-size: 0.88rem;
+      line-height: 1.9;
+      max-width: 560px;
+    }
+
+    .principle-text strong {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    .read-more {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 1.8rem;
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      color: var(--ink-3);
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 0.15rem;
+      cursor: default;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .read-more:hover { color: var(--ink-2); border-color: var(--ink-3); }
+
+    /* ─── PROJECTS ───────────────────────────────────────────── */
+    #projects {
+      padding: 7rem 3rem;
+    }
+
+    .project-list { display: flex; flex-direction: column; }
+
+    .project-row {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 2rem;
+      padding: 3.2rem 0;
+      border-bottom: 1px solid var(--line);
+      overflow: hidden;
+      transition: background 0.25s;
+    }
+
+    .project-row:hover { background: var(--accent-dim); }
+    .project-row:first-child { border-top: 1px solid var(--line); }
+
+    .project-bg-num {
+      position: absolute;
+      right: 2rem;
+      top: 50%;
+      transform: translateY(-50%);
+      font-family: var(--mono);
+      font-size: 6rem;
+      font-weight: 700;
+      color: var(--ink);
+      opacity: 0.045;
+      letter-spacing: -0.04em;
+      pointer-events: none;
+      user-select: none;
+      z-index: 0;
+      line-height: 1;
+    }
+
+    .project-main { position: relative; z-index: 1; }
+
+    .project-index {
+      font-family: var(--mono);
+      font-size: 0.58rem;
+      letter-spacing: 0.2em;
+      color: var(--ink-3);
+      margin-bottom: 0.5rem;
+    }
+
+    .project-name {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--ink);
+      letter-spacing: -0.02em;
+      margin-bottom: 0.45rem;
+    }
+
+    .project-desc {
+      font-size: 0.85rem;
+      color: var(--ink-2);
+      margin-bottom: 1rem;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .tag {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.08em;
+      color: var(--ink-3);
+      border: 1px solid var(--line);
+      padding: 0.2rem 0.55rem;
+      border-radius: 2px;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .project-row:hover .tag {
+      border-color: var(--ink-3);
+      color: var(--ink-2);
+    }
+
+    .project-cta { position: relative; z-index: 1; flex-shrink: 0; }
+
+    .btn-project {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.65rem 1.2rem;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      border-radius: 2px;
+      transition: background 0.2s, color 0.2s;
+      white-space: nowrap;
+    }
+
+    .btn-project:hover {
+      background: var(--accent);
+      color: var(--bg);
+    }
+
+    /* ─── CONTACT ────────────────────────────────────────────── */
+    #contact {
+      padding: 8rem 3rem;
+      text-align: center;
+    }
+
+    .contact-headline {
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: var(--ink);
+      margin-bottom: 2rem;
+      line-height: 1;
+    }
+
+    .contact-email {
+      display: inline-block;
+      font-size: clamp(1rem, 2.5vw, 1.5rem);
+      font-weight: 500;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 0.1rem;
+      margin-bottom: 2.8rem;
+      transition: color 0.2s;
+    }
+
+    .contact-email:hover { color: var(--accent); }
+
+    .contact-secondary {
+      display: flex;
+      justify-content: center;
+      gap: 2.4rem;
+    }
+
+    .contact-link {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink-3);
+      transition: color 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .contact-link:hover { color: var(--ink-2); }
+
+    .contact-link::before {
+      content: '↗';
+      font-size: 0.65rem;
+    }
+
+    /* ─── CTA PRIMARY BUTTON (single full-opacity accent use) ── */
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.85rem 2rem;
+      background: var(--accent);
+      color: var(--bg);
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      font-weight: 500;
+      border-radius: 2px;
+      border: none;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.15s;
+      margin-bottom: 2.8rem;
+    }
+
+    .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
+
+    /* ─── FOOTER ─────────────────────────────────────────────── */
+    footer {
+      padding: 1.8rem 3rem;
+      border-top: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-copy {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.12em;
+      color: var(--ink-3);
+    }
+
+    .footer-built {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.08em;
+      color: var(--ink-3);
+    }
+
+    .footer-built span { color: var(--accent); }
+
+    /* ─── SUBTLE BACKGROUND GRAIN ────────────────────────────── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+      opacity: 0.022;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ─── ACCENT GLOW (hero subtle bg) ──────────────────────── */
+    #hero::before {
+      content: '';
+      position: absolute;
+      top: 20%;
+      right: -10%;
+      width: 55vw;
+      height: 55vw;
+      background: radial-gradient(circle, rgba(124, 111, 255, 0.055) 0%, transparent 65%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .hero-content-wrap { position: relative; z-index: 1; display: flex; flex-direction: column; flex: 1; justify-content: space-between; }
+  </style>
+</head>
+<body>
+
+  <!-- ─── NAV ───────────────────────────────────────────────── -->
+  <nav>
+    <a href="#" class="nav-logo">er<span>.</span>dev</a>
+    <ul class="nav-links">
+      <li><a href="#philosophy">princípios</a></li>
+      <li><a href="#projects">projetos</a></li>
+      <li><a href="#contact">contacto</a></li>
+    </ul>
+  </nav>
+
+  <!-- ─── HERO ──────────────────────────────────────────────── -->
+  <section id="hero">
+    <div class="hero-content-wrap">
+      <div class="hero-top-label">[ backend developer &nbsp;·&nbsp; qa &nbsp;·&nbsp; ai ]</div>
+
+      <div class="hero-center">
+        <div class="hero-name-wrap">
+          <div class="hero-name glitch" data-text="EVERSON">EVERSON</div>
+          <div class="hero-name glitch" data-text="RUBIRA">RUBIRA</div>
+        </div>
+        <p class="hero-tagline">Construo sistemas. Entendo pessoas.</p>
+      </div>
+
+      <div class="hero-bottom">
+        <span class="hero-location">seixal &nbsp;·&nbsp; lisboa &nbsp;·&nbsp; remoto</span>
+        <span class="hero-scroll">scroll to explore &nbsp;↓</span>
+      </div>
+    </div>
+  </section>
+
+  <hr class="hr" />
+
+  <!-- ─── PHILOSOPHY ────────────────────────────────────────── -->
+  <section id="philosophy">
+    <p class="section-label">[ 01 ] &nbsp;PRINCÍPIOS</p>
+
+    <div class="principle-row">
+      <div class="principle-code-block">
+        <span class="principle-big-code">[02.C]</span>
+        <span class="principle-tag">[02.C] · Verificar</span>
+      </div>
+
+      <div class="principle-content">
+        <h2 class="principle-title">Verificar antes de agir.</h2>
+
+        <blockquote class="principle-quote">
+          "Nunca assumas que o sistema se comporta<br />
+          como foi descrito. Confirma primeiro."
+        </blockquote>
+
+        <p class="principle-text">
+          Num exercício de segurança, aprendi que <strong>assumir é a vulnerabilidade mais explorada</strong>.
+          Um ataque man-in-the-middle bem executado não falha no código — falha quando alguém
+          aceita uma resposta sem questionar a sua origem.<br /><br />
+          Aplico o mesmo rigor ao software: antes de integrar uma API, de escrever o próximo teste,
+          de fechar um ticket — <strong>verifico o comportamento real</strong>, não o esperado.
+          A diferença entre os dois é onde vivem os bugs mais caros.
+        </p>
+
+        <a href="#" class="read-more" onclick="return false;">
+          LER TODOS OS PRINCÍPIOS &nbsp;→
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <hr class="hr" />
+
+  <!-- ─── PROJECTS ──────────────────────────────────────────── -->
+  <section id="projects">
+    <p class="section-label">[ 02 ] &nbsp;PROJETOS</p>
+
+    <div class="project-list">
+
+      <!-- Boardly -->
+      <div class="project-row">
+        <div class="project-bg-num">01</div>
+        <div class="project-main">
+          <p class="project-index">01 / 03</p>
+          <h3 class="project-name">Boardly</h3>
+          <p class="project-desc">Gestão de tarefas com autenticação JWT, Clean Architecture e API REST.</p>
+          <div class="project-tags">
+            <span class="tag">Java 17</span>
+            <span class="tag">Spring Boot</span>
+            <span class="tag">MongoDB</span>
+            <span class="tag">JWT</span>
+            <span class="tag">Clean Architecture</span>
+          </div>
+        </div>
+        <div class="project-cta">
+          <a href="https://github.com/EversonRubira/boardly" target="_blank" rel="noopener" class="btn-project">
+            → GitHub
+          </a>
+        </div>
+      </div>
+
+      <!-- FitCheck -->
+      <div class="project-row">
+        <div class="project-bg-num">02</div>
+        <div class="project-main">
+          <p class="project-index">02 / 03</p>
+          <h3 class="project-name">FitCheck</h3>
+          <p class="project-desc">App de fitness com análise por IA via Claude API — recomendações personalizadas em tempo real.</p>
+          <div class="project-tags">
+            <span class="tag">Node.js</span>
+            <span class="tag">MySQL</span>
+            <span class="tag">Claude API</span>
+            <span class="tag">AI</span>
+          </div>
+        </div>
+        <div class="project-cta">
+          <a href="https://github.com/EversonRubira/fitcheck" target="_blank" rel="noopener" class="btn-project">
+            → GitHub
+          </a>
+        </div>
+      </div>
+
+      <!-- Sulav Sushi Bar -->
+      <div class="project-row">
+        <div class="project-bg-num">03</div>
+        <div class="project-main">
+          <p class="project-index">03 / 03</p>
+          <h3 class="project-name">Sulav Sushi Bar</h3>
+          <p class="project-desc">Site de restaurante em produção com suporte PT/EN e integração com Uber Eats, Glovo e Bolt.</p>
+          <div class="project-tags">
+            <span class="tag">Produção</span>
+            <span class="tag">PT / EN</span>
+            <span class="tag">Uber Eats</span>
+            <span class="tag">Glovo</span>
+            <span class="tag">Bolt</span>
+          </div>
+        </div>
+        <div class="project-cta">
+          <a href="https://sulavsushibar.pt" target="_blank" rel="noopener" class="btn-project">
+            → Live
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <hr class="hr" />
+
+  <!-- ─── CONTACT ───────────────────────────────────────────── -->
+  <section id="contact">
+    <p class="section-label" style="text-align:left;">[ 03 ] &nbsp;CONTACTO</p>
+
+    <h2 class="contact-headline">Vamos conversar.</h2>
+
+    <a href="mailto:eversonrubira@gmail.com" class="btn-primary">
+      eversonrubira@gmail.com &nbsp;→
+    </a>
+
+    <div class="contact-secondary">
+      <a href="https://linkedin.com/in/eversonrubira" target="_blank" rel="noopener" class="contact-link">LinkedIn</a>
+      <a href="https://github.com/EversonRubira" target="_blank" rel="noopener" class="contact-link">GitHub</a>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ─────────────────────────────────────────────── -->
+  <footer>
+    <span class="footer-copy">© 2026 Everson Rubira</span>
+    <span class="footer-built">built with <span>♥</span> &amp; vanilla html</span>
+  </footer>
+
+</body>
+</html>
