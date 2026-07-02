@@ -147,6 +147,14 @@ body {
   66%      { transform: translate(-40px,20px) scale(1.08); }
 }
 
+/* ─── SPIRAL ─── */
+#spiral-canvas {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  opacity: 0.08; pointer-events: none; z-index: 0;
+}
+[data-theme="light"] #spiral-canvas { opacity: 0.05; filter: invert(1); }
+
 /* ─── REVEAL ─── */
 .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.65s ease, transform 0.65s ease; }
 .reveal.in { opacity: 1; transform: none; }
@@ -767,6 +775,7 @@ footer {
 
 <!-- HERO -->
 <section id="hero">
+  <canvas id="spiral-canvas"></canvas>
   <div class="hero-body">
     <div class="hero-text">
       <h1 class="hero-name reveal">Everson Rubira</h1>
@@ -1537,6 +1546,61 @@ mob.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
 const btt = document.getElementById('btt');
 window.addEventListener('scroll', () => { btt.classList.toggle('show', window.scrollY > 500); }, { passive: true });
 btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+// Spiral
+(function() {
+  const canvas = document.getElementById('spiral-canvas');
+  const ctx = canvas.getContext('2d');
+  const PHRASE = 'EVERSON RUBIRA · BACKEND DEV · QA ENGINEER · JAVA · SPRING BOOT · NODE.JS · CLAUDE API · ';
+  let W, H, raf;
+
+  function resize() {
+    W = canvas.width  = canvas.offsetWidth;
+    H = canvas.height = canvas.offsetHeight;
+  }
+
+  let tick = 0;
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    const cx = W / 2, cy = H / 2;
+    const maxR = Math.hypot(cx, cy) * 0.92;
+    const rings = 11;
+    const minR = 48;
+    ctx.fillStyle = '#ffffff';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+
+    for (let i = 0; i < rings; i++) {
+      const r = minR + (maxR - minR) * (i / (rings - 1));
+      const fontSize = 9 + i * 0.4;
+      ctx.font = `${fontSize}px "JetBrains Mono", monospace`;
+      const charW = fontSize * 0.62;
+      const circ = 2 * Math.PI * r;
+      const n = Math.max(1, Math.floor(circ / charW));
+      const dir = i % 2 === 0 ? 1 : -1;
+      const speed = 0.00012 * (1 + i * 0.08);
+      const offset = tick * speed * dir;
+
+      for (let j = 0; j < n; j++) {
+        const a = offset + (j / n) * Math.PI * 2;
+        const x = cx + r * Math.cos(a);
+        const y = cy + r * Math.sin(a);
+        const ch = PHRASE[j % PHRASE.length];
+        ctx.save();
+        ctx.translate(x, y);
+        ctx.rotate(a + Math.PI / 2);
+        ctx.fillText(ch, 0, 0);
+        ctx.restore();
+      }
+    }
+    tick++;
+    raf = requestAnimationFrame(draw);
+  }
+
+  resize();
+  window.addEventListener('resize', resize, { passive: true });
+  draw();
+})();
 
 // Progress bars
 const bro = new IntersectionObserver(entries => {
