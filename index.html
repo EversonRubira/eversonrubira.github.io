@@ -1724,6 +1724,22 @@ btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth'
   });
 })();
 
+// Typewriter on hero cursor line
+window.addEventListener('load', function() {
+  const el = document.querySelector('.cursor-blink');
+  if (!el) return;
+  const full = el.textContent.trim();
+  el.textContent = '';
+  let i = 0;
+  function type() {
+    if (i < full.length) {
+      el.textContent = full.slice(0, ++i);
+      setTimeout(type, 58);
+    }
+  }
+  setTimeout(type, 500);
+});
+
 // Progress bars
 const bro = new IntersectionObserver(entries => {
   entries.forEach(e => {
