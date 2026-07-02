@@ -313,20 +313,32 @@ nav {
 }
 .photo-frame {
   position: relative; width: 180px; flex-shrink: 0;
+  cursor: crosshair;
 }
 .photo-frame::after {
   content: '';
   position: absolute; top: 14px; left: 14px; right: -14px; bottom: -14px;
-  border: 1px solid var(--frame-b); border-radius: 2px; z-index: 0;
+  border: 1px solid var(--frame-b); border-radius: 12px; z-index: 0;
   transition: border-color 0.3s;
 }
-.photo-frame img {
-  position: relative; z-index: 1;
+#ascii-canvas {
+  position: relative; z-index: 2;
+  width: 180px; height: 222px;
+  border-radius: 12px; display: block;
+  transition: opacity 0.5s ease;
+}
+#ascii-photo {
+  position: absolute; top: 0; left: 0; z-index: 1;
   width: 180px; height: 222px;
   object-fit: cover; object-position: center 12%;
   border-radius: 12px; filter: var(--photo-f);
-  transition: filter 0.3s;
+  transition: opacity 0.5s ease;
+  opacity: 0;
 }
+.photo-frame:hover #ascii-canvas,
+.photo-frame.touched #ascii-canvas { opacity: 0; }
+.photo-frame:hover #ascii-photo,
+.photo-frame.touched #ascii-photo { opacity: 1; }
 .hero-socials { display: flex; gap: 16px; }
 .hero-socials a {
   font-family: var(--mono); font-size: 0.62rem;
@@ -784,8 +796,9 @@ footer {
       </div>
     </div>
     <div class="hero-right reveal">
-      <div class="photo-frame">
-        <img src="foto-perfil (2).jpeg" alt="Everson Rubira">
+      <div class="photo-frame" id="ascii-frame">
+        <canvas id="ascii-canvas"></canvas>
+        <img src="foto-perfil (2).jpeg" alt="Everson Rubira" id="ascii-photo">
       </div>
       <div class="hero-socials">
         <a href="https://linkedin.com/in/eversonrubira" target="_blank" rel="noopener">LinkedIn</a>
@@ -1665,6 +1678,93 @@ btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth'
   } else {
     window.addEventListener('load', () => { resize(); draw(); });
   }
+})();
+
+// ASCII Portrait
+(function() {
+  const frame  = document.getElementById('ascii-frame');
+  const canvas = document.getElementById('ascii-canvas');
+  const photo  = document.getElementById('ascii-photo');
+  if (!frame || !canvas || !photo) return;
+
+  const CHARS = '@#§&%$£€{}[]()<>=/\\|+*;:,.\'"`~^';
+  const CELL  = 3; // px per character cell — smaller = more detail
+  const W_CSS = 180, H_CSS = 222;
+  const DPR   = Math.min(window.devicePixelRatio || 1, 2);
+
+  canvas.width  = W_CSS * DPR;
+  canvas.height = H_CSS * DPR;
+  const ctx = canvas.getContext('2d');
+  ctx.scale(DPR, DPR);
+
+  const COLS = Math.floor(W_CSS / CELL);
+  const ROWS = Math.floor(H_CSS / (CELL * 1.8));
+
+  // Palette — jewel tones that pop on dark purple bg
+  const PALETTE = [
+    '#a78bfa','#818cf8','#67e8f9','#34d399',
+    '#fbbf24','#f87171','#e879f9','#c4b5fd',
+    '#ffffff','#e2e8f0',
+  ];
+
+  let cells = []; // { char, color }
+
+  function buildFromImage(img) {
+    const off = document.createElement('canvas');
+    off.width = COLS; off.height = ROWS;
+    const offCtx = off.getContext('2d');
+    offCtx.drawImage(img, 0, 0, COLS, ROWS);
+    const px = offCtx.getImageData(0, 0, COLS, ROWS).data;
+
+    cells = [];
+    for (let r = 0; r < ROWS; r++) {
+      for (let c = 0; c < COLS; c++) {
+        const i = (r * COLS + c) * 4;
+        const R = px[i], G = px[i+1], B = px[i+2], A = px[i+3];
+        if (A < 30) { cells.push(null); continue; }
+        // brightness 0–1
+        const bright = (0.299*R + 0.587*G + 0.114*B) / 255;
+        // skip very bright (background/highlight) areas for airiness
+        if (bright > 0.88) { cells.push(null); continue; }
+        // char density: dark areas → dense chars, light → sparse
+        const charIdx = Math.floor((1 - bright) * (CHARS.length - 1));
+        const char = CHARS[charIdx];
+        // color: use actual pixel tint blended with palette
+        const palColor = PALETTE[Math.floor(bright * (PALETTE.length - 1))];
+        cells.push({ char, color: palColor, bright });
+      }
+    }
+    render();
+  }
+
+  function render() {
+    ctx.clearRect(0, 0, W_CSS, H_CSS);
+    const fontSize = CELL * 1.4;
+    ctx.font = `${fontSize}px "JetBrains Mono", monospace`;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+
+    for (let r = 0; r < ROWS; r++) {
+      for (let c = 0; c < COLS; c++) {
+        const cell = cells[r * COLS + c];
+        if (!cell) continue;
+        ctx.fillStyle = cell.color;
+        ctx.globalAlpha = 0.5 + cell.bright * 0.5;
+        ctx.fillText(cell.char, c * CELL + CELL/2, r * CELL * 1.8 + CELL);
+      }
+    }
+    ctx.globalAlpha = 1;
+  }
+
+  // Load the photo and build ASCII
+  const loader = new Image();
+  loader.crossOrigin = 'anonymous';
+  loader.src = photo.src;
+  loader.onload = () => buildFromImage(loader);
+
+  // Touch toggle for mobile
+  frame.addEventListener('touchstart', () => frame.classList.add('touched'),    { passive: true });
+  frame.addEventListener('touchend',   () => frame.classList.remove('touched'), { passive: true });
 })();
 
 // Progress bars
