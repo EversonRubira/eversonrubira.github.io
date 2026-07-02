@@ -319,9 +319,11 @@ nav {
   opacity: 0;
 }
 .photo-frame:hover #ascii-canvas,
-.photo-frame.touched #ascii-canvas { opacity: 0; }
+.photo-frame.touched #ascii-canvas,
+.photo-frame.locked #ascii-canvas { opacity: 0; }
 .photo-frame:hover #ascii-photo,
-.photo-frame.touched #ascii-photo { opacity: 1; }
+.photo-frame.touched #ascii-photo,
+.photo-frame.locked #ascii-photo { opacity: 1; }
 .hero-socials { display: flex; gap: 16px; }
 .hero-socials a {
   font-family: var(--mono); font-size: 0.62rem;
@@ -1604,7 +1606,10 @@ btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth'
   loader.src = photo.src;
   loader.onload = () => buildFromImage(loader);
 
-  // Touch toggle for mobile
+  // Click toggle — lock/unlock photo
+  frame.addEventListener('click', () => frame.classList.toggle('locked'));
+
+  // Touch toggle for mobile (hover não existe em touch)
   frame.addEventListener('touchstart', () => frame.classList.add('touched'),    { passive: true });
   frame.addEventListener('touchend',   () => frame.classList.remove('touched'), { passive: true });
 })();
