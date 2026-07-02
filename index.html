@@ -1551,35 +1551,71 @@ btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth'
   const ctx = canvas.getContext('2d');
 
   const TOKENS = [
-    '@RestController','@Service','@Repository','@Autowired','@SpringBootApplication',
-    '@Entity','@GetMapping','@PostMapping','@Valid','@RequestBody','@PathVariable',
-    '@Test','@BeforeEach','@Override','@Column','@Id','@GeneratedValue',
-    'public class','private final','Optional<T>','List<String>','return ResponseEntity',
-    'assertEquals','JWT','Bearer','authenticate','try {','catch (e) {','throw new',
-    'implements','extends','abstract class','interface',
-    'async function','await fetch','.then()','catch()','const router =',
-    'app.use()','middleware','mongoose.connect','require()',
-    'SELECT *','INSERT INTO','JOIN','WHERE','GROUP BY',
-    'docker run','git commit','CI/CD','REST API','HTTP 200',
-    '{ "status": "ok" }','"data": []','Bearer token',
-    'Claude API','LangChain','prompt','completion','embedding',
-    'mvn clean install','npm run build','gradle test',
-    'Spring Boot','Node.js','Java 17','TypeScript','PostgreSQL',
-    'JUnit 5','Cypress','Robot Framework','Postman',
-    'Clean Architecture','DDD','Hexagonal','SOLID','TDD',
+    // Java real
+    'List<User> users = repo.findAll();',
+    'return new ResponseEntity<>(body, HttpStatus.OK);',
+    'Optional.ofNullable(user).map(User::getEmail)',
+    'throw new RuntimeException("unauthorized");',
+    'private final UserService userService;',
+    'BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();',
+    'Jwts.builder().setSubject(username)',
+    'filterChain.doFilter(request, response);',
+    '@Override public void configure(HttpSecurity http)',
+    'Map<String, Object> claims = new HashMap<>();',
+    'if (jwtService.isTokenValid(token, user)) {',
+    'entityManager.persist(entity);',
+    'repository.findByEmail(email).orElseThrow()',
+    '@Transactional public void save(Entity e) {',
+    'log.info("Processing request: {}", id);',
+    'Arrays.stream(roles).map(Role::name).toList()',
+    'assertThat(result).isNotNull().hasSize(3);',
+    'given().header("Authorization","Bearer "+token)',
+    '@BeforeEach void setUp() { repo.deleteAll(); }',
+    'verify(service, times(1)).findById(anyLong());',
+    // JS / Node real
+    'const token = req.headers.authorization?.split(" ")[1];',
+    'if (!token) return res.status(401).json({ error });',
+    'await mongoose.connect(process.env.MONGO_URI);',
+    'const payload = jwt.verify(token, process.env.SECRET);',
+    'router.get("/:id", authenticate, async (req, res) => {',
+    'const { data } = await axios.get(url, { headers });',
+    'app.use(express.json());',
+    'module.exports = router;',
+    'const schema = new Schema({ name: String, createdAt: Date });',
+    'res.status(200).json({ success: true, data });',
+    'process.env.NODE_ENV === "production"',
+    'catch (err) { next(err); }',
+    // SQL real
+    'SELECT u.name, r.title FROM users u',
+    'LEFT JOIN roles r ON u.role_id = r.id',
+    'WHERE u.active = true ORDER BY created_at DESC',
+    'INSERT INTO sessions (user_id, token, expires_at)',
+    'UPDATE users SET last_login = NOW() WHERE id = ?',
+    'CREATE INDEX idx_email ON users(email);',
+    // annotations / short
+    '@RestController','@Service','@Autowired','@Entity',
+    '@GetMapping("/api/v1/users")','@PostMapping("/auth/login")',
+    '@Valid','@RequestBody','@PathVariable Long id',
+    '@Test','@BeforeEach','@Override','@Column(nullable=false)',
+    'implements UserDetailsService','extends JpaRepository<>',
+    // misc
+    '{ "status": 200, "data": [] }',
+    'Authorization: Bearer eyJhbGci...',
+    'HTTP/1.1 201 Created',
+    'Content-Type: application/json',
   ];
 
   const FONT = '"JetBrains Mono", monospace';
   let W, H, fragments = [];
   let mx = -9999, my = -9999;
-  const RADIUS = 180;
-  const BASE_ALPHA = 0.055;
-  const HIGHLIGHT_ALPHA = 0.55;
+  const RADIUS = 220;
+  const BASE_ALPHA = 0.02;
+  const HIGHLIGHT_ALPHA = 0.65;
 
   function buildFragments() {
     fragments = [];
-    const cols = Math.ceil(W / 180);
-    const rows = Math.ceil(H / 36);
+    const cols = Math.ceil(W / 140);
+    const rows = Math.ceil(H / 28);
     const pool = [...TOKENS].sort(() => Math.random() - 0.5);
     let idx = 0;
     for (let r = 0; r <= rows; r++) {
