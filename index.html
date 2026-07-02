@@ -2,6 +2,9 @@
 <html lang="pt" data-theme="dark" data-lang="pt">
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Everson Rubira — Backend Developer & Systems Thinker</title>
 <meta name="description" content="Everson Rubira — Backend Developer, QA Engineer e entusiasta de IA. Java, Spring Boot, Node.js, Claude API. Seixal / Lisboa, Portugal.">
@@ -225,7 +228,8 @@ nav {
   padding: 72px 48px 60px;
   max-width: 1200px; margin: 0 auto; width: 100%;
 }
-.hero-text {}
+.hero-text { grid-column: 1; }
+.hero-right { grid-column: 2; }
 .hero-eyebrow {
   display: flex; align-items: center; gap: 10px;
   margin-bottom: 28px;
@@ -741,7 +745,7 @@ footer {
   .photo-frame { width: 110px; }
   #ascii-canvas { width: 110px !important; height: 136px !important; }
   #ascii-photo  { width: 110px !important; height: 136px !important; }
-  .hero-right { flex-direction: row; order: -1; align-items: center; padding-bottom: 8px; }
+  .hero-right { flex-direction: row; align-items: center; padding-bottom: 8px; }
   .hero-socials { flex-direction: row; flex-wrap: wrap; gap: 12px; }
   section { padding: 64px 0; }
   .sec-title { font-size: 1.4rem; }
@@ -800,6 +804,18 @@ footer {
 <!-- HERO -->
 <section id="hero">
   <div class="hero-body">
+    <div class="hero-right reveal">
+      <div class="photo-frame" id="ascii-frame">
+        <canvas id="ascii-canvas"></canvas>
+        <img src="foto-perfil (2).jpeg" alt="Everson Rubira" id="ascii-photo">
+        <div class="photo-hint" id="photo-hint" data-i18n="photo-hint">clique</div>
+      </div>
+      <div class="hero-socials">
+        <a href="https://linkedin.com/in/eversonrubira" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/EversonRubira" target="_blank" rel="noopener">GitHub</a>
+        <a href="mailto:eversonrubira@gmail.com">Email</a>
+      </div>
+    </div>
     <div class="hero-text">
       <h1 class="hero-name reveal">Everson Rubira</h1>
       <div class="hero-role reveal">
@@ -823,18 +839,6 @@ footer {
         <span class="chip">Node.js · Angular</span>
         <span class="chip">LangChain · Claude API</span>
         <span class="chip">Docker · PostgreSQL</span>
-      </div>
-    </div>
-    <div class="hero-right reveal">
-      <div class="photo-frame" id="ascii-frame">
-        <canvas id="ascii-canvas"></canvas>
-        <img src="foto-perfil (2).jpeg" alt="Everson Rubira" id="ascii-photo">
-        <div class="photo-hint" id="photo-hint" data-i18n="photo-hint">clique</div>
-      </div>
-      <div class="hero-socials">
-        <a href="https://linkedin.com/in/eversonrubira" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="https://github.com/EversonRubira" target="_blank" rel="noopener">GitHub</a>
-        <a href="mailto:eversonrubira@gmail.com">Email</a>
       </div>
     </div>
   </div>
