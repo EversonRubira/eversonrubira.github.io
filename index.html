@@ -339,6 +339,18 @@ nav {
 .photo-frame:hover #ascii-photo,
 .photo-frame.touched #ascii-photo,
 .photo-frame.locked #ascii-photo { opacity: 1; }
+.photo-hint {
+  position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%);
+  z-index: 3; font-family: var(--mono); font-size: 0.55rem;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: rgba(255,255,255,0.9); background: rgba(0,0,0,0.55);
+  padding: 3px 9px; border-radius: 2px;
+  opacity: 0; transition: opacity 0.25s ease;
+  pointer-events: none; white-space: nowrap;
+  backdrop-filter: blur(4px);
+}
+.photo-frame:hover .photo-hint { opacity: 1; }
+.photo-frame.locked .photo-hint { opacity: 0; }
 .hero-socials { display: flex; gap: 16px; }
 .hero-socials a {
   font-family: var(--mono); font-size: 0.62rem;
@@ -816,6 +828,7 @@ footer {
       <div class="photo-frame" id="ascii-frame">
         <canvas id="ascii-canvas"></canvas>
         <img src="foto-perfil (2).jpeg" alt="Everson Rubira" id="ascii-photo">
+        <div class="photo-hint" id="photo-hint" data-i18n="photo-hint">clique</div>
       </div>
       <div class="hero-socials">
         <a href="https://linkedin.com/in/eversonrubira" target="_blank" rel="noopener">LinkedIn</a>
@@ -1359,6 +1372,7 @@ const i18n = {
     'cert-qa-v': 'Gestão de bugs · QA Automação · Cypress · Robot Framework',
     'cert-outras-v': 'Python OOP · Python TDD · Go API · Go OOP · C (3 cursos) · JavaScript · TypeScript',
     'learn-langchain': 'LangChain: Agentes de IA',
+    'photo-hint': 'clique',
 
     'exp-status-active': 'activo',
     'exp-role-pipoca': 'Estágio Curricular · Full-Stack Developer · Remoto (Brasil)',
@@ -1481,6 +1495,7 @@ const i18n = {
     'cert-qa-v': 'Bug Management · QA Automation · Cypress · Robot Framework',
     'cert-outras-v': 'Python OOP · Python TDD · Go API · Go OOP · C (3 courses) · JavaScript · TypeScript',
     'learn-langchain': 'LangChain: AI Agents',
+    'photo-hint': 'click',
 
     'exp-status-active': 'active',
     'exp-role-pipoca': 'Internship · Full-Stack Developer · Remote (Brazil)',
