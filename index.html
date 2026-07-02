@@ -1547,55 +1547,99 @@ const btt = document.getElementById('btt');
 window.addEventListener('scroll', () => { btt.classList.toggle('show', window.scrollY > 500); }, { passive: true });
 btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
-// Spiral
+// Code Spotlight
 (function() {
   const canvas = document.getElementById('spiral-canvas');
   const ctx = canvas.getContext('2d');
-  const PHRASE = 'EVERSON RUBIRA · BACKEND DEV · QA ENGINEER · JAVA · SPRING BOOT · NODE.JS · CLAUDE API · ';
-  let W, H, raf;
+
+  const TOKENS = [
+    '@RestController','@Service','@Repository','@Autowired','@SpringBootApplication',
+    '@Entity','@GetMapping','@PostMapping','@Valid','@RequestBody','@PathVariable',
+    '@Test','@BeforeEach','@Override','@Column','@Id','@GeneratedValue',
+    'public class','private final','Optional<T>','List<String>','return ResponseEntity',
+    'assertEquals','JWT','Bearer','authenticate','try {','catch (e) {','throw new',
+    'implements','extends','abstract class','interface',
+    'async function','await fetch','.then()','catch()','const router =',
+    'app.use()','middleware','mongoose.connect','require()',
+    'SELECT *','INSERT INTO','JOIN','WHERE','GROUP BY',
+    'docker run','git commit','CI/CD','REST API','HTTP 200',
+    '{ "status": "ok" }','"data": []','Bearer token',
+    'Claude API','LangChain','prompt','completion','embedding',
+    'mvn clean install','npm run build','gradle test',
+    'Spring Boot','Node.js','Java 17','TypeScript','PostgreSQL',
+    'JUnit 5','Cypress','Robot Framework','Postman',
+    'Clean Architecture','DDD','Hexagonal','SOLID','TDD',
+  ];
+
+  const FONT = '"JetBrains Mono", monospace';
+  let W, H, fragments = [];
+  let mx = -9999, my = -9999;
+  const RADIUS = 180;
+  const BASE_ALPHA = 0.055;
+  const HIGHLIGHT_ALPHA = 0.55;
+
+  function buildFragments() {
+    fragments = [];
+    const cols = Math.ceil(W / 180);
+    const rows = Math.ceil(H / 36);
+    const pool = [...TOKENS].sort(() => Math.random() - 0.5);
+    let idx = 0;
+    for (let r = 0; r <= rows; r++) {
+      for (let c = 0; c <= cols; c++) {
+        const x = c * 180 + (r % 2) * 80 + (Math.random() - 0.5) * 40;
+        const y = r * 36 + (Math.random() - 0.5) * 12;
+        const size = 10 + Math.floor(Math.random() * 3);
+        fragments.push({ x, y, text: pool[idx % pool.length], size });
+        idx++;
+      }
+    }
+  }
 
   function resize() {
     W = canvas.width  = canvas.offsetWidth;
     H = canvas.height = canvas.offsetHeight;
+    buildFragments();
   }
 
-  let tick = 0;
   function draw() {
     ctx.clearRect(0, 0, W, H);
-    const cx = W / 2, cy = H / 2;
-    const maxR = Math.hypot(cx, cy) * 0.92;
-    const rings = 11;
-    const minR = 48;
-    ctx.fillStyle = '#ffffff';
-    ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
+    const isDark = document.documentElement.getAttribute('data-theme') !== 'light';
+    const baseColor = isDark ? '255,255,255' : '0,0,0';
 
-    for (let i = 0; i < rings; i++) {
-      const r = minR + (maxR - minR) * (i / (rings - 1));
-      const fontSize = 9 + i * 0.4;
-      ctx.font = `${fontSize}px "JetBrains Mono", monospace`;
-      const charW = fontSize * 0.62;
-      const circ = 2 * Math.PI * r;
-      const n = Math.max(1, Math.floor(circ / charW));
-      const dir = i % 2 === 0 ? 1 : -1;
-      const speed = 0.00012 * (1 + i * 0.08);
-      const offset = tick * speed * dir;
-
-      for (let j = 0; j < n; j++) {
-        const a = offset + (j / n) * Math.PI * 2;
-        const x = cx + r * Math.cos(a);
-        const y = cy + r * Math.sin(a);
-        const ch = PHRASE[j % PHRASE.length];
-        ctx.save();
-        ctx.translate(x, y);
-        ctx.rotate(a + Math.PI / 2);
-        ctx.fillText(ch, 0, 0);
-        ctx.restore();
+    for (const f of fragments) {
+      const dx = f.x - mx, dy = f.y - my;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      let alpha;
+      if (dist < RADIUS) {
+        const t = 1 - dist / RADIUS;
+        alpha = BASE_ALPHA + (HIGHLIGHT_ALPHA - BASE_ALPHA) * t * t;
+      } else {
+        alpha = BASE_ALPHA;
       }
+      ctx.font = `${f.size}px ${FONT}`;
+      ctx.fillStyle = `rgba(${baseColor},${alpha})`;
+      ctx.fillText(f.text, f.x, f.y);
     }
-    tick++;
-    raf = requestAnimationFrame(draw);
+    requestAnimationFrame(draw);
   }
+
+  function trackMouse(e) {
+    const rect = canvas.getBoundingClientRect();
+    mx = e.clientX - rect.left;
+    my = e.clientY - rect.top;
+  }
+  function trackTouch(e) {
+    if (!e.touches.length) return;
+    const rect = canvas.getBoundingClientRect();
+    mx = e.touches[0].clientX - rect.left;
+    my = e.touches[0].clientY - rect.top;
+  }
+
+  const hero = document.getElementById('hero');
+  hero.addEventListener('mousemove', trackMouse, { passive: true });
+  hero.addEventListener('mouseleave', () => { mx = -9999; my = -9999; }, { passive: true });
+  hero.addEventListener('touchmove', trackTouch, { passive: true });
 
   resize();
   window.addEventListener('resize', resize, { passive: true });
