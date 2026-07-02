@@ -246,7 +246,6 @@ nav {
   font-weight: 700; line-height: 1;
   letter-spacing: -0.03em; color: var(--ink);
   margin-bottom: 12px; white-space: nowrap;
-  animation: glitch 12s ease-in-out infinite;
 }
 .hero-role {
   font-family: var(--mono); font-size: clamp(0.85rem, 1.5vw, 1rem);
@@ -259,17 +258,6 @@ nav {
 }
 @keyframes cblink { 0%,100%{opacity:1} 50%{opacity:0} }
 
-/* ─── GLITCH ─── */
-@keyframes glitch {
-  0%, 89%, 100% { text-shadow: none; clip-path: none; }
-  90%  { text-shadow: -3px 0 rgba(255,0,80,0.7), 3px 0 rgba(0,200,255,0.7); }
-  91%  { text-shadow: 3px 0 rgba(255,0,80,0.7), -3px 0 rgba(0,200,255,0.7); clip-path: inset(20% 0 60% 0); }
-  92%  { text-shadow: none; clip-path: inset(60% 0 10% 0); }
-  93%  { text-shadow: -2px 0 rgba(0,200,255,0.8); clip-path: none; }
-  94%  { text-shadow: none; }
-  95%  { text-shadow: 2px 0 rgba(255,0,80,0.6), -1px 0 rgba(0,200,255,0.5); }
-  96%  { text-shadow: none; }
-}
 .hero-desc {
   font-size: 0.92rem; color: var(--ink-2); line-height: 1.8;
   max-width: 440px; margin-bottom: 36px;
