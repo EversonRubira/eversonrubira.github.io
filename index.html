@@ -31,27 +31,27 @@ button { cursor: pointer; font-family: inherit; }
 }
 
 [data-theme="dark"] {
-  --bg:        #0c0a14;
-  --bg-1:      #131120;
-  --bg-2:      #1b1928;
-  --ink:       #eceaf2;
-  --ink-2:     #b8b5c4;
-  --ink-3:     #5a5768;
-  --line:      #2a2738;
-  --line-2:    rgba(255,255,255,0.07);
+  --bg:        #090f14;
+  --bg-1:      #0e1a20;
+  --bg-2:      #152530;
+  --ink:       #e8f6f8;
+  --ink-2:     #93bfc6;
+  --ink-3:     #3d6870;
+  --line:      #1c3540;
+  --line-2:    rgba(255,255,255,0.06);
   --white:     #ffffff;
-  --nav-bg:    rgba(12,10,20,0.92);
+  --nav-bg:    rgba(9,15,20,0.93);
   --grid-line: rgba(255,255,255,0.04);
-  --scan-clr:  rgba(255,255,255,0.05);
-  --tag-live:  rgba(255,255,255,0.12);
-  --tag-live-c:#fff;
-  --tag-wip-c: #9a98a8;
+  --scan-clr:  rgba(255,255,255,0.04);
+  --tag-live:  rgba(34,211,218,0.14);
+  --tag-live-c:#22d3da;
+  --tag-wip-c: #6a9da5;
   --tag-wip:   rgba(255,255,255,0.05);
-  --photo-f:   grayscale(100%) contrast(1.05);
-  --frame-b:   rgba(255,255,255,0.1);
-  --blob-a:    rgba(80,60,160,0.18);
-  --blob-b:    rgba(50,30,120,0.14);
-  --blob-c:    rgba(100,70,180,0.1);
+  --photo-f:   grayscale(100%) contrast(1.08);
+  --frame-b:   rgba(34,211,218,0.12);
+  --blob-a:    rgba(13,115,119,0.22);
+  --blob-b:    rgba(6,78,88,0.16);
+  --blob-c:    rgba(20,168,174,0.12);
 }
 
 [data-theme="light"] {
@@ -911,7 +911,7 @@ footer {
           <div class="princ-quote" data-i18n="princ-02a-quote">
             "Nunca deixar o cliente sem resposta. Nunca dizer que não vai dar: encontrar o caminho."
           </div>
-          <p class="princ-body" data-i18n="princ-02a-body">15 anos a lidar com clientes ensinaram-me que o silêncio é sempre a pior resposta. Quando um sistema falha sem dizer porquê, quando uma API retorna 500 sem contexto, quando o utilizador clica e não acontece nada: isso é um bug de comunicação antes de ser um bug de código. O sistema tem a obrigação de responder, sempre. Graceful degradation não é uma feature opcional; é o contrato mínimo com quem usa o que construímos.</p>
+          <p class="princ-body" data-i18n="princ-02a-body">15 anos a lidar com clientes ensinaram-me que o silêncio é sempre a pior resposta. Um sistema que falha sem dizer porquê tem um bug de comunicação antes de ter um bug de código. Graceful degradation não é opcional: é o contrato mínimo com quem usa o que construímos.</p>
           <div class="princ-spec">
             <div class="spec-row">
               <span class="spec-k" data-i18n="spec-nunca">nunca</span>
@@ -938,7 +938,7 @@ footer {
           <div class="princ-quote" data-i18n="princ-02b-quote">
             "Primeiro ponho-me no lugar de quem tem o problema. Depois papel. Depois código."
           </div>
-          <p class="princ-body" data-i18n="princ-02b-body">O editor abre por último. Antes de escrever uma linha, preciso de perceber exactamente o que dói, não o que o cliente descreveu, mas o problema real que está por trás do pedido. Operações B2B ensinaram-me que o que é pedido e o que é necessário raramente são a mesma coisa. Em engenharia isso traduz-se em: mapear o domínio antes de modelar, entender o fluxo antes de criar o endpoint, questionar o requisito antes de o implementar.</p>
+          <p class="princ-body" data-i18n="princ-02b-body">O editor abre por último. B2B ensinou-me que o que é pedido e o que é necessário raramente coincidem. Antes de uma linha de código: perceber o que dói, mapear o domínio, questionar o requisito.</p>
           <div class="princ-spec">
             <div class="spec-row">
               <span class="spec-k" data-i18n="spec-sequencia">sequência</span>
@@ -965,7 +965,7 @@ footer {
           <div class="princ-quote" data-i18n="princ-02c-quote">
             "Um ataque man-in-the-middle num pagamento ensinou-me a nunca assumir que o canal é seguro."
           </div>
-          <p class="princ-body" data-i18n="princ-02c-body">A lição mais cara que aprendi não foi técnica: foi operacional. Um pagamento intercetado, dinheiro desviado, horas de gestão de crise. Recuperei, mas nunca esqueci. Desde então: verifico múltiplas vezes antes de qualquer acção irreversível. Em engenharia isso significa: validar inputs nas fronteiras do sistema, nunca confiar em dados não verificados, tratar toda a entrada externa como hostil até prova em contrário. Zero trust não é paranoia: é disciplina.</p>
+          <p class="princ-body" data-i18n="princ-02c-body">A lição mais cara que aprendi não foi técnica: foi operacional. Um pagamento intercetado, dinheiro desviado. Recuperei, mas zero trust passou a ser disciplina, não paranoia: toda entrada externa é hostil até prova em contrário.</p>
           <div class="princ-spec">
             <div class="spec-row">
               <span class="spec-k" data-i18n="spec-premissa">premissa</span>
@@ -1303,6 +1303,7 @@ themeBtn.addEventListener('click', () => {
   const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
   html.setAttribute('data-theme', next);
   localStorage.setItem('er-theme', next);
+  if (window._asciiRender) window._asciiRender();
 });
 
 // ─── i18n ───
@@ -1347,13 +1348,13 @@ const i18n = {
 
     'princ-02a-label': 'Feedback<br>é inegociável',
     'princ-02a-quote': '"Nunca deixar o cliente sem resposta. Nunca dizer que não vai dar: encontrar o caminho."',
-    'princ-02a-body': '15 anos a lidar com clientes ensinaram-me que o silêncio é sempre a pior resposta. Quando um sistema falha sem dizer porquê, quando uma API retorna 500 sem contexto, quando o utilizador clica e não acontece nada: isso é um bug de comunicação antes de ser um bug de código. O sistema tem a obrigação de responder, sempre. Graceful degradation não é uma feature opcional; é o contrato mínimo com quem usa o que construímos.',
+    'princ-02a-body': '15 anos a lidar com clientes ensinaram-me que o silêncio é sempre a pior resposta. Um sistema que falha sem dizer porquê tem um bug de comunicação antes de ter um bug de código. Graceful degradation não é opcional: é o contrato mínimo com quem usa o que construímos.',
     'princ-02b-label': 'Problema<br>antes de código',
     'princ-02b-quote': '"Primeiro ponho-me no lugar de quem tem o problema. Depois papel. Depois código."',
-    'princ-02b-body': 'O editor abre por último. Antes de escrever uma linha, preciso de perceber exactamente o que dói, não o que o cliente descreveu, mas o problema real que está por trás do pedido. Operações B2B ensinaram-me que o que é pedido e o que é necessário raramente são a mesma coisa. Em engenharia isso traduz-se em: mapear o domínio antes de modelar, entender o fluxo antes de criar o endpoint, questionar o requisito antes de o implementar.',
+    'princ-02b-body': 'O editor abre por último. B2B ensinou-me que o que é pedido e o que é necessário raramente coincidem. Antes de uma linha de código: perceber o que dói, mapear o domínio, questionar o requisito.',
     'princ-02c-label': 'Verificar<br>antes de agir',
     'princ-02c-quote': '"Um ataque man-in-the-middle num pagamento ensinou-me a nunca assumir que o canal é seguro."',
-    'princ-02c-body': 'A lição mais cara que aprendi não foi técnica: foi operacional. Um pagamento intercetado, dinheiro desviado, horas de gestão de crise. Recuperei, mas nunca esqueci. Desde então: verifico múltiplas vezes antes de qualquer acção irreversível. Em engenharia isso significa: validar inputs nas fronteiras do sistema, nunca confiar em dados não verificados, tratar toda a entrada externa como hostil até prova em contrário. Zero trust não é paranoia: é disciplina.',
+    'princ-02c-body': 'A lição mais cara que aprendi não foi técnica: foi operacional. Um pagamento intercetado, dinheiro desviado. Recuperei, mas zero trust passou a ser disciplina, não paranoia: toda entrada externa é hostil até prova em contrário.',
     'spec-nunca': 'nunca',
     'spec-sempre': 'sempre',
     'spec-padrao': 'padrão',
@@ -1470,13 +1471,13 @@ const i18n = {
 
     'princ-02a-label': 'Feedback<br>is non-negotiable',
     'princ-02a-quote': '"Never leave the client without a response. Never say it can\'t be done: find the way."',
-    'princ-02a-body': '15 years dealing with clients taught me that silence is always the worst response. When a system fails without saying why, when an API returns 500 without context, when the user clicks and nothing happens: that\'s a communication bug before it\'s a code bug. The system has an obligation to respond, always. Graceful degradation isn\'t an optional feature; it\'s the minimum contract with whoever uses what we build.',
+    'princ-02a-body': '15 years dealing with clients taught me that silence is always the worst response. A system that fails without saying why has a communication bug before it has a code bug. Graceful degradation isn\'t optional: it\'s the minimum contract with whoever uses what we build.',
     'princ-02b-label': 'Problem<br>before code',
     'princ-02b-quote': '"First I put myself in the shoes of whoever has the problem. Then paper. Then code."',
-    'princ-02b-body': 'The editor opens last. Before writing a line, I need to understand exactly what hurts, not what the client described, but the real problem behind the request. B2B operations taught me that what is asked and what is needed are rarely the same thing. In engineering that translates to: map the domain before modelling, understand the flow before creating the endpoint, question the requirement before implementing it.',
+    'princ-02b-body': 'The editor opens last. B2B taught me that what is asked and what is needed rarely coincide. Before a line of code: understand what hurts, map the domain, question the requirement.',
     'princ-02c-label': 'Verify<br>before acting',
     'princ-02c-quote': '"A man-in-the-middle attack on a payment taught me to never assume the channel is safe."',
-    'princ-02c-body': 'The most expensive lesson I learned wasn\'t technical: it was operational. A payment intercepted, money diverted, hours of crisis management. I recovered, but never forgot. Since then: I verify multiple times before any irreversible action. In engineering that means: validate inputs at system boundaries, never trust unverified data, treat all external input as hostile until proven otherwise. Zero trust isn\'t paranoia: it\'s discipline.',
+    'princ-02c-body': 'The most expensive lesson I learned wasn\'t technical: it was operational. A payment intercepted, money diverted. I recovered, but zero trust became discipline, not paranoia: all external input is hostile until proven otherwise.',
     'spec-nunca': 'never',
     'spec-sempre': 'always',
     'spec-padrao': 'pattern',
@@ -1628,16 +1629,16 @@ btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth'
   ctx.scale(DPR, DPR);
 
   const COLS = Math.floor(W_CSS / CELL);
-  const ROWS = Math.floor(H_CSS / (CELL * 1.8));
+  const ROWS = Math.floor(H_CSS / (CELL * 1.5));
 
-  // Palette — jewel tones that pop on dark purple bg
-  const PALETTE = [
-    '#a78bfa','#818cf8','#67e8f9','#34d399',
-    '#fbbf24','#f87171','#e879f9','#c4b5fd',
-    '#ffffff','#e2e8f0',
-  ];
+  function getPalette() {
+    const dark = document.documentElement.getAttribute('data-theme') !== 'light';
+    return dark
+      ? ['#064e57','#0d7377','#14a8ae','#22d3da','#67e8f9','#a5f3fc','#cffafe','#fbbf24','#34d399','#ffffff']
+      : ['#021a1e','#042f35','#064e57','#0d7377','#0f8e94','#138a90','#1baab0','#0e6b70','#0c5a5e','#091f22'];
+  }
 
-  let cells = []; // { char, color }
+  let cells = []; // { char, bright }
 
   function buildFromImage(img) {
     const off = document.createElement('canvas');
@@ -1654,14 +1655,10 @@ btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth'
         if (A < 30) { cells.push(null); continue; }
         // brightness 0–1
         const bright = (0.299*R + 0.587*G + 0.114*B) / 255;
-        // skip very bright (background/highlight) areas for airiness
-        if (bright > 0.88) { cells.push(null); continue; }
-        // char density: dark areas → dense chars, light → sparse
+        if (bright > 0.92) { cells.push(null); continue; }
         const charIdx = Math.floor((1 - bright) * (CHARS.length - 1));
         const char = CHARS[charIdx];
-        // color: use actual pixel tint blended with palette
-        const palColor = PALETTE[Math.floor(bright * (PALETTE.length - 1))];
-        cells.push({ char, color: palColor, bright });
+        cells.push({ char, bright });
       }
     }
     render();
@@ -1673,19 +1670,22 @@ btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth'
     ctx.font = `${fontSize}px "JetBrains Mono", monospace`;
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
+    const pal = getPalette();
 
     for (let r = 0; r < ROWS; r++) {
       for (let c = 0; c < COLS; c++) {
         const cell = cells[r * COLS + c];
         if (!cell) continue;
-        ctx.fillStyle = cell.color;
-        ctx.globalAlpha = 0.5 + cell.bright * 0.5;
-        ctx.fillText(cell.char, c * CELL + CELL/2, r * CELL * 1.8 + CELL);
+        ctx.fillStyle = pal[Math.floor(cell.bright * (pal.length - 1))];
+        // dark pixels get higher opacity for better silhouette definition
+        ctx.globalAlpha = 0.9 - cell.bright * 0.55;
+        ctx.fillText(cell.char, c * CELL + CELL/2, r * CELL * 1.5 + CELL);
       }
     }
     ctx.globalAlpha = 1;
   }
 
+  window._asciiRender = render;
   const hint = document.getElementById('photo-hint');
 
   // Load the photo and build ASCII
