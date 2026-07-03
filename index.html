@@ -1794,47 +1794,16 @@ window.addEventListener('load', function() {
   line1.textContent = '';
   line2.textContent = '';
 
-  let audioCtx = null;
-  function getAudio() {
-    if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-    if (audioCtx.state === 'suspended') audioCtx.resume();
-    return audioCtx;
-  }
-  function playKey() {
-    try {
-      const ctx = getAudio();
-      if (ctx.state !== 'running') return;
-      const osc = ctx.createOscillator();
-      const gain = ctx.createGain();
-      osc.connect(gain);
-      gain.connect(ctx.destination);
-      osc.type = 'square';
-      osc.frequency.setValueAtTime(180 + Math.random() * 80, ctx.currentTime);
-      gain.gain.setValueAtTime(0.04, ctx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.04);
-      osc.start(ctx.currentTime);
-      osc.stop(ctx.currentTime + 0.04);
-    } catch(e) {}
-  }
-  function unlock() {
-    getAudio();
-    ['click','keydown','touchstart'].forEach(e => document.removeEventListener(e, unlock));
-  }
-  ['click','keydown','touchstart'].forEach(e => document.addEventListener(e, unlock, { once: true }));
-  document.addEventListener('mousemove', unlock, { once: true });
-
   let i = 0;
   function typeLine2() {
     if (i < text2.length) {
       line2.textContent = text2.slice(0, ++i);
-      if (text2[i - 1] !== ' ') playKey();
       setTimeout(typeLine2, 55);
     }
   }
   function typeLine1() {
     if (i < text1.length) {
       line1.textContent = text1.slice(0, ++i);
-      if (text1[i - 1] !== ' ') playKey();
       setTimeout(typeLine1, 45);
     } else {
       i = 0;
