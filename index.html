@@ -1795,21 +1795,33 @@ window.addEventListener('load', function() {
   line2.textContent = '';
 
   let audioCtx = null;
+  function getAudio() {
+    if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    if (audioCtx.state === 'suspended') audioCtx.resume();
+    return audioCtx;
+  }
   function playKey() {
     try {
-      if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-      const osc = audioCtx.createOscillator();
-      const gain = audioCtx.createGain();
+      const ctx = getAudio();
+      if (ctx.state !== 'running') return;
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
       osc.connect(gain);
-      gain.connect(audioCtx.destination);
+      gain.connect(ctx.destination);
       osc.type = 'square';
-      osc.frequency.setValueAtTime(180 + Math.random() * 80, audioCtx.currentTime);
-      gain.gain.setValueAtTime(0.04, audioCtx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.04);
-      osc.start(audioCtx.currentTime);
-      osc.stop(audioCtx.currentTime + 0.04);
+      osc.frequency.setValueAtTime(180 + Math.random() * 80, ctx.currentTime);
+      gain.gain.setValueAtTime(0.04, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.04);
+      osc.start(ctx.currentTime);
+      osc.stop(ctx.currentTime + 0.04);
     } catch(e) {}
   }
+  function unlock() {
+    getAudio();
+    ['click','keydown','touchstart'].forEach(e => document.removeEventListener(e, unlock));
+  }
+  ['click','keydown','touchstart'].forEach(e => document.addEventListener(e, unlock, { once: true }));
+  document.addEventListener('mousemove', unlock, { once: true });
 
   let i = 0;
   function typeLine2() {
