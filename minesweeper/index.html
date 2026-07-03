@@ -7,6 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { overflow-x: hidden; }
 html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
 a { color: inherit; text-decoration: none; }
 
@@ -542,15 +543,24 @@ function render() {
 
       const row = r, col = c;
       el.addEventListener('click', () => handleClick(row, col));
-      el.addEventListener('contextmenu', e => { e.preventDefault(); handleFlag(row, col); });
-
       /* long-press for mobile */
       let pressTimer = null;
+      let longPressActive = false;
       el.addEventListener('pointerdown', () => {
-        pressTimer = setTimeout(() => { handleFlag(row, col); render(); }, 500);
+        longPressActive = false;
+        pressTimer = setTimeout(() => {
+          longPressActive = true;
+          handleFlag(row, col);
+          render();
+        }, 500);
       });
       el.addEventListener('pointerup', () => clearTimeout(pressTimer));
       el.addEventListener('pointerleave', () => clearTimeout(pressTimer));
+      el.addEventListener('contextmenu', e => {
+        e.preventDefault();
+        if (longPressActive) { longPressActive = false; return; }
+        handleFlag(row, col);
+      });
 
       boardEl.appendChild(el);
     }
