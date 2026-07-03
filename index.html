@@ -1793,16 +1793,36 @@ window.addEventListener('load', function() {
   const text2 = line2.textContent.trim();
   line1.textContent = '';
   line2.textContent = '';
+
+  let audioCtx = null;
+  function playKey() {
+    try {
+      if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      osc.type = 'square';
+      osc.frequency.setValueAtTime(180 + Math.random() * 80, audioCtx.currentTime);
+      gain.gain.setValueAtTime(0.04, audioCtx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.04);
+      osc.start(audioCtx.currentTime);
+      osc.stop(audioCtx.currentTime + 0.04);
+    } catch(e) {}
+  }
+
   let i = 0;
   function typeLine2() {
     if (i < text2.length) {
       line2.textContent = text2.slice(0, ++i);
+      if (text2[i - 1] !== ' ') playKey();
       setTimeout(typeLine2, 55);
     }
   }
   function typeLine1() {
     if (i < text1.length) {
       line1.textContent = text1.slice(0, ++i);
+      if (text1[i - 1] !== ' ') playKey();
       setTimeout(typeLine1, 45);
     } else {
       i = 0;
