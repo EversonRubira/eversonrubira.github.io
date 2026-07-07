@@ -217,19 +217,19 @@ nav {
 /* ─── HERO ─── */
 #hero {
   position: relative; overflow: hidden;
-  padding-top: 52px; min-height: 100vh;
+  padding-top: 52px;
   display: flex; flex-direction: column;
   background: transparent;
 }
 .hero-body {
   position: relative; z-index: 1;
-  flex: 1; display: grid;
+  display: grid;
   grid-template-columns: 1fr 320px;
-  gap: 0; align-items: center;
-  padding: 72px 48px 60px;
+  gap: 0; align-items: start;
+  padding: 72px 48px 80px;
   max-width: 1200px; margin: 0 auto; width: 100%;
 }
-.hero-text { grid-column: 1; }
+.hero-text { grid-column: 1; align-self: start; }
 .hero-right { grid-column: 2; }
 .hero-eyebrow {
   display: flex; align-items: center; gap: 10px;
