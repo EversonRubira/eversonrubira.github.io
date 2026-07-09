@@ -2066,6 +2066,63 @@ window.addEventListener('load', function() {
     ].forEach(([t, v]) => print(t, v));
   }
 
+  function hackReveal(asciiLines, onDone) {
+    const GLITCH = '!@#$%^&*<>[]{}|\\/+?~';
+    const divs = asciiLines.map(line => {
+      const d = document.createElement('div');
+      d.className = 'line-ascii';
+      d.textContent = line;
+      output.appendChild(d);
+      return { el: d, target: line };
+    });
+    output.scrollTop = output.scrollHeight;
+
+    // Phase 1: scramble all non-space chars
+    divs.forEach(({ el, target }) => {
+      el.textContent = target.split('').map(ch =>
+        ch === ' ' ? ' ' : GLITCH[Math.floor(Math.random() * GLITCH.length)]
+      ).join('');
+    });
+
+    // Build flat list of positions to resolve, shuffled
+    const positions = [];
+    divs.forEach(({ target }, li) => {
+      target.split('').forEach((ch, ci) => {
+        if (ch !== ' ') positions.push({ li, ci });
+      });
+    });
+    positions.sort(() => Math.random() - 0.5);
+
+    let resolved = 0;
+    const BATCH = Math.max(1, Math.ceil(positions.length / 18));
+
+    const tick = setInterval(() => {
+      // Resolve a batch
+      for (let b = 0; b < BATCH && resolved < positions.length; b++, resolved++) {
+        const { li, ci } = positions[resolved];
+        const { el, target } = divs[li];
+        const arr = el.textContent.split('');
+        arr[ci] = target[ci];
+        el.textContent = arr.join('');
+      }
+      // Keep scrambling unresolved
+      divs.forEach(({ el, target }) => {
+        const arr = el.textContent.split('');
+        arr.forEach((ch, i) => {
+          if (ch !== target[i] && target[i] !== ' ')
+            arr[i] = GLITCH[Math.floor(Math.random() * GLITCH.length)];
+        });
+        el.textContent = arr.join('');
+      });
+
+      if (resolved >= positions.length) {
+        clearInterval(tick);
+        divs.forEach(({ el, target }) => { el.textContent = target; });
+        setTimeout(onDone, 120);
+      }
+    }, 45);
+  }
+
   function run(cmd) {
     const c = cmd.trim().toLowerCase();
     print('cmd', '$ ' + cmd.trim());
@@ -2079,8 +2136,26 @@ window.addEventListener('load', function() {
       print('err', isEN() ? `command not found: ${c}. try "help".` : `comando não encontrado: ${c}. tenta "help".`);
       return;
     }
-    fn().forEach(([t, v]) => print(t, v));
-    print('dim', '');
+
+    const lines = fn();
+    const firstAscii = lines.findIndex(([t]) => t === 'ascii');
+    const lastAscii  = lines.reduce((acc, [t], i) => t === 'ascii' ? i : acc, -1);
+
+    if (firstAscii === -1) {
+      lines.forEach(([t, v]) => print(t, v));
+      print('dim', '');
+      return;
+    }
+
+    // Print lines before ascii block
+    lines.slice(0, firstAscii).forEach(([t, v]) => print(t, v));
+
+    // Animate ascii block, then print the rest
+    const asciiTexts = lines.slice(firstAscii, lastAscii + 1).map(([, v]) => v);
+    hackReveal(asciiTexts, () => {
+      lines.slice(lastAscii + 1).forEach(([t, v]) => print(t, v));
+      print('dim', '');
+    });
   }
 
   function open() {
