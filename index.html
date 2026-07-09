@@ -13,7 +13,7 @@
 <meta property="og:image" content="https://eversonrubira.github.io/foto-perfil (2).jpeg">
 <meta property="og:url" content="https://eversonrubira.github.io">
 <meta property="og:type" content="website">
-<meta name="deploy-version" content="20260709-binary-portrait-v1">
+<meta name="deploy-version" content="20260709-photo-bw-default-v2">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23090f14'/%3E%3Crect x='1' y='1' width='30' height='30' fill='none' stroke='%2322d3da' stroke-width='1.5'/%3E%3Ctext x='4' y='20' font-family='monospace' font-weight='700' font-size='14' fill='%2322d3da'%3E%3E%3C/text%3E%3Crect x='14' y='20' width='7' height='4' fill='%2322d3da' opacity='.9'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -328,27 +328,19 @@ nav {
   border: 1px solid var(--frame-b); border-radius: 12px; z-index: 0;
   transition: border-color 0.3s;
 }
-#ascii-canvas {
+#ascii-canvas { display: none; }
+#ascii-photo {
   position: relative; z-index: 2;
   width: 220px; height: 271px;
+  object-fit: cover; object-position: center 15%;
   border-radius: 12px; display: block;
-  transition: opacity 0.5s ease;
+  filter: grayscale(100%) contrast(1.1) brightness(0.95);
+  transition: filter 0.5s ease;
 }
-#ascii-photo {
-  position: absolute; top: 0; left: 0; z-index: 1;
-  width: 220px; height: 271px;
-  object-fit: cover; object-position: center 12%;
-  border-radius: 12px;
-  filter: grayscale(100%) contrast(1.08);
-  transition: opacity 0.5s ease;
-  opacity: 0;
-}
-.photo-frame:hover #ascii-canvas,
-.photo-frame.touched #ascii-canvas,
-.photo-frame.locked #ascii-canvas { opacity: 0; }
 .photo-frame:hover #ascii-photo,
-.photo-frame.touched #ascii-photo,
-.photo-frame.locked #ascii-photo { opacity: 1; }
+.photo-frame.locked #ascii-photo {
+  filter: grayscale(0%) contrast(1) brightness(1);
+}
 .photo-hint {
   position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%);
   z-index: 3; font-family: var(--mono); font-size: 0.55rem;
@@ -784,7 +776,7 @@ footer {
   .hero-right { grid-column: auto; grid-row: auto; align-items: flex-start; flex-direction: row; padding-left: 0; gap: 16px; }
   .photo-frame { width: 130px; }
   .photo-frame::after { top: 8px; left: 8px; right: -8px; bottom: -8px; }
-  #ascii-photo  { width: 130px !important; height: 160px !important; }
+  #ascii-photo  { width: 130px; height: 160px; }
   .hero-bar { padding: 14px 24px; flex-direction: column; align-items: flex-start; gap: 8px; }
   .hero-bar-tags { font-size: 0.58rem; line-height: 1.8; }
   .sec-wrap { padding: 0 20px; }
@@ -818,7 +810,7 @@ footer {
   .blob-b { width: 240px; height: 240px; right: -60px; }
   .blob-c { width: 200px; height: 200px; }
   .photo-frame { width: 110px; }
-  #ascii-photo  { width: 110px !important; height: 136px !important; }
+  #ascii-photo  { width: 110px; height: 136px; }
   .hero-right { flex-direction: row; align-items: center; padding-bottom: 8px; }
   .hero-socials { flex-direction: row; flex-wrap: wrap; gap: 12px; }
   section { padding: 64px 0; }
@@ -1761,107 +1753,30 @@ const btt = document.getElementById('btt');
 window.addEventListener('scroll', () => { btt.classList.toggle('show', window.scrollY > 500); }, { passive: true });
 btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
-// ASCII Portrait
+// Photo: B&W default → color on hover/click
 (function() {
-  const frame  = document.getElementById('ascii-frame');
-  const canvas = document.getElementById('ascii-canvas');
-  const photo  = document.getElementById('ascii-photo');
-  if (!frame || !canvas || !photo) return;
+  const frame = document.getElementById('ascii-frame');
+  const hint  = document.getElementById('photo-hint');
+  if (!frame) return;
 
-  const CELL  = 2; // px per character cell
-  const W_CSS = 220, H_CSS = 271;
-  const DPR   = Math.min(window.devicePixelRatio || 1, 2);
-
-  canvas.width  = W_CSS * DPR;
-  canvas.height = H_CSS * DPR;
-  const ctx = canvas.getContext('2d');
-  ctx.scale(DPR, DPR);
-
-  const COLS = Math.floor(W_CSS / CELL);
-  const ROWS = Math.floor(H_CSS / (CELL * 1.6));
-
-  let cells = []; // { char, bright }
-
-  function buildFromImage(img) {
-    const off = document.createElement('canvas');
-    off.width = COLS; off.height = ROWS;
-    const offCtx = off.getContext('2d');
-    offCtx.drawImage(img, 0, 0, COLS, ROWS);
-    const px = offCtx.getImageData(0, 0, COLS, ROWS).data;
-
-    cells = [];
-    for (let r = 0; r < ROWS; r++) {
-      for (let c = 0; c < COLS; c++) {
-        const i = (r * COLS + c) * 4;
-        const R = px[i], G = px[i+1], B = px[i+2], A = px[i+3];
-        if (A < 30) { cells.push(null); continue; }
-        const bright = (0.299*R + 0.587*G + 0.114*B) / 255;
-        if (bright > 0.88) { cells.push(null); continue; }
-        // alternate 0/1 by position for texture
-        const char = (r + c) % 2 === 0 ? '0' : '1';
-        cells.push({ char, bright });
-      }
-    }
-    render();
+  // Show hint briefly on load
+  if (hint) {
+    hint.classList.add('visible');
+    setTimeout(() => hint.classList.remove('visible'), 2500);
   }
 
-  function render() {
-    ctx.clearRect(0, 0, W_CSS, H_CSS);
-    const fontSize = CELL * 1.5;
-    ctx.font = `bold ${fontSize}px "JetBrains Mono", monospace`;
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-    const dark = document.documentElement.getAttribute('data-theme') !== 'light';
-
-    for (let r = 0; r < ROWS; r++) {
-      for (let c = 0; c < COLS; c++) {
-        const cell = cells[r * COLS + c];
-        if (!cell) continue;
-        if (dark) {
-          // dark theme: bright areas lighter, dark areas dimmer
-          const v = Math.round(80 + (1 - cell.bright) * 175);
-          ctx.fillStyle = `rgb(${v},${v},${v})`;
-          ctx.globalAlpha = 0.55 + (1 - cell.bright) * 0.45;
-        } else {
-          // light theme: invert — dark pixels → dark chars on light bg
-          const v = Math.round((1 - cell.bright) * 60);
-          ctx.fillStyle = `rgb(${v},${v},${v})`;
-          ctx.globalAlpha = 0.4 + (1 - cell.bright) * 0.6;
-        }
-        ctx.fillText(cell.char, c * CELL + CELL/2, r * CELL * 1.6 + CELL);
-      }
-    }
-    ctx.globalAlpha = 1;
-  }
-
-  window._asciiRender = render;
-  const hint = document.getElementById('photo-hint');
-
-  // Load the photo and build ASCII
-  const loader = new Image();
-  loader.crossOrigin = 'anonymous';
-  loader.src = photo.src;
-  loader.onload = () => {
-    buildFromImage(loader);
-    // Show hint briefly on load (works on mobile too)
-    if (hint) {
-      hint.classList.add('visible');
-      setTimeout(() => hint.classList.remove('visible'), 2500);
-    }
-  };
-
-  function hideHintPermanently() {
+  function hideHint() {
     if (hint) { hint.classList.remove('visible'); hint.style.display = 'none'; }
   }
 
-  // Desktop: click toggle lock
+  // Desktop: click toggles color lock
   frame.addEventListener('click', (e) => {
     if (e.pointerType === 'touch') return;
     frame.classList.toggle('locked');
-    hideHintPermanently();
+    hideHint();
   });
 
-  // Mobile: tap toggles locked (ignores hover)
+  // Mobile: tap toggles color
   let touchMoved = false;
   frame.addEventListener('touchstart', () => { touchMoved = false; }, { passive: true });
   frame.addEventListener('touchmove',  () => { touchMoved = true;  }, { passive: true });
@@ -1869,7 +1784,7 @@ btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth'
     if (touchMoved) return;
     e.preventDefault();
     frame.classList.toggle('locked');
-    hideHintPermanently();
+    hideHint();
   });
 })();
 
