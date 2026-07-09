@@ -2037,12 +2037,13 @@ window.addEventListener('load', function() {
       ['ascii', '  █   █   █   █  █   █     █   █'],
       ['ascii', '  █   █  ███  █   █  ████  ████ '],
       ['ascii', ''],
+      ['ok',  ''],
       ['ok',  '  Great decision. Everson is ready to start.'],
       ['ok',  ''],
       ['ok',  '  → eversonrubira@gmail.com'],
       ['ok',  '  → +351 910 625 090'],
       ['ok',  '  → linkedin.com/in/eversonrubira'],
-      ['dim', ''],
+      ['ok',  ''],
       ['dim', '  "The best time to hire was yesterday.'],
       ['dim', '   The second best time is now."'],
       ['hi',  ''],
@@ -2066,61 +2067,31 @@ window.addEventListener('load', function() {
     ].forEach(([t, v]) => print(t, v));
   }
 
-  function hackReveal(asciiLines, onDone) {
-    const GLITCH = '!@#$%^&*<>[]{}|\\/+?~';
+  function typeReveal(asciiLines, onDone) {
     const divs = asciiLines.map(line => {
       const d = document.createElement('div');
       d.className = 'line-ascii';
-      d.textContent = line;
+      d.textContent = '';
       output.appendChild(d);
       return { el: d, target: line };
     });
     output.scrollTop = output.scrollHeight;
 
-    // Phase 1: scramble all non-space chars
-    divs.forEach(({ el, target }) => {
-      el.textContent = target.split('').map(ch =>
-        ch === ' ' ? ' ' : GLITCH[Math.floor(Math.random() * GLITCH.length)]
-      ).join('');
-    });
-
-    // Build flat list of positions to resolve, shuffled
-    const positions = [];
-    divs.forEach(({ target }, li) => {
-      target.split('').forEach((ch, ci) => {
-        if (ch !== ' ') positions.push({ li, ci });
-      });
-    });
-    positions.sort(() => Math.random() - 0.5);
-
-    let resolved = 0;
-    const BATCH = Math.max(1, Math.ceil(positions.length / 18));
-
+    let li = 0, ci = 0;
     const tick = setInterval(() => {
-      // Resolve a batch
-      for (let b = 0; b < BATCH && resolved < positions.length; b++, resolved++) {
-        const { li, ci } = positions[resolved];
-        const { el, target } = divs[li];
-        const arr = el.textContent.split('');
-        arr[ci] = target[ci];
-        el.textContent = arr.join('');
-      }
-      // Keep scrambling unresolved
-      divs.forEach(({ el, target }) => {
-        const arr = el.textContent.split('');
-        arr.forEach((ch, i) => {
-          if (ch !== target[i] && target[i] !== ' ')
-            arr[i] = GLITCH[Math.floor(Math.random() * GLITCH.length)];
-        });
-        el.textContent = arr.join('');
-      });
-
-      if (resolved >= positions.length) {
+      if (li >= divs.length) {
         clearInterval(tick);
-        divs.forEach(({ el, target }) => { el.textContent = target; });
-        setTimeout(onDone, 120);
+        setTimeout(onDone, 80);
+        return;
       }
-    }, 45);
+      const { el, target } = divs[li];
+      // Advance 3 chars per tick for a snappy but visible pace
+      for (let i = 0; i < 3 && ci <= target.length; i++, ci++) {
+        el.textContent = target.slice(0, ci);
+      }
+      if (ci > target.length) { el.textContent = target; li++; ci = 0; }
+      output.scrollTop = output.scrollHeight;
+    }, 16);
   }
 
   function run(cmd) {
@@ -2152,7 +2123,7 @@ window.addEventListener('load', function() {
 
     // Animate ascii block, then print the rest
     const asciiTexts = lines.slice(firstAscii, lastAscii + 1).map(([, v]) => v);
-    hackReveal(asciiTexts, () => {
+    typeReveal(asciiTexts, () => {
       lines.slice(lastAscii + 1).forEach(([t, v]) => print(t, v));
       print('dim', '');
     });
