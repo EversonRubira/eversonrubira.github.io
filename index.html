@@ -1706,6 +1706,7 @@ function applyLang(lang) {
     if (i18n[lang] && i18n[lang][key]) el.innerHTML = i18n[lang][key];
   });
   html.setAttribute('data-lang', lang);
+  html.lang = lang;
   langBtn.textContent = lang === 'pt' ? 'EN' : 'PT';
   localStorage.setItem('er-lang', lang);
 }
