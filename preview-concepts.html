@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Conceitos — Everson Rubira</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Inter', sans-serif; background: #111; color: #fff; }
+
+/* ── META ── */
+.meta {
+  text-align: center;
+  padding: 40px 24px 20px;
+  border-bottom: 1px solid #222;
+  background: #0d0d0d;
+}
+.meta h1 { font-size: 0.8rem; font-family: monospace; color: #555; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 10px; }
+.meta p { font-size: 0.85rem; color: #444; max-width: 520px; margin: 0 auto; line-height: 1.7; }
+.concept-nav {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  padding: 20px;
+  background: #0d0d0d;
+  border-bottom: 1px solid #1a1a1a;
+  position: sticky;
+  top: 0;
+  z-index: 99;
+}
+.concept-nav a {
+  font-size: 0.72rem;
+  font-family: monospace;
+  letter-spacing: 0.08em;
+  color: #555;
+  border: 1px solid #222;
+  padding: 6px 16px;
+  border-radius: 2px;
+  text-decoration: none;
+  transition: all 0.15s;
+}
+.concept-nav a:hover { color: #fff; border-color: #555; }
+.concept-label {
+  background: #0d0d0d;
+  padding: 20px 32px;
+  font-family: monospace;
+  font-size: 0.68rem;
+  color: #333;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border-bottom: 1px solid #1a1a1a;
+}
+.concept-label span { color: #fff; }
+
+/* ──────────────────────────────────────────────
+   CONCEITO A — "SISTEMA"
+   Ideia: pensa em sistemas, arquitectura, fluxos
+   Paleta: fundo muito escuro quase preto, acento laranja-âmbar
+   Font: Space Grotesk (moderna, geométrica, séria)
+   Sem partículas, sem gimmicks — puro layout e hierarquia
+   Grid subtil de fundo como papel milimétrico
+────────────────────────────────────────────── */
+#conceito-a {
+  background: #0b0b0b;
+  color: #d4d4d4;
+  font-family: 'Space Grotesk', sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+#conceito-a::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+}
+.a-nav {
+  border-bottom: 1px solid #1e1e1e;
+  padding: 0 40px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+.a-brand {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.78rem;
+  color: #f97316;
+  letter-spacing: 0.05em;
+}
+.a-links {
+  display: flex;
+  gap: 28px;
+  list-style: none;
+}
+.a-links a {
+  font-size: 0.78rem;
+  color: #555;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  transition: color 0.15s;
+}
+.a-links a:hover { color: #d4d4d4; }
+.a-cv {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.68rem;
+  color: #f97316;
+  border: 1px solid #f97316;
+  padding: 5px 14px;
+  border-radius: 2px;
+  text-decoration: none;
+  letter-spacing: 0.06em;
+  transition: all 0.15s;
+}
+.a-cv:hover { background: #f97316; color: #000; }
+.a-hero {
+  padding: 80px 40px 70px;
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 60px;
+  align-items: center;
+  max-width: 1100px;
+  margin: 0 auto;
+  position: relative;
+}
+.a-eyebrow {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #f97316;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.a-eyebrow::before {
+  content: '';
+  width: 30px;
+  height: 1px;
+  background: #f97316;
+}
+.a-h1 {
+  font-size: 3.8rem;
+  font-weight: 700;
+  line-height: 1.0;
+  letter-spacing: -0.03em;
+  color: #fff;
+  margin-bottom: 20px;
+}
+.a-h1 .dim { color: #333; }
+.a-role {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  color: #555;
+  margin-bottom: 28px;
+  line-height: 1.8;
+}
+.a-role .hi { color: #f97316; }
+.a-desc {
+  font-size: 0.95rem;
+  color: #666;
+  line-height: 1.8;
+  max-width: 440px;
+  margin-bottom: 36px;
+}
+.a-desc strong { color: #aaa; font-weight: 500; }
+.a-actions { display: flex; gap: 12px; margin-bottom: 36px; }
+.a-btn {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  padding: 10px 20px;
+  border-radius: 2px;
+  text-decoration: none;
+  font-weight: 700;
+}
+.a-btn.fill { background: #f97316; color: #000; }
+.a-btn.fill:hover { background: #fb923c; }
+.a-btn.ghost { border: 1px solid #2a2a2a; color: #555; }
+.a-btn.ghost:hover { border-color: #555; color: #aaa; }
+.a-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+.a-tag {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.06em;
+  border: 1px solid #1e1e1e;
+  color: #444;
+  padding: 4px 10px;
+  border-radius: 2px;
+}
+/* photo right side */
+.a-photo-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+.a-photo-wrap {
+  position: relative;
+  width: 220px;
+}
+.a-photo-wrap::after {
+  content: '';
+  position: absolute;
+  top: 14px; left: 14px;
+  right: -14px; bottom: -14px;
+  border: 1px solid #1e1e1e;
+  border-radius: 2px;
+}
+.a-photo-wrap img {
+  width: 220px;
+  height: 270px;
+  object-fit: cover;
+  object-position: center 15%;
+  border-radius: 2px;
+  filter: grayscale(20%);
+  display: block;
+  position: relative;
+  z-index: 1;
+}
+.a-status {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #f97316;
+  border: 1px solid rgba(249,115,22,0.3);
+  padding: 6px 14px;
+  border-radius: 100px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.a-status::before {
+  content: '';
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: #f97316;
+  animation: blink 2s ease-in-out infinite;
+}
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
+/* mini section preview */
+.a-section-preview {
+  border-top: 1px solid #1a1a1a;
+  padding: 48px 40px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.a-sec-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #f97316;
+  margin-bottom: 8px;
+}
+.a-sec-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.02em;
+  margin-bottom: 32px;
+}
+.a-exp-row {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 32px;
+  padding: 24px 0;
+  border-top: 1px solid #171717;
+}
+.a-exp-year {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  color: #444;
+  letter-spacing: 0.06em;
+  padding-top: 3px;
+}
+.a-exp-name { font-size: 1rem; font-weight: 600; color: #e0e0e0; margin-bottom: 4px; }
+.a-exp-role {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.68rem;
+  color: #555;
+  letter-spacing: 0.04em;
+}
+.a-pallette {
+  padding: 20px 40px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  border-top: 1px solid #1a1a1a;
+  font-family: monospace;
+  font-size: 0.62rem;
+  color: #333;
+  letter-spacing: 0.1em;
+}
+.swatch {
+  width: 16px; height: 16px; border-radius: 2px;
+}
+.a-note {
+  padding: 16px 40px 32px;
+  font-family: monospace;
+  font-size: 0.65rem;
+  color: #333;
+  letter-spacing: 0.04em;
+  line-height: 1.9;
+  border-top: 1px solid #151515;
+}
+
+/* ──────────────────────────────────────────────
+   CONCEITO B — "CONTRASTE / TRANSIÇÃO"
+   Ideia: a própria divisão visual representa a transição
+   Operações B2B → Developer
+   Paleta: fundo azul-escuro muito saturado, acento branco/creme
+   Font: Syne (pesada, editorial, incomum) + Inter
+   Layout assimétrico com bloco de texto grande
+────────────────────────────────────────────── */
+#conceito-b {
+  background: #020818;
+  color: #c8d6e5;
+  font-family: 'Inter', sans-serif;
+}
+.b-nav {
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  padding: 0 40px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.b-brand {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: -0.01em;
+}
+.b-links { display: flex; gap: 24px; list-style: none; }
+.b-links a {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.3);
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  transition: color 0.15s;
+}
+.b-links a:hover { color: rgba(255,255,255,0.8); }
+.b-toggle {
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.25);
+  border: 1px solid rgba(255,255,255,0.1);
+  padding: 5px 12px;
+  border-radius: 4px;
+  background: none;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  text-decoration: none;
+  transition: all 0.15s;
+}
+.b-toggle:hover { border-color: rgba(255,255,255,0.3); color: rgba(255,255,255,0.6); }
+
+.b-hero {
+  padding: 100px 40px 80px;
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+.b-eyebrow {
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.25);
+  margin-bottom: 24px;
+}
+.b-h1 {
+  font-family: 'Syne', sans-serif;
+  font-size: 4.5rem;
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  color: #fff;
+  margin-bottom: 32px;
+}
+.b-h1 .accent-word {
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255,255,255,0.3);
+}
+.b-divider {
+  width: 48px;
+  height: 2px;
+  background: rgba(255,255,255,0.2);
+  margin-bottom: 28px;
+}
+.b-desc {
+  font-size: 1rem;
+  color: rgba(255,255,255,0.45);
+  line-height: 1.8;
+  max-width: 400px;
+  margin-bottom: 36px;
+}
+.b-desc strong { color: rgba(255,255,255,0.75); font-weight: 500; }
+.b-actions { display: flex; gap: 12px; }
+.b-btn-main {
+  font-size: 0.85rem;
+  font-weight: 600;
+  background: #fff;
+  color: #020818;
+  padding: 11px 24px;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: opacity 0.15s;
+}
+.b-btn-main:hover { opacity: 0.85; }
+.b-btn-ghost {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: rgba(255,255,255,0.35);
+  border: 1px solid rgba(255,255,255,0.12);
+  padding: 11px 24px;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: all 0.15s;
+}
+.b-btn-ghost:hover { border-color: rgba(255,255,255,0.3); color: rgba(255,255,255,0.7); }
+
+/* right col */
+.b-right {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.b-stat {
+  padding: 24px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.b-stat:first-child { border-top: 1px solid rgba(255,255,255,0.06); }
+.b-stat-num {
+  font-family: 'Syne', sans-serif;
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: rgba(255,255,255,0.9);
+  letter-spacing: -0.02em;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.b-stat-label {
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.3);
+  letter-spacing: 0.04em;
+}
+.b-stat-desc {
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.45);
+  line-height: 1.6;
+  margin-top: 6px;
+}
+
+.b-section-preview {
+  border-top: 1px solid rgba(255,255,255,0.05);
+  padding: 48px 40px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.b-sec-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.2);
+  margin-bottom: 8px;
+}
+.b-sec-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 32px;
+}
+.b-proj-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 18px 0;
+  border-top: 1px solid rgba(255,255,255,0.05);
+  gap: 16px;
+}
+.b-proj-name { font-size: 1rem; font-weight: 600; color: rgba(255,255,255,0.85); }
+.b-proj-tech { font-size: 0.78rem; color: rgba(255,255,255,0.25); }
+.b-proj-tag {
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 3px;
+}
+.b-proj-tag.live { color: #34d399; background: rgba(52,211,153,0.1); }
+.b-proj-tag.wip { color: rgba(255,255,255,0.3); background: rgba(255,255,255,0.05); }
+.b-note {
+  padding: 16px 40px 32px;
+  font-size: 0.65rem;
+  color: rgba(255,255,255,0.15);
+  letter-spacing: 0.06em;
+  line-height: 2;
+  border-top: 1px solid rgba(255,255,255,0.04);
+}
+
+/* ──────────────────────────────────────────────
+   CONCEITO C — "PRECISÃO / PROFISSIONAL SÉRIO"
+   Ideia: alguém com 15 anos de experiência séria que agora escreve código
+   Não parece um recém-formado. Parece um professional em transição deliberada.
+   Paleta LIGHT: off-white #f5f3ee, texto quase preto, acento azul-escuro
+   Paleta DARK: #0f1923 (azul marinho escuro), creme, acento azul-ciano
+   Font: Inter com hierarquia de peso forte
+   Layout: uma coluna centrada com muito espaço — confiança, não timidez
+────────────────────────────────────────────── */
+#conceito-c {
+  background: #f5f3ee;
+  color: #0f172a;
+  font-family: 'Inter', sans-serif;
+}
+.c-nav {
+  border-bottom: 1px solid #e2ddd5;
+  padding: 0 40px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #f5f3ee;
+}
+.c-brand {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #0f172a;
+  letter-spacing: -0.01em;
+}
+.c-links { display: flex; gap: 24px; list-style: none; }
+.c-links a {
+  font-size: 0.8rem;
+  color: #94a3b8;
+  text-decoration: none;
+  transition: color 0.15s;
+}
+.c-links a:hover { color: #0f172a; }
+.c-cv {
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: #1e40af;
+  border: 1px solid #1e40af;
+  padding: 5px 14px;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: all 0.15s;
+}
+.c-cv:hover { background: #1e40af; color: #fff; }
+
+.c-hero {
+  padding: 90px 40px 80px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.c-eyebrow {
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #94a3b8;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.c-eyebrow-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: #1e40af;
+  animation: blink 2s ease-in-out infinite;
+}
+.c-h1 {
+  font-size: 3.6rem;
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  color: #0f172a;
+  margin-bottom: 28px;
+}
+.c-h1 span { color: #1e40af; }
+.c-two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: start;
+  margin-bottom: 40px;
+}
+.c-desc {
+  font-size: 1rem;
+  color: #475569;
+  line-height: 1.8;
+}
+.c-desc strong { color: #0f172a; font-weight: 600; }
+.c-facts { display: flex; flex-direction: column; gap: 0; }
+.c-fact {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #e2ddd5;
+  font-size: 0.82rem;
+}
+.c-fact-k { color: #94a3b8; font-weight: 500; }
+.c-fact-v { color: #0f172a; font-weight: 500; }
+.c-actions { display: flex; gap: 12px; margin-bottom: 0; }
+.c-btn-main {
+  font-size: 0.88rem;
+  font-weight: 600;
+  background: #0f172a;
+  color: #f5f3ee;
+  padding: 11px 24px;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: background 0.15s;
+}
+.c-btn-main:hover { background: #1e293b; }
+.c-btn-ghost {
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: #475569;
+  border: 1px solid #ddd8ce;
+  padding: 11px 24px;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: all 0.15s;
+}
+.c-btn-ghost:hover { border-color: #0f172a; color: #0f172a; }
+
+/* dark preview strip */
+.c-dark-strip {
+  background: #0f1923;
+  color: #c9d5e0;
+  padding: 48px 40px;
+}
+.c-dark-strip .c-sec-label {
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #38bdf8;
+  margin-bottom: 8px;
+}
+.c-dark-strip .c-sec-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 28px;
+  letter-spacing: -0.01em;
+}
+.c-stack-row {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  max-width: 760px;
+}
+.c-stack-row:first-of-type { border-top: 1px solid rgba(255,255,255,0.05); }
+.c-stack-cat {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #38bdf8;
+  min-width: 100px;
+}
+.c-stack-items {
+  font-size: 0.86rem;
+  color: rgba(255,255,255,0.4);
+}
+.c-dark-note {
+  padding: 20px 0 0;
+  font-size: 0.68rem;
+  color: rgba(255,255,255,0.15);
+  letter-spacing: 0.06em;
+  line-height: 2;
+  max-width: 760px;
+}
+
+.c-note {
+  padding: 16px 40px 32px;
+  font-size: 0.68rem;
+  color: #aaa;
+  letter-spacing: 0.04em;
+  line-height: 2;
+  background: #f5f3ee;
+  border-top: 1px solid #e2ddd5;
+}
+
+/* BOTTOM NAV */
+.bottom-nav {
+  background: #0d0d0d;
+  border-top: 1px solid #1a1a1a;
+  padding: 24px;
+  text-align: center;
+  font-family: monospace;
+  font-size: 0.65rem;
+  color: #333;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.bottom-nav span { color: #555; }
+</style>
+</head>
+<body>
+
+<div class="meta">
+  <h1>// preview-concepts.html — não vai para o site</h1>
+  <p>3 direcções visuais distintas. Scrolla e compara. Diz qual ressoa ou o que falta em cada uma.</p>
+</div>
+
+<nav class="concept-nav">
+  <a href="#conceito-a">A — Sistema / Arquitectura</a>
+  <a href="#conceito-b">B — Contraste / Transição</a>
+  <a href="#conceito-c">C — Precisão / Profissional</a>
+</nav>
+
+<!-- ══════════════════════════════════════════ CONCEITO A -->
+<div class="concept-label" id="conceito-a-label">Conceito <span>A — "Sistema / Arquitectura"</span> &nbsp;·&nbsp; fundo quase preto · acento laranja-âmbar · Space Grotesk · grid subtil</div>
+
+<div id="conceito-a">
+  <nav class="a-nav">
+    <span class="a-brand">er.dev</span>
+    <ul class="a-links">
+      <li><a href="#">sobre</a></li>
+      <li><a href="#">experiência</a></li>
+      <li><a href="#">projetos</a></li>
+      <li><a href="#">stack</a></li>
+      <li><a href="#">contacto</a></li>
+    </ul>
+    <a href="#" class="a-cv">CV ↗</a>
+  </nav>
+
+  <div class="a-hero">
+    <div>
+      <div class="a-eyebrow">disponível para oportunidades</div>
+      <h1 class="a-h1">
+        Everson<br>
+        <span class="dim">Rubira.</span>
+      </h1>
+      <div class="a-role">
+        <span class="hi">Backend Dev</span> · QA Engineer · IA aplicada<br>
+        Java · Spring Boot · Node.js · Claude API<br>
+        Seixal / Lisboa, Portugal
+      </div>
+      <p class="a-desc">
+        15 anos a pensar em sistemas operacionais.<br>
+        Agora <strong>construo os sistemas.</strong><br>
+        Em transição deliberada — com entregas reais em produção.
+      </p>
+      <div class="a-actions">
+        <a href="#" class="a-btn fill">./ver-projetos</a>
+        <a href="#" class="a-btn ghost">contacto →</a>
+      </div>
+      <div class="a-tags">
+        <span class="a-tag">Java 17/21</span>
+        <span class="a-tag">Spring Boot</span>
+        <span class="a-tag">JUnit 5 · Cypress</span>
+        <span class="a-tag">LangChain · Claude API</span>
+        <span class="a-tag">Docker · PostgreSQL</span>
+      </div>
+    </div>
+    <div class="a-photo-col">
+      <div class="a-photo-wrap">
+        <img src="foto-perfil (2).jpeg" alt="Everson Rubira">
+      </div>
+      <span class="a-status">disponível agora</span>
+    </div>
+  </div>
+
+  <div style="border-top:1px solid #1a1a1a; padding: 0 40px;">
+    <div class="a-section-preview">
+      <div class="a-sec-label">// 02 &nbsp; experiência</div>
+      <div class="a-sec-title">Onde construí o meu percurso</div>
+      <div class="a-exp-row">
+        <div class="a-exp-year">2026<br>presente</div>
+        <div>
+          <div class="a-exp-name">Pipoca Ágil</div>
+          <div class="a-exp-role">// Full-Stack Developer · Estágio Curricular · Remoto</div>
+        </div>
+      </div>
+      <div class="a-exp-row">
+        <div class="a-exp-year">2024<br>presente</div>
+        <div>
+          <div class="a-exp-name">ImplementIQ Systems</div>
+          <div class="a-exp-role">// Co-fundador & Developer · Seixal, Portugal</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="a-pallette">
+    PALETA: &nbsp;
+    <div class="swatch" style="background:#0b0b0b;border:1px solid #333"></div> #0b0b0b &nbsp;
+    <div class="swatch" style="background:#f97316"></div> #f97316 laranja &nbsp;
+    <div class="swatch" style="background:#d4d4d4"></div> #d4d4d4 texto &nbsp;
+    <div class="swatch" style="background:#1e1e1e;border:1px solid #333"></div> #1e1e1e linhas
+  </div>
+  <div class="a-note">
+    FONTES: Space Grotesk (títulos) · Space Mono (labels/código) · Inter (corpo) &nbsp;·&nbsp;
+    GRID: CSS background-image 40×40px &nbsp;·&nbsp;
+    SEM canvas, SEM partículas, SEM ícones animados &nbsp;·&nbsp;
+    Dark mode apenas — light mode não faz sentido para esta paleta
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════ CONCEITO B -->
+<div class="concept-label" id="conceito-b-label" style="margin-top:2px">Conceito <span>B — "Contraste / Transição"</span> &nbsp;·&nbsp; azul-noite escuro profundo · Syne (tipografia pesada) · números que contam a história</div>
+
+<div id="conceito-b">
+  <nav class="b-nav">
+    <span class="b-brand">Everson Rubira</span>
+    <ul class="b-links">
+      <li><a href="#">sobre</a></li>
+      <li><a href="#">projetos</a></li>
+      <li><a href="#">stack</a></li>
+      <li><a href="#">contacto</a></li>
+    </ul>
+    <a href="#" class="b-toggle">CV ↗</a>
+  </nav>
+
+  <div class="b-hero">
+    <div>
+      <div class="b-eyebrow">Backend Developer &amp; QA Engineer — Disponível</div>
+      <h1 class="b-h1">
+        Sistemas<br>
+        <span class="accent-word">primeiro,</span><br>
+        código depois.
+      </h1>
+      <div class="b-divider"></div>
+      <p class="b-desc">
+        15 anos a operar sistemas B2B ensinaram-me a <strong>pensar antes de construir.</strong>
+        Agora construo — Java, Spring Boot, QA automation e IA aplicada.
+        Seixal&nbsp;/ Lisboa.
+      </p>
+      <div class="b-actions">
+        <a href="#" class="b-btn-main">Ver projetos</a>
+        <a href="#" class="b-btn-ghost">Contacto</a>
+      </div>
+    </div>
+    <div class="b-right">
+      <div class="b-stat">
+        <div class="b-stat-num">15</div>
+        <div class="b-stat-label">anos em operações B2B</div>
+        <div class="b-stat-desc">antes de escrever a primeira linha</div>
+      </div>
+      <div class="b-stat">
+        <div class="b-stat-num">3</div>
+        <div class="b-stat-label">projectos com clientes reais</div>
+        <div class="b-stat-desc">Sulav · Wedding Clinic · Pipoca Ágil</div>
+      </div>
+      <div class="b-stat">
+        <div class="b-stat-num">2</div>
+        <div class="b-stat-label">stacks dominadas em paralelo</div>
+        <div class="b-stat-desc">Java/Spring Boot &amp; QA Automation</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="b-section-preview">
+    <div class="b-sec-label">projetos recentes</div>
+    <div class="b-sec-title">Entregas que existem</div>
+    <div class="b-proj-row">
+      <span class="b-proj-name">Sulav Sushi Bar</span>
+      <span class="b-proj-tech">GitHub Pages · Supabase · SEO · PT/EN</span>
+      <span class="b-proj-tag live">produção</span>
+    </div>
+    <div class="b-proj-row">
+      <span class="b-proj-name">Boardly</span>
+      <span class="b-proj-tech">Java 17 · Spring Boot · MongoDB · JWT</span>
+      <span class="b-proj-tag wip">concluído</span>
+    </div>
+    <div class="b-proj-row">
+      <span class="b-proj-name">FitCheck</span>
+      <span class="b-proj-tech">Node.js · MySQL · Anthropic API</span>
+      <span class="b-proj-tag wip">em dev</span>
+    </div>
+  </div>
+
+  <div class="b-note">
+    PALETA: #020818 fundo &nbsp;·&nbsp; branco #fff acento &nbsp;·&nbsp; #34d399 verde (live) &nbsp;·&nbsp;
+    FONTES: Syne 800 (títulos) · Inter (corpo) &nbsp;·&nbsp;
+    IDEIA: os números contam a história da transição — não precisas de escrever "15 anos" num parágrafo &nbsp;·&nbsp;
+    DARK ONLY — esta paleta não tem versão light natural
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════ CONCEITO C -->
+<div class="concept-label" id="conceito-c-label" style="margin-top:2px">Conceito <span>C — "Precisão / Profissional Sério"</span> &nbsp;·&nbsp; light mode off-white · dark mode azul-marinho · Inter puro · sem decoração</div>
+
+<div id="conceito-c">
+  <nav class="c-nav">
+    <span class="c-brand">Everson Rubira</span>
+    <ul class="c-links">
+      <li><a href="#">sobre</a></li>
+      <li><a href="#">experiência</a></li>
+      <li><a href="#">projetos</a></li>
+      <li><a href="#">stack</a></li>
+      <li><a href="#">contacto</a></li>
+    </ul>
+    <a href="#" class="c-cv">Ver CV</a>
+  </nav>
+
+  <div class="c-hero">
+    <div class="c-eyebrow">
+      <div class="c-eyebrow-dot"></div>
+      Disponível para oportunidades — Portugal ou remoto
+    </div>
+    <h1 class="c-h1">
+      Backend Developer<br>
+      &amp; QA Engineer<br>
+      <span>em Lisboa.</span>
+    </h1>
+    <div class="c-two-col">
+      <p class="c-desc">
+        Brasileiro em Portugal. 15 anos em operações B2B — agora aplico
+        essa disciplina em <strong>Java, Spring Boot, QA automation
+        e IA aplicada.</strong> Estágio activo na Pipoca Ágil.
+        Co-fundador da ImplementIQ Systems com clientes reais em produção.
+      </p>
+      <div class="c-facts">
+        <div class="c-fact">
+          <span class="c-fact-k">Localização</span>
+          <span class="c-fact-v">Seixal / Lisboa</span>
+        </div>
+        <div class="c-fact">
+          <span class="c-fact-k">Procuro</span>
+          <span class="c-fact-v">Junior QA · Backend Java</span>
+        </div>
+        <div class="c-fact">
+          <span class="c-fact-k">Modalidade</span>
+          <span class="c-fact-v">Presencial · Híbrido · Remoto</span>
+        </div>
+        <div class="c-fact">
+          <span class="c-fact-k">Disponível</span>
+          <span class="c-fact-v">Imediatamente</span>
+        </div>
+      </div>
+    </div>
+    <div class="c-actions">
+      <a href="#" class="c-btn-main">Ver projetos →</a>
+      <a href="#" class="c-btn-ghost">Contacto</a>
+    </div>
+  </div>
+
+  <!-- dark section preview -->
+  <div class="c-dark-strip">
+    <div class="c-sec-label">stack técnica</div>
+    <div class="c-sec-title">O que uso no dia a dia</div>
+    <div class="c-stack-row">
+      <span class="c-stack-cat">Backend</span>
+      <span class="c-stack-items">Java 17/21, Spring Boot, Node.js, Python, FastAPI</span>
+    </div>
+    <div class="c-stack-row">
+      <span class="c-stack-cat">QA &amp; Testes</span>
+      <span class="c-stack-items">JUnit 5, Vitest, Postman, Cypress, Robot Framework</span>
+    </div>
+    <div class="c-stack-row">
+      <span class="c-stack-cat">IA &amp; Automação</span>
+      <span class="c-stack-items">LangChain, Claude API, Anthropic SDK, Prompt Engineering</span>
+    </div>
+    <div class="c-stack-row">
+      <span class="c-stack-cat">DevOps</span>
+      <span class="c-stack-items">Docker, Git, GitHub Actions, Jira, Linux</span>
+    </div>
+    <div class="c-dark-note">
+      DARK MODE: #0f1923 fundo · #38bdf8 acento azul-ciano · texto creme &nbsp;·&nbsp;
+      Este conceito tem dark/light mode real — as secções alternam entre os dois modos conforme se scrolla,
+      ou o utilizador pode comutar com o toggle
+    </div>
+  </div>
+
+  <div class="c-note">
+    LIGHT: #f5f3ee fundo · #0f172a texto · #1e40af acento &nbsp;·&nbsp;
+    DARK: #0f1923 fundo (azul-marinho escuro) · #c9d5e0 texto · #38bdf8 acento (ciano) &nbsp;·&nbsp;
+    FONTE: Inter apenas — força vem do peso e tamanho, não da fonte &nbsp;·&nbsp;
+    LAYOUT: coluna central larga — confiança, não timidez &nbsp;·&nbsp;
+    SEM elementos decorativos &nbsp;·&nbsp; Parece sénior, não recém-formado
+  </div>
+</div>
+
+<div class="bottom-nav">
+  preview-concepts.html &nbsp;·&nbsp; <span>não está publicado no site</span> &nbsp;·&nbsp; escolhe uma direcção para implementar
+</div>
+
+</body>
+</html>

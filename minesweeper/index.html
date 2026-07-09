@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="pt" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Campo Minado — Everson Rubira</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { overflow-x: hidden; }
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+a { color: inherit; text-decoration: none; }
+
+:root {
+  --mono: 'JetBrains Mono', 'Courier New', monospace;
+  --sans: 'Space Grotesk', system-ui, sans-serif;
+}
+[data-theme="dark"] {
+  --bg:    #090f14;
+  --bg-1:  #0e1a20;
+  --bg-2:  #152530;
+  --ink:   #e8f6f8;
+  --ink-2: #93bfc6;
+  --ink-3: #3d6870;
+  --line:  #1c3540;
+  --accent:#22d3da;
+  --accent-dim: rgba(34,211,218,0.12);
+  --nav-bg: rgba(9,15,20,0.93);
+  --cell-bg: #0e1a20;
+  --cell-open: #090f14;
+  --cell-hover: #152530;
+  --cell-border: #1c3540;
+  --mine-bg: rgba(248,113,113,0.15);
+  --mine-border: #f87171;
+  --flag-color: #fbbf24;
+}
+[data-theme="light"] {
+  --bg:    #f4f2ee;
+  --bg-1:  #edeae4;
+  --bg-2:  #e2dfd8;
+  --ink:   #0d0d10;
+  --ink-2: #38363f;
+  --ink-3: #999299;
+  --line:  #ccc9c2;
+  --accent:#0d7377;
+  --accent-dim: rgba(13,115,119,0.10);
+  --nav-bg: rgba(244,242,238,0.93);
+  --cell-bg: #edeae4;
+  --cell-open: #e2dfd8;
+  --cell-hover: #d8d5ce;
+  --cell-border: #ccc9c2;
+  --mine-bg: rgba(220,38,38,0.10);
+  --mine-border: #dc2626;
+  --flag-color: #d97706;
+}
+
+body {
+  font-family: var(--sans);
+  background: var(--bg);
+  color: var(--ink-2);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  transition: background 0.3s, color 0.3s;
+}
+
+/* NAV */
+nav {
+  position: sticky; top: 0; z-index: 50;
+  background: var(--nav-bg);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
+  padding: 0 32px;
+  height: 52px;
+  display: flex; align-items: center; justify-content: space-between;
+  transition: background 0.3s, border-color 0.3s;
+}
+.nav-left { display: flex; align-items: center; gap: 20px; }
+.nav-back {
+  font-family: var(--mono); font-size: 0.65rem;
+  letter-spacing: 0.08em; color: var(--ink-3);
+  display: flex; align-items: center; gap: 6px;
+  transition: color 0.15s;
+}
+.nav-back:hover { color: var(--ink); }
+.nav-id { font-family: var(--mono); font-size: 0.65rem; color: var(--ink-3); letter-spacing: 0.06em; }
+.nav-title { font-family: var(--mono); font-size: 0.7rem; color: var(--ink); font-weight: 700; letter-spacing: 0.04em; }
+#theme-btn {
+  width: 32px; height: 32px; background: none;
+  border: 1px solid var(--line); border-radius: 2px; cursor: pointer;
+  color: var(--ink-2); display: flex; align-items: center; justify-content: center;
+  transition: border-color 0.15s, color 0.15s;
+}
+#theme-btn:hover { border-color: var(--ink-2); color: var(--ink); }
+#theme-btn svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 1.8; }
+.i-sun { display: none; }
+[data-theme="light"] .i-moon { display: none; }
+[data-theme="light"] .i-sun  { display: block; }
+
+/* MAIN */
+main {
+  flex: 1;
+  max-width: 720px; margin: 0 auto;
+  padding: 64px 32px 80px;
+  width: 100%;
+}
+.page-eyebrow {
+  font-family: var(--mono); font-size: 0.6rem;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--ink-3); margin-bottom: 12px;
+}
+.page-title { font-size: 2rem; font-weight: 700; color: var(--ink); letter-spacing: -0.02em; margin-bottom: 6px; }
+.page-sub { font-family: var(--mono); font-size: 0.72rem; color: var(--ink-3); margin-bottom: 48px; }
+
+/* CARD */
+.card {
+  background: var(--bg-1);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 32px;
+  margin-bottom: 24px;
+  transition: background 0.3s, border-color 0.3s;
+}
+
+/* DIFFICULTY */
+.diff-row { display: flex; gap: 8px; margin-bottom: 24px; flex-wrap: wrap; }
+.diff-btn {
+  font-family: var(--mono); font-size: 0.65rem; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  border: 1px solid var(--line); border-radius: 2px;
+  padding: 7px 16px; background: none; color: var(--ink-3);
+  cursor: pointer; transition: border-color 0.15s, color 0.15s, background 0.15s;
+}
+.diff-btn:hover { border-color: var(--ink-2); color: var(--ink); }
+.diff-btn.active { border-color: var(--accent); color: var(--accent); background: var(--accent-dim); }
+
+/* STATUS BAR */
+.status-bar {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 20px;
+}
+.status-item {
+  font-family: var(--mono); font-size: 0.75rem; color: var(--ink-2);
+  display: flex; align-items: center; gap: 6px;
+}
+.status-label { font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-3); }
+.status-val { color: var(--ink); font-weight: 700; }
+.btn-restart {
+  font-family: var(--mono); font-size: 0.65rem; font-weight: 700;
+  letter-spacing: 0.08em; background: none;
+  border: 1px solid var(--line); border-radius: 2px; cursor: pointer;
+  color: var(--ink-3); padding: 6px 14px;
+  transition: border-color 0.15s, color 0.15s;
+}
+.btn-restart:hover { border-color: var(--ink-2); color: var(--ink); }
+
+/* BOARD */
+.board-wrap { overflow-x: auto; }
+#board {
+  display: inline-grid;
+  gap: 2px;
+  user-select: none;
+}
+.cell {
+  width: 32px; height: 32px;
+  background: var(--cell-bg);
+  border: 1px solid var(--cell-border);
+  border-radius: 2px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--mono); font-size: 0.75rem; font-weight: 700;
+  cursor: pointer;
+  transition: background 0.1s, border-color 0.1s;
+  -webkit-tap-highlight-color: transparent;
+}
+.cell:hover:not(.open):not(.exploded) { background: var(--cell-hover); }
+.cell.open {
+  background: var(--cell-open);
+  border-color: transparent;
+  cursor: default;
+}
+.cell.flag { color: var(--flag-color); }
+.cell.exploded { background: var(--mine-bg); border-color: var(--mine-border); }
+.cell.revealed-mine { background: var(--mine-bg); border-color: var(--mine-border); opacity: 0.6; }
+
+/* number colors */
+.n1 { color: #22d3da; }
+.n2 { color: #34d399; }
+.n3 { color: #f87171; }
+.n4 { color: #818cf8; }
+.n5 { color: #fb923c; }
+.n6 { color: #67e8f9; }
+.n7 { color: var(--ink); }
+.n8 { color: var(--ink-3); }
+
+/* OVERLAY */
+.overlay {
+  display: none;
+  margin-top: 20px; padding: 20px;
+  border-radius: 2px;
+  border: 1px solid var(--line);
+  background: var(--accent-dim);
+  font-family: var(--mono);
+}
+.overlay.show { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.overlay.win { border-color: var(--accent); }
+.overlay.lose { border-color: #f87171; background: rgba(248,113,113,0.08); }
+.overlay-msg { font-size: 0.88rem; color: var(--ink); }
+.overlay-sub { font-size: 0.65rem; color: var(--ink-3); margin-top: 4px; letter-spacing: 0.06em; }
+.btn-play-again {
+  font-family: var(--mono); font-size: 0.65rem; font-weight: 700;
+  letter-spacing: 0.08em; white-space: nowrap;
+  background: var(--accent); color: var(--bg);
+  border: none; border-radius: 2px; padding: 8px 18px; cursor: pointer;
+  transition: opacity 0.15s; flex-shrink: 0;
+}
+.btn-play-again:hover { opacity: 0.85; }
+
+/* HINT */
+.hint {
+  font-family: var(--mono); font-size: 0.6rem; color: var(--ink-3);
+  letter-spacing: 0.06em; margin-top: 14px;
+}
+
+/* FOOTER */
+footer {
+  border-top: 1px solid var(--line);
+  padding: 16px 32px;
+  font-family: var(--mono); font-size: 0.6rem; color: var(--ink-3);
+  text-align: center; letter-spacing: 0.06em;
+  transition: border-color 0.3s;
+}
+footer a { color: var(--accent); }
+
+@media (max-width: 600px) {
+  main { padding: 40px 20px 60px; }
+  nav { padding: 0 16px; }
+  .card { padding: 20px; }
+  .cell { width: 28px; height: 28px; font-size: 0.7rem; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-left">
+    <a href="../" class="nav-back">← portfolio</a>
+    <span class="nav-id">[ ID_MINES ]</span>
+    <span class="nav-title">minesweeper</span>
+  </div>
+  <button id="theme-btn" aria-label="Alternar tema">
+    <svg class="i-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    <svg class="i-sun"  viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+  </button>
+</nav>
+
+<main>
+  <div class="page-eyebrow">projeto · java · javascript</div>
+  <h1 class="page-title">Campo Minado</h1>
+  <p class="page-sub">Clique para revelar · clique direito (ou pressione longo) para bandeira</p>
+
+  <div class="card">
+    <div class="diff-row">
+      <button class="diff-btn active" data-diff="easy">fácil · 9×9 · 10 minas</button>
+      <button class="diff-btn" data-diff="medium">médio · 16×16 · 40 minas</button>
+      <button class="diff-btn" data-diff="hard">difícil · 16×30 · 99 minas</button>
+    </div>
+
+    <div class="status-bar">
+      <div class="status-item">
+        <span class="status-label">minas</span>
+        <span class="status-val" id="mine-count">10</span>
+      </div>
+      <button class="btn-restart" id="restart-btn">reiniciar ↺</button>
+      <div class="status-item">
+        <span class="status-label">tempo</span>
+        <span class="status-val" id="timer">0s</span>
+      </div>
+    </div>
+
+    <div class="board-wrap">
+      <div id="board"></div>
+    </div>
+
+    <div class="overlay" id="overlay">
+      <div>
+        <div class="overlay-msg" id="overlay-msg"></div>
+        <div class="overlay-sub" id="overlay-sub"></div>
+      </div>
+      <button class="btn-play-again" id="play-again-btn">jogar novamente →</button>
+    </div>
+
+    <div class="hint" id="hint">dica: clique direito ou pressione longo numa célula para colocar bandeira 🚩</div>
+  </div>
+</main>
+
+<footer>
+  <a href="../">eversonrubira.github.io</a> · Everson Rubira · 2026
+</footer>
+
+<script>
+/* ── theme ── */
+const html = document.documentElement;
+const themeBtn = document.getElementById('theme-btn');
+const saved = localStorage.getItem('er-theme') || 'dark';
+html.setAttribute('data-theme', saved);
+themeBtn.addEventListener('click', () => {
+  const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  html.setAttribute('data-theme', next);
+  localStorage.setItem('er-theme', next);
+});
+
+/* ── config ── */
+const CONFIGS = {
+  easy:   { rows: 9,  cols: 9,  mines: 10 },
+  medium: { rows: 16, cols: 16, mines: 40 },
+  hard:   { rows: 16, cols: 30, mines: 99 },
+};
+
+let cfg = CONFIGS.easy;
+let grid = [];        // { mine, adj, open, flagged, exploded }
+let gameState = 'idle'; // idle | playing | won | lost
+let firstClick = true;
+let flagsLeft = 0;
+let timerInterval = null;
+let elapsed = 0;
+let hintShown = false;
+
+/* ── DOM refs ── */
+const boardEl   = document.getElementById('board');
+const mineCount = document.getElementById('mine-count');
+const timerEl   = document.getElementById('timer');
+const overlay   = document.getElementById('overlay');
+const overlayMsg= document.getElementById('overlay-msg');
+const overlaySub= document.getElementById('overlay-sub');
+const hintEl    = document.getElementById('hint');
+
+/* ── difficulty buttons ── */
+document.querySelectorAll('.diff-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.diff-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    cfg = CONFIGS[btn.dataset.diff];
+    init();
+  });
+});
+document.getElementById('restart-btn').addEventListener('click', init);
+document.getElementById('play-again-btn').addEventListener('click', init);
+
+/* ── timer ── */
+function startTimer() {
+  clearInterval(timerInterval);
+  elapsed = 0;
+  timerEl.textContent = '0s';
+  timerInterval = setInterval(() => {
+    elapsed++;
+    timerEl.textContent = elapsed + 's';
+  }, 1000);
+}
+function stopTimer() { clearInterval(timerInterval); }
+
+/* ── init ── */
+function init() {
+  stopTimer();
+  gameState = 'idle';
+  firstClick = true;
+  flagsLeft = cfg.mines;
+  elapsed = 0;
+  timerEl.textContent = '0s';
+  mineCount.textContent = flagsLeft;
+  overlay.className = 'overlay';
+  hintEl.style.display = 'block';
+
+  grid = [];
+  for (let r = 0; r < cfg.rows; r++) {
+    grid[r] = [];
+    for (let c = 0; c < cfg.cols; c++) {
+      grid[r][c] = { mine: false, adj: 0, open: false, flagged: false, exploded: false };
+    }
+  }
+  render();
+}
+
+/* ── place mines (safe first click) ── */
+function placeMines(safeR, safeC) {
+  const safe = new Set();
+  for (let dr = -1; dr <= 1; dr++)
+    for (let dc = -1; dc <= 1; dc++) {
+      const nr = safeR + dr, nc = safeC + dc;
+      if (nr >= 0 && nr < cfg.rows && nc >= 0 && nc < cfg.cols)
+        safe.add(nr * cfg.cols + nc);
+    }
+
+  let placed = 0;
+  while (placed < cfg.mines) {
+    const r = Math.floor(Math.random() * cfg.rows);
+    const c = Math.floor(Math.random() * cfg.cols);
+    if (!grid[r][c].mine && !safe.has(r * cfg.cols + c)) {
+      grid[r][c].mine = true;
+      placed++;
+    }
+  }
+
+  for (let r = 0; r < cfg.rows; r++)
+    for (let c = 0; c < cfg.cols; c++) {
+      if (grid[r][c].mine) continue;
+      let count = 0;
+      eachNeighbor(r, c, (nr, nc) => { if (grid[nr][nc].mine) count++; });
+      grid[r][c].adj = count;
+    }
+}
+
+function eachNeighbor(r, c, fn) {
+  for (let dr = -1; dr <= 1; dr++)
+    for (let dc = -1; dc <= 1; dc++) {
+      if (dr === 0 && dc === 0) continue;
+      const nr = r + dr, nc = c + dc;
+      if (nr >= 0 && nr < cfg.rows && nc >= 0 && nc < cfg.cols) fn(nr, nc);
+    }
+}
+
+/* ── reveal (flood fill) ── */
+function reveal(r, c) {
+  const cell = grid[r][c];
+  if (cell.open || cell.flagged) return;
+  cell.open = true;
+
+  if (cell.mine) {
+    cell.exploded = true;
+    lose(r, c);
+    return;
+  }
+  if (cell.adj === 0) {
+    eachNeighbor(r, c, (nr, nc) => {
+      if (!grid[nr][nc].open && !grid[nr][nc].flagged) reveal(nr, nc);
+    });
+  }
+}
+
+/* ── chord (click open cell to auto-reveal neighbors) ── */
+function chord(r, c) {
+  const cell = grid[r][c];
+  if (!cell.open || cell.adj === 0) return;
+  let flags = 0;
+  eachNeighbor(r, c, (nr, nc) => { if (grid[nr][nc].flagged) flags++; });
+  if (flags === cell.adj) {
+    eachNeighbor(r, c, (nr, nc) => {
+      if (!grid[nr][nc].open && !grid[nr][nc].flagged) reveal(nr, nc);
+    });
+  }
+}
+
+/* ── win / lose ── */
+function checkWin() {
+  for (let r = 0; r < cfg.rows; r++)
+    for (let c = 0; c < cfg.cols; c++)
+      if (!grid[r][c].mine && !grid[r][c].open) return false;
+  return true;
+}
+
+function win() {
+  stopTimer();
+  gameState = 'won';
+  overlay.className = 'overlay win show';
+  overlayMsg.textContent = '✓ campo limpo em ' + elapsed + 's';
+  overlaySub.textContent = 'todas as minas localizadas com sucesso';
+}
+
+function lose(er, ec) {
+  stopTimer();
+  gameState = 'lost';
+  for (let r = 0; r < cfg.rows; r++)
+    for (let c = 0; c < cfg.cols; c++)
+      if (grid[r][c].mine && !(r === er && c === ec)) grid[r][c].open = true;
+  overlay.className = 'overlay lose show';
+  overlayMsg.textContent = '✗ mina ativada';
+  overlaySub.textContent = 'mais sorte na próxima tentativa';
+}
+
+/* ── handle click ── */
+function handleClick(r, c) {
+  if (gameState === 'won' || gameState === 'lost') return;
+  const cell = grid[r][c];
+  if (cell.flagged) return;
+
+  if (cell.open) {
+    chord(r, c);
+    render();
+    if (checkWin()) win();
+    return;
+  }
+
+  if (firstClick) {
+    firstClick = false;
+    placeMines(r, c);
+    gameState = 'playing';
+    startTimer();
+  }
+
+  reveal(r, c);
+  render();
+  if (gameState !== 'lost' && checkWin()) win();
+  else if (gameState !== 'lost') render();
+}
+
+function handleFlag(r, c) {
+  if (gameState === 'won' || gameState === 'lost') return;
+  const cell = grid[r][c];
+  if (cell.open) return;
+  cell.flagged = !cell.flagged;
+  flagsLeft += cell.flagged ? -1 : 1;
+  mineCount.textContent = flagsLeft;
+  if (!hintShown) { hintEl.style.display = 'none'; hintShown = true; }
+  render();
+}
+
+/* ── render ── */
+function render() {
+  boardEl.style.gridTemplateColumns = `repeat(${cfg.cols}, 32px)`;
+  boardEl.innerHTML = '';
+
+  for (let r = 0; r < cfg.rows; r++) {
+    for (let c = 0; c < cfg.cols; c++) {
+      const cell = grid[r][c];
+      const el = document.createElement('div');
+      el.className = 'cell';
+
+      if (cell.exploded) {
+        el.classList.add('open', 'exploded');
+        el.textContent = '💣';
+      } else if (cell.open && cell.mine) {
+        el.classList.add('open', 'revealed-mine');
+        el.textContent = '💣';
+      } else if (cell.open) {
+        el.classList.add('open');
+        if (cell.adj > 0) {
+          el.textContent = cell.adj;
+          el.classList.add('n' + cell.adj);
+        }
+      } else if (cell.flagged) {
+        el.classList.add('flag');
+        el.textContent = '🚩';
+      }
+
+      const row = r, col = c;
+      el.addEventListener('click', () => handleClick(row, col));
+      /* long-press for mobile */
+      let pressTimer = null;
+      let longPressActive = false;
+      el.addEventListener('pointerdown', () => {
+        longPressActive = false;
+        pressTimer = setTimeout(() => {
+          longPressActive = true;
+          handleFlag(row, col);
+          render();
+        }, 500);
+      });
+      el.addEventListener('pointerup', () => clearTimeout(pressTimer));
+      el.addEventListener('pointerleave', () => clearTimeout(pressTimer));
+      el.addEventListener('contextmenu', e => {
+        e.preventDefault();
+        if (longPressActive) { longPressActive = false; return; }
+        handleFlag(row, col);
+      });
+
+      boardEl.appendChild(el);
+    }
+  }
+}
+
+/* ── start ── */
+init();
+</script>
+</body>
+</html>

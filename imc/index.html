@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="pt" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculadora IMC — Everson Rubira</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+a { color: inherit; text-decoration: none; }
+
+:root {
+  --mono: 'JetBrains Mono', 'Courier New', monospace;
+  --sans: 'Space Grotesk', system-ui, sans-serif;
+}
+[data-theme="dark"] {
+  --bg:    #090f14;
+  --bg-1:  #0e1a20;
+  --bg-2:  #152530;
+  --ink:   #e8f6f8;
+  --ink-2: #93bfc6;
+  --ink-3: #3d6870;
+  --line:  #1c3540;
+  --accent:#22d3da;
+  --accent-dim: rgba(34,211,218,0.12);
+  --nav-bg: rgba(9,15,20,0.93);
+}
+[data-theme="light"] {
+  --bg:    #f4f2ee;
+  --bg-1:  #edeae4;
+  --bg-2:  #e2dfd8;
+  --ink:   #0d0d10;
+  --ink-2: #38363f;
+  --ink-3: #999299;
+  --line:  #ccc9c2;
+  --accent:#0d7377;
+  --accent-dim: rgba(13,115,119,0.10);
+  --nav-bg: rgba(244,242,238,0.93);
+}
+
+body {
+  font-family: var(--sans);
+  background: var(--bg);
+  color: var(--ink-2);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  transition: background 0.3s, color 0.3s;
+}
+
+/* NAV */
+nav {
+  position: sticky; top: 0; z-index: 50;
+  background: var(--nav-bg);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
+  padding: 0 32px;
+  height: 52px;
+  display: flex; align-items: center; justify-content: space-between;
+  transition: background 0.3s, border-color 0.3s;
+}
+.nav-left {
+  display: flex; align-items: center; gap: 20px;
+}
+.nav-back {
+  font-family: var(--mono); font-size: 0.65rem;
+  letter-spacing: 0.08em; color: var(--ink-3);
+  display: flex; align-items: center; gap: 6px;
+  transition: color 0.15s;
+}
+.nav-back:hover { color: var(--ink); }
+.nav-id {
+  font-family: var(--mono); font-size: 0.65rem;
+  color: var(--ink-3); letter-spacing: 0.06em;
+}
+.nav-title {
+  font-family: var(--mono); font-size: 0.7rem;
+  color: var(--ink); font-weight: 700; letter-spacing: 0.04em;
+}
+#theme-btn {
+  width: 32px; height: 32px; background: none;
+  border: 1px solid var(--line); border-radius: 2px; cursor: pointer;
+  color: var(--ink-2); display: flex; align-items: center; justify-content: center;
+  transition: border-color 0.15s, color 0.15s;
+}
+#theme-btn:hover { border-color: var(--ink-2); color: var(--ink); }
+#theme-btn svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 1.8; }
+.i-sun { display: none; }
+[data-theme="light"] .i-moon { display: none; }
+[data-theme="light"] .i-sun  { display: block; }
+
+/* MAIN */
+main {
+  flex: 1;
+  max-width: 720px; margin: 0 auto;
+  padding: 64px 32px 80px;
+  width: 100%;
+}
+
+.page-eyebrow {
+  font-family: var(--mono); font-size: 0.6rem;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--ink-3); margin-bottom: 12px;
+}
+.page-title {
+  font-size: 2rem; font-weight: 700; color: var(--ink);
+  letter-spacing: -0.02em; margin-bottom: 6px;
+}
+.page-sub {
+  font-family: var(--mono); font-size: 0.72rem;
+  color: var(--ink-3); margin-bottom: 48px;
+}
+
+/* CARD */
+.card {
+  background: var(--bg-1);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 32px;
+  margin-bottom: 24px;
+  transition: background 0.3s, border-color 0.3s;
+}
+
+.field-label {
+  font-family: var(--mono); font-size: 0.6rem;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--ink-3); margin-bottom: 8px; display: block;
+}
+.field-input {
+  width: 100%;
+  font-family: var(--mono); font-size: 1rem;
+  background: var(--bg-2); color: var(--ink);
+  border: 1px solid var(--line); border-radius: 2px;
+  padding: 12px 16px; outline: none;
+  transition: border-color 0.15s, background 0.3s;
+  -moz-appearance: textfield;
+}
+.field-input::-webkit-outer-spin-button,
+.field-input::-webkit-inner-spin-button { -webkit-appearance: none; }
+.field-input:focus { border-color: var(--accent); }
+.fields { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 24px; }
+
+.btn-row { display: flex; gap: 10px; }
+.btn-calc {
+  font-family: var(--mono); font-size: 0.72rem; font-weight: 700;
+  letter-spacing: 0.08em; background: var(--accent); color: var(--bg);
+  padding: 11px 24px; border-radius: 2px; border: none; cursor: pointer;
+  flex: 1; transition: opacity 0.15s;
+}
+.btn-calc:hover { opacity: 0.85; }
+.btn-clear {
+  font-family: var(--mono); font-size: 0.72rem; font-weight: 700;
+  letter-spacing: 0.08em; color: var(--ink-3);
+  border: 1px solid var(--line); padding: 11px 20px; border-radius: 2px;
+  background: none; cursor: pointer; transition: border-color 0.15s, color 0.15s;
+}
+.btn-clear:hover { border-color: var(--ink-2); color: var(--ink); }
+
+.error-msg {
+  font-family: var(--mono); font-size: 0.68rem;
+  color: #f87171; margin-top: 12px; min-height: 20px;
+  letter-spacing: 0.04em;
+}
+
+/* RESULT */
+.result-box {
+  display: none;
+  margin-top: 24px; padding: 20px;
+  background: var(--accent-dim);
+  border: 1px solid var(--accent);
+  border-radius: 2px;
+}
+.result-box.show { display: block; }
+.result-label {
+  font-family: var(--mono); font-size: 0.6rem;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 6px;
+}
+.result-value {
+  font-family: var(--mono); font-size: 2rem; font-weight: 700;
+  color: var(--ink); letter-spacing: -0.02em;
+}
+.result-class {
+  font-size: 0.88rem; color: var(--ink-2); margin-top: 4px;
+}
+
+/* TABLE */
+.table-wrap { overflow-x: auto; }
+table {
+  width: 100%; border-collapse: collapse;
+  font-family: var(--mono); font-size: 0.75rem;
+}
+thead th {
+  text-align: left; padding: 10px 16px;
+  font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--ink-3);
+  border-bottom: 1px solid var(--line);
+}
+tbody tr {
+  border-bottom: 1px solid var(--line);
+  transition: background 0.15s;
+}
+tbody tr:last-child { border-bottom: none; }
+tbody td {
+  padding: 11px 16px; color: var(--ink-2);
+  transition: color 0.2s;
+}
+tbody tr.active {
+  background: var(--accent-dim);
+}
+tbody tr.active td {
+  color: var(--ink);
+}
+tbody tr.active td:first-child {
+  color: var(--accent);
+}
+
+/* FOOTER */
+footer {
+  border-top: 1px solid var(--line);
+  padding: 16px 32px;
+  font-family: var(--mono); font-size: 0.6rem; color: var(--ink-3);
+  text-align: center; letter-spacing: 0.06em;
+  transition: border-color 0.3s;
+}
+footer a { color: var(--accent); }
+
+@media (max-width: 600px) {
+  main { padding: 40px 20px 60px; }
+  .fields { grid-template-columns: 1fr; }
+  nav { padding: 0 16px; }
+  .card { padding: 20px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-left">
+    <a href="../" class="nav-back">← portfolio</a>
+    <span class="nav-id">[ ID_IMC ]</span>
+    <span class="nav-title">imc_calculator</span>
+  </div>
+  <button id="theme-btn" aria-label="Alternar tema">
+    <svg class="i-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    <svg class="i-sun"  viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+  </button>
+</nav>
+
+<main>
+  <div class="page-eyebrow">projeto · html · javascript</div>
+  <h1 class="page-title">Calculadora IMC</h1>
+  <p class="page-sub">Índice de Massa Corporal com tabela de referência OMS</p>
+
+  <div class="card">
+    <div class="fields">
+      <div>
+        <label class="field-label" for="peso">Peso (kg)</label>
+        <input class="field-input" type="number" id="peso" placeholder="ex: 75" min="1" max="300" step="0.1">
+      </div>
+      <div>
+        <label class="field-label" for="altura">Altura (m)</label>
+        <input class="field-input" type="number" id="altura" placeholder="ex: 1.75" min="0.5" max="2.5" step="0.01">
+      </div>
+    </div>
+    <div class="btn-row">
+      <button class="btn-calc" onclick="calcular()">calcular →</button>
+      <button class="btn-clear" onclick="limpar()">limpar</button>
+    </div>
+    <div class="error-msg" id="erro"></div>
+    <div class="result-box" id="resultado">
+      <div class="result-label">seu imc</div>
+      <div class="result-value" id="imc-valor"></div>
+      <div class="result-class" id="imc-class"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="page-eyebrow" style="margin-bottom:16px">tabela de referência · OMS</div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>IMC (kg/m²)</th>
+            <th>Classificação</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr id="linha1"><td>&lt; 16</td><td>Magreza grau III</td></tr>
+          <tr id="linha2"><td>16.0 – 16.9</td><td>Magreza grau II</td></tr>
+          <tr id="linha3"><td>17.0 – 18.4</td><td>Magreza grau I</td></tr>
+          <tr id="linha4"><td>18.5 – 24.9</td><td>Adequado</td></tr>
+          <tr id="linha5"><td>25.0 – 29.9</td><td>Pré-obeso</td></tr>
+          <tr id="linha6"><td>30.0 – 34.9</td><td>Obesidade grau I</td></tr>
+          <tr id="linha7"><td>35.0 – 39.9</td><td>Obesidade grau II (severa)</td></tr>
+          <tr id="linha8"><td>≥ 40</td><td>Obesidade grau III (mórbida)</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <a href="../">eversonrubira.github.io</a> · Everson Rubira · 2026
+</footer>
+
+<script>
+const html = document.documentElement;
+const themeBtn = document.getElementById('theme-btn');
+const saved = localStorage.getItem('er-theme') || 'dark';
+html.setAttribute('data-theme', saved);
+themeBtn.addEventListener('click', () => {
+  const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  html.setAttribute('data-theme', next);
+  localStorage.setItem('er-theme', next);
+});
+
+const CLASSES = [
+  { max: 16,   label: 'Magreza grau III',          row: 1 },
+  { max: 16.9, label: 'Magreza grau II',            row: 2 },
+  { max: 18.4, label: 'Magreza grau I',             row: 3 },
+  { max: 24.9, label: 'Adequado',                   row: 4 },
+  { max: 29.9, label: 'Pré-obeso',                  row: 5 },
+  { max: 34.9, label: 'Obesidade grau I',           row: 6 },
+  { max: 39.9, label: 'Obesidade grau II (severa)', row: 7 },
+  { max: Infinity, label: 'Obesidade grau III (mórbida)', row: 8 },
+];
+
+function calcular() {
+  const peso   = parseFloat(document.getElementById('peso').value);
+  const altura = parseFloat(document.getElementById('altura').value);
+  const erro   = document.getElementById('erro');
+
+  if (!peso || !altura || peso <= 0 || altura <= 0) {
+    erro.textContent = 'erro: preencha peso e altura com valores válidos.';
+    document.getElementById('resultado').classList.remove('show');
+    return;
+  }
+  erro.textContent = '';
+
+  const imc = peso / (altura * altura);
+  const cls = CLASSES.find(c => imc <= c.max);
+
+  document.getElementById('imc-valor').textContent = imc.toFixed(2);
+  document.getElementById('imc-class').textContent = cls.label;
+  document.getElementById('resultado').classList.add('show');
+
+  for (let i = 1; i <= 8; i++) {
+    document.getElementById('linha' + i).classList.toggle('active', i === cls.row);
+  }
+}
+
+function limpar() {
+  document.getElementById('peso').value = '';
+  document.getElementById('altura').value = '';
+  document.getElementById('erro').textContent = '';
+  document.getElementById('resultado').classList.remove('show');
+  for (let i = 1; i <= 8; i++) {
+    document.getElementById('linha' + i).classList.remove('active');
+  }
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Enter') calcular();
+});
+</script>
+</body>
+</html>
