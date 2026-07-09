@@ -695,6 +695,64 @@ footer {
 #btt:hover { background: var(--ink); color: var(--bg); border-color: var(--ink); }
 #btt svg { width: 13px; height: 13px; fill: none; stroke: currentColor; stroke-width: 2; }
 
+/* ─── TERMINAL ─── */
+#term-btn {
+  position: fixed; bottom: 24px; left: 24px; z-index: 90;
+  font-family: var(--mono); font-size: 0.7rem; font-weight: 700;
+  letter-spacing: 0.06em; color: var(--accent);
+  background: var(--bg-2); border: 1px solid var(--accent);
+  border-radius: 2px; padding: 8px 12px; cursor: pointer;
+  opacity: 0.7; transition: opacity 0.2s, background 0.2s, color 0.2s;
+}
+#term-btn:hover { opacity: 1; background: var(--accent); color: var(--bg); }
+
+#term-overlay {
+  display: none; position: fixed; inset: 0; z-index: 200;
+  background: rgba(0,0,0,0.72); backdrop-filter: blur(4px);
+  align-items: center; justify-content: center;
+}
+#term-overlay.open { display: flex; }
+
+#term-modal {
+  width: min(720px, 94vw); height: min(480px, 80vh);
+  background: var(--bg-1); border: 1px solid var(--accent);
+  border-radius: 4px; display: flex; flex-direction: column;
+  box-shadow: 0 0 60px rgba(34,211,218,0.12);
+  font-family: var(--mono);
+}
+#term-titlebar {
+  display: flex; align-items: center; gap: 8px;
+  padding: 10px 16px; border-bottom: 1px solid var(--line);
+  font-size: 0.62rem; color: var(--ink-3); flex-shrink: 0;
+}
+#term-titlebar .dot { width: 10px; height: 10px; border-radius: 50%; }
+.dot-r { background: #ff5f57; }
+.dot-y { background: #febc2e; }
+.dot-g { background: #28c840; }
+#term-titlebar span { margin-left: auto; }
+
+#term-output {
+  flex: 1; overflow-y: auto; padding: 14px 18px;
+  font-size: 0.72rem; line-height: 1.8; color: var(--ink-2);
+  scroll-behavior: smooth;
+}
+#term-output .line-cmd { color: var(--accent); }
+#term-output .line-ok  { color: var(--ink-2); }
+#term-output .line-hi  { color: var(--ink); font-weight: 700; }
+#term-output .line-dim { color: var(--ink-3); }
+#term-output .line-err { color: #f87171; }
+
+#term-inputrow {
+  display: flex; align-items: center; gap: 8px;
+  padding: 10px 18px; border-top: 1px solid var(--line); flex-shrink: 0;
+}
+#term-prompt { font-size: 0.72rem; color: var(--accent); white-space: nowrap; }
+#term-input {
+  flex: 1; background: none; border: none; outline: none;
+  font-family: var(--mono); font-size: 0.72rem; color: var(--ink);
+  caret-color: var(--accent);
+}
+
 /* ─── PRINT ─── */
 @media print {
   .scanline, .gl, nav, #btt, #theme-btn { display: none !important; }
@@ -1332,6 +1390,24 @@ footer {
   </div>
 </footer>
 
+<button id="term-btn" aria-label="Abrir terminal">&gt;_</button>
+
+<div id="term-overlay" role="dialog" aria-modal="true" aria-label="Terminal">
+  <div id="term-modal">
+    <div id="term-titlebar">
+      <div class="dot dot-r"></div>
+      <div class="dot dot-y"></div>
+      <div class="dot dot-g"></div>
+      <span>everson@portfolio:~</span>
+    </div>
+    <div id="term-output"></div>
+    <div id="term-inputrow">
+      <span id="term-prompt">everson@portfolio:~$</span>
+      <input id="term-input" type="text" autocomplete="off" spellcheck="false" aria-label="Comando">
+    </div>
+  </div>
+</div>
+
 <button id="btt" aria-label="Voltar ao topo">
   <svg viewBox="0 0 24 24"><path d="M18 15l-6-6-6 6"/></svg>
 </button>
@@ -1816,6 +1892,245 @@ window.addEventListener('load', function() {
   }
   setTimeout(typeLine1, 400);
 });
+
+// ── TERMINAL ──────────────────────────────────────────────────
+(function() {
+  const overlay  = document.getElementById('term-overlay');
+  const output   = document.getElementById('term-output');
+  const input    = document.getElementById('term-input');
+  const termBtn  = document.getElementById('term-btn');
+  const history  = [];
+  let histIdx    = -1;
+
+  const isEN = () => document.documentElement.lang === 'en';
+
+  const CMDS = {
+    help: () => isEN() ? [
+      ['hi',  '─────────────────────────────────────────'],
+      ['hi',  ' available commands:'],
+      ['hi',  '─────────────────────────────────────────'],
+      ['ok',  '  about       → who is Everson?'],
+      ['ok',  '  skills      → tech stack'],
+      ['ok',  '  projects    → current projects'],
+      ['ok',  '  contact     → get in touch'],
+      ['ok',  '  hire        → 🎯 make a decision'],
+      ['ok',  '  clear       → clear screen'],
+      ['ok',  '  exit        → close terminal'],
+      ['dim', '─────────────────────────────────────────'],
+    ] : [
+      ['hi',  '─────────────────────────────────────────'],
+      ['hi',  ' comandos disponíveis:'],
+      ['hi',  '─────────────────────────────────────────'],
+      ['ok',  '  about       → quem é o Everson?'],
+      ['ok',  '  skills      → stack técnica'],
+      ['ok',  '  projects    → projetos actuais'],
+      ['ok',  '  contact     → contacto'],
+      ['ok',  '  hire        → 🎯 tomar uma decisão'],
+      ['ok',  '  clear       → limpar ecrã'],
+      ['ok',  '  exit        → fechar terminal'],
+      ['dim', '─────────────────────────────────────────'],
+    ],
+
+    about: () => isEN() ? [
+      ['hi',  'Everson Rubira'],
+      ['ok',  'Backend Dev · QA Engineer · Applied AI'],
+      ['ok',  ''],
+      ['ok',  '12 years operating B2B systems in Portugal.'],
+      ['ok',  'Now I build them — with Java, Spring Boot,'],
+      ['ok',  'Node.js and Claude API.'],
+      ['ok',  ''],
+      ['ok',  'Degree in Programming & Info Systems @ IPS.'],
+      ['ok',  'Internship @ Pipoca Ágil (Java/Spring Boot/Angular).'],
+      ['ok',  'Co-founder @ ImplementIQ Systems — real clients.'],
+      ['dim', ''],
+      ['dim', 'type "skills" or "projects" for more.'],
+    ] : [
+      ['hi',  'Everson Rubira'],
+      ['ok',  'Backend Dev · QA Engineer · IA aplicada'],
+      ['ok',  ''],
+      ['ok',  '12 anos a operar sistemas B2B em Portugal.'],
+      ['ok',  'Agora construo-os — com Java, Spring Boot,'],
+      ['ok',  'Node.js e Claude API.'],
+      ['ok',  ''],
+      ['ok',  'TeSP Programação e Sistemas de Informação @ IPS.'],
+      ['ok',  'Estágio @ Pipoca Ágil (Java/Spring Boot/Angular).'],
+      ['ok',  'Co-fundador @ ImplementIQ Systems — clientes reais.'],
+      ['dim', ''],
+      ['dim', 'escreve "skills" ou "projects" para mais.'],
+    ],
+
+    skills: () => [
+      ['hi',  'Tech Stack'],
+      ['dim', '─────────────────────────────────────────'],
+      ['ok',  '  backend    Java 17/21 · Spring Boot · Node.js · Python'],
+      ['ok',  '  frontend   Angular · TypeScript · HTML/CSS · JS'],
+      ['ok',  '  databases  PostgreSQL · MySQL · MongoDB · Supabase'],
+      ['ok',  '  testing    JUnit 5 · Vitest · Cypress · Robot Framework'],
+      ['ok',  '  devops     Docker · Git · GitHub Actions · Linux'],
+      ['ok',  '  ai         LangChain · Claude API · Anthropic SDK'],
+      ['dim', '─────────────────────────────────────────'],
+    ],
+
+    projects: () => isEN() ? [
+      ['hi',  'Projects'],
+      ['dim', '─────────────────────────────────────────'],
+      ['ok',  '  ID_02  Boardly          → Clean Arch · JWT · Java'],
+      ['ok',  '  ID_03  FitCheck         → AI fitness · Claude API · Node'],
+      ['ok',  '  ID_04  LangChain+Anthropic → AI agents · Python'],
+      ['ok',  '  ID_05  Sulav Sushi Bar  → Production site · PT/EN'],
+      ['ok',  '  ID_06  IMC Calculator   → Live demo · HTML/CSS/JS'],
+      ['ok',  '  ID_07  StudyFlow        → Android · MVVM · Kotlin'],
+      ['ok',  '  ID_08  Minesweeper      → Vanilla JS · playable now'],
+      ['dim', '─────────────────────────────────────────'],
+      ['dim', 'see full details at #projects on this page.'],
+    ] : [
+      ['hi',  'Projetos'],
+      ['dim', '─────────────────────────────────────────'],
+      ['ok',  '  ID_02  Boardly          → Clean Arch · JWT · Java'],
+      ['ok',  '  ID_03  FitCheck         → IA fitness · Claude API · Node'],
+      ['ok',  '  ID_04  LangChain+Anthropic → AI agents · Python'],
+      ['ok',  '  ID_05  Sulav Sushi Bar  → Site em produção · PT/EN'],
+      ['ok',  '  ID_06  Calculadora IMC  → Demo live · HTML/CSS/JS'],
+      ['ok',  '  ID_07  StudyFlow        → Android · MVVM · Kotlin'],
+      ['ok',  '  ID_08  Campo Minado     → Vanilla JS · jogável agora'],
+      ['dim', '─────────────────────────────────────────'],
+      ['dim', 'vê os detalhes completos em #projetos.'],
+    ],
+
+    contact: () => isEN() ? [
+      ['hi',  'Contact'],
+      ['dim', '─────────────────────────────────────────'],
+      ['ok',  '  email     eversonrubira@gmail.com'],
+      ['ok',  '  linkedin  linkedin.com/in/eversonrubira'],
+      ['ok',  '  github    github.com/EversonRubira'],
+      ['ok',  '  phone     +351 910 625 090'],
+      ['dim', '─────────────────────────────────────────'],
+      ['dim', 'available now · Portugal · remote ok'],
+    ] : [
+      ['hi',  'Contacto'],
+      ['dim', '─────────────────────────────────────────'],
+      ['ok',  '  email     eversonrubira@gmail.com'],
+      ['ok',  '  linkedin  linkedin.com/in/eversonrubira'],
+      ['ok',  '  github    github.com/EversonRubira'],
+      ['ok',  '  telefone  +351 910 625 090'],
+      ['dim', '─────────────────────────────────────────'],
+      ['dim', 'disponível agora · Portugal · remoto ok'],
+    ],
+
+    hire: () => {
+      const lines = isEN() ? [
+        ['hi',  ''],
+        ['hi',  '  ██╗  ██╗██╗██████╗ ███████╗██████╗ '],
+        ['hi',  '  ██║  ██║██║██╔══██╗██╔════╝██╔══██╗'],
+        ['hi',  '  ███████║██║██████╔╝█████╗  ██║  ██║'],
+        ['hi',  '  ██╔══██║██║██╔══██╗██╔══╝  ██║  ██║'],
+        ['hi',  '  ██║  ██║██║██║  ██║███████╗██████╔╝'],
+        ['hi',  '  ╚═╝  ╚═╝╚═╝╚═╝  ╚═╝╚══════╝╚═════╝ '],
+        ['hi',  ''],
+        ['ok',  '  Great decision. Everson is ready to start.'],
+        ['ok',  ''],
+        ['ok',  '  → eversonrubira@gmail.com'],
+        ['ok',  '  → +351 910 625 090'],
+        ['dim', ''],
+        ['dim', '  "The best time to hire was yesterday.'],
+        ['dim', '   The second best time is now." — someone smart'],
+        ['hi',  ''],
+      ] : [
+        ['hi',  ''],
+        ['hi',  '  ██████╗ ██████╗ ███╗   ██╗████████╗██████╗  █████╗ '],
+        ['hi',  '  ██╔════╝██╔═══██╗████╗  ██║╚══██╔══╝██╔══██╗██╔══██╗'],
+        ['hi',  '  ██║     ██║   ██║██╔██╗ ██║   ██║   ██████╔╝███████║'],
+        ['hi',  '  ██║     ██║   ██║██║╚██╗██║   ██║   ██╔══██╗██╔══██║'],
+        ['hi',  '  ╚██████╗╚██████╔╝██║ ╚████║   ██║   ██║  ██║██║  ██║'],
+        ['hi',  '   ╚═════╝ ╚═════╝ ╚═╝  ╚═══╝   ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═╝'],
+        ['hi',  '            ██████╗  ██████╗ ██╗   ██╗'],
+        ['hi',  '            ██╔══██╗██╔═══██╗██║   ██║'],
+        ['hi',  '            ██████╔╝██║   ██║██║   ██║'],
+        ['hi',  '            ██╔══██╗██║   ██║██║   ██║'],
+        ['hi',  '            ██║  ██║╚██████╔╝╚██████╔╝'],
+        ['hi',  '            ╚═╝  ╚═╝ ╚═════╝  ╚═════╝ '],
+        ['hi',  ''],
+        ['ok',  '  Óptima decisão. O Everson está disponível agora.'],
+        ['ok',  ''],
+        ['ok',  '  → eversonrubira@gmail.com'],
+        ['ok',  '  → +351 910 625 090'],
+        ['dim', ''],
+        ['dim', '  "A melhor altura para contratar era ontem.'],
+        ['dim', '   A segunda melhor é agora." — alguém inteligente'],
+        ['hi',  ''],
+      ];
+      return lines;
+    },
+  };
+
+  function print(type, text) {
+    const div = document.createElement('div');
+    div.className = 'line-' + type;
+    div.textContent = text;
+    output.appendChild(div);
+    output.scrollTop = output.scrollHeight;
+  }
+
+  function printWelcome() {
+    const en = isEN();
+    [
+      ['dim', en ? 'portfolio terminal v1.0.0' : 'terminal do portfólio v1.0.0'],
+      ['dim', en ? 'type "help" for available commands.' : 'escreve "help" para ver os comandos.'],
+      ['dim', ''],
+    ].forEach(([t, v]) => print(t, v));
+  }
+
+  function run(cmd) {
+    const c = cmd.trim().toLowerCase();
+    print('cmd', '$ ' + cmd.trim());
+
+    if (c === 'clear') { output.innerHTML = ''; return; }
+    if (c === 'exit' || c === 'quit') { close(); return; }
+    if (c === '') return;
+
+    const fn = CMDS[c];
+    if (!fn) {
+      print('err', isEN() ? `command not found: ${c}. try "help".` : `comando não encontrado: ${c}. tenta "help".`);
+      return;
+    }
+    fn().forEach(([t, v]) => print(t, v));
+    print('dim', '');
+  }
+
+  function open() {
+    overlay.classList.add('open');
+    if (output.children.length === 0) printWelcome();
+    setTimeout(() => input.focus(), 80);
+  }
+  function close() {
+    overlay.classList.remove('open');
+  }
+
+  termBtn.addEventListener('click', open);
+  overlay.addEventListener('click', e => { if (e.target === overlay) close(); });
+  document.addEventListener('keydown', e => {
+    if (e.key === '`' && !overlay.classList.contains('open')) { e.preventDefault(); open(); return; }
+    if (e.key === 'Escape' && overlay.classList.contains('open')) { close(); return; }
+  });
+
+  input.addEventListener('keydown', e => {
+    if (e.key === 'Enter') {
+      const val = input.value;
+      if (val.trim()) { history.unshift(val); histIdx = -1; }
+      run(val);
+      input.value = '';
+    }
+    if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      if (histIdx < history.length - 1) { histIdx++; input.value = history[histIdx]; }
+    }
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      if (histIdx > 0) { histIdx--; input.value = history[histIdx]; }
+      else { histIdx = -1; input.value = ''; }
+    }
+  });
+})();
 
 // Progress bars
 const bro = new IntersectionObserver(entries => {
