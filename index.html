@@ -1142,19 +1142,20 @@ footer {
         <div class="proj-main">
           <div class="proj-id">ID_03</div>
           <div class="proj-name">FitCheck</div>
-          <p class="proj-desc" data-i18n="proj-fitcheck-desc">App de fitness com integração de IA via Claude API. Combina Node.js com inteligência artificial para personalização de treinos.</p>
+          <p class="proj-desc" data-i18n="proj-fitcheck-desc">Análise de outfit com IA via Groq/Llama 3.3. O utilizador descreve peças de roupa e recebe feedback detalhado de estilo em tempo real via streaming.</p>
           <div class="proj-footer">
-            <span class="proj-tag wip" data-i18n="proj-tag-wip">em desenvolvimento</span>
-            <a href="https://github.com/EversonRubira/fitcheck" target="_blank" rel="noopener" class="proj-link">GitHub <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+            <span class="proj-tag live" data-i18n="proj-tag-live">produção</span>
+            <a href="https://fitcheck-zpyt.onrender.com" target="_blank" rel="noopener" class="proj-link">demo <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+            <a href="https://github.com/EversonRubira/FitCheck" target="_blank" rel="noopener" class="proj-link">GitHub <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
           </div>
         </div>
         <div class="proj-spec">
           <div class="proj-spec-title">integration_spec</div>
-          <div class="proj-spec-row"><span class="proj-spec-k">ai_provider</span><span class="proj-spec-v">anthropic_api</span></div>
+          <div class="proj-spec-row"><span class="proj-spec-k">ai_provider</span><span class="proj-spec-v">groq · llama_3.3</span></div>
           <div class="proj-spec-row"><span class="proj-spec-k">database</span><span class="proj-spec-v">mysql · sequelize</span></div>
-          <div class="proj-spec-row"><span class="proj-spec-k">runtime</span><span class="proj-spec-v">node.js</span></div>
-          <div class="proj-spec-row"><span class="proj-spec-k">feature</span><span class="proj-spec-v">ai_personalization</span></div>
-          <div class="proj-spec-row"><span class="proj-spec-k">status</span><span class="proj-spec-v" data-i18n="proj-status-wip">em_desenvolvimento</span></div>
+          <div class="proj-spec-row"><span class="proj-spec-k">runtime</span><span class="proj-spec-v">node.js · express</span></div>
+          <div class="proj-spec-row"><span class="proj-spec-k">feature</span><span class="proj-spec-v">sse_streaming · rate_limit</span></div>
+          <div class="proj-spec-row"><span class="proj-spec-k">infra</span><span class="proj-spec-v">render · clever_cloud</span></div>
         </div>
       </div>
 
@@ -1527,7 +1528,7 @@ const i18n = {
     'proj-rh-desc': 'Sistema de RH em Java com aplicação rigorosa dos princípios SOLID. Projeto focado em demonstrar boas práticas de design orientado a objetos e código limpo.',
     'proj-boardly-desc': 'Gestão de tarefas com autenticação JWT e Clean Architecture. Projecto independente para praticar segurança e boas práticas de API REST.',
     'proj-gestao-desc': 'API REST para gestão de saúde mental, com foco em boas práticas de backend, estrutura de dados e design de endpoints coesos.',
-    'proj-fitcheck-desc': 'App de fitness com integração de IA via Claude API. Combina Node.js com inteligência artificial para personalização de treinos.',
+    'proj-fitcheck-desc': 'Análise de outfit com IA via Groq/Llama 3.3. O utilizador descreve peças de roupa e recebe feedback detalhado de estilo em tempo real via streaming.',
     'proj-sulav-desc': 'Site completo em produção para restaurante português. Bilíngue PT/EN com Uber Eats, Glovo, Bolt Food e Google Maps integrados.',
     'proj-imc-desc': 'Calculadora de Índice de Massa Corporal com tabela de referência OMS. Dark/light mode, validação de input e destaque dinâmico da classificação correspondente.',
     'proj-minesweeper-desc': 'Minesweeper jogável no browser — revelação em cascata, bandeiras, chord click e três dificuldades. Portado de Java/Swing para vanilla JS com dark/light mode.',
@@ -1660,7 +1661,7 @@ const i18n = {
     'proj-rh-desc': 'HR system in Java with rigorous application of SOLID principles. Project focused on demonstrating good object-oriented design practices and clean code.',
     'proj-boardly-desc': 'Task management with JWT authentication and Clean Architecture. Independent project to practice security and REST API best practices.',
     'proj-gestao-desc': 'REST API for mental health management, focused on backend best practices, data structure and cohesive endpoint design.',
-    'proj-fitcheck-desc': 'Fitness app with AI integration via Claude API. Combines Node.js with artificial intelligence for workout personalization.',
+    'proj-fitcheck-desc': 'Outfit analysis with AI via Groq/Llama 3.3. User describes clothing items and receives detailed real-time style feedback via SSE streaming.',
     'proj-sulav-desc': 'Full production site for a Portuguese restaurant. Bilingual PT/EN with Uber Eats, Glovo, Bolt Food and Google Maps integrated.',
     'proj-imc-desc': 'Body Mass Index calculator with WHO reference table. Dark/light mode, input validation and dynamic highlight of the matching classification.',
     'proj-minesweeper-desc': 'Playable Minesweeper in the browser — cascade reveal, flags, chord click and three difficulty levels. Ported from Java/Swing to vanilla JS with dark/light mode.',
