@@ -574,6 +574,7 @@ section { padding: 96px 0; }
   transition: background 0.15s, color 0.15s, border-color 0.15s;
 }
 .proj-link:hover { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.proj-links { display: flex; gap: 6px; }
 .proj-link svg { width: 10px; height: 10px; fill: none; stroke: currentColor; stroke-width: 2; }
 
 /* ─── STACK ─── */
@@ -1125,7 +1126,9 @@ footer {
           <p class="proj-desc" data-i18n="proj-boardly-desc">Gestão de tarefas com autenticação JWT e Clean Architecture. Projecto independente para praticar segurança e boas práticas de API REST.</p>
           <div class="proj-footer">
             <span class="proj-tag done" data-i18n="proj-tag-done">concluído</span>
-            <a href="https://github.com/EversonRubira/boardly" target="_blank" rel="noopener" class="proj-link">GitHub <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+            <div class="proj-links">
+              <a href="https://github.com/EversonRubira/boardly" target="_blank" rel="noopener" class="proj-link">GitHub <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+            </div>
           </div>
         </div>
         <div class="proj-spec">
@@ -1145,8 +1148,10 @@ footer {
           <p class="proj-desc" data-i18n="proj-fitcheck-desc">Análise de outfit com IA via Groq/Llama 3.3. O utilizador descreve peças de roupa e recebe feedback detalhado de estilo em tempo real via streaming.</p>
           <div class="proj-footer">
             <span class="proj-tag live" data-i18n="proj-tag-live">produção</span>
-            <a href="https://fitcheck-zpyt.onrender.com" target="_blank" rel="noopener" class="proj-link">demo <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
-            <a href="https://github.com/EversonRubira/FitCheck" target="_blank" rel="noopener" class="proj-link">GitHub <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+            <div class="proj-links">
+              <a href="https://fitcheck-zpyt.onrender.com" target="_blank" rel="noopener" class="proj-link">demo <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+              <a href="https://github.com/EversonRubira/FitCheck" target="_blank" rel="noopener" class="proj-link">GitHub <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+            </div>
           </div>
         </div>
         <div class="proj-spec">
@@ -1166,7 +1171,9 @@ footer {
           <p class="proj-desc" data-i18n="proj-langchain-desc">Agentes de IA com LangChain e Python integrados à API da Anthropic. Exploração de chains, memória, ferramentas e orquestração de LLMs em casos de uso reais.</p>
           <div class="proj-footer">
             <span class="proj-tag done" data-i18n="proj-tag-done">concluído</span>
-            <a href="https://github.com/EversonRubira/LangChain-Python-via-LLM-Anthropic" target="_blank" rel="noopener" class="proj-link">GitHub <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+            <div class="proj-links">
+              <a href="https://github.com/EversonRubira/LangChain-Python-via-LLM-Anthropic" target="_blank" rel="noopener" class="proj-link">GitHub <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+            </div>
           </div>
         </div>
         <div class="proj-spec">
@@ -1186,7 +1193,9 @@ footer {
           <p class="proj-desc" data-i18n="proj-sulav-desc">Site completo em produção para restaurante português. Bilíngue PT/EN com Uber Eats, Glovo, Bolt Food e Google Maps integrados.</p>
           <div class="proj-footer">
             <span class="proj-tag live" data-i18n="proj-tag-live">produção</span>
-            <a href="https://sulavsushibar.pt" target="_blank" rel="noopener" class="proj-link">sulavsushibar.pt <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+            <div class="proj-links">
+              <a href="https://sulavsushibar.pt" target="_blank" rel="noopener" class="proj-link">demo <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+            </div>
           </div>
         </div>
         <div class="proj-spec">
@@ -1206,8 +1215,10 @@ footer {
           <p class="proj-desc" data-i18n="proj-imc-desc">Calculadora de Índice de Massa Corporal com tabela de referência OMS. Dark/light mode, validação de input e destaque dinâmico da classificação correspondente.</p>
           <div class="proj-footer">
             <span class="proj-tag live" data-i18n="proj-tag-live">produção</span>
-            <a href="/imc/" target="_blank" rel="noopener" class="proj-link">demo <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
-            <a href="https://github.com/EversonRubira/Indice-de-Massa-corporal---IMC" target="_blank" rel="noopener" class="proj-link">GitHub <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+            <div class="proj-links">
+              <a href="/imc/" target="_blank" rel="noopener" class="proj-link">demo <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+              <a href="https://github.com/EversonRubira/Indice-de-Massa-corporal---IMC" target="_blank" rel="noopener" class="proj-link">GitHub <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+            </div>
           </div>
         </div>
         <div class="proj-spec">
@@ -1226,7 +1237,9 @@ footer {
           <p class="proj-desc" data-i18n="proj-studyflow-desc">App Android nativa de gestão de estudos. MVVM com ViewModel + LiveData, Room para persistência local, notificações de sessão e timer Pomodoro integrado.</p>
           <div class="proj-footer">
             <span class="proj-tag wip" data-i18n="proj-tag-wip">em desenvolvimento</span>
-            <a href="https://github.com/EversonRubira/StudyFlow" target="_blank" rel="noopener" class="proj-link">github <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+            <div class="proj-links">
+              <a href="https://github.com/EversonRubira/StudyFlow" target="_blank" rel="noopener" class="proj-link">GitHub <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+            </div>
           </div>
         </div>
         <div class="proj-spec">
@@ -1246,8 +1259,10 @@ footer {
           <p class="proj-desc" data-i18n="proj-minesweeper-desc">Minesweeper jogável no browser — revelação em cascata, bandeiras, chord click e três dificuldades. Portado de Java/Swing para vanilla JS com dark/light mode.</p>
           <div class="proj-footer">
             <span class="proj-tag live" data-i18n="proj-tag-live">produção</span>
-            <a href="/minesweeper/" target="_blank" rel="noopener" class="proj-link">jogar <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
-            <a href="https://github.com/EversonRubira/Campo_Minado" target="_blank" rel="noopener" class="proj-link">GitHub <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+            <div class="proj-links">
+              <a href="/minesweeper/" target="_blank" rel="noopener" class="proj-link">jogar <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+              <a href="https://github.com/EversonRubira/Campo_Minado" target="_blank" rel="noopener" class="proj-link">GitHub <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+            </div>
           </div>
         </div>
         <div class="proj-spec">
