@@ -518,13 +518,49 @@ section { padding: 96px 0; }
 /* ─── PROJETOS ─── */
 #projetos { background: var(--bg); }
 .proj-list { display: flex; flex-direction: column; }
+
+/* ── Featured projects (Camada 1) ── */
 .proj-item {
   display: grid; grid-template-columns: 1fr 280px;
   gap: 0; border-top: 1px solid var(--line);
   transition: border-color 0.3s, background 0.2s;
 }
-.proj-item:last-child { border-bottom: 1px solid var(--line); }
 .proj-item:hover { background: var(--bg-1); }
+.proj-item.featured .proj-name { font-size: 1.35rem; }
+.proj-item.featured .proj-desc { font-size: 0.9rem; max-width: 540px; }
+.proj-item.featured .proj-main { padding: 48px 40px 48px 0; }
+.proj-item.featured .proj-spec  { padding: 48px 0 48px 32px; }
+
+/* ── Compact divider ── */
+.proj-compact-label {
+  font-family: var(--mono); font-size: 0.58rem;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--ink-3); padding: 28px 0 16px;
+  border-top: 1px solid var(--line);
+}
+
+/* ── Compact list (Camada 2) ── */
+.proj-compact-list { display: flex; flex-direction: column; border-top: 1px solid var(--line); }
+.proj-compact-item {
+  display: flex; align-items: center; gap: 16px;
+  padding: 14px 0; border-bottom: 1px solid var(--line-2);
+  transition: background 0.2s;
+}
+.proj-compact-item:hover { background: var(--bg-1); }
+.proj-compact-id {
+  font-family: var(--mono); font-size: 0.55rem;
+  color: var(--ink-3); letter-spacing: 0.1em; flex-shrink: 0; width: 42px;
+}
+.proj-compact-name {
+  font-size: 0.9rem; font-weight: 600; color: var(--ink);
+  flex-shrink: 0; min-width: 160px;
+}
+.proj-compact-stack {
+  font-family: var(--mono); font-size: 0.62rem;
+  color: var(--ink-3); flex: 1; letter-spacing: 0.02em;
+}
+.proj-compact-links { display: flex; gap: 6px; flex-shrink: 0; }
+
 .proj-main { padding: 36px 40px 36px 0; }
 .proj-id {
   font-family: var(--mono); font-size: 0.58rem;
@@ -788,6 +824,9 @@ footer {
   .princ-left { position: static; }
   .proj-item { grid-template-columns: 1fr; }
   .proj-spec { border-left: none; border-top: 1px solid var(--line); padding: 20px 0 0; }
+  .proj-compact-item { flex-wrap: wrap; gap: 8px; }
+  .proj-compact-name { min-width: 120px; }
+  .proj-compact-stack { width: 100%; order: 3; }
   .proj-main { padding: 28px 0 16px; }
   .exp-item { grid-template-columns: 1fr; gap: 4px; }
   .contact-inner { padding: 60px 20px; }
@@ -1120,74 +1159,8 @@ footer {
     </div>
     <div class="proj-list">
 
-      <div class="proj-item reveal">
-        <div class="proj-main">
-          <div class="proj-id">ID_02</div>
-          <div class="proj-name">Boardly</div>
-          <p class="proj-desc" data-i18n="proj-boardly-desc">Gestão de tarefas com autenticação JWT e Clean Architecture. Projecto independente para praticar segurança e boas práticas de API REST.</p>
-          <div class="proj-footer">
-            <span class="proj-tag done" data-i18n="proj-tag-done">concluído</span>
-            <div class="proj-links">
-              <a href="https://github.com/EversonRubira/boardly" target="_blank" rel="noopener" class="proj-link">GitHub <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
-            </div>
-          </div>
-        </div>
-        <div class="proj-spec">
-          <div class="proj-spec-title">architecture_spec</div>
-          <div class="proj-spec-row"><span class="proj-spec-k">pattern</span><span class="proj-spec-v">clean_architecture</span></div>
-          <div class="proj-spec-row"><span class="proj-spec-k">auth</span><span class="proj-spec-v">jwt_stateless</span></div>
-          <div class="proj-spec-row"><span class="proj-spec-k">database</span><span class="proj-spec-v">mongodb</span></div>
-          <div class="proj-spec-row"><span class="proj-spec-k">testing</span><span class="proj-spec-v">junit_5</span></div>
-          <div class="proj-spec-row"><span class="proj-spec-k">runtime</span><span class="proj-spec-v">java_17 · spring_boot</span></div>
-        </div>
-      </div>
-
-      <div class="proj-item reveal">
-        <div class="proj-main">
-          <div class="proj-id">ID_03</div>
-          <div class="proj-name">FitCheck</div>
-          <p class="proj-desc" data-i18n="proj-fitcheck-desc">Tracker de hábitos de saúde com análise semanal por IA. Regista sono, hidratação, IMC e metas físicas; Groq/Llama 3.3 analisa os registos e devolve sugestões em streaming.</p>
-          <div class="proj-footer">
-            <span class="proj-tag live" data-i18n="proj-tag-live">produção</span>
-            <div class="proj-links">
-              <a href="https://fitcheck-zpyt.onrender.com" target="_blank" rel="noopener" class="proj-link">demo <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
-              <a href="https://github.com/EversonRubira/FitCheck" target="_blank" rel="noopener" class="proj-link">GitHub <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
-            </div>
-          </div>
-        </div>
-        <div class="proj-spec">
-          <div class="proj-spec-title">integration_spec</div>
-          <div class="proj-spec-row"><span class="proj-spec-k">ai_provider</span><span class="proj-spec-v">groq · llama_3.3</span></div>
-          <div class="proj-spec-row"><span class="proj-spec-k">database</span><span class="proj-spec-v">mysql · sequelize</span></div>
-          <div class="proj-spec-row"><span class="proj-spec-k">runtime</span><span class="proj-spec-v">node.js · express</span></div>
-          <div class="proj-spec-row"><span class="proj-spec-k">feature</span><span class="proj-spec-v">sse_streaming · habit_tracking · bmi</span></div>
-          <div class="proj-spec-row"><span class="proj-spec-k">infra</span><span class="proj-spec-v">render · clever_cloud</span></div>
-        </div>
-      </div>
-
-      <div class="proj-item reveal">
-        <div class="proj-main">
-          <div class="proj-id">ID_04</div>
-          <div class="proj-name">LangChain + Anthropic</div>
-          <p class="proj-desc" data-i18n="proj-langchain-desc">Agentes de IA com LangChain e Python integrados à API da Anthropic. Exploração de chains, memória, ferramentas e orquestração de LLMs em casos de uso reais.</p>
-          <div class="proj-footer">
-            <span class="proj-tag done" data-i18n="proj-tag-done">concluído</span>
-            <div class="proj-links">
-              <a href="https://github.com/EversonRubira/LangChain-Python-via-LLM-Anthropic" target="_blank" rel="noopener" class="proj-link">GitHub <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
-            </div>
-          </div>
-        </div>
-        <div class="proj-spec">
-          <div class="proj-spec-title">ai_spec</div>
-          <div class="proj-spec-row"><span class="proj-spec-k">framework</span><span class="proj-spec-v">langchain · python</span></div>
-          <div class="proj-spec-row"><span class="proj-spec-k">provider</span><span class="proj-spec-v">anthropic_api</span></div>
-          <div class="proj-spec-row"><span class="proj-spec-k">concepts</span><span class="proj-spec-v">chains · memory · tools</span></div>
-          <div class="proj-spec-row"><span class="proj-spec-k">type</span><span class="proj-spec-v">ai_agents · llm_orchestration</span></div>
-          <div class="proj-spec-row"><span class="proj-spec-k">status</span><span class="proj-spec-v">completed</span></div>
-        </div>
-      </div>
-
-      <div class="proj-item reveal">
+      <!-- ── CAMADA 1: Featured ── -->
+      <div class="proj-item featured reveal">
         <div class="proj-main">
           <div class="proj-id">ID_05</div>
           <div class="proj-name">Sulav Sushi Bar</div>
@@ -1209,52 +1182,7 @@ footer {
         </div>
       </div>
 
-      <div class="proj-item reveal">
-        <div class="proj-main">
-          <div class="proj-id">ID_07</div>
-          <div class="proj-name">StudyFlow</div>
-          <p class="proj-desc" data-i18n="proj-studyflow-desc">App Android nativa de gestão de estudos. MVVM com ViewModel + LiveData, Room para persistência local, notificações de sessão e timer Pomodoro integrado.</p>
-          <div class="proj-footer">
-            <span class="proj-tag wip" data-i18n="proj-tag-wip">em desenvolvimento</span>
-            <div class="proj-links">
-              <a href="https://github.com/EversonRubira/StudyFlow" target="_blank" rel="noopener" class="proj-link">GitHub <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
-            </div>
-          </div>
-        </div>
-        <div class="proj-spec">
-          <div class="proj-spec-title">studyflow_spec</div>
-          <div class="proj-spec-row"><span class="proj-spec-k">platform</span><span class="proj-spec-v">android_native</span></div>
-          <div class="proj-spec-row"><span class="proj-spec-k">arch</span><span class="proj-spec-v">mvvm · viewmodel · livedata</span></div>
-          <div class="proj-spec-row"><span class="proj-spec-k">db</span><span class="proj-spec-v">room · sqlite</span></div>
-          <div class="proj-spec-row"><span class="proj-spec-k">features</span><span class="proj-spec-v">pomodoro · notifications</span></div>
-          <div class="proj-spec-row"><span class="proj-spec-k">lang</span><span class="proj-spec-v">kotlin</span></div>
-        </div>
-      </div>
-
-      <div class="proj-item reveal">
-        <div class="proj-main">
-          <div class="proj-id">ID_08</div>
-          <div class="proj-name">Campo Minado</div>
-          <p class="proj-desc" data-i18n="proj-minesweeper-desc">Minesweeper jogável no browser — revelação em cascata, bandeiras, chord click e três dificuldades. Portado de Java/Swing para vanilla JS com dark/light mode.</p>
-          <div class="proj-footer">
-            <span class="proj-tag live" data-i18n="proj-tag-live">produção</span>
-            <div class="proj-links">
-              <a href="/minesweeper/" target="_blank" rel="noopener" class="proj-link">jogar <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
-              <a href="https://github.com/EversonRubira/Campo_Minado" target="_blank" rel="noopener" class="proj-link">GitHub <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
-            </div>
-          </div>
-        </div>
-        <div class="proj-spec">
-          <div class="proj-spec-title">minesweeper_spec</div>
-          <div class="proj-spec-row"><span class="proj-spec-k">stack</span><span class="proj-spec-v">html · css · javascript</span></div>
-          <div class="proj-spec-row"><span class="proj-spec-k">origin</span><span class="proj-spec-v">java · swing · cli</span></div>
-          <div class="proj-spec-row"><span class="proj-spec-k">features</span><span class="proj-spec-v">cascade · chord · flags</span></div>
-          <div class="proj-spec-row"><span class="proj-spec-k">levels</span><span class="proj-spec-v">easy · medium · hard</span></div>
-          <div class="proj-spec-row"><span class="proj-spec-k">mobile</span><span class="proj-spec-v">long_press_flag</span></div>
-        </div>
-      </div>
-
-      <div class="proj-item reveal">
+      <div class="proj-item featured reveal">
         <div class="proj-main">
           <div class="proj-id">ID_09</div>
           <div class="proj-name">Absence Portal AI</div>
@@ -1276,26 +1204,79 @@ footer {
         </div>
       </div>
 
-      <div class="proj-item reveal">
+      <div class="proj-item featured reveal">
         <div class="proj-main">
-          <div class="proj-id">ID_10</div>
-          <div class="proj-name">Meeting Analyst</div>
-          <p class="proj-desc" data-i18n="proj-meeting-desc">Extrai summary, decisions, actions e open points de notas de reunião. FastAPI + Groq/llama3-70b. Frontend HTML bilingue PT/EN. Deploy no Railway.</p>
+          <div class="proj-id">ID_02</div>
+          <div class="proj-name">Boardly</div>
+          <p class="proj-desc" data-i18n="proj-boardly-desc">Gestão de tarefas com autenticação JWT e Clean Architecture. Projecto independente para praticar segurança e boas práticas de API REST.</p>
           <div class="proj-footer">
-            <span class="proj-tag live" data-i18n="proj-tag-live">produção</span>
+            <span class="proj-tag done" data-i18n="proj-tag-done">concluído</span>
             <div class="proj-links">
-              <a href="https://github.com/EversonRubira/meeting-analyst" target="_blank" rel="noopener" class="proj-link">GitHub <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+              <a href="https://github.com/EversonRubira/boardly" target="_blank" rel="noopener" class="proj-link">GitHub <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
             </div>
           </div>
         </div>
         <div class="proj-spec">
-          <div class="proj-spec-title">meeting_spec</div>
-          <div class="proj-spec-row"><span class="proj-spec-k">framework</span><span class="proj-spec-v">fastapi · python</span></div>
-          <div class="proj-spec-row"><span class="proj-spec-k">ai_provider</span><span class="proj-spec-v">groq · llama3_70b</span></div>
-          <div class="proj-spec-row"><span class="proj-spec-k">type</span><span class="proj-spec-v">prompt_engineering</span></div>
-          <div class="proj-spec-row"><span class="proj-spec-k">frontend</span><span class="proj-spec-v">html_pt_en</span></div>
-          <div class="proj-spec-row"><span class="proj-spec-k">infra</span><span class="proj-spec-v">railway</span></div>
+          <div class="proj-spec-title">architecture_spec</div>
+          <div class="proj-spec-row"><span class="proj-spec-k">pattern</span><span class="proj-spec-v">clean_architecture</span></div>
+          <div class="proj-spec-row"><span class="proj-spec-k">auth</span><span class="proj-spec-v">jwt_stateless</span></div>
+          <div class="proj-spec-row"><span class="proj-spec-k">database</span><span class="proj-spec-v">mongodb</span></div>
+          <div class="proj-spec-row"><span class="proj-spec-k">testing</span><span class="proj-spec-v">junit_5</span></div>
+          <div class="proj-spec-row"><span class="proj-spec-k">runtime</span><span class="proj-spec-v">java_17 · spring_boot</span></div>
         </div>
+      </div>
+
+      <!-- ── CAMADA 2: Lista compacta ── -->
+      <div class="proj-compact-label reveal" data-i18n="proj-more-label">— outros projetos —</div>
+      <div class="proj-compact-list reveal">
+
+        <div class="proj-compact-item">
+          <span class="proj-compact-id">ID_04</span>
+          <span class="proj-compact-name">LangChain + Anthropic</span>
+          <span class="proj-compact-stack">ai_agents · python · anthropic_api</span>
+          <div class="proj-compact-links">
+            <a href="https://github.com/EversonRubira/LangChain-Python-via-LLM-Anthropic" target="_blank" rel="noopener" class="proj-link">GitHub <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+          </div>
+        </div>
+
+        <div class="proj-compact-item">
+          <span class="proj-compact-id">ID_10</span>
+          <span class="proj-compact-name">Meeting Analyst</span>
+          <span class="proj-compact-stack">fastapi · groq_llama3-70b · railway</span>
+          <div class="proj-compact-links">
+            <a href="https://github.com/EversonRubira/meeting-analyst" target="_blank" rel="noopener" class="proj-link">GitHub <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+          </div>
+        </div>
+
+        <div class="proj-compact-item">
+          <span class="proj-compact-id">ID_03</span>
+          <span class="proj-compact-name">FitCheck</span>
+          <span class="proj-compact-stack">habit_tracker · groq/llama_3.3 · node.js · render</span>
+          <div class="proj-compact-links">
+            <a href="https://fitcheck-zpyt.onrender.com" target="_blank" rel="noopener" class="proj-link">demo <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+            <a href="https://github.com/EversonRubira/FitCheck" target="_blank" rel="noopener" class="proj-link">GitHub <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+          </div>
+        </div>
+
+        <div class="proj-compact-item">
+          <span class="proj-compact-id">ID_07</span>
+          <span class="proj-compact-name">StudyFlow</span>
+          <span class="proj-compact-stack">android_native · mvvm · kotlin · room</span>
+          <div class="proj-compact-links">
+            <a href="https://github.com/EversonRubira/StudyFlow" target="_blank" rel="noopener" class="proj-link">GitHub <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+          </div>
+        </div>
+
+        <div class="proj-compact-item">
+          <span class="proj-compact-id">ID_08</span>
+          <span class="proj-compact-name">Campo Minado</span>
+          <span class="proj-compact-stack">vanilla_js · flood-fill · portado de java/swing</span>
+          <div class="proj-compact-links">
+            <a href="/minesweeper/" target="_blank" rel="noopener" class="proj-link">jogar <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+            <a href="https://github.com/EversonRubira/Campo_Minado" target="_blank" rel="noopener" class="proj-link">GitHub <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+          </div>
+        </div>
+
       </div>
 
     </div>
@@ -1563,6 +1544,7 @@ const i18n = {
     'proj-tag-done': 'concluído',
     'proj-tag-wip': 'em desenvolvimento',
     'proj-tag-live': 'produção',
+    'proj-more-label': '— outros projetos —',
 
     'stack-backend': 'backend',
     'stack-frontend': 'frontend',
@@ -1703,6 +1685,7 @@ const i18n = {
     'proj-tag-done': 'completed',
     'proj-tag-wip': 'in development',
     'proj-tag-live': 'production',
+    'proj-more-label': '— other projects —',
 
     'stack-backend': 'backend',
     'stack-frontend': 'frontend',
