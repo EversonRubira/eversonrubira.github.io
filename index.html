@@ -1064,9 +1064,9 @@ footer {
     <div class="exp-list">
 
       <div class="exp-item reveal">
-        <div class="exp-year">2026<br>presente</div>
+        <div class="exp-year">Fev 2026<br>Jul 2026</div>
         <div>
-          <div class="exp-company">Pipoca Ágil <span class="exp-status" data-i18n="exp-status-active">activo</span></div>
+          <div class="exp-company">Pipoca Ágil <span class="exp-status" data-i18n="exp-status-done">concluído</span></div>
           <div class="exp-role" data-i18n="exp-role-pipoca">Estágio Curricular · Full-Stack Developer · Remoto (Brasil)</div>
           <ul class="exp-bullets">
             <li data-i18n="exp-pipoca-b1">Arquitectura Hexagonal + DDD em projecto real de e-commerce</li>
@@ -1075,6 +1075,7 @@ footer {
             <li data-i18n="exp-pipoca-b4">MapStruct, JUnit 5, Jira, GitHub, Docker</li>
           </ul>
           <div class="exp-tech">Java 21 · Spring Boot · PostgreSQL · Flyway · Angular 21 · TypeScript · PrimeNG · Vitest · Docker</div>
+          <div class="exp-tech" style="margin-top:4px;color:var(--ink-3)" data-i18n="exp-pipoca-grade">Nota final: 18/20</div>
         </div>
       </div>
 
@@ -1145,7 +1146,7 @@ footer {
         <div class="proj-main">
           <div class="proj-id">ID_03</div>
           <div class="proj-name">FitCheck</div>
-          <p class="proj-desc" data-i18n="proj-fitcheck-desc">Análise de outfit com IA via Groq/Llama 3.3. O utilizador descreve peças de roupa e recebe feedback detalhado de estilo em tempo real via streaming.</p>
+          <p class="proj-desc" data-i18n="proj-fitcheck-desc">Tracker de hábitos de saúde com análise semanal por IA. Regista sono, hidratação, IMC e metas físicas; Groq/Llama 3.3 analisa os registos e devolve sugestões em streaming.</p>
           <div class="proj-footer">
             <span class="proj-tag live" data-i18n="proj-tag-live">produção</span>
             <div class="proj-links">
@@ -1159,7 +1160,7 @@ footer {
           <div class="proj-spec-row"><span class="proj-spec-k">ai_provider</span><span class="proj-spec-v">groq · llama_3.3</span></div>
           <div class="proj-spec-row"><span class="proj-spec-k">database</span><span class="proj-spec-v">mysql · sequelize</span></div>
           <div class="proj-spec-row"><span class="proj-spec-k">runtime</span><span class="proj-spec-v">node.js · express</span></div>
-          <div class="proj-spec-row"><span class="proj-spec-k">feature</span><span class="proj-spec-v">sse_streaming · rate_limit</span></div>
+          <div class="proj-spec-row"><span class="proj-spec-k">feature</span><span class="proj-spec-v">sse_streaming · habit_tracking · bmi</span></div>
           <div class="proj-spec-row"><span class="proj-spec-k">infra</span><span class="proj-spec-v">render · clever_cloud</span></div>
         </div>
       </div>
@@ -1275,6 +1276,50 @@ footer {
         </div>
       </div>
 
+      <div class="proj-item reveal">
+        <div class="proj-main">
+          <div class="proj-id">ID_09</div>
+          <div class="proj-name">Absence Portal AI</div>
+          <p class="proj-desc" data-i18n="proj-absence-desc">Backend stateless em FastAPI + Groq/Llama 3.3 que gera resumos executivos e respostas em linguagem natural sobre dados de ausências já calculados. Implementado para um mentee na Accenture.</p>
+          <div class="proj-footer">
+            <span class="proj-tag live" data-i18n="proj-tag-live">produção</span>
+            <div class="proj-links">
+              <a href="https://github.com/EversonRubira/absence-portal-ai" target="_blank" rel="noopener" class="proj-link">GitHub <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+            </div>
+          </div>
+        </div>
+        <div class="proj-spec">
+          <div class="proj-spec-title">absence_spec</div>
+          <div class="proj-spec-row"><span class="proj-spec-k">framework</span><span class="proj-spec-v">fastapi · python</span></div>
+          <div class="proj-spec-row"><span class="proj-spec-k">ai_provider</span><span class="proj-spec-v">groq · llama_3.3</span></div>
+          <div class="proj-spec-row"><span class="proj-spec-k">type</span><span class="proj-spec-v">prompt_engineering</span></div>
+          <div class="proj-spec-row"><span class="proj-spec-k">infra</span><span class="proj-spec-v">render</span></div>
+          <div class="proj-spec-row"><span class="proj-spec-k">status</span><span class="proj-spec-v">production</span></div>
+        </div>
+      </div>
+
+      <div class="proj-item reveal">
+        <div class="proj-main">
+          <div class="proj-id">ID_10</div>
+          <div class="proj-name">Meeting Analyst</div>
+          <p class="proj-desc" data-i18n="proj-meeting-desc">Extrai summary, decisions, actions e open points de notas de reunião. FastAPI + Groq/llama3-70b. Frontend HTML bilingue PT/EN. Deploy no Railway.</p>
+          <div class="proj-footer">
+            <span class="proj-tag live" data-i18n="proj-tag-live">produção</span>
+            <div class="proj-links">
+              <a href="https://github.com/EversonRubira/meeting-analyst" target="_blank" rel="noopener" class="proj-link">GitHub <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+            </div>
+          </div>
+        </div>
+        <div class="proj-spec">
+          <div class="proj-spec-title">meeting_spec</div>
+          <div class="proj-spec-row"><span class="proj-spec-k">framework</span><span class="proj-spec-v">fastapi · python</span></div>
+          <div class="proj-spec-row"><span class="proj-spec-k">ai_provider</span><span class="proj-spec-v">groq · llama3_70b</span></div>
+          <div class="proj-spec-row"><span class="proj-spec-k">type</span><span class="proj-spec-v">prompt_engineering</span></div>
+          <div class="proj-spec-row"><span class="proj-spec-k">frontend</span><span class="proj-spec-v">html_pt_en</span></div>
+          <div class="proj-spec-row"><span class="proj-spec-k">infra</span><span class="proj-spec-v">railway</span></div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -1318,10 +1363,15 @@ footer {
           <div class="edu-period" data-i18n="edu-period-ips">2024 – Dez 2026 (previsto)</div>
           <div class="edu-note" data-i18n="edu-note-ips">3.º semestre, 7 UCs em curso + estágio curricular activo na Pipoca Ágil.</div>
         </div>
-        <div class="edu-block" style="border-bottom:none">
+        <div class="edu-block">
           <div class="edu-degree">Anthropic Academy</div>
           <div class="edu-school" data-i18n="edu-school-anthropic">Cursos concluídos · 2026</div>
           <div class="edu-period">Claude 101 · Claude Code in Action · AI Fluency: Framework &amp; Foundations · AI Fluency for Students</div>
+        </div>
+        <div class="edu-block" style="border-bottom:none">
+          <div class="edu-degree" data-i18n="edu-degree-elevate">Accenture — Elevate GenAI Wave 2</div>
+          <div class="edu-school" data-i18n="edu-school-elevate">Facilitador de IA Generativa &amp; Agentic AI · 2026</div>
+          <div class="edu-period" data-i18n="edu-period-elevate">Reverse mentoring de líderes seniores sobre GenAI · Workshops práticos de Agentic AI · Microsoft Copilot Studio · Badge Credly "Reinvention with Agentic AI — Facilitator" (Jun 2026)</div>
         </div>
       </div>
       <div class="reveal">
@@ -1454,7 +1504,7 @@ const i18n = {
 
     'sobre-quote': '"12 anos a operar sistemas B2B ensinaram-me a pensar <em>antes</em> de construir. Agora aplico isso em código."',
     'sobre-p1': 'Brasileiro em Portugal. Construo a minha transição para tech com consistência. Não saí do zero: trago experiência real em identificar falhas, trabalhar com precisão e entregar sob pressão.',
-    'sobre-p2': 'Estou a completar o <strong>TeSP em Programação e Sistemas de Informação no IPS</strong>, com estágio curricular activo em Java/Spring Boot e Angular na Pipoca Ágil. Co-fundei a <strong>ImplementIQ Systems</strong> com clientes reais em produção.',
+    'sobre-p2': 'Estou a completar o <strong>TeSP em Programação e Sistemas de Informação no IPS</strong>. Concluí o estágio curricular em Java/Spring Boot e Angular na Pipoca Ágil com nota 18/20. Co-fundei a <strong>ImplementIQ Systems</strong> com clientes reais em produção.',
     'fact-localizacao': 'localização',
     'fact-procuro': 'procuro',
     'fact-procuro-v': 'Backend Engineer · AI Engineer · QA',
@@ -1499,6 +1549,8 @@ const i18n = {
     'photo-hint': 'clique',
 
     'exp-status-active': 'activo',
+    'exp-status-done': 'concluído',
+    'exp-pipoca-grade': 'Nota final: 18/20',
     'exp-role-pipoca': 'Estágio Curricular · Full-Stack Developer · Remoto (Brasil)',
     'exp-pipoca-b1': 'Arquitectura Hexagonal + DDD em projecto real de e-commerce',
     'exp-pipoca-b2': 'Migração de schema com Flyway; catálogo de produtos completo',
@@ -1522,10 +1574,12 @@ const i18n = {
     'proj-rh-desc': 'Sistema de RH em Java com aplicação rigorosa dos princípios SOLID. Projeto focado em demonstrar boas práticas de design orientado a objetos e código limpo.',
     'proj-boardly-desc': 'Gestão de tarefas com autenticação JWT e Clean Architecture. Projecto independente para praticar segurança e boas práticas de API REST.',
     'proj-gestao-desc': 'API REST para gestão de saúde mental, com foco em boas práticas de backend, estrutura de dados e design de endpoints coesos.',
-    'proj-fitcheck-desc': 'Análise de outfit com IA via Groq/Llama 3.3. O utilizador descreve peças de roupa e recebe feedback detalhado de estilo em tempo real via streaming.',
+    'proj-fitcheck-desc': 'Tracker de hábitos de saúde com análise semanal por IA. Regista sono, hidratação, IMC e metas físicas; Groq/Llama 3.3 analisa os registos e devolve sugestões em streaming.',
     'proj-sulav-desc': 'Site completo em produção para restaurante português. Bilíngue PT/EN com Uber Eats, Glovo, Bolt Food e Google Maps integrados.',
     'proj-imc-desc': 'Calculadora de Índice de Massa Corporal com tabela de referência OMS. Dark/light mode, validação de input e destaque dinâmico da classificação correspondente.',
     'proj-minesweeper-desc': 'Minesweeper jogável no browser — revelação em cascata, bandeiras, chord click e três dificuldades. Portado de Java/Swing para vanilla JS com dark/light mode.',
+    'proj-absence-desc': 'Backend stateless em FastAPI + Groq/Llama 3.3 que gera resumos executivos e respostas em linguagem natural sobre dados de ausências já calculados. Implementado para um mentee na Accenture.',
+    'proj-meeting-desc': 'Extrai summary, decisions, actions e open points de notas de reunião. FastAPI + Groq/llama3-70b. Frontend HTML bilingue PT/EN. Deploy no Railway.',
     'proj-studyflow-desc': 'App Android nativa de gestão de estudos. MVVM com ViewModel + LiveData, Room para persistência local, notificações de sessão e timer Pomodoro integrado.',
     'proj-wedding-desc': 'Site institucional em desenvolvimento para cliente real no sector de casamentos. Entrega completa da ImplementIQ Systems.',
     'proj-tag-done': 'concluído',
@@ -1540,8 +1594,11 @@ const i18n = {
     'stack-ia': 'ia &amp; automação',
 
     'edu-degree-ips': 'TeSP em Programação e Sistemas de Informação',
-    'edu-note-ips': '3.º semestre, 7 UCs em curso + estágio curricular activo na Pipoca Ágil.',
+    'edu-note-ips': '3.º semestre, 7 UCs em curso. Estágio curricular concluído na Pipoca Ágil · nota 18/20.',
     'edu-school-anthropic': 'Cursos concluídos · 2026',
+    'edu-degree-elevate': 'Accenture — Elevate GenAI Wave 2',
+    'edu-school-elevate': 'Facilitador de IA Generativa &amp; Agentic AI · 2026',
+    'edu-period-elevate': 'Reverse mentoring de líderes seniores sobre GenAI · Workshops práticos de Agentic AI · Microsoft Copilot Studio · Badge Credly "Reinvention with Agentic AI — Facilitator" (Jun 2026)',
     'micro-learning': 'em aprendizagem activa',
     'learn-inscrito': 'inscrito',
     'learn-iniciando': 'a iniciar',
@@ -1587,7 +1644,7 @@ const i18n = {
 
     'sobre-quote': '"12 years operating B2B systems taught me to think <em>before</em> building. Now I apply that in code."',
     'sobre-p1': 'Brazilian in Portugal. Building my transition into tech with consistency. I didn\'t start from zero: I bring real experience identifying failures, working with precision, and delivering under pressure.',
-    'sobre-p2': 'I\'m completing a <strong>degree in Programming and Information Systems at IPS</strong>, with an active internship in Java/Spring Boot and Angular at Pipoca Ágil. I co-founded <strong>ImplementIQ Systems</strong> with real clients in production.',
+    'sobre-p2': 'I\'m completing a <strong>degree in Programming and Information Systems at IPS</strong>. I completed my internship in Java/Spring Boot and Angular at Pipoca Ágil with a final grade of 18/20. I co-founded <strong>ImplementIQ Systems</strong> with real clients in production.',
     'fact-localizacao': 'location',
     'fact-procuro': 'seeking',
     'fact-procuro-v': 'Backend Engineer · AI Engineer · QA',
@@ -1632,6 +1689,8 @@ const i18n = {
     'photo-hint': 'click',
 
     'exp-status-active': 'active',
+    'exp-status-done': 'completed',
+    'exp-pipoca-grade': 'Final grade: 18/20',
     'exp-role-pipoca': 'Internship · Full-Stack Developer · Remote (Brazil)',
     'exp-pipoca-b1': 'Hexagonal Architecture + DDD on a real e-commerce project',
     'exp-pipoca-b2': 'Schema migration with Flyway; complete product catalogue',
@@ -1655,10 +1714,12 @@ const i18n = {
     'proj-rh-desc': 'HR system in Java with rigorous application of SOLID principles. Project focused on demonstrating good object-oriented design practices and clean code.',
     'proj-boardly-desc': 'Task management with JWT authentication and Clean Architecture. Independent project to practice security and REST API best practices.',
     'proj-gestao-desc': 'REST API for mental health management, focused on backend best practices, data structure and cohesive endpoint design.',
-    'proj-fitcheck-desc': 'Outfit analysis with AI via Groq/Llama 3.3. User describes clothing items and receives detailed real-time style feedback via SSE streaming.',
+    'proj-fitcheck-desc': 'Health habit tracker with weekly AI analysis. Logs sleep, hydration, BMI and fitness goals; Groq/Llama 3.3 analyses records and streams personalised suggestions.',
     'proj-sulav-desc': 'Full production site for a Portuguese restaurant. Bilingual PT/EN with Uber Eats, Glovo, Bolt Food and Google Maps integrated.',
     'proj-imc-desc': 'Body Mass Index calculator with WHO reference table. Dark/light mode, input validation and dynamic highlight of the matching classification.',
     'proj-minesweeper-desc': 'Playable Minesweeper in the browser — cascade reveal, flags, chord click and three difficulty levels. Ported from Java/Swing to vanilla JS with dark/light mode.',
+    'proj-absence-desc': 'Stateless backend in FastAPI + Groq/Llama 3.3 that generates executive summaries and natural language responses from pre-calculated absence data. Built for a mentee at Accenture.',
+    'proj-meeting-desc': 'Extracts summary, decisions, actions and open points from meeting notes. FastAPI + Groq/llama3-70b. Bilingual PT/EN HTML frontend. Deployed on Railway.',
     'proj-studyflow-desc': 'Native Android study management app. MVVM with ViewModel + LiveData, Room for local persistence, session notifications and integrated Pomodoro timer.',
     'proj-wedding-desc': 'Institutional site in development for a real client in the weddings sector. Full delivery by ImplementIQ Systems.',
     'proj-tag-done': 'completed',
@@ -1673,8 +1734,11 @@ const i18n = {
     'stack-ia': 'ai &amp; automation',
 
     'edu-degree-ips': 'Degree in Programming and Information Systems',
-    'edu-note-ips': '3rd semester, 7 ongoing modules + active internship at Pipoca Ágil.',
+    'edu-note-ips': '3rd semester, 7 ongoing modules. Internship completed at Pipoca Ágil · grade 18/20.',
     'edu-school-anthropic': 'Completed courses · 2026',
+    'edu-degree-elevate': 'Accenture — Elevate GenAI Wave 2',
+    'edu-school-elevate': 'Generative AI &amp; Agentic AI Facilitator · 2026',
+    'edu-period-elevate': 'Reverse mentoring of senior leaders on GenAI · Practical Agentic AI workshops · Microsoft Copilot Studio · Credly Badge "Reinvention with Agentic AI — Facilitator" (Jun 2026)',
     'micro-learning': 'actively learning',
     'learn-inscrito': 'enrolled',
     'learn-iniciando': 'starting',
@@ -1861,7 +1925,7 @@ window.addEventListener('load', function() {
       ['ok',  'Node.js and Claude API.'],
       ['ok',  ''],
       ['ok',  'Degree in Programming & Info Systems @ IPS.'],
-      ['ok',  'Internship @ Pipoca Ágil (Java/Spring Boot/Angular).'],
+      ['ok',  'Internship @ Pipoca Ágil (Java/Spring Boot/Angular) — grade 18/20.'],
       ['ok',  'Co-founder @ ImplementIQ Systems — real clients.'],
       ['dim', ''],
       ['dim', 'type "skills" or "projects" for more.'],
@@ -1874,7 +1938,7 @@ window.addEventListener('load', function() {
       ['ok',  'Node.js e Claude API.'],
       ['ok',  ''],
       ['ok',  'TeSP Programação e Sistemas de Informação @ IPS.'],
-      ['ok',  'Estágio @ Pipoca Ágil (Java/Spring Boot/Angular).'],
+      ['ok',  'Estágio @ Pipoca Ágil (Java/Spring Boot/Angular) — nota 18/20.'],
       ['ok',  'Co-fundador @ ImplementIQ Systems — clientes reais.'],
       ['dim', ''],
       ['dim', 'escreve "skills" ou "projects" para mais.'],
