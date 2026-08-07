@@ -2141,6 +2141,41 @@ const bro = new IntersectionObserver(entries => {
   });
 }, { threshold: 0.3 });
 document.querySelectorAll('.learn-list').forEach(el => bro.observe(el));
+
+/* ── LANTERNA ── */
+(function() {
+  const overlay = document.createElement('div');
+  overlay.id = 'torch-overlay';
+  Object.assign(overlay.style, {
+    position: 'fixed', inset: '0', pointerEvents: 'none',
+    zIndex: '9999', transition: 'opacity 0.4s ease',
+    background: 'radial-gradient(circle 180px at 50% 50%, transparent 0%, rgba(0,0,0,0.82) 100%)'
+  });
+  document.body.appendChild(overlay);
+
+  let active = false, rafId = null, cx = window.innerWidth / 2, cy = window.innerHeight / 2;
+
+  function updateOverlay(x, y) {
+    overlay.style.background = `radial-gradient(circle 180px at ${x}px ${y}px, transparent 0%, rgba(0,0,0,0.82) 100%)`;
+  }
+
+  document.addEventListener('mousemove', e => {
+    cx = e.clientX; cy = e.clientY;
+    if (!active) return;
+    if (rafId) cancelAnimationFrame(rafId);
+    rafId = requestAnimationFrame(() => { updateOverlay(cx, cy); rafId = null; });
+  });
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'l' || e.key === 'L') {
+      active = !active;
+      overlay.style.opacity = active ? '1' : '0';
+      if (active) updateOverlay(cx, cy);
+    }
+  });
+
+  overlay.style.opacity = '0';
+})();
 </script>
 </body>
 </html>
