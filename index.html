@@ -2142,28 +2142,6 @@ const bro = new IntersectionObserver(entries => {
 }, { threshold: 0.3 });
 document.querySelectorAll('.learn-list').forEach(el => bro.observe(el));
 
-/* ── LANTERNA ── */
-(function() {
-  const overlay = document.createElement('div');
-  overlay.id = 'torch-overlay';
-  Object.assign(overlay.style, {
-    position: 'fixed', inset: '0', pointerEvents: 'none',
-    zIndex: '9999', opacity: '0', transition: 'opacity 0.6s ease'
-  });
-  document.body.appendChild(overlay);
-
-  let rafId = null;
-
-  function update(x, y) {
-    overlay.style.background = `radial-gradient(circle 220px at ${x}px ${y}px, transparent 0%, rgba(0,0,0,0.85) 70%)`;
-  }
-
-  document.addEventListener('mousemove', e => {
-    if (overlay.style.opacity === '0') overlay.style.opacity = '1';
-    if (rafId) cancelAnimationFrame(rafId);
-    rafId = requestAnimationFrame(() => { update(e.clientX, e.clientY); rafId = null; });
-  });
-})();
 </script>
 </body>
 </html>
