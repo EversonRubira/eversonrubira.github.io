@@ -2148,33 +2148,21 @@ document.querySelectorAll('.learn-list').forEach(el => bro.observe(el));
   overlay.id = 'torch-overlay';
   Object.assign(overlay.style, {
     position: 'fixed', inset: '0', pointerEvents: 'none',
-    zIndex: '9999', transition: 'opacity 0.4s ease',
-    background: 'radial-gradient(circle 180px at 50% 50%, transparent 0%, rgba(0,0,0,0.82) 100%)'
+    zIndex: '9999', opacity: '0', transition: 'opacity 0.6s ease'
   });
   document.body.appendChild(overlay);
 
-  let active = false, rafId = null, cx = window.innerWidth / 2, cy = window.innerHeight / 2;
+  let rafId = null;
 
-  function updateOverlay(x, y) {
-    overlay.style.background = `radial-gradient(circle 180px at ${x}px ${y}px, transparent 0%, rgba(0,0,0,0.82) 100%)`;
+  function update(x, y) {
+    overlay.style.background = `radial-gradient(circle 220px at ${x}px ${y}px, transparent 0%, rgba(0,0,0,0.85) 70%)`;
   }
 
   document.addEventListener('mousemove', e => {
-    cx = e.clientX; cy = e.clientY;
-    if (!active) return;
+    if (overlay.style.opacity === '0') overlay.style.opacity = '1';
     if (rafId) cancelAnimationFrame(rafId);
-    rafId = requestAnimationFrame(() => { updateOverlay(cx, cy); rafId = null; });
+    rafId = requestAnimationFrame(() => { update(e.clientX, e.clientY); rafId = null; });
   });
-
-  document.addEventListener('keydown', e => {
-    if (e.key === 'l' || e.key === 'L') {
-      active = !active;
-      overlay.style.opacity = active ? '1' : '0';
-      if (active) updateOverlay(cx, cy);
-    }
-  });
-
-  overlay.style.opacity = '0';
 })();
 </script>
 </body>
