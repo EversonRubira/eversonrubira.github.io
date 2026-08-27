@@ -1184,22 +1184,23 @@ footer {
 
       <div class="proj-item featured reveal">
         <div class="proj-main">
-          <div class="proj-id">ID_06</div>
-          <div class="proj-name">Gestão Saúde Mental</div>
-          <p class="proj-desc" data-i18n="proj-gestao-desc">API REST para gestão de saúde mental, com foco em boas práticas de backend, estrutura de dados e design de endpoints coesos.</p>
+          <div class="proj-id">ID_12</div>
+          <div class="proj-name">ArqSync</div>
+          <p class="proj-desc" data-i18n="proj-arqsync-desc">Analisador estático de arquitectura Java. Detecta dependências circulares e violações de camadas (controller/service/repository/domain). Suporta repos locais e remotos via Git. Gera relatórios JSON e HTML com diagramas Mermaid.</p>
           <div class="proj-footer">
             <span class="proj-tag wip" data-i18n="proj-tag-wip">em desenvolvimento</span>
             <div class="proj-links">
-              <a href="https://github.com/EversonRubira/GestaoSaudeMental" target="_blank" rel="noopener" class="proj-link">GitHub <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+              <a href="https://github.com/EversonRubira/ArqSync" target="_blank" rel="noopener" class="proj-link">GitHub <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
             </div>
           </div>
         </div>
         <div class="proj-spec">
-          <div class="proj-spec-title">health_api_spec</div>
-          <div class="proj-spec-row"><span class="proj-spec-k">runtime</span><span class="proj-spec-v">java_17 · spring_boot</span></div>
-          <div class="proj-spec-row"><span class="proj-spec-k">pattern</span><span class="proj-spec-v">rest_api · clean_arch</span></div>
-          <div class="proj-spec-row"><span class="proj-spec-k">database</span><span class="proj-spec-v">postgresql</span></div>
-          <div class="proj-spec-row"><span class="proj-spec-k">status</span><span class="proj-spec-v">active_development</span></div>
+          <div class="proj-spec-title">arqsync_spec</div>
+          <div class="proj-spec-row"><span class="proj-spec-k">runtime</span><span class="proj-spec-v">java_21 · spring_boot_3</span></div>
+          <div class="proj-spec-row"><span class="proj-spec-k">analysis</span><span class="proj-spec-v">javaparser · cycle_detection</span></div>
+          <div class="proj-spec-row"><span class="proj-spec-k">output</span><span class="proj-spec-v">json · html · mermaid_js</span></div>
+          <div class="proj-spec-row"><span class="proj-spec-k">method</span><span class="proj-spec-v">spec_driven_development</span></div>
+          <div class="proj-spec-row"><span class="proj-spec-k">scope</span><span class="proj-spec-v">local_scan · remote_git</span></div>
         </div>
       </div>
 
@@ -1267,6 +1268,15 @@ footer {
           <span class="proj-compact-stack">fastapi · groq_llama3-70b · railway</span>
           <div class="proj-compact-links">
             <a href="https://github.com/EversonRubira/meeting-analyst" target="_blank" rel="noopener" class="proj-link">GitHub <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+          </div>
+        </div>
+
+        <div class="proj-compact-item">
+          <span class="proj-compact-id">ID_06</span>
+          <span class="proj-compact-name">Gestão Saúde Mental</span>
+          <span class="proj-compact-stack">java · spring_boot · rest_api · postgresql</span>
+          <div class="proj-compact-links">
+            <a href="https://github.com/EversonRubira/GestaoSaudeMental" target="_blank" rel="noopener" class="proj-link">GitHub <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
           </div>
         </div>
 
@@ -1566,6 +1576,7 @@ const i18n = {
     'proj-sulav-desc': 'Site completo em produção para restaurante português. Bilíngue PT/EN com Uber Eats, Glovo, Bolt Food e Google Maps integrados.',
     'proj-imc-desc': 'Calculadora de Índice de Massa Corporal com tabela de referência OMS. Dark/light mode, validação de input e destaque dinâmico da classificação correspondente.',
     'proj-minesweeper-desc': 'Minesweeper jogável no browser — revelação em cascata, bandeiras, chord click e três dificuldades. Portado de Java/Swing para vanilla JS com dark/light mode.',
+    'proj-arqsync-desc': 'Analisador estático de arquitectura Java. Detecta dependências circulares e violações de camadas (controller/service/repository/domain). Suporta repos locais e remotos via Git. Gera relatórios JSON e HTML com diagramas Mermaid.',
     'proj-crypto-desc': 'Top 10 criptomoedas em tempo real via CoinGecko API. Node.js sem frameworks, views dinâmicas e clean code.',
     'proj-absence-desc': 'Backend stateless em FastAPI + Groq/Llama 3.3 que gera resumos executivos e respostas em linguagem natural sobre dados de ausências já calculados. Implementado para um mentee na Accenture.',
     'proj-meeting-desc': 'Extrai summary, decisions, actions e open points de notas de reunião. FastAPI + Groq/llama3-70b. Frontend HTML bilingue PT/EN. Deploy no Railway.',
@@ -1708,6 +1719,7 @@ const i18n = {
     'proj-sulav-desc': 'Full production site for a Portuguese restaurant. Bilingual PT/EN with Uber Eats, Glovo, Bolt Food and Google Maps integrated.',
     'proj-imc-desc': 'Body Mass Index calculator with WHO reference table. Dark/light mode, input validation and dynamic highlight of the matching classification.',
     'proj-minesweeper-desc': 'Playable Minesweeper in the browser — cascade reveal, flags, chord click and three difficulty levels. Ported from Java/Swing to vanilla JS with dark/light mode.',
+    'proj-arqsync-desc': 'Static Java architecture analyser. Detects circular dependencies and layer violations (controller/service/repository/domain). Supports local and remote Git repos. Generates JSON and HTML reports with Mermaid diagrams.',
     'proj-crypto-desc': 'Top 10 cryptocurrencies in real time via CoinGecko API. Node.js with no frameworks, dynamic views and clean code.',
     'proj-absence-desc': 'Stateless backend in FastAPI + Groq/Llama 3.3 that generates executive summaries and natural language responses from pre-calculated absence data. Built for a mentee at Accenture.',
     'proj-meeting-desc': 'Extracts summary, decisions, actions and open points from meeting notes. FastAPI + Groq/llama3-70b. Bilingual PT/EN HTML frontend. Deployed on Railway.',
