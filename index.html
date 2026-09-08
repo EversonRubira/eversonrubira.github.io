@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="pt" data-theme="dark" data-lang="pt">
 <head>
 <meta charset="UTF-8">
@@ -21,766 +22,1321 @@
 /* ─── RESET ─── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
-body {
-  font-family: 'Space Grotesk', system-ui, sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  min-height: 100vh;
-  transition: background .25s, color .25s;
-}
+a { color: inherit; text-decoration: none; }
+img { display: block; }
+button { cursor: pointer; font-family: inherit; }
 
-/* ─── DESIGN TOKENS ─── */
+/* ─── TOKENS ─── */
 :root {
-  --bg:        #090f14;
-  --panel:     #0d1520;
-  --surface:   #111d2b;
-  --line:      #1e2d3d;
-  --muted:     #4a6070;
-  --text-dim:  #8899a6;
-  --text:      #cdd9e5;
-  --head:      #e6edf3;
-  --acc:       #22d3da;
-  --acc2:      #6e8cff;
-  --warn:      #e3b341;
-  --ok:        #3fb950;
-  --danger:    #f85149;
-  --mono:      'JetBrains Mono', monospace;
-  --radius:    6px;
-  --max:       1120px;
-  --nav-h:     52px;
-  --col-gap:   clamp(24px, 4vw, 56px);
-  --row-gap:   clamp(16px, 2.5vw, 28px);
-}
-[data-theme="light"] {
-  --bg:      #f6f8fa;
-  --panel:   #ffffff;
-  --surface: #f0f3f6;
-  --line:    #d0d7de;
-  --muted:   #8c959f;
-  --text-dim:#636c76;
-  --text:    #24292f;
-  --head:    #1f2328;
-  --acc:     #0969da;
-  --acc2:    #6639ba;
-  --warn:    #9a6700;
-  --ok:      #1a7f37;
-  --danger:  #cf222e;
+  --mono: 'JetBrains Mono', 'Courier New', monospace;
+  --sans: 'Space Grotesk', system-ui, sans-serif;
 }
 
-/* ─── SCROLLBAR ─── */
-::-webkit-scrollbar{width:6px;height:6px}
-::-webkit-scrollbar-track{background:transparent}
-::-webkit-scrollbar-thumb{background:var(--line);border-radius:3px}
+[data-theme="dark"] {
+  --bg:        #090f14;
+  --bg-1:      #0e1a20;
+  --bg-2:      #152530;
+  --ink:       #e8f6f8;
+  --ink-2:     #c2dde2;
+  --ink-3:     #6a9da5;
+  --line:      #1c3540;
+  --line-2:    rgba(255,255,255,0.06);
+  --white:     #ffffff;
+  --nav-bg:    rgba(9,15,20,0.93);
+  --grid-line: rgba(255,255,255,0.04);
+  --scan-clr:  rgba(255,255,255,0.04);
+  --tag-live:  rgba(34,211,218,0.14);
+  --tag-live-c:#22d3da;
+  --tag-wip-c: #6a9da5;
+  --tag-wip:   rgba(255,255,255,0.05);
+  --photo-f:   grayscale(100%) contrast(1.08);
+  --frame-b:   rgba(34,211,218,0.12);
+  --blob-a:    rgba(13,115,119,0.22);
+  --blob-b:    rgba(6,78,88,0.16);
+  --blob-c:    rgba(20,168,174,0.12);
+}
+
+[data-theme="light"] {
+  --bg:        #f4f2ee;
+  --bg-1:      #edeae4;
+  --bg-2:      #e2dfd8;
+  --ink:       #0d0d10;
+  --ink-2:     #38363f;
+  --ink-3:     #999299;
+  --line:      #ccc9c2;
+  --line-2:    rgba(0,0,0,0.06);
+  --white:     #0f0f12;
+  --nav-bg:    rgba(244,242,238,0.92);
+  --grid-line: rgba(0,0,0,0.04);
+  --scan-clr:  rgba(0,0,0,0.03);
+  --tag-live:  rgba(0,0,0,0.08);
+  --tag-live-c:#0f0f12;
+  --tag-wip-c: #5a5a62;
+  --tag-wip:   rgba(0,0,0,0.04);
+  --photo-f:   grayscale(100%) contrast(1.05);
+  --frame-b:   rgba(0,0,0,0.12);
+}
+
+body {
+  font-family: var(--sans);
+  background: var(--bg);
+  color: var(--ink-2);
+  line-height: 1.6;
+  transition: background 0.3s, color 0.3s;
+  overflow-x: hidden;
+}
+
 
 /* ─── GLOBAL GRID LINES ─── */
-body::before {
-  content:'';
-  position:fixed; inset:0; z-index:0; pointer-events:none;
-  background:
-    linear-gradient(90deg,var(--line) 0 1px,transparent 1px 100%) 0 0 / clamp(60px,8vw,100px) 100%,
-    linear-gradient(0deg, var(--line) 0 1px,transparent 1px 100%) 0 0 / 100% clamp(60px,8vw,100px);
-  opacity:.25;
+.gl { position: fixed; top: 0; bottom: 0; width: 1px; background: var(--grid-line); z-index: 0; pointer-events: none; transition: background 0.3s; }
+.gl-1 { left: 48px; }
+.gl-2 { right: 48px; }
+.gl-3 { left: calc(50% - 1px); }
+
+/* ─── BLOBS ─── */
+.blob {
+  position: fixed; border-radius: 50%;
+  filter: blur(90px); pointer-events: none; z-index: 0;
+  will-change: transform;
 }
-body > * { position:relative; z-index:1; }
+[data-theme="dark"] .blob { opacity: 1; }
+[data-theme="light"] .blob { display: none; }
+.blob-a {
+  width: 700px; height: 700px;
+  background: var(--blob-a);
+  top: -200px; left: -150px;
+  animation: blobA 22s ease-in-out infinite;
+}
+.blob-b {
+  width: 550px; height: 550px;
+  background: var(--blob-b);
+  top: 40%; right: -180px;
+  animation: blobB 28s ease-in-out infinite;
+}
+.blob-c {
+  width: 450px; height: 450px;
+  background: var(--blob-c);
+  bottom: 5%; left: 25%;
+  animation: blobC 20s ease-in-out infinite;
+}
+@keyframes blobA {
+  0%,100% { transform: translate(0,0) scale(1); }
+  33%      { transform: translate(60px,50px) scale(1.08); }
+  66%      { transform: translate(-30px,80px) scale(0.94); }
+}
+@keyframes blobB {
+  0%,100% { transform: translate(0,0) scale(1); }
+  33%      { transform: translate(-50px,-70px) scale(1.06); }
+  66%      { transform: translate(40px,30px) scale(1.1); }
+}
+@keyframes blobC {
+  0%,100% { transform: translate(0,0) scale(1); }
+  33%      { transform: translate(70px,-40px) scale(0.92); }
+  66%      { transform: translate(-40px,20px) scale(1.08); }
+}
+
+
+/* ─── REVEAL ─── */
+.reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.65s ease, transform 0.65s ease; }
+.reveal.in { opacity: 1; transform: none; }
 
 /* ─── NAV ─── */
 nav {
-  position:sticky; top:0; z-index:100;
-  height:var(--nav-h);
-  background:color-mix(in srgb, var(--bg) 88%, transparent);
-  backdrop-filter:blur(12px);
-  border-bottom:1px solid var(--line);
-  display:flex; align-items:center;
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: var(--nav-bg);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
+  transition: background 0.3s, border-color 0.3s;
 }
-.nav-inner{
-  width:100%; max-width:var(--max); margin:0 auto;
-  padding:0 clamp(16px,4vw,40px);
-  display:flex; align-items:center; gap:12px;
+.nav-inner {
+  max-width: 1200px; margin: 0 auto; padding: 0 48px;
+  height: 52px; display: flex; align-items: center; gap: 0;
 }
-.nav-logo{
-  font-family:var(--mono); font-size:.9rem; font-weight:700;
-  color:var(--acc); letter-spacing:.04em; margin-right:auto; white-space:nowrap;
+.nav-logo {
+  font-family: var(--mono);
+  font-size: 0.8rem; font-weight: 700;
+  color: var(--ink); letter-spacing: 0.04em;
+  margin-right: auto; flex-shrink: 0;
 }
-.nav-links{
-  display:flex; gap:2px; list-style:none;
+.nav-logo .dim { color: var(--ink-3); font-weight: 400; }
+.nav-links { display: flex; gap: 0; list-style: none; }
+.nav-links a {
+  font-family: var(--mono); font-size: 0.68rem;
+  color: var(--ink-3); padding: 6px 14px;
+  letter-spacing: 0.06em; text-transform: lowercase;
+  transition: color 0.15s;
 }
-.nav-links a{
-  font-size:.78rem; padding:5px 10px; border-radius:var(--radius);
-  color:var(--text-dim); text-decoration:none; transition:color .15s,background .15s;
-  white-space:nowrap;
+.nav-links a:hover, .nav-links a.active { color: var(--ink); }
+.nav-right { display: flex; align-items: center; gap: 8px; margin-left: 16px; }
+#lang-btn {
+  font-family: var(--mono); font-size: 0.62rem; font-weight: 700;
+  letter-spacing: 0.1em; background: none;
+  border: 1px solid var(--line); padding: 5px 10px; border-radius: 2px;
+  color: var(--ink-3); transition: border-color 0.15s, color 0.15s;
 }
-.nav-links a:hover,.nav-links a.active{color:var(--acc); background:color-mix(in srgb,var(--acc) 10%,transparent);}
-.nav-ctrls{display:flex; gap:8px; align-items:center;}
-.ctrl-btn{
-  background:none; border:1px solid var(--line); border-radius:var(--radius);
-  color:var(--text-dim); font-size:.75rem; padding:4px 10px;
-  cursor:pointer; font-family:inherit; transition:border-color .15s,color .15s;
+#lang-btn:hover { border-color: var(--ink-2); color: var(--ink); }
+[data-lang="en"] #lang-btn { color: var(--ink); border-color: var(--ink-2); }
+#theme-btn {
+  width: 32px; height: 32px; background: none;
+  border: 1px solid var(--line); border-radius: 2px;
+  color: var(--ink-2); display: flex; align-items: center; justify-content: center;
+  transition: border-color 0.15s, color 0.15s;
 }
-.ctrl-btn:hover{border-color:var(--acc); color:var(--acc);}
-.hamburger{
-  display:none; background:none; border:1px solid var(--line); border-radius:var(--radius);
-  color:var(--text-dim); padding:5px 8px; cursor:pointer;
+#theme-btn:hover { border-color: var(--ink-2); color: var(--ink); }
+#theme-btn svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 1.8; }
+.i-sun { display: none; }
+[data-theme="light"] .i-moon { display: none; }
+[data-theme="light"] .i-sun  { display: block; }
+.nav-cv {
+  font-family: var(--mono); font-size: 0.68rem; font-weight: 700;
+  letter-spacing: 0.08em; color: var(--ink);
+  border: 1px solid var(--line); padding: 5px 14px; border-radius: 2px;
+  transition: background 0.15s, border-color 0.15s;
 }
-.drawer{
-  display:none; position:fixed; inset:var(--nav-h) 0 0 0; z-index:99;
-  background:var(--bg); overflow-y:auto; padding:24px clamp(16px,4vw,40px);
-  border-top:1px solid var(--line);
+.nav-cv:hover { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.ham {
+  display: none; background: none; border: 1px solid var(--line);
+  border-radius: 2px; padding: 6px 8px; color: var(--ink-2);
+  flex-direction: column; gap: 4px;
 }
-.drawer.open{display:block;}
-.drawer a{
-  display:block; padding:14px 0; font-size:1rem;
-  color:var(--text); text-decoration:none; border-bottom:1px solid var(--line);
+.ham span { display: block; width: 16px; height: 1.5px; background: currentColor; transition: transform 0.3s, opacity 0.3s; }
+.ham.open span:nth-child(1) { transform: translateY(5.5px) rotate(45deg); }
+.ham.open span:nth-child(2) { opacity: 0; }
+.ham.open span:nth-child(3) { transform: translateY(-5.5px) rotate(-45deg); }
+.mob-menu {
+  display: none; background: var(--bg-1);
+  border-bottom: 1px solid var(--line); padding: 12px 48px 20px;
 }
-.drawer a.active{color:var(--acc);}
+.mob-menu.open { display: block; }
+.mob-menu a {
+  display: block; padding: 10px 0;
+  font-family: var(--mono); font-size: 0.78rem; color: var(--ink-2);
+  border-bottom: 1px solid var(--line); letter-spacing: 0.04em;
+}
+.mob-menu a:last-child { border-bottom: none; }
 
 /* ─── HERO ─── */
-#hero{
-  min-height:100svh; display:flex; flex-direction:column; justify-content:center;
-  padding:calc(var(--nav-h) + 48px) clamp(16px,4vw,40px) 80px;
-  max-width:var(--max); margin:0 auto; width:100%;
+#hero {
+  position: relative; overflow: hidden;
+  padding-top: 52px;
+  display: flex; flex-direction: column;
+  background: transparent;
 }
-.hero-eyebrow{
-  display:flex; align-items:center; gap:8px;
-  font-family:var(--mono); font-size:.72rem; color:var(--muted); letter-spacing:.12em;
-  text-transform:uppercase; margin-bottom:24px;
+.hero-body {
+  position: relative; z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 0; align-items: start;
+  padding: 72px 48px 80px;
+  max-width: 1200px; margin: 0 auto; width: 100%;
 }
-.hero-eyebrow span{color:var(--acc);}
-.hero-h1{
-  font-size:clamp(2.4rem,7vw,5.6rem); font-weight:700; letter-spacing:-.03em;
-  color:var(--head); line-height:1.02; margin-bottom:20px;
+.hero-text { grid-column: 1; grid-row: 1; align-self: start; }
+.hero-right { grid-column: 2; grid-row: 1; }
+.hero-eyebrow {
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 28px;
 }
-.hero-h1 em{font-style:normal; color:var(--acc); display:block;}
-.hero-tagline{
-  font-size:clamp(.95rem,2vw,1.25rem); color:var(--text-dim);
-  max-width:620px; line-height:1.65; margin-bottom:36px;
+.eyebrow-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--ink);
+  animation: pulse 2.5s ease-in-out infinite;
 }
-.hero-cta{display:flex; gap:12px; flex-wrap:wrap;}
-.btn{
-  display:inline-flex; align-items:center; gap:8px;
-  font-family:inherit; font-size:.9rem; font-weight:600;
-  border-radius:var(--radius); padding:10px 20px; cursor:pointer;
-  text-decoration:none; transition:all .15s; border:1.5px solid;
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.2} }
+.eyebrow-text {
+  font-family: var(--mono); font-size: 0.65rem;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--ink-2);
 }
-.btn-fill{background:var(--acc); color:var(--bg); border-color:var(--acc);}
-.btn-fill:hover{filter:brightness(1.1);}
-.btn-ghost{background:transparent; color:var(--acc); border-color:var(--acc);}
-.btn-ghost:hover{background:color-mix(in srgb,var(--acc) 10%,transparent);}
-.btn-dim{background:transparent; color:var(--text-dim); border-color:var(--line);}
-.btn-dim:hover{border-color:var(--acc); color:var(--acc);}
+.hero-name {
+  font-size: clamp(2.4rem, 5.5vw, 5rem);
+  font-weight: 700; line-height: 1;
+  letter-spacing: -0.03em; color: var(--ink);
+  margin-bottom: 12px; white-space: nowrap;
+  animation: glitch 10s ease-in-out infinite;
+}
+.hero-role {
+  font-family: var(--mono); font-size: clamp(0.85rem, 1.5vw, 1rem);
+  color: var(--ink-2); letter-spacing: 0.02em;
+  margin-bottom: 28px; line-height: 1.5;
+}
+.cursor-blink::after {
+  content: '_'; color: var(--ink);
+  animation: cblink 1s step-end infinite;
+}
+@keyframes cblink { 0%,100%{opacity:1} 50%{opacity:0} }
 
-/* ─── TICKER ─── */
-.ticker-wrap{
-  margin-top:48px; overflow:hidden; border-top:1px solid var(--line); border-bottom:1px solid var(--line);
-  padding:10px 0; position:relative;
+/* ─── GLITCH ─── */
+@keyframes glitch {
+  0%, 90%, 100% { text-shadow: none; clip-path: none; transform: none; }
+  91%  { text-shadow: -4px 0 rgba(255,0,80,0.85), 4px 0 rgba(0,200,255,0.85); transform: translateX(2px); }
+  92%  { text-shadow: 4px 0 rgba(255,0,80,0.85), -4px 0 rgba(0,200,255,0.85); clip-path: inset(20% 0 60% 0); transform: translateX(-2px); }
+  93%  { text-shadow: none; clip-path: inset(60% 0 10% 0); transform: none; }
+  94%  { text-shadow: -3px 0 rgba(0,200,255,0.9); clip-path: none; }
+  95%  { text-shadow: none; }
+  96%  { text-shadow: 3px 0 rgba(255,0,80,0.7), -2px 0 rgba(0,200,255,0.6); clip-path: inset(35% 0 40% 0); }
+  97%  { text-shadow: none; clip-path: none; }
+  98%  { text-shadow: -2px 0 rgba(0,200,255,0.6); transform: translateX(1px); }
+  99%  { text-shadow: none; transform: none; }
 }
-.ticker-wrap::before,.ticker-wrap::after{
-  content:''; position:absolute; top:0; bottom:0; width:80px; z-index:2; pointer-events:none;
-}
-.ticker-wrap::before{left:0; background:linear-gradient(90deg,var(--bg),transparent);}
-.ticker-wrap::after{right:0; background:linear-gradient(-90deg,var(--bg),transparent);}
-.ticker{
-  display:flex; gap:48px; white-space:nowrap;
-  animation:ticker 24s linear infinite;
-}
-.ticker:hover{animation-play-state:paused;}
-@keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-.tick-item{
-  font-family:var(--mono); font-size:.7rem; letter-spacing:.08em; text-transform:uppercase;
-  color:var(--muted); display:flex; align-items:center; gap:8px;
-}
-.tick-item b{color:var(--text);}
 
-/* ─── SECTION SHELL ─── */
-.sec{
-  width:100%; max-width:var(--max); margin:0 auto;
-  padding:clamp(56px,8vw,96px) clamp(16px,4vw,40px);
+.hero-desc {
+  font-size: 0.92rem; color: var(--ink-2); line-height: 1.8;
+  max-width: 440px; margin-bottom: 36px;
+  border-left: 2px solid var(--line); padding-left: 20px;
 }
-.sec-header{margin-bottom:clamp(28px,5vw,48px);}
-.sec-eye{
-  font-family:var(--mono); font-size:.68rem; color:var(--acc); letter-spacing:.14em;
-  text-transform:uppercase; margin-bottom:10px; display:flex; align-items:center; gap:8px;
+.hero-desc strong { color: var(--ink); font-weight: 600; }
+.hero-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 32px; }
+.btn-fill {
+  font-family: var(--mono); font-size: 0.72rem; font-weight: 700;
+  letter-spacing: 0.08em; background: var(--ink); color: var(--bg);
+  padding: 10px 22px; border-radius: 2px;
+  transition: opacity 0.15s;
 }
-.sec-eye::before{content:''; width:24px; height:1px; background:var(--acc);}
-.sec-title{font-size:clamp(1.6rem,4vw,2.4rem); font-weight:700; color:var(--head);}
+.btn-fill:hover { opacity: 0.8; }
+.btn-ghost {
+  font-family: var(--mono); font-size: 0.72rem; font-weight: 700;
+  letter-spacing: 0.08em; color: var(--ink-2);
+  border: 1px solid var(--line); padding: 10px 22px; border-radius: 2px;
+  transition: border-color 0.15s, color 0.15s;
+}
+.btn-ghost:hover { border-color: var(--ink-2); color: var(--ink); }
+.hero-chips { display: flex; gap: 6px; flex-wrap: wrap; }
+.chip {
+  font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.06em;
+  border: 1px solid var(--line); color: var(--ink-3);
+  padding: 4px 10px; border-radius: 2px;
+  transition: border-color 0.15s, color 0.15s;
+}
+.chip:hover { border-color: var(--ink-2); color: var(--ink-2); }
+
+/* photo */
+.hero-right {
+  display: flex; flex-direction: column;
+  align-items: flex-end; gap: 20px;
+  padding-left: 40px;
+  align-self: start;
+  padding-top: 0;
+}
+.hero-text { align-self: start; }
+.photo-frame {
+  position: relative; width: 220px; flex-shrink: 0;
+  cursor: crosshair;
+}
+.photo-frame::after {
+  content: '';
+  position: absolute; top: 14px; left: 14px; right: -14px; bottom: -14px;
+  border: 1px solid var(--frame-b); border-radius: 12px; z-index: 0;
+  transition: border-color 0.3s;
+}
+#ascii-canvas { display: none; }
+#ascii-photo {
+  position: relative; z-index: 2;
+  width: 220px; height: 271px;
+  object-fit: cover; object-position: center 15%;
+  border-radius: 12px; display: block;
+  filter: grayscale(100%) contrast(1.1) brightness(0.95);
+  transition: filter 0.5s ease;
+}
+.photo-frame:hover #ascii-photo,
+.photo-frame.locked #ascii-photo {
+  filter: grayscale(0%) contrast(1) brightness(1);
+}
+.photo-hint {
+  position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%);
+  z-index: 3; font-family: var(--mono); font-size: 0.55rem;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: rgba(255,255,255,0.9); background: rgba(0,0,0,0.55);
+  padding: 3px 9px; border-radius: 2px;
+  opacity: 0; transition: opacity 0.25s ease;
+  pointer-events: none; white-space: nowrap;
+  backdrop-filter: blur(4px);
+}
+.photo-hint.visible { opacity: 1; }
+.photo-frame:hover .photo-hint { opacity: 1; }
+.photo-frame.locked .photo-hint,
+.photo-frame.locked:hover .photo-hint { opacity: 0; }
+.hero-socials { display: flex; gap: 16px; }
+.hero-socials a {
+  font-family: var(--mono); font-size: 0.62rem;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--ink-3); transition: color 0.15s;
+}
+.hero-socials a:hover { color: var(--ink); }
+
+/* hero bottom */
+.hero-bar {
+  position: relative; z-index: 1;
+  border-top: 1px solid var(--line);
+  padding: 14px 48px;
+  max-width: 1200px; margin: 0 auto; width: 100%;
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 12px;
+  transition: border-color 0.3s;
+}
+.hero-bar-tags {
+  font-family: var(--mono); font-size: 0.62rem;
+  color: var(--ink-3); letter-spacing: 0.06em;
+}
+.hero-bar-tags span { color: var(--ink-2); }
+.status-pill {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--mono); font-size: 0.62rem;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--ink); border: 1px solid var(--line);
+  padding: 5px 14px; border-radius: 100px;
+  transition: border-color 0.3s;
+}
+.status-pill::before {
+  content: ''; width: 5px; height: 5px; border-radius: 50%;
+  background: var(--ink); animation: pulse 2.5s ease-in-out infinite;
+}
+
+/* ─── SECTIONS ─── */
+section { padding: 96px 0; }
+.sec-wrap { max-width: 1200px; margin: 0 auto; padding: 0 48px; }
+.sec-head {
+  display: flex; align-items: center; gap: 16px;
+  margin-bottom: 64px;
+}
+.sec-num {
+  font-family: var(--mono); font-size: 0.62rem;
+  color: var(--ink-3); letter-spacing: 0.12em; flex-shrink: 0;
+}
+.sec-title {
+  font-size: clamp(1.4rem, 2.8vw, 2rem);
+  font-weight: 700; color: var(--ink); letter-spacing: -0.02em;
+}
+.sec-rule { flex: 1; height: 1px; background: var(--line); transition: background 0.3s; }
 
 /* ─── SOBRE ─── */
-#sobre{background:var(--panel); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
-.sobre-grid{display:grid; grid-template-columns:1fr 360px; gap:var(--col-gap); align-items:start;}
-.sobre-body p{color:var(--text); line-height:1.8; margin-bottom:16px; font-size:.97rem;}
-.sobre-body strong{color:var(--head);}
-.facts-panel{background:var(--surface); border:1px solid var(--line); border-radius:8px; overflow:hidden;}
-.fact-row{
-  display:flex; align-items:baseline; gap:12px;
-  padding:12px 16px; border-bottom:1px solid var(--line);
+#sobre { background: var(--bg-1); }
+.sobre-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 80px; align-items: start;
 }
-.fact-row:last-child{border-bottom:none;}
-.fact-k{
-  font-family:var(--mono); font-size:.65rem; color:var(--muted);
-  letter-spacing:.1em; text-transform:uppercase; min-width:76px;
+.sobre-quote {
+  font-size: clamp(1.1rem, 2vw, 1.35rem);
+  font-weight: 600; color: var(--ink); line-height: 1.5;
+  letter-spacing: -0.01em;
+  border-left: 3px solid var(--ink); padding-left: 24px;
 }
-.fact-v{font-size:.88rem; color:var(--text);}
+.sobre-quote em { font-style: normal; color: var(--ink-2); font-weight: 400; }
+.sobre-body { display: flex; flex-direction: column; gap: 0; }
+.sobre-body p { font-size: 0.88rem; color: var(--ink-2); line-height: 1.85; margin-bottom: 12px; }
+.sobre-body strong { color: var(--ink); font-weight: 600; }
+.fact-table { margin-top: 28px; border-top: 1px solid var(--line); }
+.fact-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 11px 0; border-bottom: 1px solid var(--line); gap: 12px;
+  transition: border-color 0.3s;
+}
+.fact-k { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-3); flex-shrink: 0; }
+.fact-v { font-size: 0.82rem; font-weight: 500; color: var(--ink); text-align: right; }
+
+/* ─── FILOSOFIA ─── */
+#filosofia { background: var(--bg); }
+.princ-list { display: flex; flex-direction: column; }
+.princ-item {
+  display: grid; grid-template-columns: 200px 1fr;
+  gap: 60px; padding: 56px 0;
+  border-top: 1px solid var(--line);
+  align-items: start;
+  transition: border-color 0.3s;
+}
+.princ-item:last-child { border-bottom: 1px solid var(--line); }
+.princ-left { position: sticky; top: 80px; }
+.princ-code {
+  font-family: var(--mono); font-size: 0.6rem;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--ink-3); margin-bottom: 10px;
+}
+.princ-label {
+  font-size: 1.1rem; font-weight: 700;
+  color: var(--ink); line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+.princ-right {}
+.princ-quote {
+  font-size: 1rem; color: var(--ink); line-height: 1.75;
+  font-weight: 500; border-left: 2px solid var(--line);
+  padding-left: 20px; margin-bottom: 24px;
+  transition: border-color 0.3s;
+}
+.princ-body { font-size: 0.86rem; color: var(--ink-2); line-height: 1.85; margin-bottom: 24px; }
+.princ-spec {
+  display: flex; flex-direction: column; gap: 0;
+  border-top: 1px solid var(--line);
+  transition: border-color 0.3s;
+}
+.spec-row {
+  display: flex; gap: 24px; padding: 10px 0;
+  border-bottom: 1px solid var(--line);
+  transition: border-color 0.3s;
+}
+.spec-k { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-3); min-width: 100px; flex-shrink: 0; padding-top: 1px; }
+.spec-v { font-family: var(--mono); font-size: 0.72rem; color: var(--ink-2); letter-spacing: 0.04em; line-height: 1.7; }
 
 /* ─── EXPERIÊNCIA ─── */
-#experiencia{background:var(--bg);}
-.exp-list{display:flex; flex-direction:column; gap:2px;}
-.exp-item{
-  background:var(--panel); border:1px solid var(--line); border-radius:8px;
-  overflow:hidden; transition:border-color .15s;
+#experiencia { background: var(--bg-1); }
+.exp-list { display: flex; flex-direction: column; }
+.exp-item {
+  display: grid; grid-template-columns: 100px 1fr;
+  gap: 48px; padding: 40px 0;
+  border-top: 1px solid var(--line);
+  transition: border-color 0.3s;
 }
-.exp-item:hover{border-color:var(--acc);}
-.exp-hdr{
-  display:grid; grid-template-columns:1fr auto;
-  align-items:start; gap:12px;
-  padding:20px 24px; cursor:pointer;
+.exp-item:last-child { border-bottom: 1px solid var(--line); }
+.exp-year {
+  font-family: var(--mono); font-size: 0.62rem;
+  letter-spacing: 0.08em; color: var(--ink-3);
+  padding-top: 4px; line-height: 1.8;
 }
-.exp-hdr-left{display:flex; flex-direction:column; gap:4px;}
-.exp-company{font-size:1rem; font-weight:600; color:var(--head);}
-.exp-role-line{font-size:.85rem; color:var(--text-dim);}
-.exp-meta{display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-top:4px;}
-.exp-date{font-family:var(--mono); font-size:.7rem; color:var(--muted); letter-spacing:.06em;}
-.badge{
-  font-size:.65rem; font-weight:600; letter-spacing:.08em; text-transform:uppercase;
-  padding:2px 7px; border-radius:3px;
+.exp-company {
+  font-size: 1.15rem; font-weight: 700;
+  color: var(--ink); margin-bottom: 2px;
+  letter-spacing: -0.01em;
 }
-.badge-ok{background:color-mix(in srgb,var(--ok) 15%,transparent); color:var(--ok);}
-.badge-acc{background:color-mix(in srgb,var(--acc) 15%,transparent); color:var(--acc);}
-.badge-warn{background:color-mix(in srgb,var(--warn) 15%,transparent); color:var(--warn);}
-.badge-dim{background:color-mix(in srgb,var(--muted) 15%,transparent); color:var(--muted);}
-.exp-chevron{
-  color:var(--muted); transition:transform .2s;
-  font-size:1.2rem; line-height:1; margin-top:2px; flex-shrink:0;
+.exp-status {
+  font-family: var(--mono); font-size: 0.6rem;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--ink-2); vertical-align: middle;
+  margin-left: 10px;
 }
-.exp-item.open .exp-chevron{transform:rotate(180deg);}
-.exp-body{
-  display:none; padding:0 24px 20px; border-top:1px solid var(--line);
+.exp-role {
+  font-family: var(--mono); font-size: 0.68rem;
+  color: var(--ink-3); margin-bottom: 16px;
+  letter-spacing: 0.04em;
 }
-.exp-item.open .exp-body{display:block;}
-.exp-bullets{list-style:none; margin:16px 0;}
-.exp-bullets li{
-  padding:5px 0 5px 16px; position:relative;
-  font-size:.9rem; color:var(--text); line-height:1.6;
+.exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 5px; margin-bottom: 14px; }
+.exp-bullets li {
+  font-size: 0.86rem; color: var(--ink-2);
+  padding-left: 16px; position: relative; line-height: 1.65;
 }
-.exp-bullets li::before{
-  content:''; position:absolute; left:0; top:13px;
-  width:6px; height:1px; background:var(--acc);
-}
-.exp-chips{display:flex; flex-wrap:wrap; gap:6px; margin-top:12px;}
-.chip{
-  font-size:.72rem; padding:3px 9px; border-radius:4px;
-  background:var(--surface); border:1px solid var(--line); color:var(--text-dim);
-}
+.exp-bullets li::before { content: '›'; position: absolute; left: 0; color: var(--ink-3); font-weight: 700; }
+.exp-tech { font-family: var(--mono); font-size: 0.62rem; color: var(--ink-3); letter-spacing: 0.04em; line-height: 1.9; }
 
 /* ─── PROJETOS ─── */
-#projetos{background:var(--panel); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
-.proj-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fill, minmax(min(340px,100%), 1fr));
-  gap:16px;
+#projetos { background: var(--bg); }
+.proj-list { display: flex; flex-direction: column; }
+
+/* ── Featured projects (Camada 1) ── */
+.proj-item {
+  display: grid; grid-template-columns: 1fr 280px;
+  gap: 0; border-top: 1px solid var(--line);
+  transition: border-color 0.3s, background 0.2s;
 }
-.proj-card{
-  background:var(--surface); border:1px solid var(--line); border-radius:8px;
-  padding:22px; display:flex; flex-direction:column; gap:10px;
-  transition:border-color .15s;
+.proj-item:hover { background: var(--bg-1); }
+.proj-item.featured .proj-name { font-size: 1.35rem; }
+.proj-item.featured .proj-desc { font-size: 0.9rem; max-width: 540px; }
+.proj-item.featured .proj-main { padding: 48px 40px 48px 0; }
+.proj-item.featured .proj-spec  { padding: 48px 0 48px 32px; }
+
+/* ── Compact divider ── */
+.proj-compact-label {
+  font-family: var(--mono); font-size: 0.58rem;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--ink-3); padding: 28px 0 16px;
+  border-top: 1px solid var(--line);
 }
-.proj-card:hover{border-color:var(--acc);}
-.proj-card.feat{border-color:color-mix(in srgb,var(--acc) 40%,transparent);}
-.proj-top{display:flex; justify-content:space-between; align-items:flex-start;}
-.proj-name{font-weight:700; color:var(--head); font-size:1rem;}
-.proj-desc{font-size:.875rem; color:var(--text-dim); line-height:1.65; flex:1;}
-.proj-footer{display:flex; justify-content:space-between; align-items:center; margin-top:auto; flex-wrap:wrap; gap:8px;}
-.proj-link{
-  font-size:.8rem; color:var(--acc); display:flex; align-items:center; gap:4px;
-  text-decoration:none; transition:color .15s;
+
+/* ── Compact list (Camada 2) ── */
+.proj-compact-list { display: flex; flex-direction: column; border-top: 1px solid var(--line); }
+.proj-compact-item {
+  display: flex; align-items: center; gap: 16px;
+  padding: 14px 0; border-bottom: 1px solid var(--line-2);
+  transition: background 0.2s;
 }
-.proj-link:hover{color:var(--acc2);}
+.proj-compact-item:hover { background: var(--bg-1); }
+.proj-compact-id {
+  font-family: var(--mono); font-size: 0.55rem;
+  color: var(--ink-3); letter-spacing: 0.1em; flex-shrink: 0; width: 42px;
+}
+.proj-compact-name {
+  font-size: 0.9rem; font-weight: 600; color: var(--ink);
+  flex-shrink: 0; min-width: 160px;
+}
+.proj-compact-stack {
+  font-family: var(--mono); font-size: 0.62rem;
+  color: var(--ink-3); flex: 1; letter-spacing: 0.02em;
+}
+.proj-compact-links { display: flex; gap: 6px; flex-shrink: 0; }
+
+.proj-main { padding: 36px 40px 36px 0; }
+.proj-id {
+  font-family: var(--mono); font-size: 0.58rem;
+  letter-spacing: 0.12em; color: var(--ink-3);
+  margin-bottom: 8px;
+}
+.proj-name {
+  font-size: 1.1rem; font-weight: 700; color: var(--ink);
+  margin-bottom: 8px; letter-spacing: -0.01em;
+}
+.proj-desc { font-size: 0.86rem; color: var(--ink-2); line-height: 1.7; max-width: 480px; }
+.proj-spec {
+  border-left: 1px solid var(--line); padding: 36px 0 36px 32px;
+  display: flex; flex-direction: column; gap: 0;
+  transition: border-color 0.3s;
+}
+.proj-spec-title {
+  font-family: var(--mono); font-size: 0.58rem;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--ink-3); margin-bottom: 14px;
+}
+.proj-spec-row {
+  display: flex; justify-content: space-between;
+  gap: 12px; padding: 8px 0;
+  border-bottom: 1px solid var(--line-2);
+  transition: border-color 0.3s;
+}
+.proj-spec-k { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3); flex-shrink: 0; }
+.proj-spec-v { font-family: var(--mono); font-size: 0.65rem; color: var(--ink-2); text-align: right; letter-spacing: 0.02em; }
+.proj-footer {
+  margin-top: auto; padding-top: 16px;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.proj-tag {
+  font-family: var(--mono); font-size: 0.58rem; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 4px 10px; border-radius: 2px;
+}
+.proj-tag.live { background: var(--tag-live); color: var(--tag-live-c); }
+.proj-tag.wip  { background: var(--tag-wip);  color: var(--tag-wip-c); }
+.proj-tag.done { background: var(--tag-wip);  color: var(--tag-wip-c); }
+.proj-link {
+  font-family: var(--mono); font-size: 0.62rem; font-weight: 700;
+  letter-spacing: 0.08em; color: var(--ink-2);
+  display: inline-flex; align-items: center; gap: 6px;
+  border: 1px solid var(--line); padding: 7px 16px; border-radius: 2px;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+.proj-link:hover { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.proj-links { display: flex; gap: 6px; }
+.proj-link svg { width: 10px; height: 10px; fill: none; stroke: currentColor; stroke-width: 2; }
 
 /* ─── STACK ─── */
-#stack{background:var(--bg);}
-.stack-cols{display:grid; grid-template-columns:1fr 1fr; gap:var(--col-gap);}
-.stack-group{display:flex; flex-direction:column; gap:12px;}
-.stack-row{
-  display:flex; align-items:baseline; gap:10px;
-  padding:10px 0; border-bottom:1px solid var(--line);
+#stack { background: var(--bg-1); }
+.stack-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 80px; }
+.stack-row {
+  display: flex; align-items: baseline; gap: 20px;
+  padding: 15px 0; border-bottom: 1px solid var(--line);
+  transition: border-color 0.3s;
 }
-.stack-row:last-child{border-bottom:none;}
-.stack-k{
-  font-family:var(--mono); font-size:.65rem; color:var(--muted);
-  letter-spacing:.1em; text-transform:uppercase; min-width:90px; flex-shrink:0;
+.stack-row:first-child { border-top: 1px solid var(--line); }
+.stack-k {
+  font-family: var(--mono); font-size: 0.6rem; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--ink-2); min-width: 110px; flex-shrink: 0;
 }
-.stack-v{font-size:.9rem; color:var(--text);}
+.stack-v { font-size: 0.85rem; color: var(--ink-2); line-height: 1.6; }
 
 /* ─── FORMAÇÃO ─── */
 #formacao { background: var(--bg); }
-.form-grid{display:grid; grid-template-columns:1fr 1fr; gap:var(--col-gap); align-items:start;}
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
 .edu-block {
-  padding: 16px 0;
-  border-bottom: 1px solid var(--line);
+  padding: 24px 0; border-bottom: 1px solid var(--line);
+  transition: border-color 0.3s;
 }
 .edu-block:first-child { border-top: 1px solid var(--line); }
-.edu-degree{font-size:.97rem; font-weight:600; color:var(--head); margin-bottom:2px;}
-.edu-school{font-size:.85rem; color:var(--acc); margin-bottom:4px;}
-.edu-period{font-size:.78rem; color:var(--muted); font-family:var(--mono); letter-spacing:.04em;}
-.edu-note{font-size:.85rem; color:var(--text-dim); margin-top:6px; line-height:1.6;}
-.micro-label{
-  font-family:var(--mono); font-size:.65rem; color:var(--muted);
-  letter-spacing:.12em; text-transform:uppercase; margin-bottom:12px; margin-top:28px;
+.edu-degree { font-size: 0.98rem; font-weight: 700; color: var(--ink); margin-bottom: 4px; letter-spacing: -0.01em; }
+.edu-school { font-family: var(--mono); font-size: 0.68rem; color: var(--ink-2); margin-bottom: 4px; letter-spacing: 0.04em; }
+.edu-period { font-family: var(--mono); font-size: 0.62rem; color: var(--ink-3); margin-bottom: 8px; }
+.edu-note { font-size: 0.82rem; color: var(--ink-2); line-height: 1.65; }
+.micro-label {
+  font-family: var(--mono); font-size: 0.58rem;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--ink-3); margin-bottom: 14px; margin-top: 36px;
 }
-.cert-group{margin-bottom:12px;}
-.cert-group-title{font-size:.8rem; font-weight:600; color:var(--text); margin-bottom:2px;}
-.cert-items{font-size:.8rem; color:var(--text-dim); line-height:1.7;}
-.cert-link{
-  display:inline-block; margin-top:10px; font-size:.8rem;
-  color:var(--acc); text-decoration:none;
+.learn-list { display: flex; flex-direction: column; }
+.learn-item {
+  display: grid; grid-template-columns: 1fr 160px 52px;
+  gap: 16px; align-items: center;
+  padding: 12px 0; border-top: 1px solid var(--line);
+  transition: border-color 0.3s;
 }
-.cert-link:hover{color:var(--acc2);}
-.now-learning{
-  margin-top:20px; padding:14px 16px;
-  background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--acc);
-  border-radius:var(--radius);
+.learn-item:last-child { border-bottom: 1px solid var(--line); }
+.learn-name { font-size: 0.82rem; font-weight: 500; color: var(--ink); }
+.learn-src { font-family: var(--mono); font-size: 0.58rem; color: var(--ink-3); margin-top: 2px; letter-spacing: 0.06em; }
+.learn-bar { height: 2px; background: var(--line); border-radius: 1px; overflow: hidden; }
+.learn-fill { height: 100%; background: var(--ink-2); border-radius: 1px; width: 0; transition: width 1.2s ease 0.4s; }
+.learn-pct { font-family: var(--mono); font-size: 0.58rem; color: var(--ink-3); text-align: right; letter-spacing: 0.04em; }
+.cert-group { margin-bottom: 20px; }
+.cert-group-k {
+  font-family: var(--mono); font-size: 0.6rem; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--ink-2); margin-bottom: 6px;
 }
-.now-label{
-  font-family:var(--mono); font-size:.62rem; color:var(--acc);
-  text-transform:uppercase; letter-spacing:.1em; margin-bottom:8px;
-  display:flex; align-items:center; gap:6px;
-}
-.now-label::before{
-  content:''; width:6px; height:6px; border-radius:50%; background:var(--acc);
-  animation:pulse 2s ease-in-out infinite;
-}
-@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.8)}}
-.now-items{font-size:.82rem; color:var(--text-dim); line-height:1.8;}
+.cert-group-v { font-size: 0.82rem; color: var(--ink-2); line-height: 1.85; }
 
 /* ─── CONTACTO ─── */
-#contacto{background:var(--panel); border-top:1px solid var(--line);}
-.contact-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:12px; max-width:560px; margin-top:28px;}
-.contact-card{
-  display:flex; align-items:center; gap:12px;
-  background:var(--surface); border:1px solid var(--line); border-radius:8px;
-  padding:16px; text-decoration:none; transition:border-color .15s;
+#contacto { padding: 0; background: var(--bg); }
+.contact-inner {
+  max-width: 1200px; margin: 0 auto; padding: 96px 48px;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 80px; align-items: center;
 }
-.contact-card:hover{border-color:var(--acc);}
-.cc-icon{color:var(--acc); flex-shrink:0;}
-.cc-lbl{font-size:.65rem; color:var(--muted); text-transform:uppercase; letter-spacing:.08em; font-family:var(--mono); margin-bottom:2px;}
-.cc-val{font-size:.85rem; color:var(--text); font-weight:500;}
+.contact-lbl {
+  font-family: var(--mono); font-size: 0.6rem;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--ink-3); margin-bottom: 16px;
+}
+.contact-title {
+  font-size: clamp(2rem, 4vw, 3rem); font-weight: 700;
+  color: var(--ink); line-height: 1.1;
+  letter-spacing: -0.02em; margin-bottom: 16px;
+}
+.contact-sub { font-size: 0.88rem; color: var(--ink-2); line-height: 1.8; max-width: 360px; margin-bottom: 20px; }
+.contact-note { font-family: var(--mono); font-size: 0.62rem; color: var(--ink-3); letter-spacing: 0.04em; }
+.contact-rows { display: flex; flex-direction: column; }
+.contact-row {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px 0; border-bottom: 1px solid var(--line);
+  gap: 12px; transition: opacity 0.15s, border-color 0.3s;
+}
+.contact-row:first-child { border-top: 1px solid var(--line); }
+.contact-row:hover { opacity: 0.6; }
+.contact-type { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-3); min-width: 80px; }
+.contact-val { font-size: 0.86rem; font-weight: 500; color: var(--ink); }
+.contact-arr { font-family: var(--mono); color: var(--ink-3); }
 
 /* ─── FOOTER ─── */
-footer{
-  background:var(--bg); border-top:1px solid var(--line);
-  padding:24px clamp(16px,4vw,40px); text-align:center;
-  font-size:.78rem; color:var(--muted); line-height:2;
+footer {
+  background: var(--bg-1); border-top: 1px solid var(--line);
+  padding: 20px 48px; transition: background 0.3s, border-color 0.3s;
 }
-footer a{color:var(--acc); text-decoration:none;}
+.foot-inner {
+  max-width: 1200px; margin: 0 auto;
+  display: flex; justify-content: space-between;
+  align-items: center; gap: 16px; flex-wrap: wrap;
+}
+.foot-left { font-family: var(--mono); font-size: 0.62rem; color: var(--ink-3); letter-spacing: 0.06em; }
+.foot-right { font-family: var(--mono); font-size: 0.62rem; color: var(--ink-3); letter-spacing: 0.06em; transition: color 0.15s; }
+.foot-right:hover { color: var(--ink); }
 
-/* ─── SCROLL TOP ─── */
-#top-btn{
-  position:fixed; bottom:24px; right:24px; z-index:200;
-  width:40px; height:40px; border-radius:50%;
-  background:var(--acc); color:var(--bg);
-  border:none; cursor:pointer; display:none;
-  align-items:center; justify-content:center;
-  box-shadow:0 2px 12px color-mix(in srgb,var(--acc) 40%,transparent);
-  transition:transform .15s;
+/* ─── BTT ─── */
+#btt {
+  position: fixed; bottom: 24px; right: 24px; z-index: 90;
+  width: 36px; height: 36px; background: var(--bg-2);
+  color: var(--ink-2); border: 1px solid var(--line);
+  border-radius: 2px; display: flex; align-items: center; justify-content: center;
+  opacity: 0; transform: translateY(8px);
+  transition: opacity 0.3s, transform 0.3s, background 0.15s, border-color 0.3s;
+  pointer-events: none;
 }
-#top-btn:hover{transform:scale(1.1);}
-#top-btn.vis{display:flex;}
+#btt.show { opacity: 1; transform: none; pointer-events: auto; }
+#btt:hover { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+#btt svg { width: 13px; height: 13px; fill: none; stroke: currentColor; stroke-width: 2; }
 
-/* ─── DIAGNOSTIC ─── */
-#diag{
-  display:none; position:fixed; bottom:70px; right:24px; z-index:200;
-  background:var(--panel); border:1px solid var(--line);
-  border-radius:8px; padding:16px; min-width:280px; max-width:360px;
-  font-family:var(--mono); font-size:.72rem; color:var(--text-dim);
-  box-shadow:0 4px 24px rgba(0,0,0,.4);
+/* ─── TERMINAL ─── */
+#term-btn {
+  position: fixed; bottom: 24px; left: 24px; z-index: 90;
+  font-family: var(--mono); font-size: 1.05rem; font-weight: 700;
+  letter-spacing: 0.06em; color: #4ade80;
+  background: #050d05; border: none;
+  border-radius: 3px; padding: 8px 14px; cursor: pointer;
+  animation: term-glow 2.8s ease-in-out infinite;
+  transition: transform 0.15s;
 }
-#diag.open{display:block;}
-#diag-header{
-  display:flex; justify-content:space-between; align-items:center;
-  margin-bottom:12px; color:var(--acc); font-weight:700; letter-spacing:.08em;
+#term-btn:hover { transform: translateY(-2px); box-shadow: 0 0 32px rgba(74,222,128,0.6); }
+#term-cursor { animation: cur-blink 1s step-end infinite; }
+@keyframes cur-blink { 0%,100%{opacity:1} 50%{opacity:0} }
+@keyframes term-glow {
+  0%, 100% { box-shadow: 0 0 12px rgba(74,222,128,0.3); }
+  50%       { box-shadow: 0 0 26px rgba(74,222,128,0.55); }
 }
-#diag-close{background:none;border:none;color:var(--muted);cursor:pointer;font-size:1rem;padding:0;}
-.diag-row{display:flex; justify-content:space-between; gap:12px; padding:4px 0; border-bottom:1px solid var(--line);}
-.diag-row:last-child{border-bottom:none;}
-.diag-k{color:var(--muted);}
-.diag-v{color:var(--text);}
-.diag-ok{color:var(--ok);}
-.diag-warn{color:var(--warn);}
-.diag-err{color:var(--danger);}
 
-/* ─── REVEAL ANIMATION ─── */
-.reveal{opacity:0;transform:translateY(16px);transition:opacity .5s,transform .5s;}
-.reveal.in{opacity:1;transform:translateY(0);}
+#term-overlay {
+  display: none; position: fixed; inset: 0; z-index: 200;
+  background: rgba(0,0,0,0.72); backdrop-filter: blur(4px);
+  align-items: center; justify-content: center;
+}
+#term-overlay.open { display: flex; }
+
+#term-modal {
+  width: min(720px, 94vw); height: min(480px, 80vh);
+  background: var(--bg-1); border: 1px solid var(--accent);
+  border-radius: 4px; display: flex; flex-direction: column;
+  box-shadow: 0 0 60px rgba(34,211,218,0.12);
+  font-family: var(--mono);
+}
+#term-titlebar {
+  display: flex; align-items: center; gap: 8px;
+  padding: 10px 16px; border-bottom: 1px solid var(--line);
+  font-size: 0.62rem; color: var(--ink-3); flex-shrink: 0;
+}
+#term-titlebar .dot { width: 10px; height: 10px; border-radius: 50%; }
+.dot-r { background: #ff5f57; }
+.dot-y { background: #febc2e; }
+.dot-g { background: #28c840; }
+#term-titlebar span { margin-left: auto; }
+
+#term-output {
+  flex: 1; overflow-y: auto; padding: 14px 18px;
+  font-size: 0.72rem; line-height: 1.8; color: var(--ink-2);
+  scroll-behavior: smooth;
+}
+#term-output .line-cmd  { color: var(--accent); }
+#term-output .line-ok   { color: var(--ink-2); }
+#term-output .line-hi   { color: var(--ink); font-weight: 700; }
+#term-output .line-dim  { color: var(--ink-3); }
+#term-output .line-err  { color: #f87171; }
+#term-output .line-ascii {
+  color: #4ade80; white-space: pre; line-height: 1.3; font-size: 0.62rem;
+  text-shadow: 0 0 4px #4ade80, 0 0 14px rgba(74,222,128,0.65), 0 0 30px rgba(74,222,128,0.3);
+}
+
+#term-inputrow {
+  display: flex; align-items: center; gap: 8px;
+  padding: 10px 18px; border-top: 1px solid var(--line); flex-shrink: 0;
+}
+#term-prompt { font-size: 0.72rem; color: var(--accent); white-space: nowrap; }
+#term-input {
+  flex: 1; background: none; border: none; outline: none;
+  font-family: var(--mono); font-size: 0.72rem; color: var(--ink);
+  caret-color: var(--accent);
+}
+
+/* ─── PRINT ─── */
+@media print {
+  .scanline, .gl, nav, #btt, #theme-btn { display: none !important; }
+  .reveal { opacity: 1 !important; transform: none !important; }
+  #hero::before { display: none; }
+  body { background: #fff; color: #111; }
+}
 
 /* ─── RESPONSIVE ─── */
-@media(max-width:900px){
-  .sobre-grid{grid-template-columns:1fr;}
-  .stack-cols{grid-template-columns:1fr;}
-  .form-grid{grid-template-columns:1fr;}
-  .contact-grid{grid-template-columns:1fr;}
+@media (max-width: 960px) {
+  .nav-links { display: none; }
+  .nav-cv { display: none; }
+  .ham { display: flex; }
+  .hero-body { grid-template-columns: 1fr; padding: 60px 24px 40px; }
+  .hero-text { grid-column: auto; grid-row: auto; }
+  .hero-right { grid-column: auto; grid-row: auto; align-items: flex-start; flex-direction: row; padding-left: 0; gap: 16px; }
+  .photo-frame { width: 130px; }
+  .photo-frame::after { top: 8px; left: 8px; right: -8px; bottom: -8px; }
+  #ascii-photo  { width: 130px; height: 160px; }
+  .hero-bar { padding: 14px 24px; flex-direction: column; align-items: flex-start; gap: 8px; }
+  .hero-bar-tags { font-size: 0.58rem; line-height: 1.8; }
+  .sec-wrap { padding: 0 20px; }
+  .sobre-grid, .form-grid, .contact-inner { grid-template-columns: 1fr; gap: 40px; }
+  .stack-grid { grid-template-columns: 1fr; gap: 0; }
+  .stack-row:first-child { border-top: 1px solid var(--line); }
+  .princ-item { grid-template-columns: 1fr; gap: 20px; }
+  .princ-left { position: static; }
+  .proj-item { grid-template-columns: 1fr; }
+  .proj-spec { border-left: none; border-top: 1px solid var(--line); padding: 20px 0 0; }
+  .proj-compact-item { flex-wrap: wrap; gap: 8px; }
+  .proj-compact-name { min-width: 120px; }
+  .proj-compact-stack { width: 100%; order: 3; }
+  .proj-main { padding: 28px 0 16px; }
+  .exp-item { grid-template-columns: 1fr; gap: 4px; }
+  .contact-inner { padding: 60px 20px; }
+  footer { padding: 20px 20px; }
+  .nav-inner { padding: 0 20px; }
+  .mob-menu { padding: 12px 20px 20px; }
+  .learn-item { grid-template-columns: 1fr 52px; }
+  .learn-bar { display: none; }
+  .hero-chips { gap: 4px; }
+  .chip { font-size: 0.55rem; padding: 3px 8px; }
+  .hero-actions { gap: 8px; }
+  .btn-fill, .btn-ghost { font-size: 0.68rem; padding: 9px 16px; }
+  .sobre-quote { font-size: 1rem; }
+  .proj-link { font-size: 0.58rem; padding: 6px 12px; }
 }
-@media(max-width:700px){
-  .nav-links{display:none;}
-  .hamburger{display:flex; align-items:center;}
-}
-@media print{
-  nav,#top-btn,#diag,.ticker-wrap,.hamburger,#diag,#hero .hero-cta{display:none!important;}
-  body{background:#fff;color:#111;}
-  .sec{padding:16pt 0;}
-  .reveal{opacity:1!important;transform:none!important;}
-  .exp-body{display:block!important;}
-  a::after{content:none!important;}
-  @page{margin:12mm 14mm;size:A4;}
+@media (max-width: 600px) {
+  .gl { display: none; }
+  .hero-name { font-size: 2.2rem; white-space: normal; }
+  .hero-role { font-size: 0.78rem; }
+  .blob-a { width: 300px; height: 300px; top: -60px; left: -60px; }
+  .blob-b { width: 240px; height: 240px; right: -60px; }
+  .blob-c { width: 200px; height: 200px; }
+  .photo-frame { width: 110px; }
+  #ascii-photo  { width: 110px; height: 136px; }
+  .hero-right { flex-direction: row; align-items: center; padding-bottom: 8px; }
+  .hero-socials { flex-direction: row; flex-wrap: wrap; gap: 12px; }
+  section { padding: 64px 0; }
+  .sec-title { font-size: 1.4rem; }
+  .contact-val { font-size: 0.78rem; }
+  .princ-quote { font-size: 0.9rem; }
+  .princ-body { font-size: 0.82rem; }
+  .form-grid { gap: 32px; }
 }
 </style>
 </head>
 <body>
 
-<nav>
+<!-- fx -->
+<div class="gl gl-1"></div>
+<div class="gl gl-2"></div>
+<div class="gl gl-3"></div>
+<div class="blob blob-a"></div>
+<div class="blob blob-b"></div>
+<div class="blob blob-c"></div>
+
+<!-- NAV -->
+<nav id="nav">
   <div class="nav-inner">
-    <span class="nav-logo">ER/</span>
-    <ul class="nav-links" id="navLinks">
+    <span class="nav-logo">er<span class="dim">.</span>dev</span>
+    <ul class="nav-links">
       <li><a href="#sobre" data-i18n="nav-sobre">sobre</a></li>
-      <li><a href="#experiencia" data-i18n="nav-exp">experiência</a></li>
-      <li><a href="#projetos" data-i18n="nav-proj">projetos</a></li>
-      <li><a href="#stack">stack</a></li>
+      <li><a href="#filosofia" data-i18n="nav-filosofia">filosofia</a></li>
+      <li><a href="#experiencia" data-i18n="nav-exp">exp</a></li>
+      <li><a href="#projetos" data-i18n="nav-projetos">projetos</a></li>
+      <li><a href="#stack" data-i18n="nav-stack">stack</a></li>
       <li><a href="#formacao" data-i18n="nav-formacao">formação</a></li>
       <li><a href="#contacto" data-i18n="nav-contacto">contacto</a></li>
     </ul>
-    <div class="nav-ctrls">
-      <button class="ctrl-btn" id="langBtn">EN</button>
-      <button class="ctrl-btn" id="themeBtn">☀</button>
-      <button class="hamburger" id="hamburger" aria-label="Menu">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    <div class="nav-right">
+      <button id="lang-btn" aria-label="Switch language">EN</button>
+      <button id="theme-btn" aria-label="Alternar tema">
+        <svg class="i-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg class="i-sun"  viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
       </button>
+      <a href="cv.html" target="_blank" class="nav-cv" data-i18n="nav-cv">cv</a>
+      <button class="ham" id="ham" aria-label="Menu"><span></span><span></span><span></span></button>
     </div>
+  </div>
+  <div class="mob-menu" id="mob">
+    <a href="#sobre" data-i18n="nav-sobre">sobre</a>
+    <a href="#filosofia" data-i18n="nav-filosofia">filosofia</a>
+    <a href="#experiencia" data-i18n="mob-experiencia">experiência</a>
+    <a href="#projetos" data-i18n="nav-projetos">projetos</a>
+    <a href="#stack" data-i18n="nav-stack">stack</a>
+    <a href="#formacao" data-i18n="nav-formacao">formação</a>
+    <a href="#contacto" data-i18n="nav-contacto">contacto</a>
+    <a href="cv.html" target="_blank" data-i18n="mob-cv">ver cv</a>
   </div>
 </nav>
 
-<div class="drawer" id="drawer">
-  <a href="#sobre" data-i18n="nav-sobre">sobre</a>
-  <a href="#experiencia" data-i18n="nav-exp">experiência</a>
-  <a href="#projetos" data-i18n="nav-proj">projetos</a>
-  <a href="#stack">stack</a>
-  <a href="#formacao" data-i18n="nav-formacao">formação</a>
-  <a href="#contacto" data-i18n="nav-contacto">contacto</a>
-</div>
-
+<!-- HERO -->
 <section id="hero">
-  <div class="hero-eyebrow">
-    <span>everson rubira</span>
-    &nbsp;·&nbsp; Seixal / Lisboa &nbsp;·&nbsp;
-    <span data-i18n="hero-avail">disponível</span>
-  </div>
-  <h1 class="hero-h1">
-    Backend
-    <em>Developer.</em>
-  </h1>
-  <p class="hero-tagline" data-i18n="hero-tag">
-    15 anos em operações B2B. Agora construo sistemas que entendem o negócio que servem —
-    Java, Spring Boot, Node.js e IA aplicada com a Claude API.
-  </p>
-  <div class="hero-cta">
-    <a href="#projetos" class="btn btn-fill" data-i18n="hero-btn-proj">ver projetos</a>
-    <a href="#contacto" class="btn btn-ghost" data-i18n="hero-btn-contact">contacto</a>
-    <a href="cv.html" class="btn btn-dim" target="_blank" rel="noopener">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
-      cv pdf
-    </a>
-  </div>
-
-  <div class="ticker-wrap" style="margin-top:48px">
-    <div class="ticker">
-      <span class="tick-item"><b>Java 21</b></span>
-      <span class="tick-item"><b>Spring Boot</b></span>
-      <span class="tick-item"><b>Node.js</b></span>
-      <span class="tick-item"><b>PostgreSQL</b></span>
-      <span class="tick-item"><b>Angular</b></span>
-      <span class="tick-item"><b>Docker</b></span>
-      <span class="tick-item"><b>Claude API</b></span>
-      <span class="tick-item"><b>LangChain</b></span>
-      <span class="tick-item"><b>Python</b></span>
-      <span class="tick-item"><b>FastAPI</b></span>
-      <span class="tick-item"><b>MongoDB</b></span>
-      <span class="tick-item"><b>TypeScript</b></span>
-      <!-- duplicado para loop contínuo -->
-      <span class="tick-item"><b>Java 21</b></span>
-      <span class="tick-item"><b>Spring Boot</b></span>
-      <span class="tick-item"><b>Node.js</b></span>
-      <span class="tick-item"><b>PostgreSQL</b></span>
-      <span class="tick-item"><b>Angular</b></span>
-      <span class="tick-item"><b>Docker</b></span>
-      <span class="tick-item"><b>Claude API</b></span>
-      <span class="tick-item"><b>LangChain</b></span>
-      <span class="tick-item"><b>Python</b></span>
-      <span class="tick-item"><b>FastAPI</b></span>
-      <span class="tick-item"><b>MongoDB</b></span>
-      <span class="tick-item"><b>TypeScript</b></span>
+  <div class="hero-body">
+    <div class="hero-right reveal">
+      <div class="photo-frame" id="ascii-frame">
+        <canvas id="ascii-canvas"></canvas>
+        <img src="foto-perfil (2).jpeg" alt="Everson Rubira" id="ascii-photo">
+        <div class="photo-hint" id="photo-hint">color</div>
+      </div>
+      <div class="hero-socials">
+        <a href="https://linkedin.com/in/eversonrubira" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/EversonRubira" target="_blank" rel="noopener">GitHub</a>
+        <a href="mailto:eversonrubira@gmail.com">Email</a>
+      </div>
     </div>
+    <div class="hero-text">
+      <h1 class="hero-name reveal">Everson Rubira</h1>
+      <div class="hero-role reveal">
+        <span data-i18n="hero-role">Backend Developer · AI Integration · QA</span><br>
+        <span class="cursor-blink" data-i18n="hero-cursor">Java · Spring Boot · Python · LLMs · Agentic AI</span>
+      </div>
+      <p class="hero-desc reveal" data-i18n="hero-desc">
+        12 anos a resolver problemas operacionais complexos — agora <strong>construo as soluções.</strong><br>
+        Backend sólido, integração de IA e visão de negócio numa só pessoa.<br>
+        Seixal / Lisboa, Portugal.
+      </p>
+      <div class="hero-actions reveal">
+        <a href="#projetos" class="btn-fill" data-i18n="hero-btn-proj">ver projetos →</a>
+        <a href="#contacto" class="btn-ghost" data-i18n="hero-btn-contact">contacto</a>
+        <a href="cv.html" target="_blank" class="btn-ghost" data-i18n="nav-cv">cv</a>
+      </div>
+      <div class="hero-chips reveal">
+        <span class="chip">Java 17/21</span>
+        <span class="chip">Spring Boot</span>
+        <span class="chip">QA · JUnit · Cypress</span>
+        <span class="chip">Node.js · Angular</span>
+        <span class="chip">LangChain · Claude API</span>
+        <span class="chip">Docker · PostgreSQL</span>
+      </div>
+    </div>
+  </div>
+  <div class="hero-bar">
+    <div class="hero-bar-tags" data-i18n="hero-bar-tags">
+      <span>Backend</span> · Java · Spring Boot · Node.js &nbsp;·&nbsp;
+      <span>AI</span> · LangChain · Claude API · Agentic AI &nbsp;·&nbsp;
+      <span>QA</span> · JUnit · Cypress · Robot Framework
+    </div>
+    <span class="status-pill" data-i18n="hero-status">Disponível agora</span>
   </div>
 </section>
 
+<!-- SOBRE -->
 <section id="sobre">
-  <div class="sec">
-    <div class="sec-header reveal">
-      <div class="sec-eye" data-i18n="sec-sobre">sobre</div>
-      <h2 class="sec-title" data-i18n="sec-sobre-title">Quem sou eu</h2>
+  <div class="sec-wrap">
+    <div class="sec-head reveal">
+      <span class="sec-num">[ 01 ]</span>
+      <h2 class="sec-title" data-i18n="sec-sobre">Sobre</h2>
+      <div class="sec-rule"></div>
     </div>
-    <div class="sobre-grid reveal">
-      <div class="sobre-body">
-        <p data-i18n="sobre-p1">
-          Brasileiro em Portugal, construo a minha transição para tech com consistência.
-          <strong>15 anos em operações internacionais B2B</strong> ensinaram-me a pensar em sistemas,
-          identificar pontos de falha e trabalhar com precisão — competências que agora aplico em código.
-        </p>
-        <p data-i18n="sobre-p2">Estou a completar o <strong>TeSP em Programação e Sistemas de Informação no IPS</strong>, com estágio curricular activo em Java/Spring Boot e Angular na Pipoca Ágil. Co-fundei a <strong>ImplementIQ Systems</strong> com clientes reais em produção.</p>
-        <p data-i18n="sobre-p3">
-          Foco actual: <strong>backend sólido em Java e Python</strong>,
-          integração com IA via LangChain e Claude API.
-        </p>
+    <div class="sobre-grid">
+      <div class="sobre-quote reveal" data-i18n="sobre-quote">
+        "12 anos a operar sistemas B2B ensinaram-me a pensar
+        <em>antes</em> de construir. Agora aplico isso em código."
       </div>
-      <div class="facts-panel">
-        <div class="fact-row">
-          <span class="fact-k" data-i18n="fact-loc">localização</span>
-          <span class="fact-v">Seixal / Lisboa, PT</span>
-        </div>
-        <div class="fact-row">
-          <span class="fact-k" data-i18n="fact-disp">disponível</span>
-          <span class="fact-v" data-i18n="fact-disp-v">Remoto · presencial Lisboa</span>
-        </div>
-        <div class="fact-row">
-          <span class="fact-k" data-i18n="fact-foco">foco</span>
-          <span class="fact-v">Backend · AI Integration</span>
-        </div>
-        <div class="fact-row">
-          <span class="fact-k" data-i18n="fact-idiomas">idiomas</span>
-          <span class="fact-v" data-i18n="fact-idiomas-v">PT nativo · EN profissional · ES compreensão fluente, fala em progresso</span>
-        </div>
-        <div class="fact-row">
-          <span class="fact-k" data-i18n="fact-exp">experiência</span>
-          <span class="fact-v" data-i18n="fact-exp-v">15+ anos operações · 2+ anos dev</span>
+      <div class="sobre-body reveal">
+        <p data-i18n="sobre-p1">Brasileiro em Portugal. Construo a minha transição para tech com consistência. Não saí do zero: trago experiência real em identificar falhas, trabalhar com precisão e entregar sob pressão.</p>
+        <p data-i18n="sobre-p2">Estou a completar o <strong>TeSP em Programação e Sistemas de Informação no IPS</strong>, com estágio curricular activo em Java/Spring Boot e Angular na Pipoca Ágil. Co-fundei a <strong>ImplementIQ Systems</strong> com clientes reais em produção.</p>
+        <div class="fact-table">
+          <div class="fact-row">
+            <span class="fact-k" data-i18n="fact-localizacao">localização</span>
+            <span class="fact-v">Seixal / Lisboa, Portugal</span>
+          </div>
+          <div class="fact-row">
+            <span class="fact-k" data-i18n="fact-procuro">procuro</span>
+            <span class="fact-v" data-i18n="fact-procuro-v">Backend Engineer · AI Engineer · QA</span>
+          </div>
+          <div class="fact-row">
+            <span class="fact-k" data-i18n="fact-modalidade">modalidade</span>
+            <span class="fact-v" data-i18n="fact-modalidade-v">Presencial · Híbrido · Remoto</span>
+          </div>
+          <div class="fact-row">
+            <span class="fact-k" data-i18n="fact-idiomas">idiomas</span>
+            <span class="fact-v" data-i18n="fact-idiomas-v">PT nativo · EN profissional · ES compreensão fluente, fala em progresso</span>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<section id="experiencia">
-  <div class="sec">
-    <div class="sec-header reveal">
-      <div class="sec-eye" data-i18n="sec-exp">experiência</div>
-      <h2 class="sec-title" data-i18n="sec-exp-title">Onde trabalhei</h2>
+<!-- FILOSOFIA -->
+<section id="filosofia">
+  <div class="sec-wrap">
+    <div class="sec-head reveal">
+      <span class="sec-num">[ 02 ]</span>
+      <h2 class="sec-title" data-i18n="sec-filosofia">Princípios de Engenharia</h2>
+      <div class="sec-rule"></div>
     </div>
-    <div class="exp-list reveal">
+    <div class="princ-list">
 
-      <div class="exp-item open">
-        <div class="exp-hdr" onclick="toggleExp(this)">
-          <div class="exp-hdr-left">
-            <span class="exp-company">Pipoca Ágil</span>
-            <span class="exp-role-line" data-i18n="exp-pipoca-role">Estágio Curricular · Full-Stack Developer · Accenture Portugal</span>
-            <div class="exp-meta">
-              <span class="exp-date" data-i18n="exp-pipoca-date">Fev 2026 · presente · Remoto</span>
-              <span class="badge badge-ok" data-i18n="badge-active">activo</span>
+      <div class="princ-item reveal">
+        <div class="princ-left">
+          <div class="princ-code">[ 02.A ]</div>
+          <div class="princ-label" data-i18n="princ-02a-label">Feedback<br>é inegociável</div>
+        </div>
+        <div class="princ-right">
+          <div class="princ-quote" data-i18n="princ-02a-quote">
+            "Nunca deixar o cliente sem resposta. Nunca dizer que não vai dar: encontrar o caminho."
+          </div>
+          <p class="princ-body" data-i18n="princ-02a-body">12 anos a lidar com clientes ensinaram-me que o silêncio é sempre a pior resposta. Um sistema que falha sem dizer porquê tem um bug de comunicação antes de ter um bug de código. Graceful degradation não é opcional: é o contrato mínimo com quem usa o que construímos.</p>
+          <div class="princ-spec">
+            <div class="spec-row">
+              <span class="spec-k" data-i18n="spec-nunca">nunca</span>
+              <span class="spec-v" data-i18n="spec-v-02a-nunca">falha silenciosa · timeout sem feedback · estado indefinido</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-k" data-i18n="spec-sempre">sempre</span>
+              <span class="spec-v" data-i18n="spec-v-02a-sempre">mensagem de erro útil · fallback explícito · estado comunicado</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-k" data-i18n="spec-padrao">padrão</span>
+              <span class="spec-v" data-i18n="spec-v-02a-padrao">graceful degradation · circuit breaker · logging estruturado</span>
             </div>
           </div>
-          <span class="exp-chevron">▾</span>
         </div>
-        <div class="exp-body">
+      </div>
+
+      <div class="princ-item reveal">
+        <div class="princ-left">
+          <div class="princ-code">[ 02.B ]</div>
+          <div class="princ-label" data-i18n="princ-02b-label">Problema<br>antes de código</div>
+        </div>
+        <div class="princ-right">
+          <div class="princ-quote" data-i18n="princ-02b-quote">
+            "Primeiro ponho-me no lugar de quem tem o problema. Depois papel. Depois código."
+          </div>
+          <p class="princ-body" data-i18n="princ-02b-body">O editor abre por último. B2B ensinou-me que o que é pedido e o que é necessário raramente coincidem. Antes de uma linha de código: perceber o que dói, mapear o domínio, questionar o requisito.</p>
+          <div class="princ-spec">
+            <div class="spec-row">
+              <span class="spec-k" data-i18n="spec-sequencia">sequência</span>
+              <span class="spec-v" data-i18n="spec-v-02b-sequencia">empatia → mapeamento → papel → código</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-k" data-i18n="spec-ferramenta">ferramenta</span>
+              <span class="spec-v" data-i18n="spec-v-02b-ferramenta">domain modelling · event storming · diagrama antes de IDE</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-k" data-i18n="spec-alerta">alerta</span>
+              <span class="spec-v" data-i18n="spec-v-02b-alerta">implementar o pedido literal sem questionar o porquê</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="princ-item reveal">
+        <div class="princ-left">
+          <div class="princ-code">[ 02.C ]</div>
+          <div class="princ-label" data-i18n="princ-02c-label">Verificar<br>antes de agir</div>
+        </div>
+        <div class="princ-right">
+          <div class="princ-quote" data-i18n="princ-02c-quote">
+            "Um ataque man-in-the-middle num pagamento ensinou-me a nunca assumir que o canal é seguro."
+          </div>
+          <p class="princ-body" data-i18n="princ-02c-body">A lição mais cara que aprendi não foi técnica: foi operacional. Um pagamento intercetado, dinheiro desviado. Recuperei, mas zero trust passou a ser disciplina, não paranoia: toda entrada externa é hostil até prova em contrário.</p>
+          <div class="princ-spec">
+            <div class="spec-row">
+              <span class="spec-k" data-i18n="spec-premissa">premissa</span>
+              <span class="spec-v" data-i18n="spec-v-02c-premissa">toda a entrada externa é potencialmente hostil</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-k" data-i18n="spec-padrao">padrão</span>
+              <span class="spec-v" data-i18n="spec-v-02c-padrao">validação na fronteira · zero trust · confirmação antes de irreversível</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-k" data-i18n="spec-aplica-se">aplica-se</span>
+              <span class="spec-v" data-i18n="spec-v-02c-aplica-se">APIs · pagamentos · autenticação · migrações de dados</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIÊNCIA -->
+<section id="experiencia">
+  <div class="sec-wrap">
+    <div class="sec-head reveal">
+      <span class="sec-num">[ 03 ]</span>
+      <h2 class="sec-title" data-i18n="sec-experiencia">Experiência</h2>
+      <div class="sec-rule"></div>
+    </div>
+    <div class="exp-list">
+
+      <div class="exp-item reveal">
+        <div class="exp-year">Fev 2026<br>Jul 2026</div>
+        <div>
+          <div class="exp-company">Pipoca Ágil <span class="exp-status" data-i18n="exp-status-done">concluído</span></div>
+          <div class="exp-role" data-i18n="exp-role-pipoca">Estágio Curricular · Full-Stack Developer · Remoto (Brasil)</div>
           <ul class="exp-bullets">
-            <li data-i18n="exp-pipoca-b1">Plataforma e-commerce com arquitectura Hexagonal e DDD</li>
-            <li data-i18n="exp-pipoca-b2">Migração de schema com Flyway, catálogo de produtos completo</li>
-            <li data-i18n="exp-pipoca-b3">Carrinho completo com backend e frontend, 7 testes Vitest</li>
+            <li data-i18n="exp-pipoca-b1">Arquitectura Hexagonal + DDD em projecto real de e-commerce</li>
+            <li data-i18n="exp-pipoca-b2">Migração de schema com Flyway; catálogo de produtos completo</li>
+            <li data-i18n="exp-pipoca-b3">Carrinho de compras (backend e frontend) com 7 testes Vitest</li>
             <li data-i18n="exp-pipoca-b4">MapStruct, JUnit 5, Jira, GitHub, Docker</li>
           </ul>
-          <div class="exp-chips">
-            <span class="chip">Java 21</span><span class="chip">Spring Boot</span>
-            <span class="chip">PostgreSQL</span><span class="chip">Angular 21</span>
-            <span class="chip">TypeScript</span><span class="chip">Docker</span>
-            <span class="chip">Hexagonal Architecture</span><span class="chip">DDD</span>
-          </div>
+          <div class="exp-tech">Java 21 · Spring Boot · PostgreSQL · Flyway · Angular 21 · TypeScript · PrimeNG · Vitest · Docker</div>
+          <div class="exp-tech" style="margin-top:4px;color:var(--ink-3)" data-i18n="exp-pipoca-grade">Nota final: 18/20</div>
         </div>
       </div>
 
-      <div class="exp-item">
-        <div class="exp-hdr" onclick="toggleExp(this)">
-          <div class="exp-hdr-left">
-            <span class="exp-company">Accenture Lisboa</span>
-            <span class="exp-role-line" data-i18n="exp-acc-role">Trust &amp; Safety Associate · Mentor Agentic AI</span>
-            <div class="exp-meta">
-              <span class="exp-date" data-i18n="exp-acc-date">2023 · presente · Lisboa</span>
-              <span class="badge badge-ok" data-i18n="badge-active">activo</span>
-              <span class="badge badge-acc">Elevate GenAI Wave 2</span>
-            </div>
-          </div>
-          <span class="exp-chevron">▾</span>
-        </div>
-        <div class="exp-body">
+      <div class="exp-item reveal">
+        <div class="exp-year">2024<br>presente</div>
+        <div>
+          <div class="exp-company">ImplementIQ Systems <span class="exp-status" data-i18n="exp-status-active">activo</span></div>
+          <div class="exp-role" data-i18n="exp-role-impl">Co-fundador &amp; Developer · Seixal, Portugal</div>
           <ul class="exp-bullets">
-            <li data-i18n="exp-acc-b1">Seleccionado como talento de próxima geração no programa Elevate GenAI Wave 2</li>
-            <li data-i18n="exp-acc-b2">Reverse mentoring em IA Generativa para líderes seniores da Accenture Portugal (Junho 2026)</li>
-            <li data-i18n="exp-acc-b3">Entrega de workshops de Agentic AI a colegas analistas</li>
-            <li data-i18n="exp-acc-b4">Análise de risco e moderação de conteúdo com base em políticas internacionais</li>
-          </ul>
-          <div class="exp-chips">
-            <span class="chip">Elevate GenAI Wave 2</span>
-            <span class="chip">Agentic AI</span>
-            <span class="chip">Reverse Mentoring</span>
-            <span class="chip" data-i18n="chip-risk">Análise de risco</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="exp-item">
-        <div class="exp-hdr" onclick="toggleExp(this)">
-          <div class="exp-hdr-left">
-            <span class="exp-company">ImplementIQ Systems</span>
-            <span class="exp-role-line" data-i18n="exp-impl-role">Co-fundador · Developer</span>
-            <div class="exp-meta">
-              <span class="exp-date" data-i18n="exp-impl-date">Jan 2024 · presente · Seixal</span>
-              <span class="badge badge-acc" data-i18n="badge-cofound">co-fundador</span>
-            </div>
-          </div>
-          <span class="exp-chevron">▾</span>
-        </div>
-        <div class="exp-body">
-          <ul class="exp-bullets">
-            <li data-i18n="exp-impl-b1">Consultoria tech para PMEs portuguesas</li>
+            <li data-i18n="exp-impl-b1">Consultoria tech para PMEs portuguesas, da relação com cliente à entrega</li>
             <li data-i18n="exp-impl-b2">Sulav Sushi Bar, site PT/EN em produção com Uber Eats, Glovo e Bolt Food</li>
-            <li data-i18n="exp-impl-b3">Wedding Clinic: site institucional em desenvolvimento para cliente real</li>
-            <li data-i18n="exp-impl-b4">Frontend, SEO técnico e integrações de terceiros</li>
+            <li data-i18n="exp-impl-b3">Wedding Clinic, site institucional em desenvolvimento para cliente real</li>
           </ul>
-          <div class="exp-chips">
-            <span class="chip">GitHub Pages</span><span class="chip">Supabase</span>
-            <span class="chip">HTML/CSS/JS</span><span class="chip">SEO</span>
+          <div class="exp-tech">GitHub Pages · Supabase · HTML/CSS/JS · SEO</div>
+        </div>
+      </div>
+
+      <div class="exp-item reveal">
+        <div class="exp-year">actual</div>
+        <div>
+          <div class="exp-company">Accenture Lisboa</div>
+          <div class="exp-role" data-i18n="exp-role-acc">Trust &amp; Safety Associate · Lisboa</div>
+          <ul class="exp-bullets">
+            <li data-i18n="exp-acc-b1">Revisão e moderação de conteúdo em ambiente de alta responsabilidade</li>
+            <li data-i18n="exp-acc-b2">Análise de risco com base em políticas internacionais</li>
+            <li data-i18n="exp-acc-b3">Coordenação cross-timezone em ambiente multicultural</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PROJETOS -->
+<section id="projetos">
+  <div class="sec-wrap">
+    <div class="sec-head reveal">
+      <span class="sec-num">[ 04 ]</span>
+      <h2 class="sec-title" data-i18n="sec-projetos">Projetos</h2>
+      <div class="sec-rule"></div>
+    </div>
+    <div class="proj-list">
+
+      <!-- ── CAMADA 1: Featured ── -->
+      <div class="proj-item featured reveal">
+        <div class="proj-main">
+          <div class="proj-id">ID_05</div>
+          <div class="proj-name">Sulav Sushi Bar</div>
+          <p class="proj-desc" data-i18n="proj-sulav-desc">Site completo em produção para restaurante português. Bilíngue PT/EN com Uber Eats, Glovo, Bolt Food e Google Maps integrados.</p>
+          <div class="proj-footer">
+            <span class="proj-tag live" data-i18n="proj-tag-live">produção</span>
+            <div class="proj-links">
+              <a href="https://sulavsushibar.pt" target="_blank" rel="noopener" class="proj-link">demo <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+            </div>
           </div>
         </div>
+        <div class="proj-spec">
+          <div class="proj-spec-title">delivery_spec</div>
+          <div class="proj-spec-row"><span class="proj-spec-k">status</span><span class="proj-spec-v">production · live</span></div>
+          <div class="proj-spec-row"><span class="proj-spec-k">integrations</span><span class="proj-spec-v">uber_eats · glovo · bolt</span></div>
+          <div class="proj-spec-row"><span class="proj-spec-k">languages</span><span class="proj-spec-v">pt / en bilingual</span></div>
+          <div class="proj-spec-row"><span class="proj-spec-k">infra</span><span class="proj-spec-v">github_pages · supabase</span></div>
+          <div class="proj-spec-row"><span class="proj-spec-k">seo</span><span class="proj-spec-v" data-i18n="proj-seo-opt">optimizado</span></div>
+        </div>
+      </div>
+
+      <div class="proj-item featured reveal">
+        <div class="proj-main">
+          <div class="proj-id">ID_12</div>
+          <div class="proj-name">ArqSync</div>
+          <p class="proj-desc" data-i18n="proj-arqsync-desc">Analisador estático de arquitectura Java. Detecta dependências circulares e violações de camadas (controller/service/repository/domain). Suporta repos locais e remotos via Git. Gera relatórios JSON e HTML com diagramas Mermaid.</p>
+          <div class="proj-footer">
+            <span class="proj-tag wip" data-i18n="proj-tag-wip">em desenvolvimento</span>
+            <div class="proj-links">
+              <a href="https://github.com/EversonRubira/ArqSync" target="_blank" rel="noopener" class="proj-link">GitHub <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+            </div>
+          </div>
+        </div>
+        <div class="proj-spec">
+          <div class="proj-spec-title">arqsync_spec</div>
+          <div class="proj-spec-row"><span class="proj-spec-k">runtime</span><span class="proj-spec-v">java_21 · spring_boot_3</span></div>
+          <div class="proj-spec-row"><span class="proj-spec-k">analysis</span><span class="proj-spec-v">javaparser · cycle_detection</span></div>
+          <div class="proj-spec-row"><span class="proj-spec-k">output</span><span class="proj-spec-v">json · html · mermaid_js</span></div>
+          <div class="proj-spec-row"><span class="proj-spec-k">method</span><span class="proj-spec-v">spec_driven_development</span></div>
+          <div class="proj-spec-row"><span class="proj-spec-k">scope</span><span class="proj-spec-v">local_scan · remote_git</span></div>
+        </div>
+      </div>
+
+      <div class="proj-item featured reveal">
+        <div class="proj-main">
+          <div class="proj-id">ID_03</div>
+          <div class="proj-name">FitCheck</div>
+          <p class="proj-desc" data-i18n="proj-fitcheck-desc">Tracker de hábitos de saúde com análise semanal por IA. Regista sono, hidratação, IMC e metas físicas; Groq/Llama 3.3 analisa os registos e devolve sugestões em streaming.</p>
+          <div class="proj-footer">
+            <span class="proj-tag live" data-i18n="proj-tag-live">produção</span>
+            <div class="proj-links">
+              <a href="https://fitcheck-zpyt.onrender.com" target="_blank" rel="noopener" class="proj-link">demo <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+              <a href="https://github.com/EversonRubira/FitCheck" target="_blank" rel="noopener" class="proj-link">GitHub <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+            </div>
+          </div>
+        </div>
+        <div class="proj-spec">
+          <div class="proj-spec-title">fitcheck_spec</div>
+          <div class="proj-spec-row"><span class="proj-spec-k">runtime</span><span class="proj-spec-v">node.js · express</span></div>
+          <div class="proj-spec-row"><span class="proj-spec-k">ai_provider</span><span class="proj-spec-v">groq · llama_3.3</span></div>
+          <div class="proj-spec-row"><span class="proj-spec-k">database</span><span class="proj-spec-v">mysql · clever_cloud</span></div>
+          <div class="proj-spec-row"><span class="proj-spec-k">infra</span><span class="proj-spec-v">render · free_tier</span></div>
+          <div class="proj-spec-row"><span class="proj-spec-k">status</span><span class="proj-spec-v">production · live</span></div>
+        </div>
+      </div>
+
+      <div class="proj-item featured reveal">
+        <div class="proj-main">
+          <div class="proj-id">ID_11</div>
+          <div class="proj-name">Criptomoedas</div>
+          <p class="proj-desc" data-i18n="proj-crypto-desc">Top 10 criptomoedas em tempo real via CoinGecko API. Node.js sem frameworks, views dinâmicas e clean code.</p>
+          <div class="proj-footer">
+            <span class="proj-tag live" data-i18n="proj-tag-live">produção</span>
+            <div class="proj-links">
+              <a href="https://eversonrubira.github.io/criptomoedas-nodejs/" target="_blank" rel="noopener" class="proj-link">demo <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+              <a href="https://github.com/EversonRubira/criptomoedas-nodejs" target="_blank" rel="noopener" class="proj-link">GitHub <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+            </div>
+          </div>
+        </div>
+        <div class="proj-spec">
+          <div class="proj-spec-title">crypto_spec</div>
+          <div class="proj-spec-row"><span class="proj-spec-k">runtime</span><span class="proj-spec-v">node.js · vanilla_js</span></div>
+          <div class="proj-spec-row"><span class="proj-spec-k">api</span><span class="proj-spec-v">coingecko_public</span></div>
+          <div class="proj-spec-row"><span class="proj-spec-k">pattern</span><span class="proj-spec-v">no_framework · clean_code</span></div>
+          <div class="proj-spec-row"><span class="proj-spec-k">status</span><span class="proj-spec-v">live</span></div>
+        </div>
+      </div>
+
+      <!-- ── CAMADA 2: Lista compacta ── -->
+      <div class="proj-compact-label reveal" data-i18n="proj-more-label">— outros projetos —</div>
+      <div class="proj-compact-list reveal">
+
+        <div class="proj-compact-item">
+          <span class="proj-compact-id">ID_04</span>
+          <span class="proj-compact-name">LangChain + Anthropic</span>
+          <span class="proj-compact-stack">ai_agents · python · anthropic_api</span>
+          <div class="proj-compact-links">
+            <a href="https://github.com/EversonRubira/LangChain-Python-via-LLM-Anthropic" target="_blank" rel="noopener" class="proj-link">GitHub <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+          </div>
+        </div>
+
+        <div class="proj-compact-item">
+          <span class="proj-compact-id">ID_10</span>
+          <span class="proj-compact-name">Meeting Analyst</span>
+          <span class="proj-compact-stack">fastapi · groq_llama3-70b · railway</span>
+          <div class="proj-compact-links">
+            <a href="https://github.com/EversonRubira/meeting-analyst" target="_blank" rel="noopener" class="proj-link">GitHub <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+          </div>
+        </div>
+
+        <div class="proj-compact-item">
+          <span class="proj-compact-id">ID_06</span>
+          <span class="proj-compact-name">Gestão Saúde Mental</span>
+          <span class="proj-compact-stack">java · spring_boot · rest_api · postgresql</span>
+          <div class="proj-compact-links">
+            <a href="https://github.com/EversonRubira/GestaoSaudeMental" target="_blank" rel="noopener" class="proj-link">GitHub <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+          </div>
+        </div>
+
+        <div class="proj-compact-item">
+          <span class="proj-compact-id">ID_09</span>
+          <span class="proj-compact-name">Absence Portal AI</span>
+          <span class="proj-compact-stack">fastapi · groq/llama_3.3 · prompt_engineering</span>
+          <div class="proj-compact-links">
+          </div>
+        </div>
+
+        <div class="proj-compact-item">
+          <span class="proj-compact-id">ID_02</span>
+          <span class="proj-compact-name">Boardly</span>
+          <span class="proj-compact-stack">java · spring_boot · jwt · clean_architecture</span>
+          <div class="proj-compact-links">
+            <a href="https://github.com/EversonRubira/Boardly" target="_blank" rel="noopener" class="proj-link">GitHub <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+          </div>
+        </div>
+
+        <div class="proj-compact-item">
+          <span class="proj-compact-id">ID_07</span>
+          <span class="proj-compact-name">StudyFlow</span>
+          <span class="proj-compact-stack">android_native · mvvm · kotlin · room</span>
+          <div class="proj-compact-links">
+            <a href="https://github.com/EversonRubira/StudyFlow" target="_blank" rel="noopener" class="proj-link">GitHub <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+          </div>
+        </div>
+
+        <div class="proj-compact-item">
+          <span class="proj-compact-id">ID_08</span>
+          <span class="proj-compact-name">Campo Minado</span>
+          <span class="proj-compact-stack">vanilla_js · flood-fill · portado de java/swing</span>
+          <div class="proj-compact-links">
+            <a href="/minesweeper/" target="_blank" rel="noopener" class="proj-link">jogar <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+            <a href="https://github.com/EversonRubira/Campo_Minado" target="_blank" rel="noopener" class="proj-link">GitHub <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+          </div>
+        </div>
+
       </div>
 
     </div>
   </div>
 </section>
 
-<section id="projetos">
-  <div class="sec">
-    <div class="sec-header reveal">
-      <div class="sec-eye" data-i18n="sec-proj">projetos</div>
-      <h2 class="sec-title" data-i18n="sec-proj-title">O que construí</h2>
-    </div>
-    <div class="proj-grid reveal">
-
-      <div class="proj-card feat">
-        <div class="proj-top">
-          <span class="proj-name">FitCheck</span>
-          <span class="badge badge-ok">AI Integration</span>
-        </div>
-        <p class="proj-desc" data-i18n="proj-fitcheck-desc">Integração real da Claude API via Anthropic SDK. Recomendações de treino geradas por IA com base no perfil do utilizador. Projecto académico com AI aplicada.</p>
-        <div class="exp-chips">
-          <span class="chip">Node.js</span><span class="chip">MySQL</span>
-          <span class="chip">Sequelize</span><span class="chip">Anthropic API</span>
-        </div>
-        <div class="proj-footer">
-          <a href="https://github.com/EversonRubira/fitcheck" target="_blank" rel="noopener" class="proj-link" data-i18n="link-github">ver no GitHub ↗</a>
-        </div>
-      </div>
-
-      <div class="proj-card feat">
-        <div class="proj-top">
-          <span class="proj-name">Sulav Sushi Bar</span>
-          <span class="badge badge-ok" data-i18n="badge-prod">em produção</span>
-        </div>
-        <p class="proj-desc" data-i18n="proj-sulav-desc">Site completo em produção para restaurante português. Bilíngue PT/EN com Uber Eats, Glovo, Bolt Food e Google Maps integrados.</p>
-        <div class="exp-chips">
-          <span class="chip">GitHub Pages</span><span class="chip">Supabase</span><span class="chip">SEO</span>
-        </div>
-        <div class="proj-footer">
-          <a href="https://sulavsushibar.pt" target="_blank" rel="noopener" class="proj-link" data-i18n="link-site">ver site ↗</a>
-        </div>
-      </div>
-
-      <div class="proj-card">
-        <div class="proj-top">
-          <span class="proj-name">Boardly</span>
-          <span class="badge badge-acc">Backend</span>
-        </div>
-        <p class="proj-desc" data-i18n="proj-boardly-desc">Gestão de tarefas com autenticação JWT e Clean Architecture. Projecto independente para praticar segurança e boas práticas de API REST.</p>
-        <div class="exp-chips">
-          <span class="chip">Java 17</span><span class="chip">Spring Boot</span>
-          <span class="chip">MongoDB</span><span class="chip">JWT</span>
-        </div>
-        <div class="proj-footer">
-          <a href="https://github.com/EversonRubira/boardly" target="_blank" rel="noopener" class="proj-link" data-i18n="link-github">ver no GitHub ↗</a>
-        </div>
-      </div>
-
-      <div class="proj-card">
-        <div class="proj-top">
-          <span class="proj-name">GestaoSaudeMental</span>
-          <span class="badge badge-acc">API REST</span>
-        </div>
-        <p class="proj-desc" data-i18n="proj-gestao-desc">Gestão de tarefas com autenticação JWT e Clean Architecture. Projecto independente para praticar segurança e boas práticas de API REST.</p>
-        <div class="exp-chips">
-          <span class="chip">Java</span><span class="chip">Spring Boot</span><span class="chip">MySQL</span>
-        </div>
-        <div class="proj-footer">
-          <a href="https://github.com/EversonRubira/GestaoSaudeMental" target="_blank" rel="noopener" class="proj-link" data-i18n="link-github">ver no GitHub ↗</a>
-        </div>
-      </div>
-
-      <div class="proj-card">
-        <div class="proj-top">
-          <span class="proj-name">StudyFlow</span>
-          <span class="badge badge-acc">Android</span>
-        </div>
-        <p class="proj-desc" data-i18n="proj-studyflow-desc">App Android de gestão académica: disciplinas, tarefas com prioridade, timer Pomodoro, calendário e estatísticas. MVVM + Room + PBKDF2. Projeto UC Programação de Aplicações Móveis — IPS 2025/26.</p>
-        <div class="exp-chips">
-          <span class="chip">Kotlin</span><span class="chip">Android</span><span class="chip">Room</span><span class="chip">MVVM</span>
-        </div>
-        <div class="proj-footer">
-          <a href="https://github.com/EversonRubira/StudyFlow" target="_blank" rel="noopener" class="proj-link" data-i18n="link-github">ver no GitHub ↗</a>
-        </div>
-      </div>
-
-      <div class="proj-card">
-        <div class="proj-top">
-          <span class="proj-name">Meeting Intelligence</span>
-          <span class="badge badge-acc">FastAPI · AI</span>
-        </div>
-        <p class="proj-desc" data-i18n="proj-meeting-desc">Extrai summary, decisions, actions e open points de notas de reunião. FastAPI + Groq/llama3-70b. Frontend HTML bilingue PT/EN. Deploy no Railway.</p>
-        <div class="exp-chips">
-          <span class="chip">Python</span><span class="chip">FastAPI</span>
-          <span class="chip">Groq</span><span class="chip">Railway</span>
-        </div>
-        <div class="proj-footer">
-          <a href="https://github.com/EversonRubira/meeting-intelligence" target="_blank" rel="noopener" class="proj-link" data-i18n="link-github">ver no GitHub ↗</a>
-        </div>
-      </div>
-
-      <div class="proj-card">
-        <div class="proj-top">
-          <span class="proj-name">Wedding Clinic</span>
-          <span class="badge badge-warn" data-i18n="badge-wip">em desenvolvimento</span>
-        </div>
-        <p class="proj-desc" data-i18n="proj-wedding-desc">Site institucional em desenvolvimento para cliente real no sector de casamentos. ImplementIQ Systems.</p>
-        <div class="exp-chips">
-          <span class="chip">GitHub Pages</span><span class="chip">Supabase</span><span class="chip">HTML/CSS</span>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
+<!-- STACK -->
 <section id="stack">
-  <div class="sec">
-    <div class="sec-header reveal">
-      <div class="sec-eye" data-i18n="sec-stack">stack</div>
-      <h2 class="sec-title" data-i18n="sec-stack-title">Stack técnica</h2>
+  <div class="sec-wrap">
+    <div class="sec-head reveal">
+      <span class="sec-num">[ 05 ]</span>
+      <h2 class="sec-title" data-i18n="sec-stack">Stack Técnica</h2>
+      <div class="sec-rule"></div>
     </div>
-    <div class="stack-cols reveal">
-      <div class="stack-group">
+    <div class="stack-grid reveal">
+      <div>
         <div class="stack-row"><span class="stack-k" data-i18n="stack-backend">backend</span><span class="stack-v">Java 17/21, Spring Boot, Node.js, Python, FastAPI</span></div>
-        <div class="stack-row"><span class="stack-k" data-i18n="stack-frontend">frontend</span><span class="stack-v">Angular, TypeScript, HTML/CSS, JavaScript</span></div>
-        <div class="stack-row"><span class="stack-k" data-i18n="stack-db">bases de dados</span><span class="stack-v">PostgreSQL, MySQL, MongoDB, Supabase</span></div>
+        <div class="stack-row"><span class="stack-k" data-i18n="stack-frontend">frontend</span><span class="stack-v">Angular, TypeScript, PrimeNG, HTML/CSS, JavaScript</span></div>
+        <div class="stack-row"><span class="stack-k" data-i18n="stack-databases">databases</span><span class="stack-v">PostgreSQL, MySQL, MongoDB, Supabase</span></div>
       </div>
-      <div class="stack-group">
+      <div>
         <div class="stack-row"><span class="stack-k" data-i18n="stack-testes">testes &amp; qa</span><span class="stack-v">JUnit 5, Vitest, Postman, Cypress, Robot Framework</span></div>
         <div class="stack-row"><span class="stack-k" data-i18n="stack-devops">devops</span><span class="stack-v">Docker, Git, GitHub Actions, Linux</span></div>
         <div class="stack-row"><span class="stack-k" data-i18n="stack-ia">ia &amp; automação</span><span class="stack-v">LangChain, Claude API, Anthropic SDK, Prompt Engineering</span></div>
@@ -789,13 +1345,15 @@ footer a{color:var(--acc); text-decoration:none;}
   </div>
 </section>
 
+<!-- FORMAÇÃO -->
 <section id="formacao">
-  <div class="sec">
-    <div class="sec-header reveal">
-      <div class="sec-eye" data-i18n="sec-formacao">formação</div>
-      <h2 class="sec-title" data-i18n="sec-formacao-title">Formação &amp; Certificações</h2>
+  <div class="sec-wrap">
+    <div class="sec-head reveal">
+      <span class="sec-num">[ 06 ]</span>
+      <h2 class="sec-title" data-i18n="sec-formacao">Formação &amp; Certificações</h2>
+      <div class="sec-rule"></div>
     </div>
-    <div class="form-grid reveal">
+    <div class="form-grid">
       <div class="reveal">
         <div class="edu-block">
           <div class="edu-degree" data-i18n="edu-degree-ips">TeSP em Programação e Sistemas de Informação</div>
@@ -822,377 +1380,788 @@ footer a{color:var(--acc); text-decoration:none;}
       <div class="reveal">
         <div class="micro-label" style="margin-top:0" data-i18n="cert-alura-label">Certificações Alura</div>
         <div class="cert-group">
-          <div class="cert-group-title">Java &amp; Spring Boot</div>
-          <div class="cert-items">OOP · Collections · Streams · SOLID · TDD/JUnit · Spring Boot ×3 · DDD · Clean Architecture · Microservices · RabbitMQ</div>
+          <div class="cert-group-k" data-i18n="cert-java">Java &amp; Spring Boot</div>
+          <div class="cert-group-v">OOP · Collections · Streams · SOLID · TDD/JUnit · Spring Boot ×3 · DDD · Clean Architecture · Microservices · RabbitMQ</div>
         </div>
         <div class="cert-group">
-          <div class="cert-group-title" data-i18n="cert-qa">QA &amp; Testes</div>
-          <div class="cert-items" data-i18n="cert-qa-items">Gestão de bugs · QA Automação · Cypress · Robot Framework</div>
+          <div class="cert-group-k" data-i18n="cert-qa">QA &amp; Testes</div>
+          <div class="cert-group-v" data-i18n="cert-qa-v">Gestão de bugs · QA Automação · Cypress · Robot Framework</div>
         </div>
         <div class="cert-group">
-          <div class="cert-group-title" data-i18n="cert-other-lang">Outras linguagens</div>
-          <div class="cert-items">Python OOP · Python TDD · Go API · Go OOP · C ×3 · JavaScript · TypeScript</div>
+          <div class="cert-group-k" data-i18n="cert-outras">Outras linguagens</div>
+          <div class="cert-group-v" data-i18n="cert-outras-v">Python OOP · Python TDD · Go API · Go OOP · C (3 cursos) · JavaScript · TypeScript</div>
         </div>
         <div class="cert-group">
-          <div class="cert-group-title">Cloud &amp; DevOps</div>
-          <div class="cert-items">AZ-900 · Docker · Linux · Git/GitHub · HTTP</div>
-        </div>
-        <div class="cert-group">
-          <div class="cert-group-title">IA</div>
-          <div class="cert-items" data-i18n="cert-ia-items">Prompt Engineering · Generative AI · LangChain com OpenAI (Mai 2026)</div>
-        </div>
-        <a href="https://cursos.alura.com.br/certificate/08a1ebdc-8676-4e47-ad7d-0ddcebff3b77" target="_blank" rel="noopener" class="cert-link" data-i18n="cert-link-langchain">Ver certificado LangChain ↗</a>
-        <div class="now-learning">
-          <div class="now-label" data-i18n="now-label">a aprender agora</div>
-          <div class="now-items">
-            LangChain: Técnicas Avançadas de RAG · Alura<br>
-            LangGraph: Orquestrando agentes e multiagentes · Alura<br>
-            Building with the Claude API · Anthropic Academy<br>
-            Introduction to MCP · Anthropic Academy
-          </div>
+          <div class="cert-group-k" data-i18n="cert-cloud">Cloud, DevOps &amp; IA</div>
+          <div class="cert-group-v">AZ-900 · Docker · Linux · Git/GitHub · HTTP · Prompt Engineering · Generative AI · LangChain + OpenAI · LangChain Agents · Claude API · AI Fluency</div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- CONTACTO -->
 <section id="contacto">
-  <div class="sec">
-    <div class="sec-header reveal">
-      <div class="sec-eye" data-i18n="sec-contact">contacto</div>
-      <h2 class="sec-title" data-i18n="sec-contact-title">Vamos conversar</h2>
-      <p style="color:var(--text-dim);margin-top:12px;max-width:480px;font-size:.95rem" data-i18n="contact-sub">Aberto a oportunidades Backend em Portugal, Espanha ou remoto. Sectores preferidos: logística, supply chain, fintech e agro-tech.</p>
+  <div class="contact-inner">
+    <div class="reveal">
+      <div class="contact-lbl" data-i18n="contact-lbl">[ contacto ]</div>
+      <h2 class="contact-title" data-i18n="contact-title">Vamos<br>conversar.</h2>
+      <p class="contact-sub" data-i18n="contact-sub">Aberto a oportunidades Junior em QA, Backend Java ou IA aplicada. Portugal, Espanha ou remoto.</p>
+      <p class="contact-note" data-i18n="contact-note">Disponível para começar imediatamente.</p>
     </div>
-    <div class="contact-grid reveal">
-      <a href="mailto:eversonrubira@gmail.com" class="contact-card">
-        <div class="cc-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-        </div>
-        <div><div class="cc-lbl">email</div><div class="cc-val">eversonrubira@gmail.com</div></div>
+    <div class="contact-rows reveal">
+      <a href="mailto:eversonrubira@gmail.com" class="contact-row">
+        <span class="contact-type">email</span>
+        <span class="contact-val">eversonrubira@gmail.com</span>
+        <span class="contact-arr">→</span>
       </a>
-      <a href="https://wa.me/351910625090" target="_blank" rel="noopener" class="contact-card">
-        <div class="cc-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.4a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.69h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l.71-.71a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-        </div>
-        <div><div class="cc-lbl">WhatsApp</div><div class="cc-val">+351 910 625 090</div></div>
+      <a href="https://wa.me/351910625090" target="_blank" rel="noopener" class="contact-row">
+        <span class="contact-type">whatsapp</span>
+        <span class="contact-val">+351 910 625 090</span>
+        <span class="contact-arr">→</span>
       </a>
-      <a href="https://linkedin.com/in/eversonrubira" target="_blank" rel="noopener" class="contact-card">
-        <div class="cc-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-        </div>
-        <div><div class="cc-lbl">LinkedIn</div><div class="cc-val">linkedin.com/in/eversonrubira</div></div>
+      <a href="https://linkedin.com/in/eversonrubira" target="_blank" rel="noopener" class="contact-row">
+        <span class="contact-type">linkedin</span>
+        <span class="contact-val">linkedin.com/in/eversonrubira</span>
+        <span class="contact-arr">→</span>
       </a>
-      <a href="https://github.com/EversonRubira" target="_blank" rel="noopener" class="contact-card">
-        <div class="cc-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-        </div>
-        <div><div class="cc-lbl">GitHub</div><div class="cc-val">github.com/EversonRubira</div></div>
+      <a href="https://github.com/EversonRubira" target="_blank" rel="noopener" class="contact-row">
+        <span class="contact-type">github</span>
+        <span class="contact-val">github.com/EversonRubira</span>
+        <span class="contact-arr">→</span>
       </a>
     </div>
   </div>
 </section>
 
 <footer>
-  <p>© 2026 Everson Rubira · Seixal, Portugal</p>
-  <p data-i18n="footer-made">Feito com código e consistência.</p>
+  <div class="foot-inner">
+    <span class="foot-left" data-i18n="foot-left">© 2026 Everson Rubira · Seixal, Portugal</span>
+    <a href="cv.html" target="_blank" class="foot-right" data-i18n="foot-right">ver cv completo →</a>
+  </div>
 </footer>
 
-<button id="top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Topo">
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg>
-</button>
+<button id="term-btn" aria-label="Abrir terminal">&gt;<span id="term-cursor">_</span></button>
 
-<div id="diag">
-  <div id="diag-header">
-    <span>DIAGNOSTIC</span>
-    <button id="diag-close" onclick="document.getElementById('diag').classList.remove('open')">✕</button>
+<div id="term-overlay" role="dialog" aria-modal="true" aria-label="Terminal">
+  <div id="term-modal">
+    <div id="term-titlebar">
+      <div class="dot dot-r"></div>
+      <div class="dot dot-y"></div>
+      <div class="dot dot-g"></div>
+      <span>everson@portfolio:~</span>
+    </div>
+    <div id="term-output"></div>
+    <div id="term-inputrow">
+      <span id="term-prompt">everson@portfolio:~$</span>
+      <input id="term-input" type="text" autocomplete="off" spellcheck="false" aria-label="Comando">
+    </div>
   </div>
-  <div id="diag-content"></div>
 </div>
 
+<button id="btt" aria-label="Voltar ao topo">
+  <svg viewBox="0 0 24 24"><path d="M18 15l-6-6-6 6"/></svg>
+</button>
+
 <script>
-/* ─── TRANSLATIONS ─── */
-const T = {
+// Theme
+const html = document.documentElement;
+const themeBtn = document.getElementById('theme-btn');
+const saved = localStorage.getItem('er-theme') || 'dark';
+html.setAttribute('data-theme', saved);
+themeBtn.addEventListener('click', () => {
+  const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  html.setAttribute('data-theme', next);
+  localStorage.setItem('er-theme', next);
+  if (window._asciiRender) window._asciiRender();
+});
+
+// ─── i18n ───
+const i18n = {
   pt: {
     'nav-sobre': 'sobre',
-    'nav-exp': 'experiência',
-    'nav-proj': 'projetos',
+    'nav-filosofia': 'filosofia',
+    'nav-exp': 'exp',
+    'nav-projetos': 'projetos',
+    'nav-stack': 'stack',
     'nav-formacao': 'formação',
     'nav-contacto': 'contacto',
-    'hero-avail': 'disponível',
-    'hero-tag': '15 anos em operações B2B. Agora construo sistemas que entendem o negócio que servem — Java, Spring Boot, Node.js e IA aplicada com a Claude API.',
-    'hero-btn-proj': 'ver projetos',
+    'nav-cv': 'cv',
+    'mob-experiencia': 'experiência',
+    'mob-cv': 'ver cv',
+
+    'hero-role': 'Backend Developer · AI Integration · QA',
+    'hero-cursor': 'Java · Spring Boot · Python · LLMs · Agentic AI',
+    'hero-desc': '12 anos a resolver problemas operacionais complexos, agora <strong>estou a construir as soluções.</strong><br>Backend sólido, integração de IA e sensibilidade de negócio.<br>Seixal / Lisboa, Portugal.',
+    'hero-btn-proj': 'ver projetos →',
     'hero-btn-contact': 'contacto',
-    'sec-sobre': 'sobre',
-    'sec-sobre-title': 'Quem sou eu',
-    'sobre-p1': 'Brasileiro em Portugal, construo a minha transição para tech com consistência. <strong>15 anos em operações internacionais B2B</strong> ensinaram-me a pensar em sistemas, identificar pontos de falha e trabalhar com precisão — competências que agora aplico em código.',
+    'hero-bar-tags': '<span>Backend</span> · Java · Spring Boot · Node.js &nbsp;·&nbsp; <span>QA</span> · JUnit · Cypress · Robot Framework &nbsp;·&nbsp; <span>IA</span> · LangChain · Claude API',
+    'hero-status': 'Disponível agora',
+
+    'sec-sobre': 'Sobre',
+    'sec-filosofia': 'Princípios de Engenharia',
+    'sec-experiencia': 'Experiência',
+    'sec-projetos': 'Projetos',
+    'sec-stack': 'Stack Técnica',
+    'sec-formacao': 'Formação &amp; Certificações',
+
+    'sobre-quote': '"12 anos a operar sistemas B2B ensinaram-me a pensar <em>antes</em> de construir. Agora aplico isso em código."',
+    'sobre-p1': 'Brasileiro em Portugal. Construo a minha transição para tech com consistência. Não saí do zero: trago experiência real em identificar falhas, trabalhar com precisão e entregar sob pressão.',
     'sobre-p2': 'Estou a completar o <strong>TeSP em Programação e Sistemas de Informação no IPS</strong>. Concluí o estágio curricular em Java/Spring Boot e Angular na Pipoca Ágil com nota 18/20. Co-fundei a <strong>ImplementIQ Systems</strong> com clientes reais em produção.',
-    'sobre-p3': 'Foco actual: <strong>backend sólido em Java e Python</strong>, integração com IA via LangChain e Claude API.',
-    'fact-loc': 'localização',
-    'fact-disp': 'disponível',
-    'fact-disp-v': 'Remoto · presencial Lisboa',
-    'fact-foco': 'foco',
+    'fact-localizacao': 'localização',
+    'fact-procuro': 'procuro',
+    'fact-procuro-v': 'Backend Engineer · AI Engineer · QA',
+    'fact-modalidade': 'modalidade',
+    'fact-modalidade-v': 'Presencial · Híbrido · Remoto',
     'fact-idiomas': 'idiomas',
     'fact-idiomas-v': 'PT nativo · EN profissional · ES compreensão fluente, fala em progresso',
-    'fact-exp': 'experiência',
-    'fact-exp-v': '15+ anos operações · 2+ anos dev',
-    'sec-exp': 'experiência',
-    'sec-exp-title': 'Onde trabalhei',
-    'exp-pipoca-role': 'Estágio Curricular · Full-Stack Developer · Accenture Portugal',
-    'exp-pipoca-date': 'Fev 2026 · presente · Remoto',
-    'badge-active': 'activo',
-    'exp-pipoca-b1': 'Plataforma e-commerce com arquitectura Hexagonal e DDD',
-    'exp-pipoca-b2': 'Migração de schema com Flyway, catálogo de produtos completo',
-    'exp-pipoca-b3': 'Carrinho completo com backend e frontend, 7 testes Vitest',
-    'exp-pipoca-b4': 'MapStruct, JUnit 5, Jira, GitHub, Docker',
-    'exp-acc-role': 'Trust & Safety Associate · Mentor Agentic AI',
-    'exp-acc-date': '2023 · presente · Lisboa',
-    'exp-acc-b1': 'Seleccionado como talento de próxima geração no programa Elevate GenAI Wave 2',
-    'exp-acc-b2': 'Reverse mentoring em IA Generativa para líderes seniores da Accenture Portugal (Junho 2026)',
-    'exp-acc-b3': 'Entrega de workshops de Agentic AI a colegas analistas',
-    'exp-acc-b4': 'Análise de risco e moderação de conteúdo com base em políticas internacionais',
-    'chip-risk': 'Análise de risco',
-    'exp-impl-role': 'Co-fundador · Developer',
-    'exp-impl-date': 'Jan 2024 · presente · Seixal',
-    'badge-cofound': 'co-fundador',
-    'exp-impl-b1': 'Consultoria tech para PMEs portuguesas',
-    'exp-impl-b2': 'Sulav Sushi Bar, site PT/EN em produção com Uber Eats, Glovo e Bolt Food',
-    'exp-impl-b3': 'Wedding Clinic: site institucional em desenvolvimento para cliente real',
-    'exp-impl-b4': 'Frontend, SEO técnico e integrações de terceiros',
-    'sec-proj': 'projetos',
-    'sec-proj-title': 'O que construí',
-    'proj-fitcheck-desc': 'Integração real da Claude API via Anthropic SDK. Recomendações de treino geradas por IA com base no perfil do utilizador. Projecto académico com AI aplicada.',
-    'proj-sulav-desc': 'Site completo em produção para restaurante português. Bilíngue PT/EN com Uber Eats, Glovo, Bolt Food e Google Maps integrados.',
-    'badge-prod': 'em produção',
-    'proj-boardly-desc': 'Gestão de tarefas com autenticação JWT e Clean Architecture. Projecto independente para praticar segurança e boas práticas de API REST.',
-    'proj-gestao-desc': 'Gestão de tarefas com autenticação JWT e Clean Architecture. Projecto independente para praticar segurança e boas práticas de API REST.',
-    'proj-studyflow-desc': 'App Android de gestão académica: disciplinas, tarefas com prioridade, timer Pomodoro, calendário e estatísticas. MVVM + Room + PBKDF2. Projeto UC Programação de Aplicações Móveis — IPS 2025/26.',
-    'proj-meeting-desc': 'Extrai summary, decisions, actions e open points de notas de reunião. FastAPI + Groq/llama3-70b. Frontend HTML bilingue PT/EN. Deploy no Railway.',
-    'proj-wedding-desc': 'Site institucional em desenvolvimento para cliente real no sector de casamentos. ImplementIQ Systems.',
-    'badge-wip': 'em desenvolvimento',
-    'link-github': 'ver no GitHub ↗',
-    'link-site': 'ver site ↗',
-    'sec-stack': 'stack',
-    'sec-stack-title': 'Stack técnica',
-    'stack-backend': 'backend',
-    'stack-frontend': 'frontend',
-    'stack-db': 'bases de dados',
-    'stack-testes': 'testes & qa',
-    'stack-devops': 'devops',
-    'stack-ia': 'ia & automação',
-    'sec-formacao': 'formação',
-    'sec-formacao-title': 'Formação & Certificações',
-    'edu-degree-ips': 'TeSP em Programação e Sistemas de Informação',
+
+    'princ-02a-label': 'Feedback<br>é inegociável',
+    'princ-02a-quote': '"Nunca deixar o cliente sem resposta. Nunca dizer que não vai dar: encontrar o caminho."',
+    'princ-02a-body': '12 anos a lidar com clientes ensinaram-me que o silêncio é sempre a pior resposta. Um sistema que falha sem dizer porquê tem um bug de comunicação antes de ter um bug de código. Graceful degradation não é opcional: é o contrato mínimo com quem usa o que construímos.',
+    'princ-02b-label': 'Problema<br>antes de código',
+    'princ-02b-quote': '"Primeiro ponho-me no lugar de quem tem o problema. Depois papel. Depois código."',
+    'princ-02b-body': 'O editor abre por último. B2B ensinou-me que o que é pedido e o que é necessário raramente coincidem. Antes de uma linha de código: perceber o que dói, mapear o domínio, questionar o requisito.',
+    'princ-02c-label': 'Verificar<br>antes de agir',
+    'princ-02c-quote': '"Um ataque man-in-the-middle num pagamento ensinou-me a nunca assumir que o canal é seguro."',
+    'princ-02c-body': 'A lição mais cara que aprendi não foi técnica: foi operacional. Um pagamento intercetado, dinheiro desviado. Recuperei, mas zero trust passou a ser disciplina, não paranoia: toda entrada externa é hostil até prova em contrário.',
+    'spec-nunca': 'nunca',
+    'spec-sempre': 'sempre',
+    'spec-padrao': 'padrão',
+    'spec-sequencia': 'sequência',
+    'spec-ferramenta': 'ferramenta',
+    'spec-alerta': 'alerta',
+    'spec-premissa': 'premissa',
+    'spec-aplica-se': 'aplica-se',
+    'spec-v-02a-nunca': 'falha silenciosa · timeout sem feedback · estado indefinido',
+    'spec-v-02a-sempre': 'mensagem de erro útil · fallback explícito · estado comunicado',
+    'spec-v-02a-padrao': 'graceful degradation · circuit breaker · logging estruturado',
+    'spec-v-02b-sequencia': 'empatia → mapeamento → papel → código',
+    'spec-v-02b-ferramenta': 'domain modelling · event storming · diagrama antes de IDE',
+    'spec-v-02b-alerta': 'implementar o pedido literal sem questionar o porquê',
+    'spec-v-02c-premissa': 'toda a entrada externa é potencialmente hostil',
+    'spec-v-02c-padrao': 'validação na fronteira · zero trust · confirmação antes de irreversível',
+    'spec-v-02c-aplica-se': 'APIs · pagamentos · autenticação · migrações de dados',
+    'proj-status-wip': 'em_desenvolvimento',
+    'proj-seo-opt': 'optimizado',
     'edu-period-ips': '2024 – Dez 2026 (previsto)',
-    'edu-note-ips': '3.º semestre, 7 UCs em curso + estágio curricular activo na Pipoca Ágil.',
     'edu-degree-focus': 'Licenciatura em Análise e Desenvolvimento de Sistemas (EAD)',
     'edu-period-focus': 'Em curso · aproveitamento de créditos do TeSP',
+    'cert-alura-label': 'Certificações Alura',
+    'cert-qa-v': 'Gestão de bugs · QA Automação · Cypress · Robot Framework',
+    'cert-outras-v': 'Python OOP · Python TDD · Go API · Go OOP · C (3 cursos) · JavaScript · TypeScript',
+    'learn-langchain': 'LangChain: Agentes de IA',
+    'photo-hint': 'clique',
+
+    'exp-status-active': 'activo',
+    'exp-status-done': 'concluído',
+    'exp-pipoca-grade': 'Nota final: 18/20',
+    'exp-role-pipoca': 'Estágio Curricular · Full-Stack Developer · Remoto (Brasil)',
+    'exp-pipoca-b1': 'Arquitectura Hexagonal + DDD em projecto real de e-commerce',
+    'exp-pipoca-b2': 'Migração de schema com Flyway; catálogo de produtos completo',
+    'exp-pipoca-b3': 'Carrinho de compras (backend e frontend) com 7 testes Vitest',
+    'exp-pipoca-b4': 'MapStruct, JUnit 5, Jira, GitHub, Docker',
+    'exp-role-impl': 'Co-fundador &amp; Developer · Seixal, Portugal',
+    'exp-impl-b1': 'Consultoria tech para PMEs portuguesas, da relação com cliente à entrega',
+    'exp-impl-b2': 'Sulav Sushi Bar, site PT/EN em produção com Uber Eats, Glovo e Bolt Food',
+    'exp-impl-b3': 'Wedding Clinic, site institucional em desenvolvimento para cliente real',
+    'exp-role-acc': 'Trust &amp; Safety Associate · Lisboa',
+    'exp-acc-b1': 'Revisão e moderação de conteúdo em ambiente de alta responsabilidade',
+    'exp-acc-b2': 'Análise de risco com base em políticas internacionais',
+    'exp-acc-b3': 'Coordenação cross-timezone em ambiente multicultural',
+
+    'proj-imc-desc': 'Calculadora de Índice de Massa Corporal com tabela de referência OMS e destaque automático da classificação. Projeto de estudo em HTML e JavaScript puro.',
+    'proj-splitbills-desc': 'PWA de controlo financeiro para casais — divide contas mensais 50/50, regista quem pagou, calcula saldo e acertos. Instalável no iPhone e Android.',
+    'proj-studyflow-desc': 'App Android de gestão académica: disciplinas, tarefas com prioridade, timer Pomodoro, calendário e estatísticas. MVVM + Room + PBKDF2. Projeto UC Programação de Aplicações Móveis — IPS 2025/26.',
+    'proj-minesweeper-desc': 'Minesweeper em Java com duas versões: CLI e GUI (Swing). Revelação automática em cascata, marcação de bandeiras, detecção de vitória/derrota e reinício automático. Projeto FPOO.',
+    'proj-langchain-desc': 'Agentes de IA com LangChain e Python integrados à API da Anthropic. Exploração de chains, memória, ferramentas e orquestração de LLMs em casos de uso reais.',
+    'proj-pythonlab-desc': 'Assistentes com a API da Anthropic em Python. Integração direta com Claude, prompt engineering, streaming de respostas e casos de uso práticos de IA aplicada.',
+    'proj-rh-desc': 'Sistema de RH em Java com aplicação rigorosa dos princípios SOLID. Projeto focado em demonstrar boas práticas de design orientado a objetos e código limpo.',
+    'proj-boardly-desc': 'Gestão de tarefas com autenticação JWT e Clean Architecture. Projecto independente para praticar segurança e boas práticas de API REST.',
+    'proj-gestao-desc': 'API REST para gestão de saúde mental, com foco em boas práticas de backend, estrutura de dados e design de endpoints coesos.',
+    'proj-fitcheck-desc': 'Tracker de hábitos de saúde com análise semanal por IA. Regista sono, hidratação, IMC e metas físicas; Groq/Llama 3.3 analisa os registos e devolve sugestões em streaming.',
+    'proj-sulav-desc': 'Site completo em produção para restaurante português. Bilíngue PT/EN com Uber Eats, Glovo, Bolt Food e Google Maps integrados.',
+    'proj-imc-desc': 'Calculadora de Índice de Massa Corporal com tabela de referência OMS. Dark/light mode, validação de input e destaque dinâmico da classificação correspondente.',
+    'proj-minesweeper-desc': 'Minesweeper jogável no browser — revelação em cascata, bandeiras, chord click e três dificuldades. Portado de Java/Swing para vanilla JS com dark/light mode.',
+    'proj-arqsync-desc': 'Analisador estático de arquitectura Java. Detecta dependências circulares e violações de camadas (controller/service/repository/domain). Suporta repos locais e remotos via Git. Gera relatórios JSON e HTML com diagramas Mermaid.',
+    'proj-crypto-desc': 'Top 10 criptomoedas em tempo real via CoinGecko API. Node.js sem frameworks, views dinâmicas e clean code.',
+    'proj-absence-desc': 'Backend stateless em FastAPI + Groq/Llama 3.3 que gera resumos executivos e respostas em linguagem natural sobre dados de ausências já calculados. Implementado para um mentee na Accenture.',
+    'proj-meeting-desc': 'Extrai summary, decisions, actions e open points de notas de reunião. FastAPI + Groq/llama3-70b. Frontend HTML bilingue PT/EN. Deploy no Railway.',
+    'proj-studyflow-desc': 'App Android nativa de gestão de estudos. MVVM com ViewModel + LiveData, Room para persistência local, notificações de sessão e timer Pomodoro integrado.',
+    'proj-wedding-desc': 'Site institucional em desenvolvimento para cliente real no sector de casamentos. Entrega completa da ImplementIQ Systems.',
+    'proj-tag-done': 'concluído',
+    'proj-tag-wip': 'em desenvolvimento',
+    'proj-tag-live': 'produção',
+    'proj-more-label': '— outros projetos —',
+
+    'stack-backend': 'backend',
+    'stack-frontend': 'frontend',
+    'stack-databases': 'databases',
+    'stack-testes': 'testes &amp; qa',
+    'stack-devops': 'devops',
+    'stack-ia': 'ia &amp; automação',
+
+    'edu-degree-ips': 'TeSP em Programação e Sistemas de Informação',
+    'edu-note-ips': '3.º semestre, 7 UCs em curso. Estágio curricular concluído na Pipoca Ágil · nota 18/20.',
     'edu-school-anthropic': 'Cursos concluídos · 2026',
     'edu-degree-elevate': 'Accenture — Elevate GenAI Wave 2',
-    'edu-school-elevate': 'Facilitador de IA Generativa & Agentic AI · 2026',
+    'edu-school-elevate': 'Facilitador de IA Generativa &amp; Agentic AI · 2026',
     'edu-period-elevate': 'Reverse mentoring de líderes seniores sobre GenAI · Workshops práticos de Agentic AI · Microsoft Copilot Studio · Badge Credly "Reinvention with Agentic AI — Facilitator" (Jun 2026)',
-    'cert-alura-label': 'Certificações Alura',
-    'cert-qa': 'QA & Testes',
-    'cert-qa-items': 'Gestão de bugs · QA Automação · Cypress · Robot Framework',
-    'cert-other-lang': 'Outras linguagens',
-    'cert-ia-items': 'Prompt Engineering · Generative AI · LangChain com OpenAI (Mai 2026)',
-    'cert-link-langchain': 'Ver certificado LangChain ↗',
-    'now-label': 'a aprender agora',
-    'sec-contact': 'contacto',
-    'sec-contact-title': 'Vamos conversar',
-    'contact-sub': 'Aberto a oportunidades Backend em Portugal, Espanha ou remoto. Sectores preferidos: logística, supply chain, fintech e agro-tech.',
-    'footer-made': 'Feito com código e consistência.',
+    'micro-learning': 'em aprendizagem activa',
+    'learn-inscrito': 'inscrito',
+    'learn-iniciando': 'a iniciar',
+    'cert-java': 'Java &amp; Spring Boot',
+    'cert-qa': 'QA &amp; Testes',
+    'cert-outras': 'Outras linguagens',
+    'cert-cloud': 'Cloud, DevOps &amp; IA',
+
+    'contact-lbl': '[ contacto ]',
+    'contact-title': 'Vamos<br>conversar.',
+    'contact-sub': 'Aberto a oportunidades Junior em QA, Backend Java ou IA aplicada. Portugal, Espanha ou remoto.',
+    'contact-note': 'Disponível para começar imediatamente.',
+
+    'foot-left': '© 2026 Everson Rubira · Seixal, Portugal',
+    'foot-right': 'ver cv completo →',
   },
   en: {
     'nav-sobre': 'about',
-    'nav-exp': 'experience',
-    'nav-proj': 'projects',
+    'nav-filosofia': 'principles',
+    'nav-exp': 'exp',
+    'nav-projetos': 'projects',
+    'nav-stack': 'stack',
     'nav-formacao': 'education',
     'nav-contacto': 'contact',
-    'hero-avail': 'available',
-    'hero-tag': '15 years in B2B operations. Now I build systems that understand the business they serve — Java, Spring Boot, Node.js and applied AI with the Claude API.',
-    'hero-btn-proj': 'view projects',
+    'nav-cv': 'cv',
+    'mob-experiencia': 'experience',
+    'mob-cv': 'ver cv',
+
+    'hero-role': 'Backend Developer · AI Integration · QA',
+    'hero-cursor': 'Java · Spring Boot · Python · LLMs · Agentic AI',
+    'hero-desc': '12 years solving complex operational problems, now <strong>I\'m building the solutions.</strong><br>Solid backend, AI integration and business sensibility.<br>Seixal / Lisbon, Portugal.',
+    'hero-btn-proj': 'view projects →',
     'hero-btn-contact': 'contact',
-    'sec-sobre': 'about',
-    'sec-sobre-title': 'Who I am',
-    'sobre-p1': 'Brazilian living in Portugal, building my tech transition with consistency. <strong>15 years in international B2B operations</strong> taught me to think in systems, identify failure points and work with precision — skills I now apply in code.',
-    'sobre-p2': 'Currently completing a <strong>Higher Technical Degree in Programming and Information Systems at IPS</strong>. Completed the curricular internship in Java/Spring Boot and Angular at Pipoca Ágil with a grade of 18/20. Co-founded <strong>ImplementIQ Systems</strong> with real clients in production.',
-    'sobre-p3': 'Current focus: <strong>solid backend in Java and Python</strong>, AI integration via LangChain and Claude API.',
-    'fact-loc': 'location',
-    'fact-disp': 'available',
-    'fact-disp-v': 'Remote · on-site Lisbon',
-    'fact-foco': 'focus',
+    'hero-bar-tags': '<span>Backend</span> · Java · Spring Boot · Node.js &nbsp;·&nbsp; <span>QA</span> · JUnit · Cypress · Robot Framework &nbsp;·&nbsp; <span>AI</span> · LangChain · Claude API',
+    'hero-status': 'Available now',
+
+    'sec-sobre': 'About',
+    'sec-filosofia': 'Engineering Principles',
+    'sec-experiencia': 'Experience',
+    'sec-projetos': 'Projects',
+    'sec-stack': 'Tech Stack',
+    'sec-formacao': 'Education &amp; Certifications',
+
+    'sobre-quote': '"12 years operating B2B systems taught me to think <em>before</em> building. Now I apply that in code."',
+    'sobre-p1': 'Brazilian in Portugal. Building my transition into tech with consistency. I didn\'t start from zero: I bring real experience identifying failures, working with precision, and delivering under pressure.',
+    'sobre-p2': 'I\'m completing a <strong>degree in Programming and Information Systems at IPS</strong>. I completed my internship in Java/Spring Boot and Angular at Pipoca Ágil with a final grade of 18/20. I co-founded <strong>ImplementIQ Systems</strong> with real clients in production.',
+    'fact-localizacao': 'location',
+    'fact-procuro': 'seeking',
+    'fact-procuro-v': 'Backend Engineer · AI Engineer · QA',
+    'fact-modalidade': 'work mode',
+    'fact-modalidade-v': 'On-site · Hybrid · Remote',
     'fact-idiomas': 'languages',
     'fact-idiomas-v': 'PT native · EN professional · ES fluent comprehension, production in progress',
-    'fact-exp': 'experience',
-    'fact-exp-v': '15+ years operations · 2+ years dev',
-    'sec-exp': 'experience',
-    'sec-exp-title': 'Where I worked',
-    'exp-pipoca-role': 'Curricular Internship · Full-Stack Developer · Accenture Portugal',
-    'exp-pipoca-date': 'Feb 2026 · present · Remote',
-    'badge-active': 'active',
-    'exp-pipoca-b1': 'E-commerce platform with Hexagonal Architecture and DDD',
-    'exp-pipoca-b2': 'Schema migration with Flyway, full product catalogue',
-    'exp-pipoca-b3': 'Full cart with backend and frontend, 7 Vitest tests',
-    'exp-pipoca-b4': 'MapStruct, JUnit 5, Jira, GitHub, Docker',
-    'exp-acc-role': 'Trust & Safety Associate · Agentic AI Mentor',
-    'exp-acc-date': '2023 · present · Lisbon',
-    'exp-acc-b1': 'Selected as next-generation talent in the Elevate GenAI Wave 2 programme',
-    'exp-acc-b2': 'Reverse mentoring in Generative AI for senior leaders at Accenture Portugal (June 2026)',
-    'exp-acc-b3': 'Delivering Agentic AI workshops to analyst colleagues',
-    'exp-acc-b4': 'Risk analysis and content moderation based on international policies',
-    'chip-risk': 'Risk analysis',
-    'exp-impl-role': 'Co-founder · Developer',
-    'exp-impl-date': 'Jan 2024 · present · Seixal',
-    'badge-cofound': 'co-founder',
-    'exp-impl-b1': 'Tech consultancy for Portuguese SMEs',
-    'exp-impl-b2': 'Sulav Sushi Bar, PT/EN site in production with Uber Eats, Glovo and Bolt Food',
-    'exp-impl-b3': 'Wedding Clinic: institutional site in development for a real client',
-    'exp-impl-b4': 'Frontend development, technical SEO and third-party integrations',
-    'sec-proj': 'projects',
-    'sec-proj-title': 'What I built',
-    'proj-fitcheck-desc': 'Real Claude API integration via Anthropic SDK. AI-generated training recommendations based on user profile. Academic project with applied AI.',
-    'proj-sulav-desc': 'Full production site for a Portuguese restaurant. Bilingual PT/EN with Uber Eats, Glovo, Bolt Food and Google Maps integrated.',
-    'badge-prod': 'in production',
-    'proj-boardly-desc': 'Task management with JWT authentication and Clean Architecture. Independent project to practice security and REST API best practices.',
-    'proj-gestao-desc': 'REST API for mental health management, focused on backend best practices, data structure and cohesive endpoint design.',
-    'proj-studyflow-desc': 'Android academic management app: subjects, prioritised tasks, Pomodoro timer, calendar and statistics. MVVM + Room + PBKDF2. UC Mobile Application Programming — IPS 2025/26.',
-    'proj-meeting-desc': 'Extracts summary, decisions, actions and open points from meeting notes. FastAPI + Groq/llama3-70b. Bilingual PT/EN HTML frontend. Deployed on Railway.',
-    'proj-wedding-desc': 'Institutional site in development for a real client in the wedding sector. ImplementIQ Systems.',
-    'badge-wip': 'in development',
-    'link-github': 'view on GitHub ↗',
-    'link-site': 'view site ↗',
-    'sec-stack': 'stack',
-    'sec-stack-title': 'Tech stack',
-    'stack-backend': 'backend',
-    'stack-frontend': 'frontend',
-    'stack-db': 'databases',
-    'stack-testes': 'testing & qa',
-    'stack-devops': 'devops',
-    'stack-ia': 'ai & automation',
-    'sec-formacao': 'education',
-    'sec-formacao-title': 'Education & Certifications',
-    'edu-degree-ips': 'Higher Technical Degree in Programming and Information Systems',
+
+    'princ-02a-label': 'Feedback<br>is non-negotiable',
+    'princ-02a-quote': '"Never leave the client without a response. Never say it can\'t be done: find the way."',
+    'princ-02a-body': '12 years dealing with clients taught me that silence is always the worst response. A system that fails without saying why has a communication bug before it has a code bug. Graceful degradation isn\'t optional: it\'s the minimum contract with whoever uses what we build.',
+    'princ-02b-label': 'Problem<br>before code',
+    'princ-02b-quote': '"First I put myself in the shoes of whoever has the problem. Then paper. Then code."',
+    'princ-02b-body': 'The editor opens last. B2B taught me that what is asked and what is needed rarely coincide. Before a line of code: understand what hurts, map the domain, question the requirement.',
+    'princ-02c-label': 'Verify<br>before acting',
+    'princ-02c-quote': '"A man-in-the-middle attack on a payment taught me to never assume the channel is safe."',
+    'princ-02c-body': 'The most expensive lesson I learned wasn\'t technical: it was operational. A payment intercepted, money diverted. I recovered, but zero trust became discipline, not paranoia: all external input is hostile until proven otherwise.',
+    'spec-nunca': 'never',
+    'spec-sempre': 'always',
+    'spec-padrao': 'pattern',
+    'spec-sequencia': 'sequence',
+    'spec-ferramenta': 'tooling',
+    'spec-alerta': 'warning',
+    'spec-premissa': 'premise',
+    'spec-aplica-se': 'applies to',
+    'spec-v-02a-nunca': 'silent failure · timeout without feedback · undefined state',
+    'spec-v-02a-sempre': 'useful error message · explicit fallback · communicated state',
+    'spec-v-02a-padrao': 'graceful degradation · circuit breaker · structured logging',
+    'spec-v-02b-sequencia': 'empathy → mapping → paper → code',
+    'spec-v-02b-ferramenta': 'domain modelling · event storming · diagram before IDE',
+    'spec-v-02b-alerta': 'implementing the literal request without questioning the why',
+    'spec-v-02c-premissa': 'all external input is potentially hostile',
+    'spec-v-02c-padrao': 'boundary validation · zero trust · confirmation before irreversible',
+    'spec-v-02c-aplica-se': 'APIs · payments · authentication · data migrations',
+    'proj-status-wip': 'in_development',
+    'proj-seo-opt': 'optimized',
     'edu-period-ips': '2024 – Dec 2026 (expected)',
-    'edu-note-ips': '3rd semester, 7 active course units + active curricular internship at Pipoca Ágil.',
     'edu-degree-focus': "Bachelor's in Systems Analysis and Development (Distance Learning)",
     'edu-period-focus': 'In progress · credit transfer from TeSP',
+    'cert-alura-label': 'Alura Certifications',
+    'cert-qa-v': 'Bug Management · QA Automation · Cypress · Robot Framework',
+    'cert-outras-v': 'Python OOP · Python TDD · Go API · Go OOP · C (3 courses) · JavaScript · TypeScript',
+    'learn-langchain': 'LangChain: AI Agents',
+    'photo-hint': 'click',
+
+    'exp-status-active': 'active',
+    'exp-status-done': 'completed',
+    'exp-pipoca-grade': 'Final grade: 18/20',
+    'exp-role-pipoca': 'Internship · Full-Stack Developer · Remote (Brazil)',
+    'exp-pipoca-b1': 'Hexagonal Architecture + DDD on a real e-commerce project',
+    'exp-pipoca-b2': 'Schema migration with Flyway; complete product catalogue',
+    'exp-pipoca-b3': 'Shopping cart (backend and frontend) with 7 Vitest tests',
+    'exp-pipoca-b4': 'MapStruct, JUnit 5, Jira, GitHub, Docker',
+    'exp-role-impl': 'Co-founder &amp; Developer · Seixal, Portugal',
+    'exp-impl-b1': 'Tech consultancy for Portuguese SMEs, from client relationship to delivery',
+    'exp-impl-b2': 'Sulav Sushi Bar, PT/EN site in production with Uber Eats, Glovo and Bolt Food',
+    'exp-impl-b3': 'Wedding Clinic, institutional site in development for a real client',
+    'exp-role-acc': 'Trust &amp; Safety Associate · Lisbon',
+    'exp-acc-b1': 'Content review and moderation in a high-responsibility environment',
+    'exp-acc-b2': 'Risk analysis based on international policies',
+    'exp-acc-b3': 'Cross-timezone coordination in a multicultural environment',
+
+    'proj-imc-desc': 'Body Mass Index calculator with WHO reference table and automatic classification highlight. Study project in pure HTML and JavaScript.',
+    'proj-splitbills-desc': 'Financial control PWA for couples — splits monthly bills 50/50, tracks who paid, calculates balance and settlements. Installable on iPhone and Android.',
+    'proj-studyflow-desc': 'Android app for academic management: subjects, priority tasks, Pomodoro timer, calendar and stats. MVVM + Room + PBKDF2. Mobile Programming course project — IPS 2025/26.',
+    'proj-minesweeper-desc': 'Minesweeper in Java with two versions: CLI and GUI (Swing). Automatic cascade reveal, flag marking, win/loss detection and auto-restart. FPOO project.',
+    'proj-langchain-desc': 'AI agents with LangChain and Python integrated with the Anthropic API. Exploration of chains, memory, tools and LLM orchestration in real use cases.',
+    'proj-pythonlab-desc': 'Assistants with the Anthropic API in Python. Direct integration with Claude, prompt engineering, response streaming and practical applied AI use cases.',
+    'proj-rh-desc': 'HR system in Java with rigorous application of SOLID principles. Project focused on demonstrating good object-oriented design practices and clean code.',
+    'proj-boardly-desc': 'Task management with JWT authentication and Clean Architecture. Independent project to practice security and REST API best practices.',
+    'proj-gestao-desc': 'REST API for mental health management, focused on backend best practices, data structure and cohesive endpoint design.',
+    'proj-fitcheck-desc': 'Health habit tracker with weekly AI analysis. Logs sleep, hydration, BMI and fitness goals; Groq/Llama 3.3 analyses records and streams personalised suggestions.',
+    'proj-sulav-desc': 'Full production site for a Portuguese restaurant. Bilingual PT/EN with Uber Eats, Glovo, Bolt Food and Google Maps integrated.',
+    'proj-imc-desc': 'Body Mass Index calculator with WHO reference table. Dark/light mode, input validation and dynamic highlight of the matching classification.',
+    'proj-minesweeper-desc': 'Playable Minesweeper in the browser — cascade reveal, flags, chord click and three difficulty levels. Ported from Java/Swing to vanilla JS with dark/light mode.',
+    'proj-arqsync-desc': 'Static Java architecture analyser. Detects circular dependencies and layer violations (controller/service/repository/domain). Supports local and remote Git repos. Generates JSON and HTML reports with Mermaid diagrams.',
+    'proj-crypto-desc': 'Top 10 cryptocurrencies in real time via CoinGecko API. Node.js with no frameworks, dynamic views and clean code.',
+    'proj-absence-desc': 'Stateless backend in FastAPI + Groq/Llama 3.3 that generates executive summaries and natural language responses from pre-calculated absence data. Built for a mentee at Accenture.',
+    'proj-meeting-desc': 'Extracts summary, decisions, actions and open points from meeting notes. FastAPI + Groq/llama3-70b. Bilingual PT/EN HTML frontend. Deployed on Railway.',
+    'proj-studyflow-desc': 'Native Android study management app. MVVM with ViewModel + LiveData, Room for local persistence, session notifications and integrated Pomodoro timer.',
+    'proj-wedding-desc': 'Institutional site in development for a real client in the weddings sector. Full delivery by ImplementIQ Systems.',
+    'proj-tag-done': 'completed',
+    'proj-tag-wip': 'in development',
+    'proj-tag-live': 'production',
+    'proj-more-label': '— other projects —',
+
+    'stack-backend': 'backend',
+    'stack-frontend': 'frontend',
+    'stack-databases': 'databases',
+    'stack-testes': 'testing &amp; qa',
+    'stack-devops': 'devops',
+    'stack-ia': 'ai &amp; automation',
+
+    'edu-degree-ips': 'Degree in Programming and Information Systems',
+    'edu-note-ips': '3rd semester, 7 ongoing modules. Internship completed at Pipoca Ágil · grade 18/20.',
     'edu-school-anthropic': 'Completed courses · 2026',
     'edu-degree-elevate': 'Accenture — Elevate GenAI Wave 2',
-    'edu-school-elevate': 'Generative AI & Agentic AI Facilitator · 2026',
-    'edu-period-elevate': 'Reverse mentoring of senior leaders on GenAI · Practical Agentic AI workshops · Microsoft Copilot Studio · Credly badge "Reinvention with Agentic AI — Facilitator" (Jun 2026)',
-    'cert-alura-label': 'Alura Certifications',
-    'cert-qa': 'QA & Testing',
-    'cert-qa-items': 'Bug management · QA Automation · Cypress · Robot Framework',
-    'cert-other-lang': 'Other languages',
-    'cert-ia-items': 'Prompt Engineering · Generative AI · LangChain with OpenAI (May 2026)',
-    'cert-link-langchain': 'View LangChain certificate ↗',
-    'now-label': 'currently learning',
-    'sec-contact': 'contact',
-    'sec-contact-title': "Let's talk",
-    'contact-sub': 'Open to Backend opportunities in Portugal, Spain or remote. Preferred sectors: logistics, supply chain, fintech and agro-tech.',
-    'footer-made': 'Built with code and consistency.',
+    'edu-school-elevate': 'Generative AI &amp; Agentic AI Facilitator · 2026',
+    'edu-period-elevate': 'Reverse mentoring of senior leaders on GenAI · Practical Agentic AI workshops · Microsoft Copilot Studio · Credly Badge "Reinvention with Agentic AI — Facilitator" (Jun 2026)',
+    'micro-learning': 'actively learning',
+    'learn-inscrito': 'enrolled',
+    'learn-iniciando': 'starting',
+    'cert-java': 'Java &amp; Spring Boot',
+    'cert-qa': 'QA &amp; Testing',
+    'cert-outras': 'Other languages',
+    'cert-cloud': 'Cloud, DevOps &amp; AI',
+
+    'contact-lbl': '[ contact ]',
+    'contact-title': 'Let\'s<br>talk.',
+    'contact-sub': 'Open to Junior opportunities in QA, Backend Java or Applied AI. Portugal, Spain or remote.',
+    'contact-note': 'Available to start immediately.',
+
+    'foot-left': '© 2026 Everson Rubira · Seixal, Portugal',
+    'foot-right': 'view full cv →',
   }
 };
 
-/* ─── THEME ─── */
-const html = document.documentElement;
-const stored = localStorage.getItem('theme');
-if (stored === 'light') html.setAttribute('data-theme','light');
-const themeBtn = document.getElementById('themeBtn');
-themeBtn.textContent = html.getAttribute('data-theme') === 'light' ? '☾' : '☀';
-themeBtn.addEventListener('click', () => {
-  const isLight = html.getAttribute('data-theme') === 'light';
-  html.setAttribute('data-theme', isLight ? 'dark' : 'light');
-  localStorage.setItem('theme', isLight ? 'dark' : 'light');
-  themeBtn.textContent = isLight ? '☀' : '☾';
-});
+const langBtn = document.getElementById('lang-btn');
 
-/* ─── LANG ─── */
-let lang = localStorage.getItem('lang') || 'pt';
-const langBtn = document.getElementById('langBtn');
-function applyLang(l) {
+function applyLang(lang) {
   document.querySelectorAll('[data-i18n]').forEach(el => {
-    const key = el.getAttribute('data-i18n');
-    if (T[l][key] !== undefined) el.innerHTML = T[l][key];
+    const key = el.dataset.i18n;
+    if (i18n[lang] && i18n[lang][key]) el.innerHTML = i18n[lang][key];
   });
-  langBtn.textContent = l === 'pt' ? 'EN' : 'PT';
+  html.setAttribute('data-lang', lang);
+  html.lang = lang;
+  langBtn.textContent = lang === 'pt' ? 'EN' : 'PT';
+  localStorage.setItem('er-lang', lang);
 }
-applyLang(lang);
+
+// Init language
+const savedLang = localStorage.getItem('er-lang') || 'pt';
+applyLang(savedLang);
+
 langBtn.addEventListener('click', () => {
-  lang = lang === 'pt' ? 'en' : 'pt';
-  localStorage.setItem('lang', lang);
-  applyLang(lang);
+  const current = html.getAttribute('data-lang') || 'pt';
+  applyLang(current === 'pt' ? 'en' : 'pt');
 });
 
-/* ─── HAMBURGER ─── */
-const hamburger = document.getElementById('hamburger');
-const drawer = document.getElementById('drawer');
-hamburger.addEventListener('click', () => drawer.classList.toggle('open'));
-drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', () => drawer.classList.remove('open')));
+// Reveal
+const ro = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); ro.unobserve(e.target); } });
+}, { threshold: 0.07 });
+document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
 
-/* ─── ACTIVE NAV ─── */
-document.querySelectorAll('section[id]').forEach(sec => {
-  new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        document.querySelectorAll('.nav-links a, .drawer a').forEach(a => {
-          a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id);
-        });
-      }
-    });
-  }, {rootMargin:'-30% 0px -65% 0px'}).observe(sec);
+// Nav active
+const sro = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+      const a = document.querySelector('.nav-links a[href="#' + e.target.id + '"]');
+      if (a) a.classList.add('active');
+    }
+  });
+}, { rootMargin: '-50% 0px -50% 0px' });
+document.querySelectorAll('section[id]').forEach(s => sro.observe(s));
+
+// Hamburger
+const ham = document.getElementById('ham');
+const mob = document.getElementById('mob');
+ham.addEventListener('click', () => {
+  const open = mob.classList.toggle('open');
+  ham.classList.toggle('open', open);
 });
+mob.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  mob.classList.remove('open'); ham.classList.remove('open');
+}));
 
-/* ─── SCROLL TOP ─── */
-const topBtn = document.getElementById('top-btn');
-window.addEventListener('scroll', () => topBtn.classList.toggle('vis', window.scrollY > 400), {passive:true});
+// BTT
+const btt = document.getElementById('btt');
+window.addEventListener('scroll', () => { btt.classList.toggle('show', window.scrollY > 500); }, { passive: true });
+btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
-/* ─── REVEAL ─── */
-const bro = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); bro.unobserve(e.target); } });
-}, {threshold:.1});
-document.querySelectorAll('.reveal').forEach(el => bro.observe(el));
+// Photo: B&W default → color on hover/click
+(function() {
+  const frame = document.getElementById('ascii-frame');
+  const hint  = document.getElementById('photo-hint');
+  if (!frame) return;
 
-/* ─── EXP ACCORDION ─── */
-function toggleExp(hdr) {
-  hdr.closest('.exp-item').classList.toggle('open');
-}
-
-/* ─── DIAGNOSTIC ─── */
-const diag = document.getElementById('diag');
-const diagContent = document.getElementById('diag-content');
-let diagOpen = false;
-document.addEventListener('keydown', e => {
-  if (e.ctrlKey && e.shiftKey && e.key === 'D') {
-    diagOpen = !diagOpen;
-    diag.classList.toggle('open', diagOpen);
-    if (diagOpen) runDiag();
+  // Show hint briefly on load
+  if (hint) {
+    hint.classList.add('visible');
+    setTimeout(() => hint.classList.remove('visible'), 2500);
   }
+
+  function hideHint() {
+    if (hint) { hint.classList.remove('visible'); hint.style.display = 'none'; }
+  }
+
+  // Desktop: click toggles color lock
+  frame.addEventListener('click', (e) => {
+    if (e.pointerType === 'touch') return;
+    frame.classList.toggle('locked');
+    hideHint();
+  });
+
+  // Mobile: tap toggles color
+  let touchMoved = false;
+  frame.addEventListener('touchstart', () => { touchMoved = false; }, { passive: true });
+  frame.addEventListener('touchmove',  () => { touchMoved = true;  }, { passive: true });
+  frame.addEventListener('touchend', (e) => {
+    if (touchMoved) return;
+    e.preventDefault();
+    frame.classList.toggle('locked');
+    hideHint();
+  });
+})();
+
+// Typewriter on both hero-role lines
+window.addEventListener('load', function() {
+  const spans = document.querySelectorAll('.hero-role span');
+  const line1 = spans[0];
+  const line2 = spans[1];
+  if (!line1 || !line2) return;
+  const text1 = line1.textContent.trim();
+  const text2 = line2.textContent.trim();
+  line1.textContent = '';
+  line2.textContent = '';
+
+  let i = 0;
+  function typeLine2() {
+    if (i < text2.length) {
+      line2.textContent = text2.slice(0, ++i);
+      setTimeout(typeLine2, 55);
+    }
+  }
+  function typeLine1() {
+    if (i < text1.length) {
+      line1.textContent = text1.slice(0, ++i);
+      setTimeout(typeLine1, 45);
+    } else {
+      i = 0;
+      setTimeout(typeLine2, 180);
+    }
+  }
+  setTimeout(typeLine1, 400);
 });
 
-function runDiag() {
-  const checks = [
-    ['ok',  'nav sticky      → OK'],
-    ['ok',  'theme toggle    → OK'],
-    ['ok',  'lang toggle     → OK'],
-    ['ok',  'accordion exp   → OK'],
-    ['ok',  'reveal anim     → OK'],
-    ['ok',  '  ID_01  Pipoca → active internship + Accenture'],
-    ['ok',  '  ID_02  Accenture → Elevate GenAI Wave 2'],
-    ['ok',  '  ID_03  ImplementIQ → co-fundador 2024'],
-    ['ok',  '  ID_04  FitCheck → AI Integration badge'],
-    ['ok',  '  ID_05  Sulav Sushi Bar  → Production site · PT/EN'],
-    ['ok',  '  ID_06  Boardly → JWT + Clean Architecture'],
-    ['ok',  '  ID_07  StudyFlow → Android MVVM'],
-    ['ok',  '  ID_08  Meeting Intelligence → FastAPI + Groq'],
-    ['ok',  '  devops     Docker · Git · GitHub Actions · Linux'],
-    ['ok',  '  ES level   compreensão fluente, fala em progresso'],
-    ['ok',  '  edu        Faculdade Focus → ADS EAD'],
-  ];
-  diagContent.innerHTML = checks.map(([s,l]) =>
-    `<div class="diag-row"><span class="diag-k diag-${s}">[${s.toUpperCase()}]</span><span class="diag-v">${l}</span></div>`
-  ).join('');
-}
+// ── TERMINAL ──────────────────────────────────────────────────
+(function() {
+  const overlay  = document.getElementById('term-overlay');
+  const output   = document.getElementById('term-output');
+  const input    = document.getElementById('term-input');
+  const termBtn  = document.getElementById('term-btn');
+  const history  = [];
+  let histIdx    = -1;
+
+  const isEN = () => document.documentElement.lang === 'en';
+
+  const CMDS = {
+    help: () => isEN() ? [
+      ['hi',  '─────────────────────────────────────────'],
+      ['hi',  ' available commands:'],
+      ['hi',  '─────────────────────────────────────────'],
+      ['ok',  '  about       → who is Everson?'],
+      ['ok',  '  skills      → tech stack'],
+      ['ok',  '  projects    → current projects'],
+      ['ok',  '  contact     → get in touch'],
+      ['ok',  '  hire        → make a decision'],
+      ['ok',  '  clear       → clear screen'],
+      ['ok',  '  exit        → close terminal'],
+      ['dim', '─────────────────────────────────────────'],
+    ] : [
+      ['hi',  '─────────────────────────────────────────'],
+      ['hi',  ' comandos disponíveis:'],
+      ['hi',  '─────────────────────────────────────────'],
+      ['ok',  '  about       → quem é o Everson?'],
+      ['ok',  '  skills      → stack técnica'],
+      ['ok',  '  projects    → projetos actuais'],
+      ['ok',  '  contact     → contacto'],
+      ['ok',  '  hire        → tomar uma decisão'],
+      ['ok',  '  clear       → limpar ecrã'],
+      ['ok',  '  exit        → fechar terminal'],
+      ['dim', '─────────────────────────────────────────'],
+    ],
+
+    about: () => isEN() ? [
+      ['hi',  'Everson Rubira'],
+      ['ok',  'Backend Dev · QA Engineer · Applied AI'],
+      ['ok',  ''],
+      ['ok',  '12 years operating B2B systems in Portugal.'],
+      ['ok',  'Now I build them — with Java, Spring Boot,'],
+      ['ok',  'Node.js and Claude API.'],
+      ['ok',  ''],
+      ['ok',  'Degree in Programming & Info Systems @ IPS.'],
+      ['ok',  'Internship @ Pipoca Ágil (Java/Spring Boot/Angular) — grade 18/20.'],
+      ['ok',  'Co-founder @ ImplementIQ Systems — real clients.'],
+      ['dim', ''],
+      ['dim', 'type "skills" or "projects" for more.'],
+    ] : [
+      ['hi',  'Everson Rubira'],
+      ['ok',  'Backend Dev · QA Engineer · IA aplicada'],
+      ['ok',  ''],
+      ['ok',  '12 anos a operar sistemas B2B em Portugal.'],
+      ['ok',  'Agora construo-os — com Java, Spring Boot,'],
+      ['ok',  'Node.js e Claude API.'],
+      ['ok',  ''],
+      ['ok',  'TeSP Programação e Sistemas de Informação @ IPS.'],
+      ['ok',  'Estágio @ Pipoca Ágil (Java/Spring Boot/Angular) — nota 18/20.'],
+      ['ok',  'Co-fundador @ ImplementIQ Systems — clientes reais.'],
+      ['dim', ''],
+      ['dim', 'escreve "skills" ou "projects" para mais.'],
+    ],
+
+    skills: () => [
+      ['hi',  'Tech Stack'],
+      ['dim', '─────────────────────────────────────────'],
+      ['ok',  '  backend    Java 17/21 · Spring Boot · Node.js · Python'],
+      ['ok',  '  frontend   Angular · TypeScript · HTML/CSS · JS'],
+      ['ok',  '  databases  PostgreSQL · MySQL · MongoDB · Supabase'],
+      ['ok',  '  testing    JUnit 5 · Vitest · Cypress · Robot Framework'],
+      ['ok',  '  devops     Docker · Git · GitHub Actions · Linux'],
+      ['ok',  '  ai         LangChain · Claude API · Anthropic SDK'],
+      ['dim', '─────────────────────────────────────────'],
+    ],
+
+    projects: () => isEN() ? [
+      ['hi',  'Projects'],
+      ['dim', '─────────────────────────────────────────'],
+      ['ok',  '  ID_02  Boardly          → Clean Arch · JWT · Java'],
+      ['ok',  '  ID_03  FitCheck         → Habit tracker · Groq/Llama · Node'],
+      ['ok',  '  ID_04  LangChain+Anthropic → AI agents · Python'],
+      ['ok',  '  ID_05  Sulav Sushi Bar  → Production site · PT/EN'],
+      ['ok',  '  ID_07  StudyFlow        → Android · MVVM · Kotlin'],
+      ['ok',  '  ID_08  Minesweeper      → Vanilla JS · playable now'],
+      ['ok',  '  ID_09  Absence Portal AI → FastAPI · Groq · Render'],
+      ['ok',  '  ID_10  Meeting Analyst  → FastAPI · Groq · Railway'],
+      ['dim', '─────────────────────────────────────────'],
+      ['dim', 'see full details at #projects on this page.'],
+    ] : [
+      ['hi',  'Projetos'],
+      ['dim', '─────────────────────────────────────────'],
+      ['ok',  '  ID_02  Boardly          → Clean Arch · JWT · Java'],
+      ['ok',  '  ID_03  FitCheck         → Habit tracker · Groq/Llama · Node'],
+      ['ok',  '  ID_04  LangChain+Anthropic → AI agents · Python'],
+      ['ok',  '  ID_05  Sulav Sushi Bar  → Site em produção · PT/EN'],
+      ['ok',  '  ID_07  StudyFlow        → Android · MVVM · Kotlin'],
+      ['ok',  '  ID_08  Campo Minado     → Vanilla JS · jogável agora'],
+      ['ok',  '  ID_09  Absence Portal AI → FastAPI · Groq · Render'],
+      ['ok',  '  ID_10  Meeting Analyst  → FastAPI · Groq · Railway'],
+      ['dim', '─────────────────────────────────────────'],
+      ['dim', 'vê os detalhes completos em #projetos.'],
+    ],
+
+    contact: () => isEN() ? [
+      ['hi',  'Contact'],
+      ['dim', '─────────────────────────────────────────'],
+      ['ok',  '  email     eversonrubira@gmail.com'],
+      ['ok',  '  linkedin  linkedin.com/in/eversonrubira'],
+      ['ok',  '  github    github.com/EversonRubira'],
+      ['ok',  '  phone     +351 910 625 090'],
+      ['dim', '─────────────────────────────────────────'],
+      ['dim', 'available now · Portugal · remote ok'],
+    ] : [
+      ['hi',  'Contacto'],
+      ['dim', '─────────────────────────────────────────'],
+      ['ok',  '  email     eversonrubira@gmail.com'],
+      ['ok',  '  linkedin  linkedin.com/in/eversonrubira'],
+      ['ok',  '  github    github.com/EversonRubira'],
+      ['ok',  '  telefone  +351 910 625 090'],
+      ['dim', '─────────────────────────────────────────'],
+      ['dim', 'disponível agora · Portugal · remoto ok'],
+    ],
+
+    hire: () => [
+      ['ascii', ''],
+      ['ascii', '  █   █  ███  ████   ████  ████ '],
+      ['ascii', '  █   █   █   █   █  █     █   █'],
+      ['ascii', '  █████   █   ████   ████  █   █'],
+      ['ascii', '  █   █   █   █  █   █     █   █'],
+      ['ascii', '  █   █  ███  █   █  ████  ████ '],
+      ['ascii', ''],
+      ['ok',  ''],
+      ['ok',  '  Great decision. Everson is ready to start.'],
+      ['ok',  ''],
+      ['ok',  '  → eversonrubira@gmail.com'],
+      ['ok',  '  → +351 910 625 090'],
+      ['ok',  '  → linkedin.com/in/eversonrubira'],
+      ['ok',  ''],
+      ['dim', '  "The best time to hire was yesterday.'],
+      ['dim', '   The second best time is now."'],
+      ['hi',  ''],
+    ],
+  };
+
+  function print(type, text) {
+    const div = document.createElement('div');
+    div.className = 'line-' + type;
+    div.textContent = text;
+    output.appendChild(div);
+    output.scrollTop = output.scrollHeight;
+  }
+
+  function printWelcome() {
+    const en = isEN();
+    [
+      ['dim', en ? 'portfolio terminal v1.0.0' : 'terminal do portfólio v1.0.0'],
+      ['dim', en ? 'type "help" for available commands.' : 'escreve "help" para ver os comandos.'],
+      ['dim', ''],
+    ].forEach(([t, v]) => print(t, v));
+  }
+
+  function typeReveal(asciiLines, onDone) {
+    const divs = asciiLines.map(line => {
+      const d = document.createElement('div');
+      d.className = 'line-ascii';
+      d.textContent = '';
+      output.appendChild(d);
+      return { el: d, target: line };
+    });
+    output.scrollTop = output.scrollHeight;
+
+    let li = 0, ci = 0;
+    const tick = setInterval(() => {
+      if (li >= divs.length) {
+        clearInterval(tick);
+        setTimeout(onDone, 80);
+        return;
+      }
+      const { el, target } = divs[li];
+      // Advance 3 chars per tick for a snappy but visible pace
+      for (let i = 0; i < 3 && ci <= target.length; i++, ci++) {
+        el.textContent = target.slice(0, ci);
+      }
+      if (ci > target.length) { el.textContent = target; li++; ci = 0; }
+      output.scrollTop = output.scrollHeight;
+    }, 16);
+  }
+
+  function run(cmd) {
+    const c = cmd.trim().toLowerCase();
+    print('cmd', '$ ' + cmd.trim());
+
+    if (c === 'clear') { output.innerHTML = ''; return; }
+    if (c === 'exit' || c === 'quit') { close(); return; }
+    if (c === '') return;
+
+    const fn = CMDS[c];
+    if (!fn) {
+      print('err', isEN() ? `command not found: ${c}. try "help".` : `comando não encontrado: ${c}. tenta "help".`);
+      return;
+    }
+
+    const lines = fn();
+    const firstAscii = lines.findIndex(([t]) => t === 'ascii');
+    const lastAscii  = lines.reduce((acc, [t], i) => t === 'ascii' ? i : acc, -1);
+
+    if (firstAscii === -1) {
+      lines.forEach(([t, v]) => print(t, v));
+      print('dim', '');
+      return;
+    }
+
+    // Print lines before ascii block
+    lines.slice(0, firstAscii).forEach(([t, v]) => print(t, v));
+
+    // Animate ascii block, then print the rest
+    const asciiTexts = lines.slice(firstAscii, lastAscii + 1).map(([, v]) => v);
+    typeReveal(asciiTexts, () => {
+      lines.slice(lastAscii + 1).forEach(([t, v]) => print(t, v));
+      print('dim', '');
+    });
+  }
+
+  function open() {
+    overlay.classList.add('open');
+    if (output.children.length === 0) printWelcome();
+    setTimeout(() => input.focus(), 80);
+  }
+  function close() {
+    overlay.classList.remove('open');
+  }
+
+  termBtn.addEventListener('click', open);
+  overlay.addEventListener('click', e => { if (e.target === overlay) close(); });
+  document.addEventListener('keydown', e => {
+    if (e.key === '`' && !overlay.classList.contains('open')) { e.preventDefault(); open(); return; }
+    if (e.key === 'Escape' && overlay.classList.contains('open')) { close(); return; }
+  });
+
+  input.addEventListener('keydown', e => {
+    if (e.key === 'Enter') {
+      const val = input.value;
+      if (val.trim()) { history.unshift(val); histIdx = -1; }
+      run(val);
+      input.value = '';
+    }
+    if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      if (histIdx < history.length - 1) { histIdx++; input.value = history[histIdx]; }
+    }
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      if (histIdx > 0) { histIdx--; input.value = history[histIdx]; }
+      else { histIdx = -1; input.value = ''; }
+    }
+  });
+})();
+
+// Progress bars
+const bro = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.querySelectorAll('.learn-fill').forEach(b => { b.style.width = b.dataset.w + '%'; });
+      bro.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.3 });
+document.querySelectorAll('.learn-list').forEach(el => bro.observe(el));
 
 </script>
 </body>
