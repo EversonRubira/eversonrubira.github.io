@@ -737,6 +737,8 @@ footer {
   transition: transform 0.15s;
 }
 #term-btn:hover { transform: translateY(-2px); box-shadow: 0 0 32px rgba(74,222,128,0.6); }
+#term-label { display: inline; }
+@media (max-width: 600px) { #term-label { display: none; } }
 #term-cursor { animation: cur-blink 1s step-end infinite; }
 @keyframes cur-blink { 0%,100%{opacity:1} 50%{opacity:0} }
 @keyframes term-glow {
@@ -1441,7 +1443,7 @@ footer {
   </div>
 </footer>
 
-<button id="term-btn" aria-label="Abrir terminal">&gt;<span id="term-cursor">_</span> terminal</button>
+<button id="term-btn" aria-label="Abrir terminal">&gt;<span id="term-cursor">_</span><span id="term-label"> terminal</span></button>
 
 <div id="term-overlay" role="dialog" aria-modal="true" aria-label="Terminal">
   <div id="term-modal">
