@@ -694,7 +694,7 @@ section { padding: 96px 0; }
 .contact-note { font-family: var(--mono); font-size: 0.62rem; color: var(--ink-3); letter-spacing: 0.04em; }
 .contact-qr { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; margin-top: 32px; }
 .contact-qr-label { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-3); }
-#qr-canvas { border: 1px solid var(--line); border-radius: 4px; padding: 8px; background: #fff; }
+#qr-box { border: 1px solid var(--line); border-radius: 4px; padding: 8px; background: #fff; display: inline-block; line-height: 0; }
 .contact-rows { display: flex; flex-direction: column; }
 .contact-row {
   display: flex; align-items: center; justify-content: space-between;
@@ -883,7 +883,7 @@ footer {
   .form-grid { gap: 32px; }
 }
 </style>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </head>
 <body>
 
@@ -1405,7 +1405,7 @@ footer {
       <p class="contact-note" data-i18n="contact-note">Disponível para começar imediatamente.</p>
       <div class="contact-qr reveal">
         <span class="contact-qr-label" data-i18n="contact-qr-label">aponta o telefone →</span>
-        <canvas id="qr-canvas" width="120" height="120" aria-label="QR code para eversonrubira.github.io"></canvas>
+        <div id="qr-box" aria-label="QR code para eversonrubira.github.io"></div>
       </div>
     </div>
     <div class="contact-rows reveal">
@@ -2275,15 +2275,24 @@ document.querySelectorAll('.learn-list').forEach(el => bro.observe(el));
 </script>
 <script>
 // QR code
-window.addEventListener('load', function() {
-  var canvas = document.getElementById('qr-canvas');
-  if (!canvas || typeof QRCode === 'undefined') return;
-  new QRCode(canvas, {
+function initQR() {
+  var box = document.getElementById('qr-box');
+  if (!box || typeof QRCode === 'undefined') return;
+  new QRCode(box, {
     text: 'https://eversonrubira.github.io',
     width: 120, height: 120,
     colorDark: '#0d1f2d', colorLight: '#ffffff',
     correctLevel: QRCode.CorrectLevel.M
   });
+}
+// Try on load; fall back to polling in case defer fires late
+window.addEventListener('load', function() {
+  if (typeof QRCode !== 'undefined') { initQR(); }
+  else {
+    var t = setInterval(function() {
+      if (typeof QRCode !== 'undefined') { clearInterval(t); initQR(); }
+    }, 100);
+  }
 });
 </script>
 </body>
