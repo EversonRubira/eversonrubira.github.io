@@ -7,7 +7,7 @@
 <meta http-equiv="Expires" content="0">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Everson Rubira — Backend Developer & Systems Thinker</title>
-<meta name="description" content="Everson Rubira — Backend Developer, QA em transição e entusiasta de IA. Java, Spring Boot, Node.js, Claude API. Seixal / Lisboa, Portugal.">
+<meta name="description" content="Everson Rubira — Backend Engineer com 12 anos de ops B2B. APIs Java robustas, integração de LLMs com defesa contra alucinação, QA e IA aplicada. Seixal / Lisboa, disponível para Portugal, Espanha e remoto.">
 <meta property="og:title" content="Everson Rubira — Backend Developer">
 <meta property="og:description" content="Java · Spring Boot · QA · IA aplicada. Disponível para oportunidades em Portugal e remoto.">
 <meta property="og:image" content="https://eversonrubira.github.io/foto-perfil (2).jpeg">
@@ -435,6 +435,10 @@ section { padding: 96px 0; }
 
 /* ─── FILOSOFIA ─── */
 #filosofia { background: var(--bg); }
+.ops-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0; }
+.ops-list li { padding: 20px 0; border-top: 1px solid var(--line); font-size: 0.95rem; color: var(--ink-1); line-height: 1.6; }
+.ops-list li:last-child { border-bottom: 1px solid var(--line); }
+.princ-bridge { font-size: 0.95rem; color: var(--ink-2); line-height: 1.7; margin-bottom: 40px; max-width: 680px; }
 .princ-list { display: flex; flex-direction: column; }
 .princ-item {
   display: grid; grid-template-columns: 200px 1fr;
@@ -931,7 +935,7 @@ footer {
         <span class="cursor-blink" data-i18n="hero-cursor">Java · Spring Boot · Python · LLMs · Agentic AI</span>
       </div>
       <p class="hero-desc reveal" data-i18n="hero-desc">
-        12 anos em operações B2B — agora do lado do código.<br>
+        12 anos em operações B2B. Agora do lado do código.<br>
         Construo APIs robustas, integro LLMs com defesa activa contra alucinação e trago para o sprint:<br>
         requisito mal formulado, SLA que falha, cliente que não perdoa silêncio.<br>
         Seixal / Lisboa · disponível para Portugal, Espanha e remoto.
@@ -1001,6 +1005,25 @@ footer {
   </div>
 </section>
 
+<!-- OPS B2B -->
+<section id="ops-b2b">
+  <div class="sec-wrap">
+    <div class="sec-head reveal">
+      <span class="sec-num">[ 01.5 ]</span>
+      <h2 class="sec-title" data-i18n="sec-ops">O que 12 anos de ops B2B colocam no sprint</h2>
+      <div class="sec-rule"></div>
+    </div>
+    <ul class="ops-list reveal">
+      <li data-i18n="ops-1">Leio requisitos e identifico o que está mal formulado antes de escrever código</li>
+      <li data-i18n="ops-2">Sei o que acontece quando um SLA falha a meio da noite e um cliente está bloqueado</li>
+      <li data-i18n="ops-3">Trabalhei com clientes de Brasil a Portugal, passando por asiáticos, Médio Oriente e europeus: sei adaptar comunicação técnica ao contexto cultural</li>
+      <li data-i18n="ops-4">Priorizo pelo impacto no negócio, não pelo que é tecnicamente mais interessante</li>
+      <li data-i18n="ops-5">Documentação não é burocracia: é o que evita que a próxima pessoa repita o mesmo erro</li>
+      <li data-i18n="ops-6">Processo de QA não começa nos testes: começa na revisão da história de utilizador</li>
+    </ul>
+  </div>
+</section>
+
 <!-- FILOSOFIA -->
 <section id="filosofia">
   <div class="sec-wrap">
@@ -1009,6 +1032,7 @@ footer {
       <h2 class="sec-title" data-i18n="sec-filosofia">Princípios de Engenharia</h2>
       <div class="sec-rule"></div>
     </div>
+    <p class="princ-bridge reveal" data-i18n="princ-bridge">Doze anos a gerir operações B2B ensinam que código sem contexto de negócio é um risco. Estes princípios são a forma como trago esse contexto para cada linha de código.</p>
     <div class="princ-list">
 
       <div class="princ-item reveal">
@@ -1190,7 +1214,7 @@ footer {
         <div class="proj-main">
           <div class="proj-id">ID_12</div>
           <div class="proj-name">ArqSync</div>
-          <p class="proj-desc" data-i18n="proj-arqsync-desc">Analisador estático de arquitectura Java. Detecta dependências circulares e violações de camadas (controller/service/repository/domain). Suporta repos locais e remotos via Git. Gera relatórios JSON e HTML com diagramas Mermaid.</p>
+          <p class="proj-desc" data-i18n="proj-arqsync-desc">Analisador estático de arquitectura Java via AST (JavaParser). Detecta ciclos de dependência e violações de camadas (controller/service/repository/domain). 75 testes, 94% de cobertura, SDD, fallback gracioso para PostgreSQL. Relatórios JSON e HTML com diagramas Mermaid.</p>
           <div class="proj-footer">
             <span class="proj-tag wip" data-i18n="proj-tag-wip">em desenvolvimento</span>
             <div class="proj-links">
@@ -1210,24 +1234,23 @@ footer {
 
       <div class="proj-item featured reveal">
         <div class="proj-main">
-          <div class="proj-id">ID_03</div>
-          <div class="proj-name">FitCheck</div>
-          <p class="proj-desc" data-i18n="proj-fitcheck-desc">Tracker de hábitos de saúde com análise semanal por IA. Regista sono, hidratação, IMC e metas físicas; Groq/Llama 3.3 analisa os registos e devolve sugestões em streaming.</p>
+          <div class="proj-id">ID_07</div>
+          <div class="proj-name">Fit-Analizer</div>
+          <p class="proj-desc" data-i18n="proj-fitanalizer-desc">Avaliador de aptidão física com LLM como juiz. Harness de IA com VerificadorEvidencia que previne alucinação activamente, versionamento de prompts v4, avaliação humana cega e suite de regressão contra a API real. SDD do contrato à implementação.</p>
           <div class="proj-footer">
-            <span class="proj-tag live" data-i18n="proj-tag-live">produção</span>
+            <span class="proj-tag wip" data-i18n="proj-tag-wip">em desenvolvimento</span>
             <div class="proj-links">
-              <a href="https://fitcheck-zpyt.onrender.com" target="_blank" rel="noopener" class="proj-link">demo <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
-              <a href="https://github.com/EversonRubira/FitCheck" target="_blank" rel="noopener" class="proj-link">GitHub <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+              <a href="https://github.com/EversonRubira/Fit-Analizer" target="_blank" rel="noopener" class="proj-link">GitHub <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
             </div>
           </div>
         </div>
         <div class="proj-spec">
-          <div class="proj-spec-title">fitcheck_spec</div>
-          <div class="proj-spec-row"><span class="proj-spec-k">runtime</span><span class="proj-spec-v">node.js · express</span></div>
-          <div class="proj-spec-row"><span class="proj-spec-k">ai_provider</span><span class="proj-spec-v">groq · llama_3.3</span></div>
-          <div class="proj-spec-row"><span class="proj-spec-k">database</span><span class="proj-spec-v">mysql · clever_cloud</span></div>
-          <div class="proj-spec-row"><span class="proj-spec-k">infra</span><span class="proj-spec-v">render · free_tier</span></div>
-          <div class="proj-spec-row"><span class="proj-spec-k">status</span><span class="proj-spec-v">production · live</span></div>
+          <div class="proj-spec-title">fit_analizer_spec</div>
+          <div class="proj-spec-row"><span class="proj-spec-k">runtime</span><span class="proj-spec-v">java_21 · spring_boot</span></div>
+          <div class="proj-spec-row"><span class="proj-spec-k">ai_provider</span><span class="proj-spec-v">anthropic · claude_sdk</span></div>
+          <div class="proj-spec-row"><span class="proj-spec-k">method</span><span class="proj-spec-v">sdd · llm_harness</span></div>
+          <div class="proj-spec-row"><span class="proj-spec-k">qa</span><span class="proj-spec-v">blind_eval · regression_suite</span></div>
+          <div class="proj-spec-row"><span class="proj-spec-k">safety</span><span class="proj-spec-v">verificador_evidencia · anti_hallucination</span></div>
         </div>
       </div>
 
@@ -1361,7 +1384,7 @@ footer {
     <div class="reveal">
       <div class="contact-lbl" data-i18n="contact-lbl">[ contacto ]</div>
       <h2 class="contact-title" data-i18n="contact-title">Vamos<br>conversar.</h2>
-      <p class="contact-sub" data-i18n="contact-sub">Aberto a oportunidades Junior em QA, Backend Java ou IA aplicada. Portugal, Espanha ou remoto.</p>
+      <p class="contact-sub" data-i18n="contact-sub">Aberto a oportunidades em QA, Backend Java ou IA aplicada. Portugal, Espanha ou remoto.</p>
       <p class="contact-note" data-i18n="contact-note">Disponível para começar imediatamente.</p>
     </div>
     <div class="contact-rows reveal">
@@ -1447,14 +1470,22 @@ const i18n = {
 
     'hero-role': 'Backend Engineer · QA · IA aplicada',
     'hero-cursor': 'Java · Spring Boot · Python · LLMs · Agentic AI',
-    'hero-desc': '12 anos em operações B2B — agora do lado do código.<br>Construo APIs robustas, integro LLMs com defesa activa contra alucinação e trago para o sprint:<br>requisito mal formulado, SLA que falha, cliente que não perdoa silêncio.<br>Seixal / Lisboa · disponível para Portugal, Espanha e remoto.',
+    'hero-desc': '12 anos em operações B2B. Agora do lado do código.<br>Construo APIs robustas, integro LLMs com defesa activa contra alucinação e trago para o sprint:<br>requisito mal formulado, SLA que falha, cliente que não perdoa silêncio.<br>Seixal / Lisboa · disponível para Portugal, Espanha e remoto.',
     'hero-btn-proj': 'ver projetos →',
     'hero-btn-contact': 'contacto',
     'hero-bar-tags': '<span>Backend</span> · Java · Spring Boot · Node.js &nbsp;·&nbsp; <span>QA</span> · JUnit · Cypress/Robot Framework (formação) &nbsp;·&nbsp; <span>IA</span> · LangChain · Claude API',
     'hero-status': 'Disponível agora',
 
     'sec-sobre': 'Sobre',
+    'sec-ops': 'O que 12 anos de ops B2B colocam no sprint',
+    'ops-1': 'Leio requisitos e identifico o que está mal formulado antes de escrever código',
+    'ops-2': 'Sei o que acontece quando um SLA falha a meio da noite e um cliente está bloqueado',
+    'ops-3': 'Trabalhei com clientes de Brasil a Portugal, passando por asiáticos, Médio Oriente e europeus: sei adaptar comunicação técnica ao contexto cultural',
+    'ops-4': 'Priorizo pelo impacto no negócio, não pelo que é tecnicamente mais interessante',
+    'ops-5': 'Documentação não é burocracia: é o que evita que a próxima pessoa repita o mesmo erro',
+    'ops-6': 'Processo de QA não começa nos testes: começa na revisão da história de utilizador',
     'sec-filosofia': 'Princípios de Engenharia',
+    'princ-bridge': 'Doze anos a gerir operações B2B ensinam que código sem contexto de negócio é um risco. Estes princípios são a forma como trago esse contexto para cada linha de código.',
     'sec-experiencia': 'Experiência',
     'sec-projetos': 'Projetos',
     'sec-stack': 'Stack Técnica',
@@ -1535,10 +1566,11 @@ const i18n = {
     'proj-boardly-desc': 'Gestão de tarefas com autenticação JWT e Clean Architecture. Projecto independente para praticar segurança e boas práticas de API REST.',
     'proj-gestao-desc': 'API REST para gestão de saúde mental, com foco em boas práticas de backend, estrutura de dados e design de endpoints coesos.',
     'proj-fitcheck-desc': 'Tracker de hábitos de saúde com análise semanal por IA. Regista sono, hidratação, IMC e metas físicas; Groq/Llama 3.3 analisa os registos e devolve sugestões em streaming.',
+    'proj-fitanalizer-desc': 'Avaliador de aptidão física com LLM como juiz. Harness de IA com VerificadorEvidencia que previne alucinação activamente, versionamento de prompts v4, avaliação humana cega e suite de regressão contra a API real. SDD do contrato à implementação.',
     'proj-sulav-desc': 'Site completo em produção para restaurante português. Bilíngue PT/EN com Uber Eats, Glovo, Bolt Food e Google Maps integrados.',
     'proj-imc-desc': 'Calculadora de Índice de Massa Corporal com tabela de referência OMS. Dark/light mode, validação de input e destaque dinâmico da classificação correspondente.',
     'proj-minesweeper-desc': 'Minesweeper jogável no browser — revelação em cascata, bandeiras, chord click e três dificuldades. Portado de Java/Swing para vanilla JS com dark/light mode.',
-    'proj-arqsync-desc': 'Analisador estático de arquitectura Java. Detecta dependências circulares e violações de camadas (controller/service/repository/domain). Suporta repos locais e remotos via Git. Gera relatórios JSON e HTML com diagramas Mermaid.',
+    'proj-arqsync-desc': 'Analisador estático de arquitectura Java via AST (JavaParser). Detecta ciclos de dependência e violações de camadas (controller/service/repository/domain). 75 testes, 94% de cobertura, SDD, fallback gracioso para PostgreSQL. Relatórios JSON e HTML com diagramas Mermaid.',
     'proj-crypto-desc': 'Top 10 criptomoedas em tempo real via CoinGecko API. Node.js sem frameworks, views dinâmicas e clean code.',
     'proj-absence-desc': 'Backend stateless em FastAPI + Groq/Llama 3.3 que gera resumos executivos e respostas em linguagem natural sobre dados de ausências já calculados. Implementado para um mentee na Accenture.',
     'proj-meeting-desc': 'Extrai summary, decisions, actions e open points de notas de reunião. FastAPI + Groq/llama3-70b. Frontend HTML bilingue PT/EN. Deploy no Railway.',
@@ -1572,7 +1604,7 @@ const i18n = {
 
     'contact-lbl': '[ contacto ]',
     'contact-title': 'Vamos<br>conversar.',
-    'contact-sub': 'Aberto a oportunidades Junior em QA, Backend Java ou IA aplicada. Portugal, Espanha ou remoto.',
+    'contact-sub': 'Aberto a oportunidades em QA, Backend Java ou IA aplicada. Portugal, Espanha ou remoto.',
     'contact-note': 'Disponível para começar imediatamente.',
 
     'foot-left': '© 2026 Everson Rubira · Seixal, Portugal',
@@ -1592,14 +1624,22 @@ const i18n = {
 
     'hero-role': 'Backend Engineer · QA · Applied AI',
     'hero-cursor': 'Java · Spring Boot · Python · LLMs · Agentic AI',
-    'hero-desc': '12 years in B2B operations — now on the code side.<br>I build robust APIs, integrate LLMs with active hallucination defence, and bring to the sprint:<br>poorly written requirements, SLAs that break, clients who don\'t forgive silence.<br>Seixal / Lisbon · available for Portugal, Spain and remote.',
+    'hero-desc': '12 years in B2B operations. Now on the code side.<br>I build robust APIs, integrate LLMs with active hallucination defence, and bring to the sprint:<br>poorly written requirements, SLAs that break, clients who don\'t forgive silence.<br>Seixal / Lisbon · available for Portugal, Spain and remote.',
     'hero-btn-proj': 'view projects →',
     'hero-btn-contact': 'contact',
     'hero-bar-tags': '<span>Backend</span> · Java · Spring Boot · Node.js &nbsp;·&nbsp; <span>QA</span> · JUnit · Cypress/Robot Framework (training) &nbsp;·&nbsp; <span>AI</span> · LangChain · Claude API',
     'hero-status': 'Available now',
 
     'sec-sobre': 'About',
+    'sec-ops': 'What 12 years of B2B ops bring to the sprint',
+    'ops-1': 'I read requirements and spot what is poorly formulated before writing code',
+    'ops-2': 'I know what happens when an SLA fails in the middle of the night and a client is blocked',
+    'ops-3': 'I have worked with clients from Brazil to Portugal, through Asian, Middle Eastern and European contacts: I adapt technical communication to the cultural context',
+    'ops-4': 'I prioritise by business impact, not by what is technically most interesting',
+    'ops-5': 'Documentation is not bureaucracy: it is what stops the next person from repeating the same mistake',
+    'ops-6': 'QA does not start at testing: it starts at user story review',
     'sec-filosofia': 'Engineering Principles',
+    'princ-bridge': 'Twelve years managing B2B operations teach you that code without business context is a liability. These principles are how I bring that context to every line of code.',
     'sec-experiencia': 'Experience',
     'sec-projetos': 'Projects',
     'sec-stack': 'Tech Stack',
@@ -1680,10 +1720,11 @@ const i18n = {
     'proj-boardly-desc': 'Task management with JWT authentication and Clean Architecture. Independent project to practice security and REST API best practices.',
     'proj-gestao-desc': 'REST API for mental health management, focused on backend best practices, data structure and cohesive endpoint design.',
     'proj-fitcheck-desc': 'Health habit tracker with weekly AI analysis. Logs sleep, hydration, BMI and fitness goals; Groq/Llama 3.3 analyses records and streams personalised suggestions.',
+    'proj-fitanalizer-desc': 'Fitness evaluator with LLM as judge. AI harness with VerificadorEvidencia that actively prevents hallucination, prompt versioning v4, blind human evaluation and regression suite against the real API. SDD from contract to implementation.',
     'proj-sulav-desc': 'Full production site for a Portuguese restaurant. Bilingual PT/EN with Uber Eats, Glovo, Bolt Food and Google Maps integrated.',
     'proj-imc-desc': 'Body Mass Index calculator with WHO reference table. Dark/light mode, input validation and dynamic highlight of the matching classification.',
     'proj-minesweeper-desc': 'Playable Minesweeper in the browser — cascade reveal, flags, chord click and three difficulty levels. Ported from Java/Swing to vanilla JS with dark/light mode.',
-    'proj-arqsync-desc': 'Static Java architecture analyser. Detects circular dependencies and layer violations (controller/service/repository/domain). Supports local and remote Git repos. Generates JSON and HTML reports with Mermaid diagrams.',
+    'proj-arqsync-desc': 'Static Java architecture analyser via AST (JavaParser). Detects dependency cycles and layer violations (controller/service/repository/domain). 75 tests, 94% coverage, SDD, graceful PostgreSQL fallback. JSON and HTML reports with Mermaid diagrams.',
     'proj-crypto-desc': 'Top 10 cryptocurrencies in real time via CoinGecko API. Node.js with no frameworks, dynamic views and clean code.',
     'proj-absence-desc': 'Stateless backend in FastAPI + Groq/Llama 3.3 that generates executive summaries and natural language responses from pre-calculated absence data. Built for a mentee at Accenture.',
     'proj-meeting-desc': 'Extracts summary, decisions, actions and open points from meeting notes. FastAPI + Groq/llama3-70b. Bilingual PT/EN HTML frontend. Deployed on Railway.',
@@ -1717,7 +1758,7 @@ const i18n = {
 
     'contact-lbl': '[ contact ]',
     'contact-title': 'Let\'s<br>talk.',
-    'contact-sub': 'Open to Junior opportunities in QA, Backend Java or Applied AI. Portugal, Spain or remote.',
+    'contact-sub': 'Open to opportunities in QA, Backend Java or Applied AI. Portugal, Spain or remote.',
     'contact-note': 'Available to start immediately.',
 
     'foot-left': '© 2026 Everson Rubira · Seixal, Portugal',
