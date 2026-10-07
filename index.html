@@ -758,7 +758,13 @@ footer {
 }
 @keyframes hint-fade { 0%,100%{opacity:0.3} 50%{opacity:0.9} }
 #term-label { display: inline; }
-@media (max-width: 600px) { #term-label { display: none; } #term-hint { display: none; } }
+@media (max-width: 600px) {
+  #term-label { display: none; }
+  #term-hint { display: none; }
+  #term-btn { padding: 12px 14px; border-radius: 8px; }
+  #term-btn svg { width: 22px; height: 22px; }
+  #term-live { width: 7px; height: 7px; }
+}
 #term-cursor { animation: cur-blink 1s step-end infinite; }
 @keyframes cur-blink { 0%,100%{opacity:1} 50%{opacity:0} }
 @keyframes term-glow {
