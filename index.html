@@ -21,7 +21,7 @@
 <style>
 /* ─── RESET ─── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; overflow-x: hidden; font-size: 17px; }
 a { color: inherit; text-decoration: none; }
 img { display: block; }
 button { cursor: pointer; font-family: inherit; }
@@ -437,7 +437,8 @@ section { padding: 96px 0; }
 /* ─── FILOSOFIA ─── */
 #filosofia { background: var(--bg); }
 .ops-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0; }
-.ops-list li { padding: 20px 0; border-top: 1px solid var(--line); font-size: 0.95rem; color: var(--ink-1); line-height: 1.6; }
+.ops-list li { padding: 16px 0 16px 20px; border-top: 1px solid var(--line); font-size: 1rem; color: var(--ink-2); line-height: 1.65; position: relative; }
+.ops-list li::before { content: '›'; position: absolute; left: 0; color: var(--sec-num-c, #f59e0b); font-size: 1.1rem; line-height: 1.65; }
 .ops-list li:last-child { border-bottom: 1px solid var(--line); }
 .princ-bridge { font-size: 0.95rem; color: var(--ink-2); line-height: 1.7; margin-bottom: 40px; max-width: 680px; }
 .princ-list { display: flex; flex-direction: column; }
@@ -742,8 +743,15 @@ footer {
   transition: transform 0.15s;
 }
 #term-btn:hover { transform: translateY(-2px); box-shadow: 0 0 32px rgba(74,222,128,0.6); }
+#term-hint {
+  position: fixed; bottom: 58px; left: 24px; z-index: 90;
+  font-family: var(--mono); font-size: 0.62rem; color: rgba(74,222,128,0.5);
+  letter-spacing: 0.06em; pointer-events: none;
+  animation: hint-fade 4s ease-in-out infinite;
+}
+@keyframes hint-fade { 0%,100%{opacity:0.3} 50%{opacity:0.9} }
 #term-label { display: inline; }
-@media (max-width: 600px) { #term-label { display: none; } }
+@media (max-width: 600px) { #term-label { display: none; } #term-hint { display: none; } }
 #term-cursor { animation: cur-blink 1s step-end infinite; }
 @keyframes cur-blink { 0%,100%{opacity:1} 50%{opacity:0} }
 @keyframes term-glow {
@@ -1420,6 +1428,7 @@ footer {
   </div>
 </footer>
 
+<div id="term-hint">$ try: hire · why · b2b</div>
 <button id="term-btn" aria-label="Abrir terminal">&gt;<span id="term-cursor">_</span><span id="term-label"> terminal</span></button>
 
 <div id="term-overlay" role="dialog" aria-modal="true" aria-label="Terminal">
@@ -1905,6 +1914,8 @@ window.addEventListener('load', function() {
       ['hi',  ' available commands:'],
       ['hi',  '─────────────────────────────────────────'],
       ['ok',  '  about       → who is Everson?'],
+      ['ok',  '  why         → why hire him?'],
+      ['ok',  '  b2b         → ops background'],
       ['ok',  '  skills      → tech stack'],
       ['ok',  '  projects    → current projects'],
       ['ok',  '  contact     → get in touch'],
@@ -1917,6 +1928,8 @@ window.addEventListener('load', function() {
       ['hi',  ' comandos disponíveis:'],
       ['hi',  '─────────────────────────────────────────'],
       ['ok',  '  about       → quem é o Everson?'],
+      ['ok',  '  why         → porquê contratá-lo?'],
+      ['ok',  '  b2b         → background em ops'],
       ['ok',  '  skills      → stack técnica'],
       ['ok',  '  projects    → projetos actuais'],
       ['ok',  '  contact     → contacto'],
@@ -2012,6 +2025,69 @@ window.addEventListener('load', function() {
       ['dim', 'disponível agora · Portugal · remoto ok'],
     ],
 
+    why: () => isEN() ? [
+      ['hi',  'Why Everson?'],
+      ['dim', '─────────────────────────────────────────'],
+      ['ok',  '  Most devs write code. Everson writes code'],
+      ['ok',  '  that survives contact with real clients.'],
+      ['ok',  ''],
+      ['ok',  '  12 years of B2B ops means:'],
+      ['ok',  '  · he reads the requirement AND the subtext'],
+      ['ok',  '  · he knows what a broken SLA costs at 2am'],
+      ['ok',  '  · he documents what others assume is obvious'],
+      ['ok',  '  · he tests before the QA team asks him to'],
+      ['ok',  ''],
+      ['dim', '  Still not convinced? try "hire"'],
+      ['dim', '─────────────────────────────────────────'],
+    ] : [
+      ['hi',  'Porquê o Everson?'],
+      ['dim', '─────────────────────────────────────────'],
+      ['ok',  '  A maioria dos devs escreve código.'],
+      ['ok',  '  O Everson escreve código que sobrevive'],
+      ['ok',  '  ao contacto com clientes reais.'],
+      ['ok',  ''],
+      ['ok',  '  12 anos de ops B2B significa:'],
+      ['ok',  '  · lê o requisito E o subtexto'],
+      ['ok',  '  · sabe o que um SLA partido custa às 2h'],
+      ['ok',  '  · documenta o que outros assumem óbvio'],
+      ['ok',  '  · testa antes de a equipa de QA pedir'],
+      ['ok',  ''],
+      ['dim', '  Ainda não convencido? tenta "hire"'],
+      ['dim', '─────────────────────────────────────────'],
+    ],
+
+    b2b: () => isEN() ? [
+      ['hi',  'B2B Operations Background'],
+      ['dim', '─────────────────────────────────────────'],
+      ['ok',  '  12 years · Brazil → Portugal'],
+      ['ok',  '  Clients: Asian, Middle Eastern, European'],
+      ['ok',  ''],
+      ['ok',  '  What that means in code:'],
+      ['ok',  '  · I write error messages humans can read'],
+      ['ok',  '  · I ask "what breaks if this goes wrong?"'],
+      ['ok',  '    before it goes wrong'],
+      ['ok',  '  · I scope tickets before estimating them'],
+      ['ok',  '  · I\'ve seen what happens when you skip QA'],
+      ['ok',  ''],
+      ['dim', '  All of it now runs on Java + Spring Boot.'],
+      ['dim', '─────────────────────────────────────────'],
+    ] : [
+      ['hi',  'Background em Ops B2B'],
+      ['dim', '─────────────────────────────────────────'],
+      ['ok',  '  12 anos · Brasil → Portugal'],
+      ['ok',  '  Clientes: asiáticos, Médio Oriente, europeus'],
+      ['ok',  ''],
+      ['ok',  '  O que isso significa em código:'],
+      ['ok',  '  · escrevo mensagens de erro que humanos lêem'],
+      ['ok',  '  · pergunto "o que parte se isto falhar?"'],
+      ['ok',  '    antes de falhar'],
+      ['ok',  '  · detalho tickets antes de os estimar'],
+      ['ok',  '  · já vi o que acontece quando se salta o QA'],
+      ['ok',  ''],
+      ['dim', '  Tudo isso corre agora em Java + Spring Boot.'],
+      ['dim', '─────────────────────────────────────────'],
+    ],
+
     hire: () => [
       ['ascii', ''],
       ['ascii', '  █   █  ███  ████   ████  ████ '],
@@ -2043,11 +2119,32 @@ window.addEventListener('load', function() {
 
   function printWelcome() {
     const en = isEN();
-    [
-      ['dim', en ? 'portfolio terminal v1.0.0' : 'terminal do portfólio v1.0.0'],
-      ['dim', en ? 'type "help" for available commands.' : 'escreve "help" para ver os comandos.'],
+    const bootLines = en ? [
+      ['dim', 'Everson Rubira Portfolio OS · v2.0'],
+      ['dim', 'Loading profile...........................  [OK]'],
+      ['dim', 'Mounting 12 years of B2B ops..............  [OK]'],
+      ['dim', 'Injecting anti-hallucination harness......  [OK]'],
       ['dim', ''],
-    ].forEach(([t, v]) => print(t, v));
+      ['hi',  'Ready. Try: hire · why · b2b · help'],
+      ['dim', ''],
+    ] : [
+      ['dim', 'Everson Rubira Portfolio OS · v2.0'],
+      ['dim', 'A carregar perfil.........................  [OK]'],
+      ['dim', 'A montar 12 anos de ops B2B...............  [OK]'],
+      ['dim', 'A injectar harness anti-alucinação........  [OK]'],
+      ['dim', ''],
+      ['hi',  'Pronto. Tenta: hire · why · b2b · help'],
+      ['dim', ''],
+    ];
+
+    let i = 0;
+    function nextLine() {
+      if (i >= bootLines.length) return;
+      const [t, v] = bootLines[i++];
+      print(t, v);
+      setTimeout(nextLine, t === 'dim' ? 120 : 0);
+    }
+    nextLine();
   }
 
   function typeReveal(asciiLines, onDone) {
