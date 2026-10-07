@@ -6,6 +6,11 @@
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="manifest" href="/manifest.json">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="er.dev">
+<link rel="apple-touch-icon" href="/icon.svg">
 <title>Everson Rubira — Backend Developer & Systems Thinker</title>
 <meta name="description" content="Everson Rubira — Backend Engineer com 12 anos de ops B2B. APIs Java robustas, integração de LLMs com defesa contra alucinação, QA e IA aplicada. Seixal / Lisboa, disponível para Portugal, Espanha e remoto.">
 <meta property="og:title" content="Everson Rubira — Backend Developer">
@@ -215,6 +220,19 @@ nav {
   border-bottom: 1px solid var(--line); letter-spacing: 0.04em;
 }
 .mob-menu a:last-child { border-bottom: none; }
+#install-btn {
+  display: none; width: 100%; margin-top: 12px;
+  padding: 10px 0; background: none; border: none; border-top: 1px solid var(--line);
+  font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.04em;
+  color: #4ade80; cursor: pointer; text-align: left;
+}
+#install-btn.visible { display: block; }
+#install-ios-tip {
+  display: none; margin-top: 10px; padding: 10px 12px;
+  background: var(--bg-2); border: 1px solid var(--line); border-radius: 4px;
+  font-family: var(--mono); font-size: 0.7rem; color: var(--ink-2); line-height: 1.6;
+}
+#install-ios-tip.visible { display: block; }
 
 /* ─── HERO ─── */
 #hero {
@@ -933,6 +951,8 @@ footer {
     <a href="#formacao" data-i18n="nav-formacao">formação</a>
     <a href="#contacto" data-i18n="nav-contacto">contacto</a>
     <a href="cv.html" target="_blank" data-i18n="mob-cv">ver cv</a>
+    <button id="install-btn">⊕ adicionar ao ecrã inicial</button>
+    <div id="install-ios-tip"></div>
   </div>
 </nav>
 
@@ -2280,6 +2300,54 @@ document.querySelectorAll('.learn-list').forEach(el => bro.observe(el));
 
 </script>
 <script>
+// ── INSTALL PWA ──────────────────────────────────────────────
+(function() {
+  var btn = document.getElementById('install-btn');
+  var tip = document.getElementById('install-ios-tip');
+  if (!btn) return;
+
+  var deferredPrompt = null;
+  var isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent) && !window.MSStream;
+  var isInStandalone = window.matchMedia('(display-mode: standalone)').matches
+                    || window.navigator.standalone;
+
+  if (isInStandalone) return; // já instalado
+
+  // Android / Chrome — evento nativo
+  window.addEventListener('beforeinstallprompt', function(e) {
+    e.preventDefault();
+    deferredPrompt = e;
+    btn.classList.add('visible');
+    btn.textContent = '⊕ ' + (document.documentElement.lang === 'en'
+      ? 'add to home screen' : 'adicionar ao ecrã inicial');
+  });
+
+  // iOS — mostrar instrução manual
+  if (isIOS) {
+    btn.classList.add('visible');
+    btn.textContent = '⊕ ' + (document.documentElement.lang === 'en'
+      ? 'add to home screen' : 'adicionar ao ecrã inicial');
+  }
+
+  btn.addEventListener('click', function() {
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+      deferredPrompt.userChoice.then(function() { deferredPrompt = null; btn.classList.remove('visible'); });
+    } else if (isIOS) {
+      var en = document.documentElement.lang === 'en';
+      tip.innerHTML = en
+        ? '1. Tap the <strong>Share</strong> button (□↑) in Safari<br>2. Scroll down and tap <strong>"Add to Home Screen"</strong><br>3. Tap <strong>Add</strong>'
+        : '1. Toca no botão <strong>Partilhar</strong> (□↑) no Safari<br>2. Desliza e toca em <strong>"Adicionar ao Ecrã Principal"</strong><br>3. Toca em <strong>Adicionar</strong>';
+      tip.classList.toggle('visible');
+    }
+  });
+
+  window.addEventListener('appinstalled', function() {
+    btn.classList.remove('visible');
+    tip.classList.remove('visible');
+  });
+})();
+
 // QR code
 function initQR() {
   var box = document.getElementById('qr-box');
