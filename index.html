@@ -458,6 +458,10 @@ section { padding: 96px 0; }
 .ops-list li { padding: 16px 0 16px 20px; border-top: 1px solid var(--line); font-size: 1rem; color: var(--ink-2); line-height: 1.65; position: relative; }
 .ops-list li::before { content: '›'; position: absolute; left: 0; color: var(--sec-num-c, #f59e0b); font-size: 1.1rem; line-height: 1.65; }
 .ops-list li:last-child { border-bottom: 1px solid var(--line); }
+.ops-grid { display: grid; grid-template-columns: 1fr 340px; gap: 56px; align-items: start; }
+.ops-photo { margin: 0; }
+.ops-photo img { display: block; width: 100%; height: auto; border: 1px solid var(--line); border-radius: 12px; }
+.ops-photo figcaption { margin-top: 12px; font-family: var(--mono); font-size: 0.72rem; line-height: 1.6; color: var(--ink-3); }
 .princ-bridge { font-size: 0.95rem; color: var(--ink-2); line-height: 1.7; margin-bottom: 40px; max-width: 680px; }
 .princ-list { display: flex; flex-direction: column; }
 .princ-item {
@@ -864,6 +868,8 @@ footer {
   .hero-bar-tags { font-size: 0.58rem; line-height: 1.8; }
   .sec-wrap { padding: 0 20px; }
   .sobre-grid, .form-grid, .contact-inner { grid-template-columns: 1fr; gap: 40px; }
+  .ops-grid { grid-template-columns: 1fr; gap: 32px; }
+  .ops-photo { max-width: 420px; }
   .stack-grid { grid-template-columns: 1fr; gap: 0; }
   .stack-row:first-child { border-top: 1px solid var(--line); }
   .princ-item { grid-template-columns: 1fr; gap: 20px; }
@@ -1056,6 +1062,7 @@ footer {
       <h2 class="sec-title" data-i18n="sec-ops">O que 12 anos de ops B2B colocam no sprint</h2>
       <div class="sec-rule"></div>
     </div>
+    <div class="ops-grid">
     <ul class="ops-list reveal">
       <li data-i18n="ops-1">Leio requisitos e identifico o que está mal formulado antes de escrever código</li>
       <li data-i18n="ops-2">Sei o que acontece quando um SLA falha a meio da noite e um cliente está bloqueado</li>
@@ -1064,6 +1071,11 @@ footer {
       <li data-i18n="ops-5">Documentação não é burocracia: é o que evita que a próxima pessoa repita o mesmo erro</li>
       <li data-i18n="ops-6">Processo de QA não começa nos testes: começa na revisão da história do usuário</li>
     </ul>
+    <figure class="ops-photo reveal">
+      <img src="foto-secretaria.webp" width="1100" height="1467" loading="lazy" decoding="async" alt="Secretária de trabalho com o IntelliJ aberto no projeto TrackCargo, o Docker Desktop num portátil e um tapete com folha de Python.">
+      <figcaption data-i18n="ops-photo-cap">TrackCargo a correr localmente: Spring Boot, PostgreSQL em Docker e migrações Flyway. Desenvolvido com Spec-Driven Development, sempre em branch e PR.</figcaption>
+    </figure>
+    </div>
   </div>
 </section>
 
@@ -1535,6 +1547,7 @@ const i18n = {
     'ops-4': 'Priorizo pelo impacto no negócio, não pelo que é tecnicamente mais interessante',
     'ops-5': 'Documentação não é burocracia: é o que evita que a próxima pessoa repita o mesmo erro',
     'ops-6': 'Processo de QA não começa nos testes: começa na revisão da história do usuário',
+    'ops-photo-cap': 'TrackCargo a correr localmente: Spring Boot, PostgreSQL em Docker e migrações Flyway. Desenvolvido com Spec-Driven Development, sempre em branch e PR.',
     'sec-filosofia': 'Princípios de Engenharia',
     'princ-bridge': 'Doze anos a gerir operações B2B ensinam que código sem contexto de negócio é um risco. Estes princípios são a forma como trago esse contexto para cada linha de código.',
     'sec-experiencia': 'Experiência',
@@ -1690,6 +1703,7 @@ const i18n = {
     'ops-4': 'I prioritise by business impact, not by what is technically most interesting',
     'ops-5': 'Documentation is not bureaucracy: it is what stops the next person from repeating the same mistake',
     'ops-6': 'QA does not start at testing: it starts at user story review',
+    'ops-photo-cap': 'TrackCargo running locally: Spring Boot, PostgreSQL in Docker and Flyway migrations. Built with Spec-Driven Development, always on a branch and PR.',
     'sec-filosofia': 'Engineering Principles',
     'princ-bridge': 'Twelve years managing B2B operations teach you that code without business context is a liability. These principles are how I bring that context to every line of code.',
     'sec-experiencia': 'Experience',
