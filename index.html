@@ -1260,23 +1260,45 @@ footer {
       <!-- ── CAMADA 1: Featured ── -->
       <div class="proj-item featured reveal">
         <div class="proj-main">
-          <div class="proj-id">ID_05</div>
-          <div class="proj-name">Sulav Sushi Bar</div>
-          <p class="proj-desc" data-i18n="proj-sulav-desc">Site completo em produção para restaurante português. Bilíngue PT/EN com Uber Eats, Glovo, Bolt Food e Google Maps integrados.</p>
+          <div class="proj-id">ID_13</div>
+          <div class="proj-name">TrackCargo</div>
+          <p class="proj-desc" data-i18n="proj-trackcargo-desc">Sistema de rastreio de cargas e operações logísticas. API REST em Spring Boot com PostgreSQL e migrações Flyway, frontend em React e TypeScript, mais de 100 testes (incluindo E2E com REST Assured) e CI no GitHub Actions. Interface em PT, EN e ES. Desenvolvido com SDD.</p>
           <div class="proj-footer">
-            <span class="proj-tag live" data-i18n="proj-tag-live">produção</span>
+            <span class="proj-tag wip" data-i18n="proj-tag-wip">em desenvolvimento</span>
             <div class="proj-links">
-              <a href="https://sulavsushibar.pt" target="_blank" rel="noopener" class="proj-link">site <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+              <a href="https://github.com/EversonRubira/TrackCargo" target="_blank" rel="noopener" class="proj-link">GitHub <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
             </div>
           </div>
         </div>
         <div class="proj-spec">
-          <div class="proj-spec-title">delivery_spec</div>
-          <div class="proj-spec-row"><span class="proj-spec-k">status</span><span class="proj-spec-v">production · live</span></div>
-          <div class="proj-spec-row"><span class="proj-spec-k">integrations</span><span class="proj-spec-v">uber_eats · glovo · bolt</span></div>
-          <div class="proj-spec-row"><span class="proj-spec-k">languages</span><span class="proj-spec-v">pt / en bilingual</span></div>
-          <div class="proj-spec-row"><span class="proj-spec-k">infra</span><span class="proj-spec-v">github_pages · supabase</span></div>
-          <div class="proj-spec-row"><span class="proj-spec-k">seo</span><span class="proj-spec-v" data-i18n="proj-seo-opt">optimizado</span></div>
+          <div class="proj-spec-title">trackcargo_spec</div>
+          <div class="proj-spec-row"><span class="proj-spec-k">backend</span><span class="proj-spec-v">java_21 · spring_boot_4</span></div>
+          <div class="proj-spec-row"><span class="proj-spec-k">data</span><span class="proj-spec-v">postgresql · flyway</span></div>
+          <div class="proj-spec-row"><span class="proj-spec-k">frontend</span><span class="proj-spec-v">react · vite · typescript</span></div>
+          <div class="proj-spec-row"><span class="proj-spec-k">qa</span><span class="proj-spec-v">junit · rest_assured_e2e</span></div>
+          <div class="proj-spec-row"><span class="proj-spec-k">ci</span><span class="proj-spec-v">github_actions · i18n pt/en/es</span></div>
+        </div>
+      </div>
+
+      <div class="proj-item featured reveal">
+        <div class="proj-main">
+          <div class="proj-id">ID_07</div>
+          <div class="proj-name">Fit-Analizer</div>
+          <p class="proj-desc" data-i18n="proj-fitanalizer-desc">Analisador de aderência entre um CV e uma vaga, com a API da Anthropic (tool use e saída estruturada). Um verificador de evidências impede alegações sem apoio no CV, o prompt é versionado (v4), a avaliação é cega e a suite de regressão corre contra a API real. Testcontainers e SDD.</p>
+          <div class="proj-footer">
+            <span class="proj-tag wip" data-i18n="proj-tag-wip">em desenvolvimento</span>
+            <div class="proj-links">
+              <a href="https://github.com/EversonRubira/Fit-Analizer" target="_blank" rel="noopener" class="proj-link">GitHub <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+            </div>
+          </div>
+        </div>
+        <div class="proj-spec">
+          <div class="proj-spec-title">fit_analizer_spec</div>
+          <div class="proj-spec-row"><span class="proj-spec-k">runtime</span><span class="proj-spec-v">java_21 · spring_boot_3</span></div>
+          <div class="proj-spec-row"><span class="proj-spec-k">ai_provider</span><span class="proj-spec-v">anthropic · claude_sdk</span></div>
+          <div class="proj-spec-row"><span class="proj-spec-k">method</span><span class="proj-spec-v">sdd · llm_harness</span></div>
+          <div class="proj-spec-row"><span class="proj-spec-k">qa</span><span class="proj-spec-v">blind_eval · regression_suite</span></div>
+          <div class="proj-spec-row"><span class="proj-spec-k">safety</span><span class="proj-spec-v">verificador_evidencia · anti_hallucination</span></div>
         </div>
       </div>
 
@@ -1284,7 +1306,7 @@ footer {
         <div class="proj-main">
           <div class="proj-id">ID_12</div>
           <div class="proj-name">ArqSync</div>
-          <p class="proj-desc" data-i18n="proj-arqsync-desc">Analisador estático de arquitectura Java via AST (JavaParser). Detecta ciclos de dependência e violações de camadas (controller/service/repository/domain). 75 testes, 94% de cobertura, SDD, fallback gracioso para PostgreSQL. Relatórios JSON e HTML com diagramas Mermaid.</p>
+          <p class="proj-desc" data-i18n="proj-arqsync-desc">Analisador estático de arquitetura Java via AST (JavaParser). Deteta ciclos de dependência e violações de camadas (controller/service/repository/domain). Mais de 160 testes, gate de cobertura JaCoCo (mínimo 70%) e SDD. Relatórios JSON e HTML com diagramas Mermaid.</p>
           <div class="proj-footer">
             <span class="proj-tag wip" data-i18n="proj-tag-wip">em desenvolvimento</span>
             <div class="proj-links">
@@ -1304,23 +1326,23 @@ footer {
 
       <div class="proj-item featured reveal">
         <div class="proj-main">
-          <div class="proj-id">ID_07</div>
-          <div class="proj-name">Fit-Analizer</div>
-          <p class="proj-desc" data-i18n="proj-fitanalizer-desc">Avaliador de aptidão física com LLM como juiz. Harness de IA com VerificadorEvidencia que previne alucinação activamente, versionamento de prompts v4, avaliação humana cega e suite de regressão contra a API real. SDD do contrato à implementação.</p>
+          <div class="proj-id">ID_05</div>
+          <div class="proj-name">Sulav Sushi Bar</div>
+          <p class="proj-desc" data-i18n="proj-sulav-desc">Site completo em produção para restaurante português. Bilíngue PT/EN com Uber Eats, Glovo, Bolt Food e Google Maps integrados.</p>
           <div class="proj-footer">
-            <span class="proj-tag wip" data-i18n="proj-tag-wip">em desenvolvimento</span>
+            <span class="proj-tag live" data-i18n="proj-tag-live">produção</span>
             <div class="proj-links">
-              <a href="https://github.com/EversonRubira/Fit-Analizer" target="_blank" rel="noopener" class="proj-link">GitHub <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+              <a href="https://sulavsushibar.pt" target="_blank" rel="noopener" class="proj-link">site <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
             </div>
           </div>
         </div>
         <div class="proj-spec">
-          <div class="proj-spec-title">fit_analizer_spec</div>
-          <div class="proj-spec-row"><span class="proj-spec-k">runtime</span><span class="proj-spec-v">java_21 · spring_boot</span></div>
-          <div class="proj-spec-row"><span class="proj-spec-k">ai_provider</span><span class="proj-spec-v">anthropic · claude_sdk</span></div>
-          <div class="proj-spec-row"><span class="proj-spec-k">method</span><span class="proj-spec-v">sdd · llm_harness</span></div>
-          <div class="proj-spec-row"><span class="proj-spec-k">qa</span><span class="proj-spec-v">blind_eval · regression_suite</span></div>
-          <div class="proj-spec-row"><span class="proj-spec-k">safety</span><span class="proj-spec-v">verificador_evidencia · anti_hallucination</span></div>
+          <div class="proj-spec-title">delivery_spec</div>
+          <div class="proj-spec-row"><span class="proj-spec-k">status</span><span class="proj-spec-v">production · live</span></div>
+          <div class="proj-spec-row"><span class="proj-spec-k">integrations</span><span class="proj-spec-v">uber_eats · glovo · bolt</span></div>
+          <div class="proj-spec-row"><span class="proj-spec-k">languages</span><span class="proj-spec-v">pt / en bilingual</span></div>
+          <div class="proj-spec-row"><span class="proj-spec-k">infra</span><span class="proj-spec-v">github_pages · supabase</span></div>
+          <div class="proj-spec-row"><span class="proj-spec-k">seo</span><span class="proj-spec-v" data-i18n="proj-seo-opt">optimizado</span></div>
         </div>
       </div>
 
@@ -1649,11 +1671,12 @@ const i18n = {
     'proj-boardly-desc': 'Gestão de tarefas com autenticação JWT e Clean Architecture. Projecto independente para praticar segurança e boas práticas de API REST.',
     'proj-gestao-desc': 'API REST para gestão de saúde mental, com foco em boas práticas de backend, estrutura de dados e design de endpoints coesos.',
     'proj-fitcheck-desc': 'Tracker de hábitos de saúde com análise semanal por IA. Regista sono, hidratação, IMC e metas físicas; Groq/Llama 3.3 analisa os registos e devolve sugestões em streaming.',
-    'proj-fitanalizer-desc': 'Avaliador de aptidão física com LLM como juiz. Harness de IA com VerificadorEvidencia que previne alucinação ativamente, versionamento de prompts v4, avaliação humana cega e suite de regressão contra a API real. SDD do contrato à implementação.',
+    'proj-trackcargo-desc': 'Sistema de rastreio de cargas e operações logísticas. API REST em Spring Boot com PostgreSQL e migrações Flyway, frontend em React e TypeScript, mais de 100 testes (incluindo E2E com REST Assured) e CI no GitHub Actions. Interface em PT, EN e ES. Desenvolvido com SDD.',
+    'proj-fitanalizer-desc': 'Analisador de aderência entre um CV e uma vaga, com a API da Anthropic (tool use e saída estruturada). Um verificador de evidências impede alegações sem apoio no CV, o prompt é versionado (v4), a avaliação é cega e a suite de regressão corre contra a API real. Testcontainers e SDD.',
     'proj-sulav-desc': 'Site completo em produção para restaurante português. Bilíngue PT/EN com Uber Eats, Glovo, Bolt Food e Google Maps integrados.',
     'proj-imc-desc': 'Calculadora de Índice de Massa Corporal com tabela de referência OMS. Dark/light mode, validação de input e destaque dinâmico da classificação correspondente.',
     'proj-minesweeper-desc': 'Minesweeper jogável no browser — revelação em cascata, bandeiras, chord click e três dificuldades. Portado de Java/Swing para vanilla JS com dark/light mode.',
-    'proj-arqsync-desc': 'Analisador estático de arquitetura Java via AST (JavaParser). Detecta ciclos de dependência e violações de camadas (controller/service/repository/domain). 75 testes, 94% de cobertura, SDD, fallback gracioso para PostgreSQL. Relatórios JSON e HTML com diagramas Mermaid.',
+    'proj-arqsync-desc': 'Analisador estático de arquitetura Java via AST (JavaParser). Deteta ciclos de dependência e violações de camadas (controller/service/repository/domain). Mais de 160 testes, gate de cobertura JaCoCo (mínimo 70%) e SDD. Relatórios JSON e HTML com diagramas Mermaid.',
     'proj-crypto-desc': 'Top 10 criptomoedas em tempo real via CoinGecko API. Node.js sem frameworks, views dinâmicas e clean code.',
     'proj-absence-desc': 'Backend stateless em FastAPI + Groq/Llama 3.3 que gera resumos executivos e respostas em linguagem natural sobre dados de ausências já calculados. Implementado para um mentee na Accenture.',
     'proj-meeting-desc': 'Extrai summary, decisions, actions e open points de notas de reunião. FastAPI + Groq/llama3-70b. Frontend HTML bilingue PT/EN. Deploy no Railway.',
@@ -1809,11 +1832,12 @@ const i18n = {
     'proj-boardly-desc': 'Task management with JWT authentication and Clean Architecture. Independent project to practice security and REST API best practices.',
     'proj-gestao-desc': 'REST API for mental health management, focused on backend best practices, data structure and cohesive endpoint design.',
     'proj-fitcheck-desc': 'Health habit tracker with weekly AI analysis. Logs sleep, hydration, BMI and fitness goals; Groq/Llama 3.3 analyses records and streams personalised suggestions.',
-    'proj-fitanalizer-desc': 'Fitness evaluator with LLM as judge. AI harness with VerificadorEvidencia that actively prevents hallucination, prompt versioning v4, blind human evaluation and regression suite against the real API. SDD from contract to implementation.',
+    'proj-trackcargo-desc': 'Cargo tracking and logistics operations system. Spring Boot REST API with PostgreSQL and Flyway migrations, React and TypeScript frontend, over 100 tests (including E2E with REST Assured) and CI on GitHub Actions. UI in PT, EN and ES. Built with SDD.',
+    'proj-fitanalizer-desc': 'CV-to-job fit analyser built on the Anthropic API (tool use and structured output). An evidence verifier blocks claims the CV does not support, the prompt is versioned (v4), evaluation is blind and the regression suite runs against the real API. Testcontainers and SDD.',
     'proj-sulav-desc': 'Full production site for a Portuguese restaurant. Bilingual PT/EN with Uber Eats, Glovo, Bolt Food and Google Maps integrated.',
     'proj-imc-desc': 'Body Mass Index calculator with WHO reference table. Dark/light mode, input validation and dynamic highlight of the matching classification.',
     'proj-minesweeper-desc': 'Playable Minesweeper in the browser — cascade reveal, flags, chord click and three difficulty levels. Ported from Java/Swing to vanilla JS with dark/light mode.',
-    'proj-arqsync-desc': 'Static Java architecture analyser via AST (JavaParser). Detects dependency cycles and layer violations (controller/service/repository/domain). 75 tests, 94% coverage, SDD, graceful PostgreSQL fallback. JSON and HTML reports with Mermaid diagrams.',
+    'proj-arqsync-desc': 'Static Java architecture analyser via AST (JavaParser). Detects dependency cycles and layer violations (controller/service/repository/domain). Over 160 tests, a JaCoCo coverage gate (70% minimum) and SDD. JSON and HTML reports with Mermaid diagrams.',
     'proj-crypto-desc': 'Top 10 cryptocurrencies in real time via CoinGecko API. Node.js with no frameworks, dynamic views and clean code.',
     'proj-absence-desc': 'Stateless backend in FastAPI + Groq/Llama 3.3 that generates executive summaries and natural language responses from pre-calculated absence data. Built for a mentee at Accenture.',
     'proj-meeting-desc': 'Extracts summary, decisions, actions and open points from meeting notes. FastAPI + Groq/llama3-70b. Bilingual PT/EN HTML frontend. Deployed on Railway.',
