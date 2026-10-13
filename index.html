@@ -465,6 +465,20 @@ section { padding: 96px 0; }
 
 /* ─── FILOSOFIA ─── */
 #filosofia { background: var(--bg); }
+.hero-proof {
+  font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.04em; color: var(--ink-2);
+  margin: -20px 0 32px; padding-left: 22px;
+}
+.ops-stats { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); margin-bottom: 40px; }
+.ops-stat { padding: 20px 16px 20px 0; display: flex; flex-direction: column; gap: 6px; }
+.ops-stat + .ops-stat { border-left: 1px solid var(--line); padding-left: 16px; }
+.ops-stat-v { font-family: var(--mono); font-size: 1.4rem; font-weight: 600; color: var(--ink); }
+.ops-stat-k { font-size: 0.78rem; color: var(--ink-2); line-height: 1.5; }
+@media (max-width: 600px) {
+  .ops-stats { grid-template-columns: 1fr 1fr; }
+  .ops-stat:nth-child(3) { border-left: none; padding-left: 0; }
+  .ops-stat:nth-child(n+3) { border-top: 1px solid var(--line); }
+}
 .ops-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0; }
 .ops-list li { padding: 16px 0 16px 20px; border-top: 1px solid var(--line); font-size: 1rem; color: var(--ink-2); line-height: 1.65; position: relative; }
 .ops-list li::before { content: '›'; position: absolute; left: 0; color: var(--sec-num-c, #f59e0b); font-size: 1.1rem; line-height: 1.65; }
@@ -994,12 +1008,8 @@ footer {
         <span data-i18n="hero-role">Backend Engineer · QA · IA aplicada</span><br>
         <span class="cursor-blink" data-i18n="hero-cursor">Java · Spring Boot · Python · LLMs · Agentic AI</span>
       </div>
-      <p class="hero-desc reveal" data-i18n="hero-desc">
-        12 anos em operações B2B. Agora do lado do código.<br>
-        Construo APIs robustas, integro LLMs com defesa ativa contra alucinação e trago para o sprint:<br>
-        requisito mal formulado, SLA que falha, cliente que não perdoa silêncio.<br>
-        Seixal / Lisboa · disponível para Portugal, Espanha e remoto.
-      </p>
+      <p class="hero-desc reveal" data-i18n="hero-desc">12 anos em operações B2B, agora do lado do código: APIs em Java e LLMs com verificação de evidências.<br>Seixal / Lisboa · Portugal, Espanha e remoto.</p>
+      <p class="hero-proof reveal" data-i18n="hero-proof">Facilitador de workshops de Agentic AI na Accenture · Elevate GenAI Wave 2</p>
       <div class="hero-actions reveal">
         <a href="#projetos" class="btn-fill" data-i18n="hero-btn-proj">ver projetos →</a>
         <a href="#contacto" class="btn-ghost" data-i18n="hero-btn-contact">contacto</a>
@@ -1077,6 +1087,12 @@ footer {
       <h2 class="sec-title" data-i18n="sec-ops">O que 12 anos de ops B2B colocam no sprint</h2>
       <div class="sec-rule"></div>
     </div>
+    <div class="ops-stats reveal">
+      <div class="ops-stat"><span class="ops-stat-v">+50%</span><span class="ops-stat-k" data-i18n="ops-n1">volume em operações de comércio internacional</span></div>
+      <div class="ops-stat"><span class="ops-stat-v">+25%</span><span class="ops-stat-k" data-i18n="ops-n2">eficiência operacional na gestão de uma PME</span></div>
+      <div class="ops-stat"><span class="ops-stat-v">18/20</span><span class="ops-stat-k" data-i18n="ops-n3">estágio curricular de 640h em Java e Angular</span></div>
+      <div class="ops-stat"><span class="ops-stat-v">160+</span><span class="ops-stat-k" data-i18n="ops-n4">testes automatizados no ArqSync</span></div>
+    </div>
     <div class="ops-grid">
     <ul class="ops-list reveal">
       <li data-i18n="ops-1">Leio requisitos e identifico o que está mal formulado antes de escrever código</li>
@@ -1102,7 +1118,7 @@ footer {
       <h2 class="sec-title" data-i18n="sec-filosofia">Princípios de Engenharia</h2>
       <div class="sec-rule"></div>
     </div>
-    <p class="princ-bridge reveal" data-i18n="princ-bridge">Doze anos a gerir operações B2B ensinam que código sem contexto de negócio é um risco. Estes princípios são a forma como trago esse contexto para cada linha de código.</p>
+    <p class="princ-bridge reveal" data-i18n="princ-bridge">Código sem contexto de negócio é um risco. Estes princípios são a forma como trago esse contexto para o código.</p>
     <div class="princ-list">
 
       <div class="princ-item reveal">
@@ -1114,7 +1130,7 @@ footer {
           <div class="princ-quote" data-i18n="princ-02a-quote">
             "Nunca deixar o cliente sem resposta. Nunca dizer que não vai dar: encontrar o caminho."
           </div>
-          <p class="princ-body" data-i18n="princ-02a-body">12 anos a lidar com clientes ensinaram-me que o silêncio é sempre a pior resposta. Um sistema que falha sem dizer porquê tem um bug de comunicação antes de ter um bug de código. Graceful degradation não é opcional: é o contrato mínimo com quem usa o que construímos.</p>
+          <p class="princ-body" data-i18n="princ-02a-body">Um sistema que falha sem dizer porquê tem um bug de comunicação antes de ter um bug de código. Graceful degradation é o contrato mínimo com quem o usa.</p>
           <div class="princ-spec">
             <div class="spec-row">
               <span class="spec-k" data-i18n="spec-nunca">nunca</span>
@@ -1141,7 +1157,7 @@ footer {
           <div class="princ-quote" data-i18n="princ-02b-quote">
             "Primeiro ponho-me no lugar de quem tem o problema. Depois papel. Depois código."
           </div>
-          <p class="princ-body" data-i18n="princ-02b-body">O editor abre por último. B2B ensinou-me que o que é pedido e o que é necessário raramente coincidem. Antes de uma linha de código: perceber o que dói, mapear o domínio, questionar o requisito.</p>
+          <p class="princ-body" data-i18n="princ-02b-body">O que é pedido e o que é necessário raramente coincidem. Antes de codificar: perceber o que dói, mapear o domínio, questionar o requisito.</p>
           <div class="princ-spec">
             <div class="spec-row">
               <span class="spec-k" data-i18n="spec-sequencia">sequência</span>
@@ -1168,7 +1184,7 @@ footer {
           <div class="princ-quote" data-i18n="princ-02c-quote">
             "Um ataque man-in-the-middle num pagamento ensinou-me a nunca assumir que o canal é seguro."
           </div>
-          <p class="princ-body" data-i18n="princ-02c-body">A lição mais cara que aprendi não foi técnica: foi operacional. Um pagamento intercetado, dinheiro desviado. Recuperei, mas zero trust passou a ser disciplina, não paranoia: toda entrada externa é hostil até prova em contrário.</p>
+          <p class="princ-body" data-i18n="princ-02c-body">Um pagamento intercetado tornou o zero trust uma disciplina: toda a entrada externa é hostil até prova em contrário.</p>
           <div class="princ-spec">
             <div class="spec-row">
               <span class="spec-k" data-i18n="spec-premissa">premissa</span>
@@ -1239,6 +1255,7 @@ footer {
             <li data-i18n="exp-acc-b1">Revisão e moderação de conteúdo em ambiente de alta responsabilidade</li>
             <li data-i18n="exp-acc-b2">Análise de risco com base em políticas internacionais</li>
             <li data-i18n="exp-acc-b3">Coordenação cross-timezone em ambiente multicultural</li>
+            <li data-i18n="exp-acc-b4">Selecionado para o Elevate GenAI Wave 2: facilitador de workshops de Agentic AI e reverse mentoring de GenAI a líderes seniores</li>
           </ul>
         </div>
       </div>
@@ -1570,7 +1587,8 @@ const i18n = {
 
     'hero-role': 'Backend Engineer · QA · IA aplicada',
     'hero-cursor': 'Java · Spring Boot · Python · LLMs · Agentic AI',
-    'hero-desc': '12 anos em operações B2B. Agora do lado do código.<br>Construo APIs robustas, integro LLMs com defesa ativa contra alucinação e trago para o sprint:<br>requisito mal formulado, SLA que falha, cliente que não perdoa silêncio.<br>Seixal / Lisboa · disponível para Portugal, Espanha e remoto.',
+    'hero-desc': '12 anos em operações B2B, agora do lado do código: APIs em Java e LLMs com verificação de evidências.<br>Seixal / Lisboa · Portugal, Espanha e remoto.',
+    'hero-proof': 'Facilitador de workshops de Agentic AI na Accenture · Elevate GenAI Wave 2',
     'hero-btn-proj': 'ver projetos →',
     'hero-btn-contact': 'contacto',
     'share-btn': 'partilhar',
@@ -1588,9 +1606,13 @@ const i18n = {
     'ops-4': 'Priorizo pelo impacto no negócio, não pelo que é tecnicamente mais interessante',
     'ops-5': 'Documentação não é burocracia: é o que evita que a próxima pessoa repita o mesmo erro',
     'ops-6': 'Processo de QA não começa nos testes: começa na revisão da história do usuário',
+    'ops-n1': 'volume em operações de comércio internacional',
+    'ops-n2': 'eficiência operacional na gestão de uma PME',
+    'ops-n3': 'estágio curricular de 640h em Java e Angular',
+    'ops-n4': 'testes automatizados no ArqSync',
     'ops-photo-cap': 'TrackCargo a correr localmente: Spring Boot, PostgreSQL em Docker e migrações Flyway. Desenvolvido com Spec-Driven Development, sempre em branch e PR.',
     'sec-filosofia': 'Princípios de Engenharia',
-    'princ-bridge': 'Doze anos a gerir operações B2B ensinam que código sem contexto de negócio é um risco. Estes princípios são a forma como trago esse contexto para cada linha de código.',
+    'princ-bridge': 'Código sem contexto de negócio é um risco. Estes princípios são a forma como trago esse contexto para o código.',
     'sec-experiencia': 'Experiência',
     'sec-projetos': 'Projetos',
     'sec-stack': 'Stack Técnica',
@@ -1609,13 +1631,13 @@ const i18n = {
 
     'princ-02a-label': 'Feedback<br>é inegociável',
     'princ-02a-quote': '"Nunca deixar o cliente sem resposta. Nunca dizer que não vai dar: encontrar o caminho."',
-    'princ-02a-body': '12 anos a lidar com clientes ensinaram-me que o silêncio é sempre a pior resposta. Um sistema que falha sem dizer porquê tem um bug de comunicação antes de ter um bug de código. Graceful degradation não é opcional: é o contrato mínimo com quem usa o que construímos.',
+    'princ-02a-body': 'Um sistema que falha sem dizer porquê tem um bug de comunicação antes de ter um bug de código. Graceful degradation é o contrato mínimo com quem o usa.',
     'princ-02b-label': 'Problema<br>antes de código',
     'princ-02b-quote': '"Primeiro ponho-me no lugar de quem tem o problema. Depois papel. Depois código."',
-    'princ-02b-body': 'O editor abre por último. B2B ensinou-me que o que é pedido e o que é necessário raramente coincidem. Antes de uma linha de código: perceber o que dói, mapear o domínio, questionar o requisito.',
+    'princ-02b-body': 'O que é pedido e o que é necessário raramente coincidem. Antes de codificar: perceber o que dói, mapear o domínio, questionar o requisito.',
     'princ-02c-label': 'Verificar<br>antes de agir',
     'princ-02c-quote': '"Um ataque man-in-the-middle num pagamento ensinou-me a nunca assumir que o canal é seguro."',
-    'princ-02c-body': 'A lição mais cara que aprendi não foi técnica: foi operacional. Um pagamento intercetado, dinheiro desviado. Recuperei, mas zero trust passou a ser disciplina, não paranoia: toda entrada externa é hostil até prova em contrário.',
+    'princ-02c-body': 'Um pagamento intercetado tornou o zero trust uma disciplina: toda a entrada externa é hostil até prova em contrário.',
     'spec-nunca': 'nunca',
     'spec-sempre': 'sempre',
     'spec-padrao': 'padrão',
@@ -1660,6 +1682,7 @@ const i18n = {
     'exp-acc-b1': 'Revisão e moderação de conteúdo em ambiente de alta responsabilidade',
     'exp-acc-b2': 'Análise de risco com base em políticas internacionais',
     'exp-acc-b3': 'Coordenação cross-timezone em ambiente multicultural',
+    'exp-acc-b4': 'Selecionado para o Elevate GenAI Wave 2: facilitador de workshops de Agentic AI e reverse mentoring de GenAI a líderes seniores',
 
     'proj-imc-desc': 'Calculadora de Índice de Massa Corporal com tabela de referência OMS e destaque automático da classificação. Projeto de estudo em HTML e JavaScript puro.',
     'proj-splitbills-desc': 'PWA de controlo financeiro para casais — divide contas mensais 50/50, regista quem pagou, calcula saldo e acertos. Instalável no iPhone e Android.',
@@ -1731,7 +1754,8 @@ const i18n = {
 
     'hero-role': 'Backend Engineer · QA · Applied AI',
     'hero-cursor': 'Java · Spring Boot · Python · LLMs · Agentic AI',
-    'hero-desc': '12 years in B2B operations. Now on the code side.<br>I build robust APIs, integrate LLMs with active hallucination defence, and bring to the sprint:<br>poorly written requirements, SLAs that break, clients who don\'t forgive silence.<br>Seixal / Lisbon · available for Portugal, Spain and remote.',
+    'hero-desc': '12 years in B2B operations, now on the code side: Java APIs and LLMs with evidence verification.<br>Seixal / Lisbon · Portugal, Spain and remote.',
+    'hero-proof': 'Agentic AI workshop facilitator at Accenture · Elevate GenAI Wave 2',
     'hero-btn-proj': 'view projects →',
     'hero-btn-contact': 'contact',
     'share-btn': 'share',
@@ -1749,9 +1773,13 @@ const i18n = {
     'ops-4': 'I prioritise by business impact, not by what is technically most interesting',
     'ops-5': 'Documentation is not bureaucracy: it is what stops the next person from repeating the same mistake',
     'ops-6': 'QA does not start at testing: it starts at user story review',
+    'ops-n1': 'volume in international trade operations',
+    'ops-n2': 'operational efficiency running an SME',
+    'ops-n3': '640-hour Java and Angular internship',
+    'ops-n4': 'automated tests in ArqSync',
     'ops-photo-cap': 'TrackCargo running locally: Spring Boot, PostgreSQL in Docker and Flyway migrations. Built with Spec-Driven Development, always on a branch and PR.',
     'sec-filosofia': 'Engineering Principles',
-    'princ-bridge': 'Twelve years managing B2B operations teach you that code without business context is a liability. These principles are how I bring that context to every line of code.',
+    'princ-bridge': 'Code without business context is a risk. These principles are how I bring that context into the code.',
     'sec-experiencia': 'Experience',
     'sec-projetos': 'Projects',
     'sec-stack': 'Tech Stack',
@@ -1770,13 +1798,13 @@ const i18n = {
 
     'princ-02a-label': 'Feedback<br>is non-negotiable',
     'princ-02a-quote': '"Never leave the client without a response. Never say it can\'t be done: find the way."',
-    'princ-02a-body': '12 years dealing with clients taught me that silence is always the worst response. A system that fails without saying why has a communication bug before it has a code bug. Graceful degradation isn\'t optional: it\'s the minimum contract with whoever uses what we build.',
+    'princ-02a-body': 'A system that fails without saying why has a communication bug before it has a code bug. Graceful degradation is the minimum contract with its users.',
     'princ-02b-label': 'Problem<br>before code',
     'princ-02b-quote': '"First I put myself in the shoes of whoever has the problem. Then paper. Then code."',
-    'princ-02b-body': 'The editor opens last. B2B taught me that what is asked and what is needed rarely coincide. Before a line of code: understand what hurts, map the domain, question the requirement.',
+    'princ-02b-body': 'What is asked and what is needed rarely match. Before coding: understand the pain, map the domain, question the requirement.',
     'princ-02c-label': 'Verify<br>before acting',
     'princ-02c-quote': '"A man-in-the-middle attack on a payment taught me to never assume the channel is safe."',
-    'princ-02c-body': 'The most expensive lesson I learned wasn\'t technical: it was operational. A payment intercepted, money diverted. I recovered, but zero trust became discipline, not paranoia: all external input is hostile until proven otherwise.',
+    'princ-02c-body': 'An intercepted payment made zero trust a discipline: all external input is hostile until proven otherwise.',
     'spec-nunca': 'never',
     'spec-sempre': 'always',
     'spec-padrao': 'pattern',
@@ -1821,6 +1849,7 @@ const i18n = {
     'exp-acc-b1': 'Content review and moderation in a high-responsibility environment',
     'exp-acc-b2': 'Risk analysis based on international policies',
     'exp-acc-b3': 'Cross-timezone coordination in a multicultural environment',
+    'exp-acc-b4': 'Selected for Elevate GenAI Wave 2: Agentic AI workshop facilitator and GenAI reverse mentoring for senior leaders',
 
     'proj-imc-desc': 'Body Mass Index calculator with WHO reference table and automatic classification highlight. Study project in pure HTML and JavaScript.',
     'proj-splitbills-desc': 'Financial control PWA for couples — splits monthly bills 50/50, tracks who paid, calculates balance and settlements. Installable on iPhone and Android.',
