@@ -319,6 +319,17 @@ nav {
   transition: border-color 0.15s, color 0.15s;
 }
 .btn-ghost:hover { border-color: var(--ink-2); color: var(--ink); }
+#share-btn { background: none; cursor: pointer; display: inline-flex; align-items: center; gap: 7px; }
+#share-btn svg { width: 13px; height: 13px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+#share-toast {
+  position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%) translateY(12px);
+  max-width: calc(100vw - 40px); text-align: center;
+  background: var(--bg-2); border: 1px solid var(--line); color: var(--ink-2);
+  font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.06em;
+  padding: 10px 20px; border-radius: 2px; opacity: 0;
+  transition: opacity 0.25s, transform 0.25s; z-index: 9000; pointer-events: none;
+}
+#share-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 .hero-chips { display: flex; gap: 6px; flex-wrap: wrap; }
 .chip {
   font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.06em;
@@ -993,6 +1004,10 @@ footer {
         <a href="#projetos" class="btn-fill" data-i18n="hero-btn-proj">ver projetos →</a>
         <a href="#contacto" class="btn-ghost" data-i18n="hero-btn-contact">contacto</a>
         <a href="cv.html" target="_blank" class="btn-ghost" data-i18n="nav-cv">cv</a>
+        <button type="button" class="btn-ghost" id="share-btn">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+          <span data-i18n="share-btn">partilhar</span>
+        </button>
       </div>
       <div class="hero-chips reveal">
         <span class="chip">Java 17/21</span>
@@ -1536,6 +1551,10 @@ const i18n = {
     'hero-desc': '12 anos em operações B2B. Agora do lado do código.<br>Construo APIs robustas, integro LLMs com defesa ativa contra alucinação e trago para o sprint:<br>requisito mal formulado, SLA que falha, cliente que não perdoa silêncio.<br>Seixal / Lisboa · disponível para Portugal, Espanha e remoto.',
     'hero-btn-proj': 'ver projetos →',
     'hero-btn-contact': 'contacto',
+    'share-btn': 'partilhar',
+    'share-text': 'Backend Engineer · QA · IA aplicada. Fica a conhecer o meu perfil:',
+    'share-copied': 'Link copiado!',
+    'share-manual': 'Copia o link: eversonrubira.github.io',
     'hero-bar-tags': '<span>Backend</span> · Java · Spring Boot · Node.js &nbsp;·&nbsp; <span>QA</span> · JUnit · Cypress/Robot Framework (formação) &nbsp;·&nbsp; <span>IA</span> · LangChain · Claude API',
     'hero-status': 'Disponível agora',
 
@@ -1692,6 +1711,10 @@ const i18n = {
     'hero-desc': '12 years in B2B operations. Now on the code side.<br>I build robust APIs, integrate LLMs with active hallucination defence, and bring to the sprint:<br>poorly written requirements, SLAs that break, clients who don\'t forgive silence.<br>Seixal / Lisbon · available for Portugal, Spain and remote.',
     'hero-btn-proj': 'view projects →',
     'hero-btn-contact': 'contact',
+    'share-btn': 'share',
+    'share-text': 'Backend Engineer · QA · Applied AI. Take a look at my profile:',
+    'share-copied': 'Link copied!',
+    'share-manual': 'Copy the link: eversonrubira.github.io',
     'hero-bar-tags': '<span>Backend</span> · Java · Spring Boot · Node.js &nbsp;·&nbsp; <span>QA</span> · JUnit · Cypress/Robot Framework (training) &nbsp;·&nbsp; <span>AI</span> · LangChain · Claude API',
     'hero-status': 'Available now',
 
@@ -2382,6 +2405,59 @@ window.addEventListener('load', function() {
     }, 100);
   }
 });
+</script>
+
+<script>
+/* ── PARTILHAR ── menu nativo do telemóvel (Web Share API); no computador copia o link */
+(function () {
+  var btn = document.getElementById('share-btn');
+  if (!btn) return;
+
+  var URL_SITE = 'https://eversonrubira.github.io/';
+
+  var toast = document.createElement('div');
+  toast.id = 'share-toast';
+  toast.setAttribute('role', 'status');
+  toast.setAttribute('aria-live', 'polite');
+  document.body.appendChild(toast);
+
+  var timer;
+  function showToast(msg) {
+    toast.textContent = msg;
+    toast.classList.add('show');
+    clearTimeout(timer);
+    timer = setTimeout(function () { toast.classList.remove('show'); }, 2600);
+  }
+
+  // texto no idioma atual da página (o dicionário i18n já existe acima)
+  function t(key) {
+    var lang = document.documentElement.lang === 'en' ? 'en' : 'pt';
+    return (typeof i18n !== 'undefined' && i18n[lang] && i18n[lang][key]) || '';
+  }
+
+  function copyLink() {
+    if (navigator.clipboard && window.isSecureContext) {
+      return navigator.clipboard.writeText(URL_SITE)
+        .then(function () { showToast(t('share-copied')); })
+        .catch(function () { showToast(t('share-manual')); });
+    }
+    showToast(t('share-manual'));
+    return Promise.resolve();
+  }
+
+  btn.addEventListener('click', function () {
+    var data = { title: 'Everson Rubira | Backend Engineer', text: t('share-text'), url: URL_SITE };
+
+    if (navigator.share && (!navigator.canShare || navigator.canShare(data))) {
+      navigator.share(data).catch(function (err) {
+        // AbortError = a pessoa fechou o menu de partilha: não é erro
+        if (err && err.name !== 'AbortError') copyLink();
+      });
+    } else {
+      copyLink();
+    }
+  });
+})();
 </script>
 </body>
 </html>
