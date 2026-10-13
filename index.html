@@ -6,11 +6,16 @@
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="manifest" href="/manifest.json">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="er.dev">
+<link rel="apple-touch-icon" href="/icon.svg">
 <title>Everson Rubira — Backend Developer & Systems Thinker</title>
-<meta name="description" content="Everson Rubira — Backend Developer, QA Engineer e entusiasta de IA. Java, Spring Boot, Node.js, Claude API. Seixal / Lisboa, Portugal.">
+<meta name="description" content="Everson Rubira — Backend Engineer com 12 anos de ops B2B. APIs Java robustas, integração de LLMs com defesa contra alucinação, QA e IA aplicada. Seixal / Lisboa, disponível para Portugal, Espanha e remoto.">
 <meta property="og:title" content="Everson Rubira — Backend Developer">
 <meta property="og:description" content="Java · Spring Boot · QA · IA aplicada. Disponível para oportunidades em Portugal e remoto.">
-<meta property="og:image" content="https://eversonrubira.github.io/foto-perfil%20(2).jpeg">
+<meta property="og:image" content="https://eversonrubira.github.io/foto-perfil (2).jpeg">
 <meta property="og:url" content="https://eversonrubira.github.io">
 <meta property="og:type" content="website">
 <meta name="deploy-version" content="20260806-restructure-layer1-v3">
@@ -21,7 +26,7 @@
 <style>
 /* ─── RESET ─── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; overflow-x: hidden; font-size: 17px; }
 a { color: inherit; text-decoration: none; }
 img { display: block; }
 button { cursor: pointer; font-family: inherit; }
@@ -33,27 +38,28 @@ button { cursor: pointer; font-family: inherit; }
 }
 
 [data-theme="dark"] {
-  --bg:        #090f14;
-  --bg-1:      #0e1a20;
-  --bg-2:      #152530;
+  --bg:        #0d1f2d;
+  --bg-1:      #122534;
+  --bg-2:      #192e3e;
   --ink:       #e8f6f8;
-  --ink-2:     #c2dde2;
-  --ink-3:     #6a9da5;
-  --line:      #1c3540;
+  --ink-2:     #cce3e8;
+  --ink-3:     #7ab0ba;
+  --line:      #1e3d4f;
   --line-2:    rgba(255,255,255,0.06);
   --white:     #ffffff;
-  --nav-bg:    rgba(9,15,20,0.93);
+  --nav-bg:    rgba(13,31,45,0.93);
   --grid-line: rgba(255,255,255,0.04);
   --scan-clr:  rgba(255,255,255,0.04);
   --tag-live:  rgba(34,211,218,0.14);
   --tag-live-c:#22d3da;
-  --tag-wip-c: #6a9da5;
+  --tag-wip-c: #7ab0ba;
   --tag-wip:   rgba(255,255,255,0.05);
   --photo-f:   grayscale(100%) contrast(1.08);
   --frame-b:   rgba(34,211,218,0.12);
   --blob-a:    rgba(13,115,119,0.22);
   --blob-b:    rgba(6,78,88,0.16);
   --blob-c:    rgba(20,168,174,0.12);
+  --sec-num-c: #f59e0b;
 }
 
 [data-theme="light"] {
@@ -214,6 +220,19 @@ nav {
   border-bottom: 1px solid var(--line); letter-spacing: 0.04em;
 }
 .mob-menu a:last-child { border-bottom: none; }
+#install-btn {
+  display: none; width: 100%; margin-top: 12px;
+  padding: 10px 0; background: none; border: none; border-top: 1px solid var(--line);
+  font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.04em;
+  color: #4ade80; cursor: pointer; text-align: left;
+}
+#install-btn.visible { display: block; }
+#install-ios-tip {
+  display: none; margin-top: 10px; padding: 10px 12px;
+  background: var(--bg-2); border: 1px solid var(--line); border-radius: 4px;
+  font-family: var(--mono); font-size: 0.7rem; color: var(--ink-2); line-height: 1.6;
+}
+#install-ios-tip.visible { display: block; }
 
 /* ─── HERO ─── */
 #hero {
@@ -300,23 +319,6 @@ nav {
   transition: border-color 0.15s, color 0.15s;
 }
 .btn-ghost:hover { border-color: var(--ink-2); color: var(--ink); }
-.btn-share {
-  font-family: var(--mono); font-size: 0.72rem; font-weight: 700;
-  letter-spacing: 0.08em; color: var(--ink-3);
-  border: 1px solid var(--line); padding: 10px 18px; border-radius: 2px;
-  background: none; display: inline-flex; align-items: center; gap: 7px;
-  transition: border-color 0.15s, color 0.15s; cursor: pointer;
-}
-.btn-share:hover { border-color: var(--ink-2); color: var(--ink); }
-.btn-share svg { width: 13px; height: 13px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-#share-toast {
-  position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%) translateY(12px);
-  background: var(--bg-2); border: 1px solid var(--line); color: var(--ink-2);
-  font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.06em;
-  padding: 10px 20px; border-radius: 2px; opacity: 0;
-  transition: opacity 0.25s, transform 0.25s; z-index: 9000; pointer-events: none;
-}
-#share-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 .hero-chips { display: flex; gap: 6px; flex-wrap: wrap; }
 .chip {
   font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.06em;
@@ -417,7 +419,7 @@ section { padding: 96px 0; }
 }
 .sec-num {
   font-family: var(--mono); font-size: 0.62rem;
-  color: var(--ink-3); letter-spacing: 0.12em; flex-shrink: 0;
+  color: var(--sec-num-c, var(--ink-3)); letter-spacing: 0.12em; flex-shrink: 0;
 }
 .sec-title {
   font-size: clamp(1.4rem, 2.8vw, 2rem);
@@ -452,6 +454,15 @@ section { padding: 96px 0; }
 
 /* ─── FILOSOFIA ─── */
 #filosofia { background: var(--bg); }
+.ops-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0; }
+.ops-list li { padding: 16px 0 16px 20px; border-top: 1px solid var(--line); font-size: 1rem; color: var(--ink-2); line-height: 1.65; position: relative; }
+.ops-list li::before { content: '›'; position: absolute; left: 0; color: var(--sec-num-c, #f59e0b); font-size: 1.1rem; line-height: 1.65; }
+.ops-list li:last-child { border-bottom: 1px solid var(--line); }
+.ops-grid { display: grid; grid-template-columns: 1fr 340px; gap: 56px; align-items: start; }
+.ops-photo { margin: 0; }
+.ops-photo img { display: block; width: 100%; height: auto; border: 1px solid var(--line); border-radius: 12px; }
+.ops-photo figcaption { margin-top: 12px; font-family: var(--mono); font-size: 0.72rem; line-height: 1.6; color: var(--ink-3); }
+.princ-bridge { font-size: 0.95rem; color: var(--ink-2); line-height: 1.7; margin-bottom: 40px; max-width: 680px; }
 .princ-list { display: flex; flex-direction: column; }
 .princ-item {
   display: grid; grid-template-columns: 200px 1fr;
@@ -703,6 +714,9 @@ section { padding: 96px 0; }
 }
 .contact-sub { font-size: 0.88rem; color: var(--ink-2); line-height: 1.8; max-width: 360px; margin-bottom: 20px; }
 .contact-note { font-family: var(--mono); font-size: 0.62rem; color: var(--ink-3); letter-spacing: 0.04em; }
+.contact-qr { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; margin-top: 32px; }
+.contact-qr-label { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-3); }
+#qr-box { border: 1px solid var(--line); border-radius: 4px; padding: 8px; background: #fff; display: inline-block; line-height: 0; }
 .contact-rows { display: flex; flex-direction: column; }
 .contact-row {
   display: flex; align-items: center; justify-content: space-between;
@@ -746,14 +760,33 @@ footer {
 /* ─── TERMINAL ─── */
 #term-btn {
   position: fixed; bottom: 24px; left: 24px; z-index: 90;
-  font-family: var(--mono); font-size: 1.05rem; font-weight: 700;
-  letter-spacing: 0.06em; color: #4ade80;
-  background: #050d05; border: none;
-  border-radius: 3px; padding: 8px 14px; cursor: pointer;
+  display: flex; align-items: center; gap: 8px;
+  font-family: var(--mono); font-size: 0.72rem; font-weight: 700;
+  letter-spacing: 0.08em; color: #4ade80;
+  background: #050d05; border: 1px solid rgba(74,222,128,0.35);
+  border-radius: 6px; padding: 9px 14px; cursor: pointer;
   animation: term-glow 2.8s ease-in-out infinite;
-  transition: transform 0.15s;
+  transition: transform 0.15s, border-color 0.15s;
 }
-#term-btn:hover { transform: translateY(-2px); box-shadow: 0 0 32px rgba(74,222,128,0.6); }
+#term-btn svg { width: 18px; height: 18px; stroke: #4ade80; fill: none; stroke-width: 1.5; flex-shrink: 0; }
+#term-btn:hover { transform: translateY(-2px); box-shadow: 0 0 32px rgba(74,222,128,0.6); border-color: rgba(74,222,128,0.7); }
+#term-live { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: #4ade80; animation: live-pulse 1.4s ease-in-out infinite; }
+@keyframes live-pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.4;transform:scale(0.7)} }
+#term-hint {
+  position: fixed; bottom: 58px; left: 24px; z-index: 90;
+  font-family: var(--mono); font-size: 0.62rem; color: rgba(74,222,128,0.5);
+  letter-spacing: 0.06em; pointer-events: none;
+  animation: hint-fade 4s ease-in-out infinite;
+}
+@keyframes hint-fade { 0%,100%{opacity:0.3} 50%{opacity:0.9} }
+#term-label { display: inline; }
+@media (max-width: 600px) {
+  #term-label { display: none; }
+  #term-hint { display: none; }
+  #term-btn { padding: 12px 14px; border-radius: 8px; }
+  #term-btn svg { width: 22px; height: 22px; }
+  #term-live { width: 7px; height: 7px; }
+}
 #term-cursor { animation: cur-blink 1s step-end infinite; }
 @keyframes cur-blink { 0%,100%{opacity:1} 50%{opacity:0} }
 @keyframes term-glow {
@@ -835,6 +868,8 @@ footer {
   .hero-bar-tags { font-size: 0.58rem; line-height: 1.8; }
   .sec-wrap { padding: 0 20px; }
   .sobre-grid, .form-grid, .contact-inner { grid-template-columns: 1fr; gap: 40px; }
+  .ops-grid { grid-template-columns: 1fr; gap: 32px; }
+  .ops-photo { max-width: 420px; }
   .stack-grid { grid-template-columns: 1fr; gap: 0; }
   .stack-row:first-child { border-top: 1px solid var(--line); }
   .princ-item { grid-template-columns: 1fr; gap: 20px; }
@@ -878,6 +913,7 @@ footer {
   .form-grid { gap: 32px; }
 }
 </style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </head>
 <body>
 
@@ -921,6 +957,8 @@ footer {
     <a href="#formacao" data-i18n="nav-formacao">formação</a>
     <a href="#contacto" data-i18n="nav-contacto">contacto</a>
     <a href="cv.html" target="_blank" data-i18n="mob-cv">ver cv</a>
+    <button id="install-btn">⊕ adicionar à tela inicial</button>
+    <div id="install-ios-tip"></div>
   </div>
 </nav>
 
@@ -930,7 +968,7 @@ footer {
     <div class="hero-right reveal">
       <div class="photo-frame" id="ascii-frame">
         <canvas id="ascii-canvas"></canvas>
-        <img src="foto-perfil%20(2).jpeg" alt="Everson Rubira" id="ascii-photo">
+        <img src="foto-perfil (2).jpeg" alt="Everson Rubira" id="ascii-photo">
         <div class="photo-hint" id="photo-hint">color</div>
       </div>
       <div class="hero-socials">
@@ -942,27 +980,25 @@ footer {
     <div class="hero-text">
       <h1 class="hero-name reveal">Everson Rubira</h1>
       <div class="hero-role reveal">
-        <span data-i18n="hero-role">Backend Developer · AI Integration · QA</span><br>
+        <span data-i18n="hero-role">Backend Engineer · QA · IA aplicada</span><br>
         <span class="cursor-blink" data-i18n="hero-cursor">Java · Spring Boot · Python · LLMs · Agentic AI</span>
       </div>
       <p class="hero-desc reveal" data-i18n="hero-desc">
-        12 anos a resolver problemas operacionais complexos — agora <strong>construo as soluções.</strong><br>
-        Backend sólido, integração de IA e visão de negócio numa só pessoa.<br>
-        Seixal / Lisboa, Portugal.
+        12 anos em operações B2B. Agora do lado do código.<br>
+        Construo APIs robustas, integro LLMs com defesa ativa contra alucinação e trago para o sprint:<br>
+        requisito mal formulado, SLA que falha, cliente que não perdoa silêncio.<br>
+        Seixal / Lisboa · disponível para Portugal, Espanha e remoto.
       </p>
       <div class="hero-actions reveal">
         <a href="#projetos" class="btn-fill" data-i18n="hero-btn-proj">ver projetos →</a>
         <a href="#contacto" class="btn-ghost" data-i18n="hero-btn-contact">contacto</a>
         <a href="cv.html" target="_blank" class="btn-ghost" data-i18n="nav-cv">cv</a>
-        <button class="btn-share" id="share-btn" data-i18n-title="share-title" title="Partilhar perfil">
-          <svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
-          <span data-i18n="share-btn">partilhar</span>
-        </button>
       </div>
       <div class="hero-chips reveal">
         <span class="chip">Java 17/21</span>
         <span class="chip">Spring Boot</span>
-        <span class="chip">QA · JUnit · Cypress</span>
+        <span class="chip">QA · JUnit</span>
+        <span class="chip">Cypress · Robot Framework (formação)</span>
         <span class="chip">Node.js · Angular</span>
         <span class="chip">LangChain · Claude API</span>
         <span class="chip">Docker · PostgreSQL</span>
@@ -973,7 +1009,7 @@ footer {
     <div class="hero-bar-tags" data-i18n="hero-bar-tags">
       <span>Backend</span> · Java · Spring Boot · Node.js &nbsp;·&nbsp;
       <span>AI</span> · LangChain · Claude API · Agentic AI &nbsp;·&nbsp;
-      <span>QA</span> · JUnit · Cypress · Robot Framework
+      <span>QA</span> · JUnit · Cypress/Robot Framework (formação)
     </div>
     <span class="status-pill" data-i18n="hero-status">Disponível agora</span>
   </div>
@@ -994,7 +1030,7 @@ footer {
       </div>
       <div class="sobre-body reveal">
         <p data-i18n="sobre-p1">Brasileiro em Portugal. Construo a minha transição para tech com consistência. Não saí do zero: trago experiência real em identificar falhas, trabalhar com precisão e entregar sob pressão.</p>
-        <p data-i18n="sobre-p2">Estou a completar o <strong>TeSP em Programação e Sistemas de Informação no IPS</strong>, com estágio curricular activo em Java/Spring Boot e Angular na Pipoca Ágil. Co-fundei a <strong>ImplementIQ Systems</strong> com clientes reais em produção.</p>
+        <p data-i18n="sobre-p2">Estou a completar o <strong>TeSP em Programação e Sistemas de Informação no IPS</strong>. Concluí o estágio curricular em Java/Spring Boot e Angular na Pipoca Ágil com nota 18/20. Co-fundei a <strong>ImplementIQ Systems</strong> com clientes reais em produção.</p>
         <div class="fact-table">
           <div class="fact-row">
             <span class="fact-k" data-i18n="fact-localizacao">localização</span>
@@ -1010,10 +1046,35 @@ footer {
           </div>
           <div class="fact-row">
             <span class="fact-k" data-i18n="fact-idiomas">idiomas</span>
-            <span class="fact-v" data-i18n="fact-idiomas-v">PT nativo · EN profissional · ES básico</span>
+            <span class="fact-v" data-i18n="fact-idiomas-v">PT nativo · EN profissional · ES compreensão fluente, fala em desenvolvimento</span>
           </div>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- OPS B2B -->
+<section id="ops-b2b">
+  <div class="sec-wrap">
+    <div class="sec-head reveal">
+      <span class="sec-num">[ 01.5 ]</span>
+      <h2 class="sec-title" data-i18n="sec-ops">O que 12 anos de ops B2B colocam no sprint</h2>
+      <div class="sec-rule"></div>
+    </div>
+    <div class="ops-grid">
+    <ul class="ops-list reveal">
+      <li data-i18n="ops-1">Leio requisitos e identifico o que está mal formulado antes de escrever código</li>
+      <li data-i18n="ops-2">Sei o que acontece quando um SLA falha a meio da noite e um cliente está bloqueado</li>
+      <li data-i18n="ops-3">Atendi clientes no Brasil, Europa, Ásia e Oriente Médio: cada mercado ensina que comunicação técnica precisa de contexto cultural</li>
+      <li data-i18n="ops-4">Priorizo pelo impacto no negócio, não pelo que é tecnicamente mais interessante</li>
+      <li data-i18n="ops-5">Documentação não é burocracia: é o que evita que a próxima pessoa repita o mesmo erro</li>
+      <li data-i18n="ops-6">Processo de QA não começa nos testes: começa na revisão da história do usuário</li>
+    </ul>
+    <figure class="ops-photo reveal">
+      <img src="foto-secretaria.webp" width="1100" height="1467" loading="lazy" decoding="async" alt="Secretária de trabalho com o IntelliJ aberto no projeto TrackCargo, o Docker Desktop num portátil e um tapete com folha de Python.">
+      <figcaption data-i18n="ops-photo-cap">TrackCargo a correr localmente: Spring Boot, PostgreSQL em Docker e migrações Flyway. Desenvolvido com Spec-Driven Development, sempre em branch e PR.</figcaption>
+    </figure>
     </div>
   </div>
 </section>
@@ -1026,6 +1087,7 @@ footer {
       <h2 class="sec-title" data-i18n="sec-filosofia">Princípios de Engenharia</h2>
       <div class="sec-rule"></div>
     </div>
+    <p class="princ-bridge reveal" data-i18n="princ-bridge">Doze anos a gerir operações B2B ensinam que código sem contexto de negócio é um risco. Estes princípios são a forma como trago esse contexto para cada linha de código.</p>
     <div class="princ-list">
 
       <div class="princ-item reveal">
@@ -1189,7 +1251,7 @@ footer {
           <div class="proj-footer">
             <span class="proj-tag live" data-i18n="proj-tag-live">produção</span>
             <div class="proj-links">
-              <a href="https://sulavsushibar.pt" target="_blank" rel="noopener" class="proj-link">demo <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+              <a href="https://sulavsushibar.pt" target="_blank" rel="noopener" class="proj-link">site <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
             </div>
           </div>
         </div>
@@ -1207,7 +1269,7 @@ footer {
         <div class="proj-main">
           <div class="proj-id">ID_12</div>
           <div class="proj-name">ArqSync</div>
-          <p class="proj-desc" data-i18n="proj-arqsync-desc">Analisador estático de arquitectura Java. Detecta dependências circulares e violações de camadas (controller/service/repository/domain). Suporta repos locais e remotos via Git. Gera relatórios JSON e HTML com diagramas Mermaid.</p>
+          <p class="proj-desc" data-i18n="proj-arqsync-desc">Analisador estático de arquitectura Java via AST (JavaParser). Detecta ciclos de dependência e violações de camadas (controller/service/repository/domain). 75 testes, 94% de cobertura, SDD, fallback gracioso para PostgreSQL. Relatórios JSON e HTML com diagramas Mermaid.</p>
           <div class="proj-footer">
             <span class="proj-tag wip" data-i18n="proj-tag-wip">em desenvolvimento</span>
             <div class="proj-links">
@@ -1227,61 +1289,29 @@ footer {
 
       <div class="proj-item featured reveal">
         <div class="proj-main">
-          <div class="proj-id">ID_03</div>
-          <div class="proj-name">FitCheck</div>
-          <p class="proj-desc" data-i18n="proj-fitcheck-desc">Tracker de hábitos de saúde com análise semanal por IA. Regista sono, hidratação, IMC e metas físicas; Groq/Llama 3.3 analisa os registos e devolve sugestões em streaming.</p>
+          <div class="proj-id">ID_07</div>
+          <div class="proj-name">Fit-Analizer</div>
+          <p class="proj-desc" data-i18n="proj-fitanalizer-desc">Avaliador de aptidão física com LLM como juiz. Harness de IA com VerificadorEvidencia que previne alucinação activamente, versionamento de prompts v4, avaliação humana cega e suite de regressão contra a API real. SDD do contrato à implementação.</p>
           <div class="proj-footer">
-            <span class="proj-tag live" data-i18n="proj-tag-live">produção</span>
+            <span class="proj-tag wip" data-i18n="proj-tag-wip">em desenvolvimento</span>
             <div class="proj-links">
-              <a href="https://fitcheck-zpyt.onrender.com" target="_blank" rel="noopener" class="proj-link">demo <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
-              <a href="https://github.com/EversonRubira/FitCheck" target="_blank" rel="noopener" class="proj-link">GitHub <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+              <a href="https://github.com/EversonRubira/Fit-Analizer" target="_blank" rel="noopener" class="proj-link">GitHub <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
             </div>
           </div>
         </div>
         <div class="proj-spec">
-          <div class="proj-spec-title">fitcheck_spec</div>
-          <div class="proj-spec-row"><span class="proj-spec-k">runtime</span><span class="proj-spec-v">node.js · express</span></div>
-          <div class="proj-spec-row"><span class="proj-spec-k">ai_provider</span><span class="proj-spec-v">groq · llama_3.3</span></div>
-          <div class="proj-spec-row"><span class="proj-spec-k">database</span><span class="proj-spec-v">mysql · clever_cloud</span></div>
-          <div class="proj-spec-row"><span class="proj-spec-k">infra</span><span class="proj-spec-v">render · free_tier</span></div>
-          <div class="proj-spec-row"><span class="proj-spec-k">status</span><span class="proj-spec-v">production · live</span></div>
-        </div>
-      </div>
-
-      <div class="proj-item featured reveal">
-        <div class="proj-main">
-          <div class="proj-id">ID_11</div>
-          <div class="proj-name">Criptomoedas</div>
-          <p class="proj-desc" data-i18n="proj-crypto-desc">Top 10 criptomoedas em tempo real via CoinGecko API. Node.js sem frameworks, views dinâmicas e clean code.</p>
-          <div class="proj-footer">
-            <span class="proj-tag live" data-i18n="proj-tag-live">produção</span>
-            <div class="proj-links">
-              <a href="https://eversonrubira.github.io/criptomoedas-nodejs/" target="_blank" rel="noopener" class="proj-link">demo <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
-              <a href="https://github.com/EversonRubira/criptomoedas-nodejs" target="_blank" rel="noopener" class="proj-link">GitHub <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
-            </div>
-          </div>
-        </div>
-        <div class="proj-spec">
-          <div class="proj-spec-title">crypto_spec</div>
-          <div class="proj-spec-row"><span class="proj-spec-k">runtime</span><span class="proj-spec-v">node.js · vanilla_js</span></div>
-          <div class="proj-spec-row"><span class="proj-spec-k">api</span><span class="proj-spec-v">coingecko_public</span></div>
-          <div class="proj-spec-row"><span class="proj-spec-k">pattern</span><span class="proj-spec-v">no_framework · clean_code</span></div>
-          <div class="proj-spec-row"><span class="proj-spec-k">status</span><span class="proj-spec-v">live</span></div>
+          <div class="proj-spec-title">fit_analizer_spec</div>
+          <div class="proj-spec-row"><span class="proj-spec-k">runtime</span><span class="proj-spec-v">java_21 · spring_boot</span></div>
+          <div class="proj-spec-row"><span class="proj-spec-k">ai_provider</span><span class="proj-spec-v">anthropic · claude_sdk</span></div>
+          <div class="proj-spec-row"><span class="proj-spec-k">method</span><span class="proj-spec-v">sdd · llm_harness</span></div>
+          <div class="proj-spec-row"><span class="proj-spec-k">qa</span><span class="proj-spec-v">blind_eval · regression_suite</span></div>
+          <div class="proj-spec-row"><span class="proj-spec-k">safety</span><span class="proj-spec-v">verificador_evidencia · anti_hallucination</span></div>
         </div>
       </div>
 
       <!-- ── CAMADA 2: Lista compacta ── -->
       <div class="proj-compact-label reveal" data-i18n="proj-more-label">— outros projetos —</div>
       <div class="proj-compact-list reveal">
-
-        <div class="proj-compact-item">
-          <span class="proj-compact-id">ID_04</span>
-          <span class="proj-compact-name">LangChain + Anthropic</span>
-          <span class="proj-compact-stack">ai_agents · python · anthropic_api</span>
-          <div class="proj-compact-links">
-            <a href="https://github.com/EversonRubira/LangChain-Python-via-LLM-Anthropic" target="_blank" rel="noopener" class="proj-link">GitHub <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
-          </div>
-        </div>
 
         <div class="proj-compact-item">
           <span class="proj-compact-id">ID_10</span>
@@ -1306,24 +1336,7 @@ footer {
           <span class="proj-compact-name">Absence Portal AI</span>
           <span class="proj-compact-stack">fastapi · groq/llama_3.3 · prompt_engineering</span>
           <div class="proj-compact-links">
-          </div>
-        </div>
-
-        <div class="proj-compact-item">
-          <span class="proj-compact-id">ID_02</span>
-          <span class="proj-compact-name">Boardly</span>
-          <span class="proj-compact-stack">java · spring_boot · jwt · clean_architecture</span>
-          <div class="proj-compact-links">
-            <a href="https://github.com/EversonRubira/Boardly" target="_blank" rel="noopener" class="proj-link">GitHub <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
-          </div>
-        </div>
-
-        <div class="proj-compact-item">
-          <span class="proj-compact-id">ID_07</span>
-          <span class="proj-compact-name">StudyFlow</span>
-          <span class="proj-compact-stack">android_native · mvvm · kotlin · room</span>
-          <div class="proj-compact-links">
-            <a href="https://github.com/EversonRubira/StudyFlow" target="_blank" rel="noopener" class="proj-link">GitHub <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+            <a href="https://github.com/EversonRubira/absence-portal-ai" target="_blank" rel="noopener" class="proj-link">GitHub <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
           </div>
         </div>
 
@@ -1333,7 +1346,6 @@ footer {
           <span class="proj-compact-stack">vanilla_js · flood-fill · portado de java/swing</span>
           <div class="proj-compact-links">
             <a href="/minesweeper/" target="_blank" rel="noopener" class="proj-link">jogar <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
-            <a href="https://github.com/EversonRubira/Campo_Minado" target="_blank" rel="noopener" class="proj-link">GitHub <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
           </div>
         </div>
 
@@ -1358,8 +1370,8 @@ footer {
         <div class="stack-row"><span class="stack-k" data-i18n="stack-databases">databases</span><span class="stack-v">PostgreSQL, MySQL, MongoDB, Supabase</span></div>
       </div>
       <div>
-        <div class="stack-row"><span class="stack-k" data-i18n="stack-testes">testes &amp; qa</span><span class="stack-v">JUnit 5, Vitest, Postman, Cypress, Robot Framework</span></div>
-        <div class="stack-row"><span class="stack-k" data-i18n="stack-devops">devops</span><span class="stack-v">Docker, Git, GitHub Actions, Jira, Linux</span></div>
+        <div class="stack-row"><span class="stack-k" data-i18n="stack-testes">testes &amp; qa</span><span class="stack-v">JUnit 5, Vitest, Postman · Cypress, Robot Framework (em formação)</span></div>
+        <div class="stack-row"><span class="stack-k" data-i18n="stack-devops">devops</span><span class="stack-v">Docker, Git, GitHub Actions, Linux</span></div>
         <div class="stack-row"><span class="stack-k" data-i18n="stack-ia">ia &amp; automação</span><span class="stack-v">LangChain, Claude API, Anthropic SDK, Prompt Engineering</span></div>
       </div>
     </div>
@@ -1380,7 +1392,12 @@ footer {
           <div class="edu-degree" data-i18n="edu-degree-ips">TeSP em Programação e Sistemas de Informação</div>
           <div class="edu-school">Instituto Politécnico de Setúbal (IPS)</div>
           <div class="edu-period" data-i18n="edu-period-ips">2024 – Dez 2026 (previsto)</div>
-          <div class="edu-note" data-i18n="edu-note-ips">3.º semestre, 7 UCs em curso + estágio curricular activo na Pipoca Ágil.</div>
+          <div class="edu-note" data-i18n="edu-note-ips">3.º semestre, 7 UCs em curso. Estágio curricular concluído na Pipoca Ágil · nota 18/20.</div>
+        </div>
+        <div class="edu-block">
+          <div class="edu-degree" data-i18n="edu-degree-focus">Licenciatura em Análise e Desenvolvimento de Sistemas (EAD)</div>
+          <div class="edu-school">Faculdade Focus</div>
+          <div class="edu-period" data-i18n="edu-period-focus">Em curso · aproveitamento de créditos do TeSP</div>
         </div>
         <div class="edu-block">
           <div class="edu-degree">Anthropic Academy</div>
@@ -1422,8 +1439,12 @@ footer {
     <div class="reveal">
       <div class="contact-lbl" data-i18n="contact-lbl">[ contacto ]</div>
       <h2 class="contact-title" data-i18n="contact-title">Vamos<br>conversar.</h2>
-      <p class="contact-sub" data-i18n="contact-sub">Aberto a oportunidades Junior em QA, Backend Java ou IA aplicada. Portugal, Espanha ou remoto.</p>
+      <p class="contact-sub" data-i18n="contact-sub">Aberto a oportunidades em QA, Backend Java ou IA aplicada. Portugal, Espanha ou remoto.</p>
       <p class="contact-note" data-i18n="contact-note">Disponível para começar imediatamente.</p>
+      <div class="contact-qr reveal">
+        <span class="contact-qr-label" data-i18n="contact-qr-label">aponta o telefone →</span>
+        <div id="qr-box" aria-label="QR code para eversonrubira.github.io"></div>
+      </div>
     </div>
     <div class="contact-rows reveal">
       <a href="mailto:eversonrubira@gmail.com" class="contact-row">
@@ -1457,7 +1478,11 @@ footer {
   </div>
 </footer>
 
-<button id="term-btn" aria-label="Abrir terminal">&gt;<span id="term-cursor">_</span></button>
+<div id="term-hint">$ try: hire · why · b2b</div>
+<button id="term-btn" aria-label="Abrir terminal">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><path d="M6 8l3 3-3 3"/><path d="M12 14h4"/></svg>
+  <span id="term-live"></span><span id="term-label">terminal</span>
+</button>
 
 <div id="term-overlay" role="dialog" aria-modal="true" aria-label="Terminal">
   <div id="term-modal">
@@ -1503,21 +1528,28 @@ const i18n = {
     'nav-formacao': 'formação',
     'nav-contacto': 'contacto',
     'nav-cv': 'cv',
-    'share-btn': 'partilhar',
-    'share-title': 'Partilhar perfil',
     'mob-experiencia': 'experiência',
     'mob-cv': 'ver cv',
 
-    'hero-role': 'Backend Developer · AI Integration · QA',
+    'hero-role': 'Backend Engineer · QA · IA aplicada',
     'hero-cursor': 'Java · Spring Boot · Python · LLMs · Agentic AI',
-    'hero-desc': '12 anos a resolver problemas operacionais complexos, agora <strong>estou a construir as soluções.</strong><br>Backend sólido, integração de IA e sensibilidade de negócio.<br>Seixal / Lisboa, Portugal.',
+    'hero-desc': '12 anos em operações B2B. Agora do lado do código.<br>Construo APIs robustas, integro LLMs com defesa ativa contra alucinação e trago para o sprint:<br>requisito mal formulado, SLA que falha, cliente que não perdoa silêncio.<br>Seixal / Lisboa · disponível para Portugal, Espanha e remoto.',
     'hero-btn-proj': 'ver projetos →',
     'hero-btn-contact': 'contacto',
-    'hero-bar-tags': '<span>Backend</span> · Java · Spring Boot · Node.js &nbsp;·&nbsp; <span>QA</span> · JUnit · Cypress · Robot Framework &nbsp;·&nbsp; <span>IA</span> · LangChain · Claude API',
+    'hero-bar-tags': '<span>Backend</span> · Java · Spring Boot · Node.js &nbsp;·&nbsp; <span>QA</span> · JUnit · Cypress/Robot Framework (formação) &nbsp;·&nbsp; <span>IA</span> · LangChain · Claude API',
     'hero-status': 'Disponível agora',
 
     'sec-sobre': 'Sobre',
+    'sec-ops': 'O que 12 anos de ops B2B colocam no sprint',
+    'ops-1': 'Leio requisitos e identifico o que está mal formulado antes de escrever código',
+    'ops-2': 'Sei o que acontece quando um SLA falha a meio da noite e um cliente está bloqueado',
+    'ops-3': 'Atendi clientes no Brasil, Europa, Ásia e Oriente Médio: cada mercado ensina que comunicação técnica precisa de contexto cultural',
+    'ops-4': 'Priorizo pelo impacto no negócio, não pelo que é tecnicamente mais interessante',
+    'ops-5': 'Documentação não é burocracia: é o que evita que a próxima pessoa repita o mesmo erro',
+    'ops-6': 'Processo de QA não começa nos testes: começa na revisão da história do usuário',
+    'ops-photo-cap': 'TrackCargo a correr localmente: Spring Boot, PostgreSQL em Docker e migrações Flyway. Desenvolvido com Spec-Driven Development, sempre em branch e PR.',
     'sec-filosofia': 'Princípios de Engenharia',
+    'princ-bridge': 'Doze anos a gerir operações B2B ensinam que código sem contexto de negócio é um risco. Estes princípios são a forma como trago esse contexto para cada linha de código.',
     'sec-experiencia': 'Experiência',
     'sec-projetos': 'Projetos',
     'sec-stack': 'Stack Técnica',
@@ -1532,7 +1564,7 @@ const i18n = {
     'fact-modalidade': 'modalidade',
     'fact-modalidade-v': 'Presencial · Híbrido · Remoto',
     'fact-idiomas': 'idiomas',
-    'fact-idiomas-v': 'PT nativo · EN profissional · ES básico',
+    'fact-idiomas-v': 'PT nativo · EN profissional · ES compreensão fluente, fala em desenvolvimento',
 
     'princ-02a-label': 'Feedback<br>é inegociável',
     'princ-02a-quote': '"Nunca deixar o cliente sem resposta. Nunca dizer que não vai dar: encontrar o caminho."',
@@ -1563,13 +1595,15 @@ const i18n = {
     'proj-status-wip': 'em_desenvolvimento',
     'proj-seo-opt': 'optimizado',
     'edu-period-ips': '2024 – Dez 2026 (previsto)',
+    'edu-degree-focus': 'Licenciatura em Análise e Desenvolvimento de Sistemas (EAD)',
+    'edu-period-focus': 'Em curso · aproveitamento de créditos do TeSP',
     'cert-alura-label': 'Certificações Alura',
     'cert-qa-v': 'Gestão de bugs · QA Automação · Cypress · Robot Framework',
     'cert-outras-v': 'Python OOP · Python TDD · Go API · Go OOP · C (3 cursos) · JavaScript · TypeScript',
     'learn-langchain': 'LangChain: Agentes de IA',
     'photo-hint': 'clique',
 
-    'exp-status-active': 'activo',
+    'exp-status-active': 'ativo',
     'exp-status-done': 'concluído',
     'exp-pipoca-grade': 'Nota final: 18/20',
     'exp-role-pipoca': 'Estágio Curricular · Full-Stack Developer · Remoto (Brasil)',
@@ -1596,10 +1630,11 @@ const i18n = {
     'proj-boardly-desc': 'Gestão de tarefas com autenticação JWT e Clean Architecture. Projecto independente para praticar segurança e boas práticas de API REST.',
     'proj-gestao-desc': 'API REST para gestão de saúde mental, com foco em boas práticas de backend, estrutura de dados e design de endpoints coesos.',
     'proj-fitcheck-desc': 'Tracker de hábitos de saúde com análise semanal por IA. Regista sono, hidratação, IMC e metas físicas; Groq/Llama 3.3 analisa os registos e devolve sugestões em streaming.',
+    'proj-fitanalizer-desc': 'Avaliador de aptidão física com LLM como juiz. Harness de IA com VerificadorEvidencia que previne alucinação ativamente, versionamento de prompts v4, avaliação humana cega e suite de regressão contra a API real. SDD do contrato à implementação.',
     'proj-sulav-desc': 'Site completo em produção para restaurante português. Bilíngue PT/EN com Uber Eats, Glovo, Bolt Food e Google Maps integrados.',
     'proj-imc-desc': 'Calculadora de Índice de Massa Corporal com tabela de referência OMS. Dark/light mode, validação de input e destaque dinâmico da classificação correspondente.',
     'proj-minesweeper-desc': 'Minesweeper jogável no browser — revelação em cascata, bandeiras, chord click e três dificuldades. Portado de Java/Swing para vanilla JS com dark/light mode.',
-    'proj-arqsync-desc': 'Analisador estático de arquitectura Java. Detecta dependências circulares e violações de camadas (controller/service/repository/domain). Suporta repos locais e remotos via Git. Gera relatórios JSON e HTML com diagramas Mermaid.',
+    'proj-arqsync-desc': 'Analisador estático de arquitetura Java via AST (JavaParser). Detecta ciclos de dependência e violações de camadas (controller/service/repository/domain). 75 testes, 94% de cobertura, SDD, fallback gracioso para PostgreSQL. Relatórios JSON e HTML com diagramas Mermaid.',
     'proj-crypto-desc': 'Top 10 criptomoedas em tempo real via CoinGecko API. Node.js sem frameworks, views dinâmicas e clean code.',
     'proj-absence-desc': 'Backend stateless em FastAPI + Groq/Llama 3.3 que gera resumos executivos e respostas em linguagem natural sobre dados de ausências já calculados. Implementado para um mentee na Accenture.',
     'proj-meeting-desc': 'Extrai summary, decisions, actions e open points de notas de reunião. FastAPI + Groq/llama3-70b. Frontend HTML bilingue PT/EN. Deploy no Railway.',
@@ -1623,7 +1658,7 @@ const i18n = {
     'edu-degree-elevate': 'Accenture — Elevate GenAI Wave 2',
     'edu-school-elevate': 'Facilitador de IA Generativa &amp; Agentic AI · 2026',
     'edu-period-elevate': 'Reverse mentoring de líderes seniores sobre GenAI · Workshops práticos de Agentic AI · Microsoft Copilot Studio · Badge Credly "Reinvention with Agentic AI — Facilitator" (Jun 2026)',
-    'micro-learning': 'em aprendizagem activa',
+    'micro-learning': 'em aprendizado ativo',
     'learn-inscrito': 'inscrito',
     'learn-iniciando': 'a iniciar',
     'cert-java': 'Java &amp; Spring Boot',
@@ -1633,8 +1668,9 @@ const i18n = {
 
     'contact-lbl': '[ contacto ]',
     'contact-title': 'Vamos<br>conversar.',
-    'contact-sub': 'Aberto a oportunidades Junior em QA, Backend Java ou IA aplicada. Portugal, Espanha ou remoto.',
+    'contact-sub': 'Aberto a oportunidades em QA, Backend Java ou IA aplicada. Portugal, Espanha ou remoto.',
     'contact-note': 'Disponível para começar imediatamente.',
+    'contact-qr-label': 'aponta o telefone →',
 
     'foot-left': '© 2026 Everson Rubira · Seixal, Portugal',
     'foot-right': 'ver cv completo →',
@@ -1648,21 +1684,28 @@ const i18n = {
     'nav-formacao': 'education',
     'nav-contacto': 'contact',
     'nav-cv': 'cv',
-    'share-btn': 'share',
-    'share-title': 'Share profile',
     'mob-experiencia': 'experience',
     'mob-cv': 'ver cv',
 
-    'hero-role': 'Backend Developer · AI Integration · QA',
+    'hero-role': 'Backend Engineer · QA · Applied AI',
     'hero-cursor': 'Java · Spring Boot · Python · LLMs · Agentic AI',
-    'hero-desc': '12 years solving complex operational problems, now <strong>I\'m building the solutions.</strong><br>Solid backend, AI integration and business sensibility.<br>Seixal / Lisbon, Portugal.',
+    'hero-desc': '12 years in B2B operations. Now on the code side.<br>I build robust APIs, integrate LLMs with active hallucination defence, and bring to the sprint:<br>poorly written requirements, SLAs that break, clients who don\'t forgive silence.<br>Seixal / Lisbon · available for Portugal, Spain and remote.',
     'hero-btn-proj': 'view projects →',
     'hero-btn-contact': 'contact',
-    'hero-bar-tags': '<span>Backend</span> · Java · Spring Boot · Node.js &nbsp;·&nbsp; <span>QA</span> · JUnit · Cypress · Robot Framework &nbsp;·&nbsp; <span>AI</span> · LangChain · Claude API',
+    'hero-bar-tags': '<span>Backend</span> · Java · Spring Boot · Node.js &nbsp;·&nbsp; <span>QA</span> · JUnit · Cypress/Robot Framework (training) &nbsp;·&nbsp; <span>AI</span> · LangChain · Claude API',
     'hero-status': 'Available now',
 
     'sec-sobre': 'About',
+    'sec-ops': 'What 12 years of B2B ops bring to the sprint',
+    'ops-1': 'I read requirements and spot what is poorly formulated before writing code',
+    'ops-2': 'I know what happens when an SLA fails in the middle of the night and a client is blocked',
+    'ops-3': 'I have served clients in Brazil, Europe, Asia and the Middle East: each market teaches you that technical communication needs cultural context',
+    'ops-4': 'I prioritise by business impact, not by what is technically most interesting',
+    'ops-5': 'Documentation is not bureaucracy: it is what stops the next person from repeating the same mistake',
+    'ops-6': 'QA does not start at testing: it starts at user story review',
+    'ops-photo-cap': 'TrackCargo running locally: Spring Boot, PostgreSQL in Docker and Flyway migrations. Built with Spec-Driven Development, always on a branch and PR.',
     'sec-filosofia': 'Engineering Principles',
+    'princ-bridge': 'Twelve years managing B2B operations teach you that code without business context is a liability. These principles are how I bring that context to every line of code.',
     'sec-experiencia': 'Experience',
     'sec-projetos': 'Projects',
     'sec-stack': 'Tech Stack',
@@ -1677,7 +1720,7 @@ const i18n = {
     'fact-modalidade': 'work mode',
     'fact-modalidade-v': 'On-site · Hybrid · Remote',
     'fact-idiomas': 'languages',
-    'fact-idiomas-v': 'PT native · EN professional · ES basic',
+    'fact-idiomas-v': 'PT native · EN professional · ES fluent comprehension, production in progress',
 
     'princ-02a-label': 'Feedback<br>is non-negotiable',
     'princ-02a-quote': '"Never leave the client without a response. Never say it can\'t be done: find the way."',
@@ -1708,6 +1751,8 @@ const i18n = {
     'proj-status-wip': 'in_development',
     'proj-seo-opt': 'optimized',
     'edu-period-ips': '2024 – Dec 2026 (expected)',
+    'edu-degree-focus': "Bachelor's in Systems Analysis and Development (Distance Learning)",
+    'edu-period-focus': 'In progress · credit transfer from TeSP',
     'cert-alura-label': 'Alura Certifications',
     'cert-qa-v': 'Bug Management · QA Automation · Cypress · Robot Framework',
     'cert-outras-v': 'Python OOP · Python TDD · Go API · Go OOP · C (3 courses) · JavaScript · TypeScript',
@@ -1741,10 +1786,11 @@ const i18n = {
     'proj-boardly-desc': 'Task management with JWT authentication and Clean Architecture. Independent project to practice security and REST API best practices.',
     'proj-gestao-desc': 'REST API for mental health management, focused on backend best practices, data structure and cohesive endpoint design.',
     'proj-fitcheck-desc': 'Health habit tracker with weekly AI analysis. Logs sleep, hydration, BMI and fitness goals; Groq/Llama 3.3 analyses records and streams personalised suggestions.',
+    'proj-fitanalizer-desc': 'Fitness evaluator with LLM as judge. AI harness with VerificadorEvidencia that actively prevents hallucination, prompt versioning v4, blind human evaluation and regression suite against the real API. SDD from contract to implementation.',
     'proj-sulav-desc': 'Full production site for a Portuguese restaurant. Bilingual PT/EN with Uber Eats, Glovo, Bolt Food and Google Maps integrated.',
     'proj-imc-desc': 'Body Mass Index calculator with WHO reference table. Dark/light mode, input validation and dynamic highlight of the matching classification.',
     'proj-minesweeper-desc': 'Playable Minesweeper in the browser — cascade reveal, flags, chord click and three difficulty levels. Ported from Java/Swing to vanilla JS with dark/light mode.',
-    'proj-arqsync-desc': 'Static Java architecture analyser. Detects circular dependencies and layer violations (controller/service/repository/domain). Supports local and remote Git repos. Generates JSON and HTML reports with Mermaid diagrams.',
+    'proj-arqsync-desc': 'Static Java architecture analyser via AST (JavaParser). Detects dependency cycles and layer violations (controller/service/repository/domain). 75 tests, 94% coverage, SDD, graceful PostgreSQL fallback. JSON and HTML reports with Mermaid diagrams.',
     'proj-crypto-desc': 'Top 10 cryptocurrencies in real time via CoinGecko API. Node.js with no frameworks, dynamic views and clean code.',
     'proj-absence-desc': 'Stateless backend in FastAPI + Groq/Llama 3.3 that generates executive summaries and natural language responses from pre-calculated absence data. Built for a mentee at Accenture.',
     'proj-meeting-desc': 'Extracts summary, decisions, actions and open points from meeting notes. FastAPI + Groq/llama3-70b. Bilingual PT/EN HTML frontend. Deployed on Railway.',
@@ -1778,8 +1824,9 @@ const i18n = {
 
     'contact-lbl': '[ contact ]',
     'contact-title': 'Let\'s<br>talk.',
-    'contact-sub': 'Open to Junior opportunities in QA, Backend Java or Applied AI. Portugal, Spain or remote.',
+    'contact-sub': 'Open to opportunities in QA, Backend Java or Applied AI. Portugal, Spain or remote.',
     'contact-note': 'Available to start immediately.',
+    'contact-qr-label': 'point your phone →',
 
     'foot-left': '© 2026 Everson Rubira · Seixal, Portugal',
     'foot-right': 'view full cv →',
@@ -1924,6 +1971,8 @@ window.addEventListener('load', function() {
       ['hi',  ' available commands:'],
       ['hi',  '─────────────────────────────────────────'],
       ['ok',  '  about       → who is Everson?'],
+      ['ok',  '  why         → why hire him?'],
+      ['ok',  '  b2b         → ops background'],
       ['ok',  '  skills      → tech stack'],
       ['ok',  '  projects    → current projects'],
       ['ok',  '  contact     → get in touch'],
@@ -1936,18 +1985,20 @@ window.addEventListener('load', function() {
       ['hi',  ' comandos disponíveis:'],
       ['hi',  '─────────────────────────────────────────'],
       ['ok',  '  about       → quem é o Everson?'],
+      ['ok',  '  why         → porquê contratá-lo?'],
+      ['ok',  '  b2b         → background em ops'],
       ['ok',  '  skills      → stack técnica'],
       ['ok',  '  projects    → projetos actuais'],
       ['ok',  '  contact     → contacto'],
       ['ok',  '  hire        → tomar uma decisão'],
-      ['ok',  '  clear       → limpar ecrã'],
+      ['ok',  '  clear       → limpar tela'],
       ['ok',  '  exit        → fechar terminal'],
       ['dim', '─────────────────────────────────────────'],
     ],
 
     about: () => isEN() ? [
       ['hi',  'Everson Rubira'],
-      ['ok',  'Backend Dev · QA Engineer · Applied AI'],
+      ['ok',  'Backend Dev · QA (in transition) · Applied AI'],
       ['ok',  ''],
       ['ok',  '12 years operating B2B systems in Portugal.'],
       ['ok',  'Now I build them — with Java, Spring Boot,'],
@@ -1960,7 +2011,7 @@ window.addEventListener('load', function() {
       ['dim', 'type "skills" or "projects" for more.'],
     ] : [
       ['hi',  'Everson Rubira'],
-      ['ok',  'Backend Dev · QA Engineer · IA aplicada'],
+      ['ok',  'Backend Dev · QA (em transição) · IA aplicada'],
       ['ok',  ''],
       ['ok',  '12 anos a operar sistemas B2B em Portugal.'],
       ['ok',  'Agora construo-os — com Java, Spring Boot,'],
@@ -1970,7 +2021,7 @@ window.addEventListener('load', function() {
       ['ok',  'Estágio @ Pipoca Ágil (Java/Spring Boot/Angular) — nota 18/20.'],
       ['ok',  'Co-fundador @ ImplementIQ Systems — clientes reais.'],
       ['dim', ''],
-      ['dim', 'escreve "skills" ou "projects" para mais.'],
+      ['dim', 'escreva "skills" ou "projects" para mais.'],
     ],
 
     skills: () => [
@@ -1979,7 +2030,7 @@ window.addEventListener('load', function() {
       ['ok',  '  backend    Java 17/21 · Spring Boot · Node.js · Python'],
       ['ok',  '  frontend   Angular · TypeScript · HTML/CSS · JS'],
       ['ok',  '  databases  PostgreSQL · MySQL · MongoDB · Supabase'],
-      ['ok',  '  testing    JUnit 5 · Vitest · Cypress · Robot Framework'],
+      ['ok',  '  testing    JUnit 5 · Vitest · Postman (Cypress/Robot Framework: formação)'],
       ['ok',  '  devops     Docker · Git · GitHub Actions · Linux'],
       ['ok',  '  ai         LangChain · Claude API · Anthropic SDK'],
       ['dim', '─────────────────────────────────────────'],
@@ -1988,29 +2039,27 @@ window.addEventListener('load', function() {
     projects: () => isEN() ? [
       ['hi',  'Projects'],
       ['dim', '─────────────────────────────────────────'],
-      ['ok',  '  ID_02  Boardly          → Clean Arch · JWT · Java'],
       ['ok',  '  ID_03  FitCheck         → Habit tracker · Groq/Llama · Node'],
-      ['ok',  '  ID_04  LangChain+Anthropic → AI agents · Python'],
       ['ok',  '  ID_05  Sulav Sushi Bar  → Production site · PT/EN'],
-      ['ok',  '  ID_07  StudyFlow        → Android · MVVM · Kotlin'],
+      ['ok',  '  ID_06  Gestão Saúde Mental → Java · Spring Boot · REST'],
       ['ok',  '  ID_08  Minesweeper      → Vanilla JS · playable now'],
       ['ok',  '  ID_09  Absence Portal AI → FastAPI · Groq · Render'],
       ['ok',  '  ID_10  Meeting Analyst  → FastAPI · Groq · Railway'],
+      ['ok',  '  ID_12  ArqSync          → Java arch analyser · CLI'],
       ['dim', '─────────────────────────────────────────'],
       ['dim', 'see full details at #projects on this page.'],
     ] : [
       ['hi',  'Projetos'],
       ['dim', '─────────────────────────────────────────'],
-      ['ok',  '  ID_02  Boardly          → Clean Arch · JWT · Java'],
       ['ok',  '  ID_03  FitCheck         → Habit tracker · Groq/Llama · Node'],
-      ['ok',  '  ID_04  LangChain+Anthropic → AI agents · Python'],
       ['ok',  '  ID_05  Sulav Sushi Bar  → Site em produção · PT/EN'],
-      ['ok',  '  ID_07  StudyFlow        → Android · MVVM · Kotlin'],
+      ['ok',  '  ID_06  Gestão Saúde Mental → Java · Spring Boot · REST'],
       ['ok',  '  ID_08  Campo Minado     → Vanilla JS · jogável agora'],
       ['ok',  '  ID_09  Absence Portal AI → FastAPI · Groq · Render'],
       ['ok',  '  ID_10  Meeting Analyst  → FastAPI · Groq · Railway'],
+      ['ok',  '  ID_12  ArqSync          → Analisador de arquitetura Java · CLI'],
       ['dim', '─────────────────────────────────────────'],
-      ['dim', 'vê os detalhes completos em #projetos.'],
+      ['dim', 'veja os detalhes completos em #projetos.'],
     ],
 
     contact: () => isEN() ? [
@@ -2031,6 +2080,69 @@ window.addEventListener('load', function() {
       ['ok',  '  telefone  +351 910 625 090'],
       ['dim', '─────────────────────────────────────────'],
       ['dim', 'disponível agora · Portugal · remoto ok'],
+    ],
+
+    why: () => isEN() ? [
+      ['hi',  'Why Everson?'],
+      ['dim', '─────────────────────────────────────────'],
+      ['ok',  '  Most devs write code. Everson writes code'],
+      ['ok',  '  that survives contact with real clients.'],
+      ['ok',  ''],
+      ['ok',  '  12 years of B2B ops means:'],
+      ['ok',  '  · he reads the requirement AND the subtext'],
+      ['ok',  '  · he knows what a broken SLA costs at 2am'],
+      ['ok',  '  · he documents what others assume is obvious'],
+      ['ok',  '  · he tests before the QA team asks him to'],
+      ['ok',  ''],
+      ['dim', '  Still not convinced? try "hire"'],
+      ['dim', '─────────────────────────────────────────'],
+    ] : [
+      ['hi',  'Porquê o Everson?'],
+      ['dim', '─────────────────────────────────────────'],
+      ['ok',  '  A maioria dos devs escreve código.'],
+      ['ok',  '  O Everson escreve código que sobrevive'],
+      ['ok',  '  ao contacto com clientes reais.'],
+      ['ok',  ''],
+      ['ok',  '  12 anos de ops B2B significa:'],
+      ['ok',  '  · lê o requisito E o subtexto'],
+      ['ok',  '  · sabe o que um SLA partido custa às 2h'],
+      ['ok',  '  · documenta o que outros assumem óbvio'],
+      ['ok',  '  · testa antes de a equipa de QA pedir'],
+      ['ok',  ''],
+      ['dim', '  Ainda não convencido? tente "hire"'],
+      ['dim', '─────────────────────────────────────────'],
+    ],
+
+    b2b: () => isEN() ? [
+      ['hi',  'B2B Operations Background'],
+      ['dim', '─────────────────────────────────────────'],
+      ['ok',  '  12 years · Brazil → Portugal'],
+      ['ok',  '  Clients: Asian, Middle Eastern, European'],
+      ['ok',  ''],
+      ['ok',  '  What that means in code:'],
+      ['ok',  '  · I write error messages humans can read'],
+      ['ok',  '  · I ask "what breaks if this goes wrong?"'],
+      ['ok',  '    before it goes wrong'],
+      ['ok',  '  · I scope tickets before estimating them'],
+      ['ok',  '  · I\'ve seen what happens when you skip QA'],
+      ['ok',  ''],
+      ['dim', '  All of it now runs on Java + Spring Boot.'],
+      ['dim', '─────────────────────────────────────────'],
+    ] : [
+      ['hi',  'Background em Ops B2B'],
+      ['dim', '─────────────────────────────────────────'],
+      ['ok',  '  12 anos · Brasil → Portugal'],
+      ['ok',  '  Clientes: asiáticos, Médio Oriente, europeus'],
+      ['ok',  ''],
+      ['ok',  '  O que isso significa em código:'],
+      ['ok',  '  · escrevo mensagens de erro que humanos lêem'],
+      ['ok',  '  · pergunto "o que parte se isto falhar?"'],
+      ['ok',  '    antes de falhar'],
+      ['ok',  '  · detalho tickets antes de os estimar'],
+      ['ok',  '  · já vi o que acontece quando se salta o QA'],
+      ['ok',  ''],
+      ['dim', '  Tudo isso corre agora em Java + Spring Boot.'],
+      ['dim', '─────────────────────────────────────────'],
     ],
 
     hire: () => [
@@ -2064,11 +2176,32 @@ window.addEventListener('load', function() {
 
   function printWelcome() {
     const en = isEN();
-    [
-      ['dim', en ? 'portfolio terminal v1.0.0' : 'terminal do portfólio v1.0.0'],
-      ['dim', en ? 'type "help" for available commands.' : 'escreve "help" para ver os comandos.'],
+    const bootLines = en ? [
+      ['dim', 'Everson Rubira Portfolio OS · v2.0'],
+      ['dim', 'Loading profile...........................  [OK]'],
+      ['dim', 'Mounting 12 years of B2B ops..............  [OK]'],
+      ['dim', 'Injecting anti-hallucination harness......  [OK]'],
       ['dim', ''],
-    ].forEach(([t, v]) => print(t, v));
+      ['hi',  'Ready. Try: hire · why · b2b · help'],
+      ['dim', ''],
+    ] : [
+      ['dim', 'Everson Rubira Portfolio OS · v2.0'],
+      ['dim', 'A carregar perfil.........................  [OK]'],
+      ['dim', 'A montar 12 anos de ops B2B...............  [OK]'],
+      ['dim', 'A injectar harness anti-alucinação........  [OK]'],
+      ['dim', ''],
+      ['hi',  'Pronto. Tente: hire · why · b2b · help'],
+      ['dim', ''],
+    ];
+
+    let i = 0;
+    function nextLine() {
+      if (i >= bootLines.length) return;
+      const [t, v] = bootLines[i++];
+      print(t, v);
+      setTimeout(nextLine, t === 'dim' ? 120 : 0);
+    }
+    nextLine();
   }
 
   function typeReveal(asciiLines, onDone) {
@@ -2108,7 +2241,7 @@ window.addEventListener('load', function() {
 
     const fn = CMDS[c];
     if (!fn) {
-      print('err', isEN() ? `command not found: ${c}. try "help".` : `comando não encontrado: ${c}. tenta "help".`);
+      print('err', isEN() ? `command not found: ${c}. try "help".` : `comando não encontrado: ${c}. tente "help".`);
       return;
     }
 
@@ -2179,35 +2312,76 @@ const bro = new IntersectionObserver(entries => {
 }, { threshold: 0.3 });
 document.querySelectorAll('.learn-list').forEach(el => bro.observe(el));
 
-/* ── SHARE ── */
+</script>
+<script>
+// ── INSTALL PWA ──────────────────────────────────────────────
 (function() {
-  const btn = document.getElementById('share-btn');
+  var btn = document.getElementById('install-btn');
+  var tip = document.getElementById('install-ios-tip');
   if (!btn) return;
-  const toast = document.createElement('div');
-  toast.id = 'share-toast';
-  document.body.appendChild(toast);
-  let tid;
-  function showToast(msg) {
-    toast.textContent = msg;
-    toast.classList.add('show');
-    clearTimeout(tid);
-    tid = setTimeout(() => toast.classList.remove('show'), 2500);
+
+  var deferredPrompt = null;
+  var isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent) && !window.MSStream;
+  var isInStandalone = window.matchMedia('(display-mode: standalone)').matches
+                    || window.navigator.standalone;
+
+  if (isInStandalone) return; // já instalado
+
+  // Android / Chrome — evento nativo
+  window.addEventListener('beforeinstallprompt', function(e) {
+    e.preventDefault();
+    deferredPrompt = e;
+    btn.classList.add('visible');
+    btn.textContent = '⊕ ' + (document.documentElement.lang === 'en'
+      ? 'add to home screen' : 'adicionar à tela inicial');
+  });
+
+  // iOS — mostrar instrução manual
+  if (isIOS) {
+    btn.classList.add('visible');
+    btn.textContent = '⊕ ' + (document.documentElement.lang === 'en'
+      ? 'add to home screen' : 'adicionar à tela inicial');
   }
-  btn.addEventListener('click', async () => {
-    const data = {
-      title: 'Everson Rubira — Backend Developer',
-      text: 'Backend Developer · Java · Spring Boot · IA aplicada. Fica a conhecer o meu perfil:',
-      url: 'https://eversonrubira.github.io'
-    };
-    if (navigator.share && navigator.canShare && navigator.canShare(data)) {
-      try { await navigator.share(data); } catch(e) { if (e.name !== 'AbortError') showToast('Erro ao partilhar'); }
-    } else {
-      await navigator.clipboard.writeText(data.url);
-      showToast('Link copiado!');
+
+  btn.addEventListener('click', function() {
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+      deferredPrompt.userChoice.then(function() { deferredPrompt = null; btn.classList.remove('visible'); });
+    } else if (isIOS) {
+      var en = document.documentElement.lang === 'en';
+      tip.innerHTML = en
+        ? '1. Tap the <strong>Share</strong> button (□↑) in Safari<br>2. Scroll down and tap <strong>"Add to Home Screen"</strong><br>3. Tap <strong>Add</strong>'
+        : '1. Toque no botão <strong>Compartilhar</strong> (□↑) no Safari<br>2. Role e toque em <strong>"Adicionar à Tela de Início"</strong><br>3. Toque em <strong>Adicionar</strong>';
+      tip.classList.toggle('visible');
     }
+  });
+
+  window.addEventListener('appinstalled', function() {
+    btn.classList.remove('visible');
+    tip.classList.remove('visible');
   });
 })();
 
+// QR code
+function initQR() {
+  var box = document.getElementById('qr-box');
+  if (!box || typeof QRCode === 'undefined') return;
+  new QRCode(box, {
+    text: 'https://eversonrubira.github.io',
+    width: 120, height: 120,
+    colorDark: '#0d1f2d', colorLight: '#ffffff',
+    correctLevel: QRCode.CorrectLevel.M
+  });
+}
+// Try on load; fall back to polling in case defer fires late
+window.addEventListener('load', function() {
+  if (typeof QRCode !== 'undefined') { initQR(); }
+  else {
+    var t = setInterval(function() {
+      if (typeof QRCode !== 'undefined') { clearInterval(t); initQR(); }
+    }, 100);
+  }
+});
 </script>
 </body>
 </html>
