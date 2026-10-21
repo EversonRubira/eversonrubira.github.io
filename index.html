@@ -603,6 +603,49 @@ footer{background:var(--bg1);border-top:1px solid var(--line);padding:20px 32px}
 .hero-social-mob a:hover{color:var(--text2)}
 .hero-social-mob svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
 
+/* ── JOURNEY TIMELINE ── */
+.journey-track{max-width:680px;margin:0 auto;position:relative}
+.journey-step{display:flex;gap:24px;position:relative}
+.journey-left{display:flex;flex-direction:column;align-items:center;width:32px;flex-shrink:0}
+.journey-dot{
+  width:14px;height:14px;border-radius:50%;flex-shrink:0;
+  background:var(--bg2);border:2px solid var(--line);
+  margin-top:4px;z-index:1;transition:all 0.3s;
+}
+.journey-dot.active{
+  background:var(--accent);border-color:var(--accent);
+  box-shadow:0 0 0 4px rgba(37,99,235,0.15),0 0 16px rgba(37,99,235,0.4);
+}
+.journey-line{flex:1;width:1px;background:var(--line);margin:8px 0}
+.journey-content{padding-bottom:40px;flex:1}
+.journey-step:last-child .journey-content{padding-bottom:0}
+.journey-tag{
+  font-size:1rem;font-weight:600;color:var(--text);
+  margin-bottom:8px;letter-spacing:-0.01em;
+}
+.journey-tag.active-tag{color:var(--accent2)}
+.journey-tag em{font-style:normal;font-size:0.72rem;font-family:var(--mono);color:#22c55e;letter-spacing:0.08em;margin-left:8px;vertical-align:middle}
+.journey-desc{font-size:0.85rem;color:var(--text3);line-height:1.7;margin-bottom:12px;max-width:480px}
+.journey-chips{display:flex;flex-wrap:wrap;gap:6px}
+.journey-chips span{
+  font-family:var(--mono);font-size:0.65rem;color:var(--text3);
+  border:1px solid var(--line);border-radius:3px;padding:3px 8px;letter-spacing:0.02em;
+}
+.journey-chips.active-chips span{border-color:rgba(37,99,235,0.3);color:var(--accent2)}
+.journey-step:hover .journey-dot:not(.active){border-color:var(--text3)}
+.journey-step:hover .journey-tag:not(.active-tag){color:var(--text)}
+
+/* ── VALUE PROPS ── */
+.vp-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px}
+.vp-card{
+  background:var(--bg1);border:1px solid var(--line);border-radius:var(--radius);
+  padding:24px 20px;transition:border-color 0.25s,transform 0.25s;
+}
+.vp-card:hover{border-color:rgba(37,99,235,0.4);transform:translateY(-3px)}
+.vp-icon{font-family:var(--mono);font-size:1.2rem;color:var(--accent);margin-bottom:12px;display:block}
+.vp-title{font-size:0.92rem;font-weight:600;color:var(--text);margin-bottom:6px}
+.vp-body{font-size:0.8rem;color:var(--text3);line-height:1.65}
+
 /* ── RESPONSIVE ── */
 @media(max-width:900px){
   .hero-inner{grid-template-columns:1fr;gap:40px}
@@ -704,11 +747,11 @@ footer{background:var(--bg1);border-top:1px solid var(--line);padding:20px 32px}
         <span class="status-live" data-i18n="hero-status-live">Disponível agora</span>
       </div>
       <h1 class="hero-name reveal">Everson <em>Rubira</em></h1>
-      <p class="hero-headline reveal" data-i18n="hero-headline">Backend Engineer building AI-powered systems.</p>
-      <p class="hero-sub reveal" data-i18n="hero-sub">12 years of operational complexity. Now turning that experience into reliable, intelligent software.</p>
+      <p class="hero-headline reveal" data-i18n="hero-headline">Building AI-powered systems with Java.</p>
+      <p class="hero-sub reveal" data-i18n="hero-sub">Backend Engineer focused on Spring Boot, APIs, LLMs and Agentic AI.</p>
       <div class="hero-actions reveal">
         <a href="#projetos" class="btn-primary" data-i18n="hero-btn-proj">View Projects →</a>
-        <a href="cv.html" target="_blank" class="btn-ghost" data-i18n="hero-btn-cv">Download CV</a>
+        <a href="#roadmap" class="btn-ghost" data-i18n="hero-btn-roadmap">Engineering Roadmap</a>
         <button class="btn-share" id="share-btn" title="Partilhar perfil">
           <svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
           <span data-i18n="share-btn">partilhar</span>
@@ -776,69 +819,72 @@ footer{background:var(--bg1);border-top:1px solid var(--line);padding:20px 32px}
   </div>
 </section>
 
-<!-- PROFESSIONAL HIGHLIGHTS -->
-<section id="highlights">
-  <div class="highlights-inner">
-    <div class="sec-label reveal" data-i18n="highlights-label">Professional Highlights</div>
-    <div class="highlights-grid">
-      <div class="highlight-card reveal">
-        <div class="hl-org">Accenture Lisboa</div>
-        <div class="hl-title" data-i18n="hl-acc-title">Trust &amp; Safety Associate</div>
-        <div class="hl-sub" data-i18n="hl-acc-sub">Risk analysis · Policy enforcement · Cross-timezone coordination</div>
+<!-- FROM OPERATIONS TO AI SYSTEMS -->
+<section id="journey" style="background:var(--bg1);border-top:1px solid var(--line);padding:96px 32px">
+  <div style="max-width:var(--max);margin:0 auto">
+    <div class="reveal" style="text-align:center;margin-bottom:64px">
+      <div style="font-family:var(--mono);font-size:0.68rem;color:var(--accent2);letter-spacing:0.14em;text-transform:uppercase;margin-bottom:16px" data-i18n="journey-label">Career Trajectory</div>
+      <h2 style="font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:700;color:var(--text);letter-spacing:-0.03em;margin-bottom:16px" data-i18n="journey-title">From Operations to AI Systems</h2>
+      <p style="font-size:0.95rem;color:var(--text3);max-width:560px;margin:0 auto;line-height:1.7" data-i18n="journey-sub">Every stage of my career added a new layer of systems thinking. I started by managing operational complexity — today I build backend systems and AI-powered applications that solve real-world problems.</p>
+    </div>
+    <div class="journey-track reveal">
+      <div class="journey-step">
+        <div class="journey-left">
+          <div class="journey-dot"></div>
+          <div class="journey-line"></div>
+        </div>
+        <div class="journey-content">
+          <div class="journey-tag" data-i18n="tl-ops-tag">Operations</div>
+          <div class="journey-desc" data-i18n="tl-ops-desc">B2B process management, risk mitigation and operational efficiency across international markets.</div>
+          <div class="journey-chips"><span>B2B</span><span>Process Design</span><span>Risk Management</span></div>
+        </div>
       </div>
-      <div class="highlight-card reveal">
-        <div class="hl-org">Accenture — Elevate GenAI Wave 2</div>
-        <div class="hl-title" data-i18n="hl-elevate-title">Agentic AI Facilitator</div>
-        <div class="hl-sub" data-i18n="hl-elevate-sub">Reverse mentoring · Microsoft Copilot Studio · Badge Credly Jun 2026</div>
+      <div class="journey-step">
+        <div class="journey-left">
+          <div class="journey-dot"></div>
+          <div class="journey-line"></div>
+        </div>
+        <div class="journey-content">
+          <div class="journey-tag" data-i18n="tl-trade-tag">International Trade</div>
+          <div class="journey-desc" data-i18n="tl-trade-desc">Import, export and global business operations. Navigating complexity across time zones, currencies and regulatory frameworks.</div>
+          <div class="journey-chips"><span>Import · Export</span><span>Global Business</span><span>Cross-border Ops</span></div>
+        </div>
       </div>
-      <div class="highlight-card reveal">
-        <div class="hl-org">ImplementIQ Systems</div>
-        <div class="hl-title" data-i18n="hl-impl-title">Co-Founder &amp; Developer</div>
-        <div class="hl-sub" data-i18n="hl-impl-sub">Real clients in production · Full delivery from client to deploy</div>
+      <div class="journey-step">
+        <div class="journey-left">
+          <div class="journey-dot"></div>
+          <div class="journey-line"></div>
+        </div>
+        <div class="journey-content">
+          <div class="journey-tag" data-i18n="tl-ts-tag">Trust &amp; Safety</div>
+          <div class="journey-desc" data-i18n="tl-ts-desc">Risk analysis and policy enforcement at Accenture. Operating at scale with zero tolerance for ambiguity — the same discipline I apply to production systems.</div>
+          <div class="journey-chips"><span>Accenture</span><span>Risk Analysis</span><span>Policy Enforcement</span></div>
+        </div>
       </div>
-      <div class="highlight-card reveal">
-        <div class="hl-org">Pipoca Ágil · IPS</div>
-        <div class="hl-title" data-i18n="hl-pipoca-title">Java/Spring Boot Internship — 18/20</div>
-        <div class="hl-sub" data-i18n="hl-pipoca-sub">Hexagonal Architecture · DDD · Flyway · 160+ tests · Docker</div>
+      <div class="journey-step">
+        <div class="journey-left">
+          <div class="journey-dot"></div>
+          <div class="journey-line"></div>
+        </div>
+        <div class="journey-content">
+          <div class="journey-tag" data-i18n="tl-eng-tag">Software Engineering</div>
+          <div class="journey-desc" data-i18n="tl-eng-desc">Java, Spring Boot and backend architecture. Hexagonal Architecture, DDD, REST APIs. Building systems that reflect the operational thinking I developed over a decade.</div>
+          <div class="journey-chips"><span>Java · Spring Boot</span><span>Hexagonal Arch</span><span>DDD</span></div>
+        </div>
+      </div>
+      <div class="journey-step active">
+        <div class="journey-left">
+          <div class="journey-dot active"></div>
+        </div>
+        <div class="journey-content">
+          <div class="journey-tag active-tag" data-i18n="tl-ai-tag">Applied AI — <em data-i18n="tl-ai-now">now</em></div>
+          <div class="journey-desc" data-i18n="tl-ai-desc">LLMs, AI agents and agentic workflows integrated into production backend systems. Building intelligent systems that understand context, not just data.</div>
+          <div class="journey-chips active-chips"><span>LLMs</span><span>AI Agents</span><span>LangChain</span><span>Claude API</span></div>
+        </div>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- CAREER TIMELINE -->
-<section id="timeline">
-  <div class="timeline-inner">
-    <div class="sec-label reveal" data-i18n="timeline-label">Career Path</div>
-    <div class="tl-track reveal">
-      <div class="tl-node">
-        <div class="tl-dot"></div>
-        <div class="tl-era" data-i18n="tl-ops">Operations</div>
-        <div class="tl-desc" data-i18n="tl-ops-sub">B2B · Process · Risk</div>
-        <div class="tl-arrow">→</div>
-      </div>
-      <div class="tl-node">
-        <div class="tl-dot"></div>
-        <div class="tl-era" data-i18n="tl-trade">International Trade</div>
-        <div class="tl-desc" data-i18n="tl-trade-sub">Import · Export · Intl Sales</div>
-        <div class="tl-arrow">→</div>
-      </div>
-      <div class="tl-node">
-        <div class="tl-dot"></div>
-        <div class="tl-era" data-i18n="tl-ts">Trust &amp; Safety</div>
-        <div class="tl-desc" data-i18n="tl-ts-sub">Accenture · Policy · Analysis</div>
-        <div class="tl-arrow">→</div>
-      </div>
-      <div class="tl-node">
-        <div class="tl-dot"></div>
-        <div class="tl-era" data-i18n="tl-eng">Software Engineering</div>
-        <div class="tl-desc" data-i18n="tl-eng-sub">Java · Spring Boot · Backend</div>
-        <div class="tl-arrow">→</div>
-      </div>
-      <div class="tl-node active">
-        <div class="tl-dot"></div>
-        <div class="tl-era" data-i18n="tl-ai">Applied AI</div>
-        <div class="tl-desc" data-i18n="tl-ai-sub">LLMs · Agents · Systems</div>
-      </div>
+    <div class="reveal" style="text-align:center;margin-top:56px">
+      <p style="font-family:var(--mono);font-size:0.78rem;color:var(--accent2);letter-spacing:0.04em" data-i18n="journey-tagline">"Turning operational complexity into intelligent systems."</p>
     </div>
   </div>
 </section>
@@ -862,6 +908,44 @@ footer{background:var(--bg1);border-top:1px solid var(--line);padding:20px 32px}
           <div class="fact-row"><span class="fact-k" data-i18n="fact-modalidade">modalidade</span><span class="fact-v" data-i18n="fact-modalidade-v">Presencial · Híbrido · Remoto</span></div>
           <div class="fact-row"><span class="fact-k" data-i18n="fact-idiomas">idiomas</span><span class="fact-v" data-i18n="fact-idiomas-v">PT nativo · EN profissional · ES básico</span></div>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT I BRING -->
+<section id="value-props" style="border-top:1px solid var(--line)">
+  <div class="sec-wrap">
+    <div class="sec-head reveal">
+      <span class="sec-num">[ 02 ]</span>
+      <h2 class="sec-title" data-i18n="sec-vp">What I bring to a team</h2>
+      <div class="sec-rule"></div>
+    </div>
+    <div class="vp-grid">
+      <div class="vp-card reveal">
+        <span class="vp-icon">⬡</span>
+        <div class="vp-title" data-i18n="vp-a-title">Systems Thinking</div>
+        <p class="vp-body" data-i18n="vp-a-body">I see the whole before the part. 12 years mapping operational chains means I design systems that don't just work — they fit into a larger context.</p>
+      </div>
+      <div class="vp-card reveal">
+        <span class="vp-icon">◈</span>
+        <div class="vp-title" data-i18n="vp-b-title">Business Context</div>
+        <p class="vp-body" data-i18n="vp-b-body">I speak business before I speak code. Problems come first; architecture is the answer, not the starting point.</p>
+      </div>
+      <div class="vp-card reveal">
+        <span class="vp-icon">◎</span>
+        <div class="vp-title" data-i18n="vp-c-title">AI Applications</div>
+        <p class="vp-body" data-i18n="vp-c-body">I integrate LLMs and agents into real workflows — not as experiments, but as production tools that solve concrete problems.</p>
+      </div>
+      <div class="vp-card reveal">
+        <span class="vp-icon">▣</span>
+        <div class="vp-title" data-i18n="vp-d-title">Engineering Discipline</div>
+        <p class="vp-body" data-i18n="vp-d-body">Clean Architecture, DDD, Hexagonal Architecture. I build systems that are readable, maintainable and honest about their boundaries.</p>
+      </div>
+      <div class="vp-card reveal">
+        <span class="vp-icon">◌</span>
+        <div class="vp-title" data-i18n="vp-e-title">Continuous Learning</div>
+        <p class="vp-body" data-i18n="vp-e-body">Anthropic Academy, Alura, IPS, Accenture GenAI Wave 2. Learning isn't a phase — it's infrastructure. Every week I'm deeper than I was.</p>
       </div>
     </div>
   </div>
@@ -982,7 +1066,7 @@ footer{background:var(--bg1);border-top:1px solid var(--line);padding:20px 32px}
         <div>
           <div class="proj-id">ID_12</div>
           <div class="proj-name">ArqSync</div>
-          <p class="proj-desc" data-i18n="proj-arqsync-desc">Analisador estático de arquitectura Java. Detecta dependências circulares e violações de camadas. Suporta repos locais e remotos via Git. Gera relatórios JSON e HTML com diagramas Mermaid.</p>
+          <p class="proj-desc" data-i18n="proj-arqsync-desc">Static architecture analyser for Java codebases. Parses dependency graphs, detects circular imports and layer boundary violations. Generates Mermaid diagrams and HTML reports. Built with JavaParser + Spring Boot 3.</p>
         </div>
         <div class="proj-meta">
           <div class="proj-meta-row"><span class="proj-meta-k">runtime</span><span class="proj-meta-v">Java 21 · Spring Boot 3</span></div>
@@ -1000,7 +1084,7 @@ footer{background:var(--bg1);border-top:1px solid var(--line);padding:20px 32px}
         <div>
           <div class="proj-id">ID_05</div>
           <div class="proj-name">Sulav Sushi Bar</div>
-          <p class="proj-desc" data-i18n="proj-sulav-desc">Site completo em produção para restaurante português. Bilíngue PT/EN com Uber Eats, Glovo, Bolt Food e Google Maps integrados.</p>
+          <p class="proj-desc" data-i18n="proj-sulav-desc">Production website for a Portuguese restaurant. Bilingual PT/EN, integrated with Uber Eats, Glovo and Bolt Food. Full client-to-deploy delivery — from brief to live site with real customers ordering through it daily.</p>
         </div>
         <div class="proj-meta">
           <div class="proj-meta-row"><span class="proj-meta-k">status</span><span class="proj-meta-v">production · live</span></div>
@@ -1018,7 +1102,7 @@ footer{background:var(--bg1);border-top:1px solid var(--line);padding:20px 32px}
         <div>
           <div class="proj-id">ID_03</div>
           <div class="proj-name">FitCheck</div>
-          <p class="proj-desc" data-i18n="proj-fitcheck-desc">Tracker de hábitos de saúde com análise semanal por IA. Regista sono, hidratação, IMC e metas físicas; Groq/Llama 3.3 analisa os registos e devolve sugestões em streaming.</p>
+          <p class="proj-desc" data-i18n="proj-fitcheck-desc">Health habit tracker with AI-powered weekly analysis. Node.js/Express backend, MySQL on Railway — Groq/Llama 3.3 analyses user records and returns streaming suggestions. A real LLM integration in production, not a demo.</p>
         </div>
         <div class="proj-meta">
           <div class="proj-meta-row"><span class="proj-meta-k">runtime</span><span class="proj-meta-v">Node.js · Express</span></div>
@@ -1037,7 +1121,7 @@ footer{background:var(--bg1);border-top:1px solid var(--line);padding:20px 32px}
         <div>
           <div class="proj-id">ID_11</div>
           <div class="proj-name">Criptomoedas</div>
-          <p class="proj-desc" data-i18n="proj-crypto-desc">Top 10 criptomoedas em tempo real via CoinGecko API. Node.js sem frameworks, views dinâmicas e clean code.</p>
+          <p class="proj-desc" data-i18n="proj-crypto-desc">Real-time crypto dashboard on CoinGecko's public API. Framework-free Node.js — every view dynamically rendered, zero dependencies. An exercise in clean architecture without scaffolding to hide behind.</p>
         </div>
         <div class="proj-meta">
           <div class="proj-meta-row"><span class="proj-meta-k">runtime</span><span class="proj-meta-v">Node.js · vanilla JS</span></div>
@@ -1174,31 +1258,33 @@ footer{background:var(--bg1);border-top:1px solid var(--line);padding:20px 32px}
     </div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px">
       <div class="stack-cat reveal" style="border-left:3px solid #22c55e">
-        <div class="stack-cat-title" style="color:#22c55e" data-i18n="rm-done">✅ Completed</div>
-        <ul style="list-style:none;display:flex;flex-direction:column;gap:8px;margin-top:4px">
-          <li style="font-size:0.83rem;color:var(--text2)" data-i18n="rm-done-1">Java &amp; Spring Boot foundations</li>
-          <li style="font-size:0.83rem;color:var(--text2)" data-i18n="rm-done-2">Hexagonal Architecture + DDD (18/20)</li>
-          <li style="font-size:0.83rem;color:var(--text2)" data-i18n="rm-done-3">Production deployments (Sulav, FitCheck, Criptomoedas)</li>
-          <li style="font-size:0.83rem;color:var(--text2)" data-i18n="rm-done-4">LLM integrations (Claude API, LangChain, Groq)</li>
-          <li style="font-size:0.83rem;color:var(--text2)" data-i18n="rm-done-5">AI Facilitator — Accenture Elevate GenAI Wave 2</li>
+        <div class="stack-cat-title" style="color:#22c55e;margin-bottom:16px" data-i18n="rm-done">✅ Completed</div>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:10px">
+          <li style="font-size:0.82rem;color:var(--text2);display:flex;gap:8px"><span style="color:#22c55e;flex-shrink:0">✓</span><span data-i18n="rm-done-1">Java Foundations (OOP, Collections, Streams, SOLID)</span></li>
+          <li style="font-size:0.82rem;color:var(--text2);display:flex;gap:8px"><span style="color:#22c55e;flex-shrink:0">✓</span><span data-i18n="rm-done-2">Spring Boot 3 — REST APIs, Security, JPA</span></li>
+          <li style="font-size:0.82rem;color:var(--text2);display:flex;gap:8px"><span style="color:#22c55e;flex-shrink:0">✓</span><span data-i18n="rm-done-3">PostgreSQL · Docker · GitHub Actions</span></li>
+          <li style="font-size:0.82rem;color:var(--text2);display:flex;gap:8px"><span style="color:#22c55e;flex-shrink:0">✓</span><span data-i18n="rm-done-4">Hexagonal Architecture + DDD (internship 18/20)</span></li>
+          <li style="font-size:0.82rem;color:var(--text2);display:flex;gap:8px"><span style="color:#22c55e;flex-shrink:0">✓</span><span data-i18n="rm-done-5">AI Integrations (Claude API, LangChain, Groq)</span></li>
+          <li style="font-size:0.82rem;color:var(--text2);display:flex;gap:8px"><span style="color:#22c55e;flex-shrink:0">✓</span><span data-i18n="rm-done-6">Production deployments — real users, live systems</span></li>
         </ul>
       </div>
       <div class="stack-cat reveal" style="border-left:3px solid var(--accent2)">
-        <div class="stack-cat-title" style="color:var(--accent2)" data-i18n="rm-wip">🔄 In Progress</div>
-        <ul style="list-style:none;display:flex;flex-direction:column;gap:8px;margin-top:4px">
-          <li style="font-size:0.83rem;color:var(--text2)" data-i18n="rm-wip-1">TeSP Programming &amp; Information Systems (Dec 2026)</li>
-          <li style="font-size:0.83rem;color:var(--text2)" data-i18n="rm-wip-2">ArqSync — Java architecture analyser</li>
-          <li style="font-size:0.83rem;color:var(--text2)" data-i18n="rm-wip-3">Advanced Spring Boot patterns</li>
-          <li style="font-size:0.83rem;color:var(--text2)" data-i18n="rm-wip-4">AI-powered system design</li>
+        <div class="stack-cat-title" style="color:var(--accent2);margin-bottom:16px" data-i18n="rm-wip">🔄 In Progress</div>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:10px">
+          <li style="font-size:0.82rem;color:var(--text2);display:flex;gap:8px"><span style="color:var(--accent2);flex-shrink:0">→</span><span data-i18n="rm-wip-1">Advanced Backend Architecture patterns</span></li>
+          <li style="font-size:0.82rem;color:var(--text2);display:flex;gap:8px"><span style="color:var(--accent2);flex-shrink:0">→</span><span data-i18n="rm-wip-2">Agentic Workflows with LangChain + Claude</span></li>
+          <li style="font-size:0.82rem;color:var(--text2);display:flex;gap:8px"><span style="color:var(--accent2);flex-shrink:0">→</span><span data-i18n="rm-wip-3">RAG Systems — retrieval-augmented generation</span></li>
+          <li style="font-size:0.82rem;color:var(--text2);display:flex;gap:8px"><span style="color:var(--accent2);flex-shrink:0">→</span><span data-i18n="rm-wip-4">Observability — structured logging, tracing</span></li>
+          <li style="font-size:0.82rem;color:var(--text2);display:flex;gap:8px"><span style="color:var(--accent2);flex-shrink:0">→</span><span data-i18n="rm-wip-5">Performance optimisation on Spring Boot APIs</span></li>
         </ul>
       </div>
       <div class="stack-cat reveal" style="border-left:3px solid var(--text3)">
-        <div class="stack-cat-title" data-i18n="rm-next">🎯 Next Stage</div>
-        <ul style="list-style:none;display:flex;flex-direction:column;gap:8px;margin-top:4px">
-          <li style="font-size:0.83rem;color:var(--text3)" data-i18n="rm-next-1">Cloud Architecture (AWS / Azure)</li>
-          <li style="font-size:0.83rem;color:var(--text3)" data-i18n="rm-next-2">Distributed Systems &amp; microservices</li>
-          <li style="font-size:0.83rem;color:var(--text3)" data-i18n="rm-next-3">Production-grade Agentic Workflows</li>
-          <li style="font-size:0.83rem;color:var(--text3)" data-i18n="rm-next-4">Open source in Java / AI ecosystem</li>
+        <div class="stack-cat-title" style="margin-bottom:16px" data-i18n="rm-next">🎯 Next Stage</div>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:10px">
+          <li style="font-size:0.82rem;color:var(--text3);display:flex;gap:8px"><span style="flex-shrink:0">◎</span><span data-i18n="rm-next-1">Cloud Architecture — AWS / Azure</span></li>
+          <li style="font-size:0.82rem;color:var(--text3);display:flex;gap:8px"><span style="flex-shrink:0">◎</span><span data-i18n="rm-next-2">Distributed Systems &amp; microservices at scale</span></li>
+          <li style="font-size:0.82rem;color:var(--text3);display:flex;gap:8px"><span style="flex-shrink:0">◎</span><span data-i18n="rm-next-3">Production AI Systems engineering</span></li>
+          <li style="font-size:0.82rem;color:var(--text3);display:flex;gap:8px"><span style="flex-shrink:0">◎</span><span data-i18n="rm-next-4">AI Platform Engineering</span></li>
         </ul>
       </div>
     </div>
@@ -1343,10 +1429,26 @@ const i18n = {
     'hero-status-live':'Disponível agora',
     'hero-headline':'Backend Engineer a construir sistemas potenciados por IA.',
     'hero-sub':'12 anos de complexidade operacional. Agora a transformar essa experiência em software fiável e inteligente.',
-    'hero-btn-proj':'Ver Projetos →','hero-btn-cv':'Download CV',
+    'hero-btn-proj':'Ver Projetos →','hero-btn-roadmap':'Engineering Roadmap',
     'metric-years':'Anos de Experiência','metric-projects-built':'Projetos Entregues',
     'metric-regions':'Regiões Globais','metric-llm':'Integrações LLM',
     'metric-projects':'Sistemas em Produção',
+    'journey-label':'Percurso Profissional',
+    'journey-title':'Das Operações aos Sistemas de IA',
+    'journey-sub':'Cada fase da minha carreira acrescentou uma nova camada de pensamento sistémico. Comecei a gerir complexidade operacional — hoje construo sistemas backend e aplicações com IA que resolvem problemas reais.',
+    'journey-tagline':'"Transformar complexidade operacional em sistemas inteligentes."',
+    'tl-ops-tag':'Operações','tl-ops-desc':'Gestão de processos B2B, mitigação de risco e eficiência operacional em mercados internacionais.',
+    'tl-trade-tag':'Comércio Internacional','tl-trade-desc':'Importação, exportação e operações de negócio global. Navegar complexidade através de fusos horários, moedas e quadros regulatórios.',
+    'tl-ts-tag':'Trust & Safety','tl-ts-desc':'Análise de risco e enforcement de políticas na Accenture. Operar à escala com tolerância zero à ambiguidade — a mesma disciplina que aplico a sistemas em produção.',
+    'tl-eng-tag':'Engenharia de Software','tl-eng-desc':'Java, Spring Boot e arquitectura backend. Arquitectura Hexagonal, DDD, REST APIs. A construir sistemas que reflectem o pensamento operacional desenvolvido ao longo de uma década.',
+    'tl-ai-tag':'IA Aplicada —','tl-ai-now':'agora',
+    'tl-ai-desc':'LLMs, agentes de IA e agentic workflows integrados em sistemas backend em produção. A construir sistemas inteligentes que compreendem contexto, não apenas dados.',
+    'sec-vp':'O que trago para uma equipa',
+    'vp-a-title':'Pensamento Sistémico','vp-a-body':'Vejo o todo antes da parte. 12 anos a mapear cadeias operacionais significa que desenho sistemas que não funcionam apenas — encaixam num contexto maior.',
+    'vp-b-title':'Contexto de Negócio','vp-b-body':'Falo de negócio antes de falar de código. Os problemas vêm primeiro; a arquitectura é a resposta, não o ponto de partida.',
+    'vp-c-title':'Aplicações de IA','vp-c-body':'Integro LLMs e agentes em fluxos de trabalho reais — não como experimentos, mas como ferramentas de produção que resolvem problemas concretos.',
+    'vp-d-title':'Disciplina de Engenharia','vp-d-body':'Clean Architecture, DDD, Arquitectura Hexagonal. Construo sistemas legíveis, mantíveis e honestos quanto às suas fronteiras.',
+    'vp-e-title':'Aprendizagem Contínua','vp-e-body':'Anthropic Academy, Alura, IPS, Accenture GenAI Wave 2. Aprendizagem não é uma fase — é infraestrutura. A cada semana estou mais fundo do que estava.',
     'highlights-label':'Destaques Profissionais',
     'hl-acc-title':'Trust & Safety Associate',
     'hl-acc-sub':'Análise de risco · Políticas internacionais · Coordenação cross-timezone',
@@ -1365,19 +1467,21 @@ const i18n = {
     'sec-sobre':'Sobre','sec-filosofia':'Abordagem de Engenharia',
     'sec-roadmap':'Engineering Roadmap',
     'rm-done':'✅ Concluído','rm-wip':'🔄 Em Progresso','rm-next':'🎯 Próxima Fase',
-    'rm-done-1':'Fundações Java & Spring Boot',
-    'rm-done-2':'Arquitectura Hexagonal + DDD (18/20)',
-    'rm-done-3':'Deploys em produção (Sulav, FitCheck, Criptomoedas)',
-    'rm-done-4':'Integrações LLM (Claude API, LangChain, Groq)',
-    'rm-done-5':'Facilitador de IA — Accenture Elevate GenAI Wave 2',
-    'rm-wip-1':'TeSP Programação & Sistemas de Informação (Dez 2026)',
-    'rm-wip-2':'ArqSync — analisador de arquitectura Java',
-    'rm-wip-3':'Padrões avançados Spring Boot',
-    'rm-wip-4':'Design de sistemas com IA',
-    'rm-next-1':'Cloud Architecture (AWS / Azure)',
-    'rm-next-2':'Sistemas distribuídos & microserviços',
-    'rm-next-3':'Agentic Workflows em produção',
-    'rm-next-4':'Open source em Java / IA',
+    'rm-done-1':'Java Foundations (OOP, Collections, Streams, SOLID)',
+    'rm-done-2':'Spring Boot 3 — REST APIs, Security, JPA',
+    'rm-done-3':'PostgreSQL · Docker · GitHub Actions',
+    'rm-done-4':'Arquitectura Hexagonal + DDD (estágio 18/20)',
+    'rm-done-5':'Integrações IA (Claude API, LangChain, Groq)',
+    'rm-done-6':'Deploys em produção — utilizadores reais, sistemas vivos',
+    'rm-wip-1':'Padrões avançados de Arquitectura Backend',
+    'rm-wip-2':'Agentic Workflows com LangChain + Claude',
+    'rm-wip-3':'Sistemas RAG — retrieval-augmented generation',
+    'rm-wip-4':'Observabilidade — logging estruturado, tracing',
+    'rm-wip-5':'Optimização de performance em APIs Spring Boot',
+    'rm-next-1':'Cloud Architecture — AWS / Azure',
+    'rm-next-2':'Sistemas distribuídos & microserviços à escala',
+    'rm-next-3':'Engenharia de Sistemas de IA em produção',
+    'rm-next-4':'AI Platform Engineering',
     'sec-experiencia':'Experiência','sec-projetos':'Projetos',
     'sec-stack':'Stack Técnica','sec-formacao':'Formação & Certificações',
     'sobre-quote':'"12 anos a operar sistemas B2B complexos ensinaram-me a pensar em sistemas. Agora construo-os."',
@@ -1423,10 +1527,10 @@ const i18n = {
     'exp-acc-b1':'Revisão e moderação de conteúdo em ambiente de alta responsabilidade',
     'exp-acc-b2':'Análise de risco com base em políticas internacionais',
     'exp-acc-b3':'Coordenação cross-timezone em ambiente multicultural',
-    'proj-arqsync-desc':'Analisador estático de arquitectura Java. Detecta dependências circulares e violações de camadas. Suporta repos locais e remotos via Git. Gera relatórios JSON e HTML com diagramas Mermaid.',
-    'proj-sulav-desc':'Site completo em produção para restaurante português. Bilíngue PT/EN com Uber Eats, Glovo, Bolt Food e Google Maps integrados.',
-    'proj-fitcheck-desc':'Tracker de hábitos de saúde com análise semanal por IA. Regista sono, hidratação, IMC e metas físicas; Groq/Llama 3.3 analisa os registos e devolve sugestões em streaming.',
-    'proj-crypto-desc':'Top 10 criptomoedas em tempo real via CoinGecko API. Node.js sem frameworks, views dinâmicas e clean code.',
+    'proj-arqsync-desc':'Analisador estático de arquitectura para codebases Java. Analisa grafos de dependências, detecta imports circulares e violações de fronteiras de camadas. Gera diagramas Mermaid e relatórios HTML. Construído com JavaParser + Spring Boot 3.',
+    'proj-sulav-desc':'Website de produção para restaurante português. Bilingue PT/EN, integrado com Uber Eats, Glovo e Bolt Food. Entrega completa do cliente ao deploy — do briefing ao site vivo com clientes reais a fazer pedidos diariamente.',
+    'proj-fitcheck-desc':'Tracker de hábitos de saúde com análise semanal por IA. Backend Node.js/Express, MySQL no Railway — Groq/Llama 3.3 analisa registos e devolve sugestões em streaming. Uma integração LLM real em produção, não uma demo.',
+    'proj-crypto-desc':'Dashboard de criptos em tempo real na API pública da CoinGecko. Node.js sem frameworks — cada view renderizada dinamicamente, zero dependências. Um exercício de arquitectura limpa sem scaffolding para se esconder.',
     'proj-tag-live':'produção','proj-status-wip':'em_desenvolvimento',
     'proj-more-label':'— outros projetos —',
     'stack-backend':'Backend','stack-ai':'AI / LLM Engineering','stack-engineering':'Engineering Practices','stack-secondary':'Frontend & Tools',
@@ -1458,10 +1562,26 @@ const i18n = {
     'hero-status-live':'Available now',
     'hero-headline':'Backend Engineer building AI-powered systems.',
     'hero-sub':'12 years of operational complexity. Now turning that experience into reliable, intelligent software.',
-    'hero-btn-proj':'View Projects →','hero-btn-cv':'Download CV',
+    'hero-btn-proj':'View Projects →','hero-btn-roadmap':'Engineering Roadmap',
     'metric-years':'Years Experience','metric-projects-built':'Projects Shipped',
     'metric-regions':'Global Regions','metric-llm':'LLM Integrations',
     'metric-projects':'Production Systems',
+    'journey-label':'Career Trajectory',
+    'journey-title':'From Operations to AI Systems',
+    'journey-sub':'Every stage of my career added a new layer of systems thinking. I started by managing operational complexity — today I build backend systems and AI-powered applications that solve real-world problems.',
+    'journey-tagline':'"Turning operational complexity into intelligent systems."',
+    'tl-ops-tag':'Operations','tl-ops-desc':'B2B process management, risk mitigation and operational efficiency across international markets.',
+    'tl-trade-tag':'International Trade','tl-trade-desc':'Import, export and global business operations. Navigating complexity across time zones, currencies and regulatory frameworks.',
+    'tl-ts-tag':'Trust & Safety','tl-ts-desc':'Risk analysis and policy enforcement at Accenture. Operating at scale with zero tolerance for ambiguity — the same discipline I apply to production systems.',
+    'tl-eng-tag':'Software Engineering','tl-eng-desc':'Java, Spring Boot and backend architecture. Hexagonal Architecture, DDD, REST APIs. Building systems that reflect the operational thinking I developed over a decade.',
+    'tl-ai-tag':'Applied AI —','tl-ai-now':'now',
+    'tl-ai-desc':'LLMs, AI agents and agentic workflows integrated into production backend systems. Building intelligent systems that understand context, not just data.',
+    'sec-vp':'What I bring to a team',
+    'vp-a-title':'Systems Thinking','vp-a-body':'I see the whole before the part. 12 years mapping operational chains means I design systems that don\'t just work — they fit into a larger context.',
+    'vp-b-title':'Business Context','vp-b-body':'I speak business before I speak code. Problems come first; architecture is the answer, not the starting point.',
+    'vp-c-title':'AI Applications','vp-c-body':'I integrate LLMs and agents into real workflows — not as experiments, but as production tools that solve concrete problems.',
+    'vp-d-title':'Engineering Discipline','vp-d-body':'Clean Architecture, DDD, Hexagonal Architecture. I build systems that are readable, maintainable and honest about their boundaries.',
+    'vp-e-title':'Continuous Learning','vp-e-body':'Anthropic Academy, Alura, IPS, Accenture GenAI Wave 2. Learning isn\'t a phase — it\'s infrastructure. Every week I\'m deeper than I was.',
     'highlights-label':'Professional Highlights',
     'hl-acc-title':'Trust & Safety Associate',
     'hl-acc-sub':'Risk analysis · International policies · Cross-timezone coordination',
@@ -1480,19 +1600,21 @@ const i18n = {
     'sec-sobre':'About','sec-filosofia':'Engineering Approach',
     'sec-roadmap':'Engineering Roadmap',
     'rm-done':'✅ Completed','rm-wip':'🔄 In Progress','rm-next':'🎯 Next Stage',
-    'rm-done-1':'Java & Spring Boot foundations',
-    'rm-done-2':'Hexagonal Architecture + DDD (18/20)',
-    'rm-done-3':'Production deployments (Sulav, FitCheck, Criptomoedas)',
-    'rm-done-4':'LLM integrations (Claude API, LangChain, Groq)',
-    'rm-done-5':'AI Facilitator — Accenture Elevate GenAI Wave 2',
-    'rm-wip-1':'TeSP Programming & Information Systems (Dec 2026)',
-    'rm-wip-2':'ArqSync — Java architecture analyser',
-    'rm-wip-3':'Advanced Spring Boot patterns',
-    'rm-wip-4':'AI-powered system design',
-    'rm-next-1':'Cloud Architecture (AWS / Azure)',
-    'rm-next-2':'Distributed Systems & microservices',
-    'rm-next-3':'Production-grade Agentic Workflows',
-    'rm-next-4':'Open source in Java / AI ecosystem',
+    'rm-done-1':'Java Foundations (OOP, Collections, Streams, SOLID)',
+    'rm-done-2':'Spring Boot 3 — REST APIs, Security, JPA',
+    'rm-done-3':'PostgreSQL · Docker · GitHub Actions',
+    'rm-done-4':'Hexagonal Architecture + DDD (internship 18/20)',
+    'rm-done-5':'AI Integrations (Claude API, LangChain, Groq)',
+    'rm-done-6':'Production deployments — real users, live systems',
+    'rm-wip-1':'Advanced Backend Architecture patterns',
+    'rm-wip-2':'Agentic Workflows with LangChain + Claude',
+    'rm-wip-3':'RAG Systems — retrieval-augmented generation',
+    'rm-wip-4':'Observability — structured logging, tracing',
+    'rm-wip-5':'Performance optimisation on Spring Boot APIs',
+    'rm-next-1':'Cloud Architecture — AWS / Azure',
+    'rm-next-2':'Distributed Systems & microservices at scale',
+    'rm-next-3':'Production AI Systems engineering',
+    'rm-next-4':'AI Platform Engineering',
     'sec-experiencia':'Experience','sec-projetos':'Projects',
     'sec-stack':'Tech Stack','sec-formacao':'Education & Certifications',
     'sobre-quote':'"12 years operating complex B2B systems taught me to think in systems. Now I build them."',
