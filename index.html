@@ -613,7 +613,7 @@ footer{background:var(--bg1);border-top:1px solid var(--line);padding:20px 32px}
 .jt-scene{position:relative}
 .jt-scroll{overflow-x:auto;overflow-y:visible;scrollbar-width:none;padding-bottom:8px;-webkit-overflow-scrolling:touch;scroll-snap-type:x proximity}
 .jt-scroll::-webkit-scrollbar{display:none}
-.jt-rail{position:absolute;top:170px;left:32px;right:32px;height:1px;background:rgba(255,255,255,0.06);z-index:0;pointer-events:none}
+.jt-rail{position:absolute;top:216px;left:32px;right:32px;height:1px;background:rgba(255,255,255,0.06);z-index:0;pointer-events:none}
 [data-theme="light"] .jt-rail{background:rgba(0,0,0,0.07)}
 .jt-fill{height:1px;background:linear-gradient(90deg,var(--accent),var(--accent2));width:0%;transition:width 1.8s cubic-bezier(0.25,0.46,0.45,0.94) 0.4s}
 .jt-nodes{display:flex;position:relative;z-index:1;min-width:860px}
@@ -654,7 +654,7 @@ footer{background:var(--bg1);border-top:1px solid var(--line);padding:20px 32px}
   width:16px;height:16px;background:var(--accent);border-color:var(--accent);
   box-shadow:0 0 0 5px rgba(37,99,235,0.14),0 0 20px rgba(37,99,235,0.45);
 }
-.jt-era{font-size:0.7rem;font-weight:600;color:var(--text3);text-align:center;letter-spacing:0.04em;line-height:1.4}
+.jt-era{font-size:0.7rem;font-weight:600;color:var(--text3);text-align:center;letter-spacing:0.04em;line-height:1.4;margin-bottom:14px}
 .jt-node.active .jt-era{color:var(--accent2)}
 .jt-now{font-family:var(--mono);font-size:0.58rem;color:#22c55e;letter-spacing:0.08em;display:block;margin-top:3px}
 .jt-tagline{text-align:center;margin-top:56px;font-family:var(--mono);font-size:0.82rem;color:var(--accent2);letter-spacing:0.04em;opacity:0.85}
@@ -674,7 +674,7 @@ footer{background:var(--bg1);border-top:1px solid var(--line);padding:20px 32px}
 @media(max-width:900px){
   .jt-outer{padding:60px 0}
   .jt-header{padding:0 16px;margin-bottom:48px}
-  .jt-rail{top:165px;left:16px;right:16px}
+  .jt-rail{top:211px;left:16px;right:16px}
   .jt-scroll{padding:0 8px 16px}
   .jt-nodes{min-width:780px}
   .hero-inner{grid-template-columns:1fr;gap:40px}
@@ -861,6 +861,7 @@ footer{background:var(--bg1);border-top:1px solid var(--line);padding:20px 32px}
       <div class="jt-scroll">
         <div class="jt-nodes">
           <div class="jt-node">
+            <div class="jt-era" data-i18n="tl-ops-tag">Operations</div>
             <div class="jt-card">
               <div class="jt-num">01</div>
               <div class="jt-name" data-i18n="tl-ops-tag">Operations</div>
@@ -869,9 +870,9 @@ footer{background:var(--bg1);border-top:1px solid var(--line);padding:20px 32px}
               <div class="jt-chips"><span>B2B</span><span>Process Design</span><span>Risk</span></div>
             </div>
             <div class="jt-dot"></div>
-            <div class="jt-era" data-i18n="tl-ops-tag">Operations</div>
           </div>
           <div class="jt-node">
+            <div class="jt-era" data-i18n="tl-trade-tag">International Trade</div>
             <div class="jt-card">
               <div class="jt-num">02</div>
               <div class="jt-name" data-i18n="tl-trade-tag">International Trade</div>
@@ -880,9 +881,9 @@ footer{background:var(--bg1);border-top:1px solid var(--line);padding:20px 32px}
               <div class="jt-chips"><span>Import · Export</span><span>Global Ops</span></div>
             </div>
             <div class="jt-dot"></div>
-            <div class="jt-era" data-i18n="tl-trade-tag">International Trade</div>
           </div>
           <div class="jt-node">
+            <div class="jt-era" data-i18n="tl-ts-tag">Trust &amp; Safety</div>
             <div class="jt-card">
               <div class="jt-num">03</div>
               <div class="jt-name" data-i18n="tl-ts-tag">Trust &amp; Safety</div>
@@ -891,9 +892,9 @@ footer{background:var(--bg1);border-top:1px solid var(--line);padding:20px 32px}
               <div class="jt-chips"><span>Accenture</span><span>Risk Analysis</span><span>Policies</span></div>
             </div>
             <div class="jt-dot"></div>
-            <div class="jt-era" data-i18n="tl-ts-tag">Trust &amp; Safety</div>
           </div>
           <div class="jt-node">
+            <div class="jt-era" data-i18n="tl-eng-tag">Software Engineering</div>
             <div class="jt-card">
               <div class="jt-num">04</div>
               <div class="jt-name" data-i18n="tl-eng-tag">Software Engineering</div>
@@ -902,9 +903,9 @@ footer{background:var(--bg1);border-top:1px solid var(--line);padding:20px 32px}
               <div class="jt-chips"><span>Java</span><span>Spring Boot</span><span>DDD</span></div>
             </div>
             <div class="jt-dot"></div>
-            <div class="jt-era" data-i18n="tl-eng-tag">Software Engineering</div>
           </div>
           <div class="jt-node active">
+            <div class="jt-era" data-i18n="tl-ai-tag">Applied AI<span class="jt-now" data-i18n="tl-ai-now">● now</span></div>
             <div class="jt-card">
               <div class="jt-num">05</div>
               <div class="jt-name" data-i18n="tl-ai-tag">Applied AI</div>
@@ -913,7 +914,6 @@ footer{background:var(--bg1);border-top:1px solid var(--line);padding:20px 32px}
               <div class="jt-chips"><span>LLMs</span><span>AI Agents</span><span>LangChain</span></div>
             </div>
             <div class="jt-dot"></div>
-            <div class="jt-era" data-i18n="tl-ai-tag">Applied AI<span class="jt-now" data-i18n="tl-ai-now">● now</span></div>
           </div>
         </div>
       </div>
