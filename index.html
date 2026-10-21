@@ -82,6 +82,12 @@ nav{
   padding:7px 16px;transition:all 0.2s;
 }
 .nav-cv-btn:hover{border-color:var(--accent);color:var(--accent)}
+.nav-hire-btn{
+  font-size:0.8rem;font-weight:600;color:#fff;
+  background:var(--accent);border:1px solid var(--accent);border-radius:var(--radius);
+  padding:7px 16px;transition:all 0.2s;letter-spacing:0.01em;
+}
+.nav-hire-btn:hover{background:#1d4ed8;border-color:#1d4ed8}
 .ham{display:none;flex-direction:column;gap:5px;padding:4px}
 .ham span{display:block;width:22px;height:1.5px;background:var(--text3);transition:all 0.3s}
 .mob-menu{
@@ -719,13 +725,13 @@ footer{background:var(--bg1);border-top:1px solid var(--line);padding:20px 32px}
     <div class="nav-logo">Everson<span>.</span>Rubira</div>
     <ul class="nav-links">
       <li><a href="#sobre" data-i18n="nav-sobre">sobre</a></li>
-      <li><a href="#filosofia" data-i18n="nav-filosofia">abordagem</a></li>
+      <li><a href="#journey" data-i18n="nav-journey">trajectory</a></li>
       <li><a href="#experiencia" data-i18n="nav-exp">exp</a></li>
-      <li><a href="#projetos" data-i18n="nav-projetos">projetos</a></li>
+      <li><a href="#projetos" data-i18n="nav-projetos">projects</a></li>
       <li><a href="#stack" data-i18n="nav-stack">stack</a></li>
       <li><a href="#roadmap" data-i18n="nav-roadmap">roadmap</a></li>
-      <li><a href="#formacao" data-i18n="nav-formacao">formação</a></li>
-      <li><a href="#contacto" data-i18n="nav-contacto">contacto</a></li>
+      <li><a href="#formacao" data-i18n="nav-formacao">education</a></li>
+      <li><a href="#contacto" data-i18n="nav-contacto">contact</a></li>
     </ul>
     <div class="nav-right">
       <button id="lang-btn" aria-label="Switch language">EN</button>
@@ -734,19 +740,21 @@ footer{background:var(--bg1);border-top:1px solid var(--line);padding:20px 32px}
         <svg class="i-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
       </button>
       <a href="cv.html" target="_blank" class="nav-cv-btn" data-i18n="nav-cv">cv</a>
+      <a href="#contacto" class="nav-hire-btn" data-i18n="nav-hire">hire me</a>
       <button class="ham" id="ham" aria-label="Menu"><span></span><span></span><span></span></button>
     </div>
   </div>
   <div class="mob-menu" id="mob">
     <a href="#sobre" data-i18n="nav-sobre">sobre</a>
-    <a href="#filosofia" data-i18n="nav-filosofia">abordagem</a>
+    <a href="#journey" data-i18n="nav-journey">trajectory</a>
     <a href="#experiencia" data-i18n="nav-exp">exp</a>
-    <a href="#projetos" data-i18n="nav-projetos">projetos</a>
+    <a href="#projetos" data-i18n="nav-projetos">projects</a>
     <a href="#stack" data-i18n="nav-stack">stack</a>
     <a href="#roadmap" data-i18n="nav-roadmap">roadmap</a>
-    <a href="#formacao" data-i18n="nav-formacao">formação</a>
-    <a href="#contacto" data-i18n="nav-contacto">contacto</a>
+    <a href="#formacao" data-i18n="nav-formacao">education</a>
+    <a href="#contacto" data-i18n="nav-contacto">contact</a>
     <a href="cv.html" target="_blank">cv</a>
+    <a href="#contacto" class="nav-hire-btn" data-i18n="nav-hire" style="text-align:center;border-radius:var(--radius)">hire me</a>
   </div>
 </nav>
 
@@ -1455,9 +1463,10 @@ themeBtn.addEventListener('click', () => {
 // ── i18n ──
 const i18n = {
   pt: {
-    'nav-sobre':'sobre','nav-filosofia':'abordagem','nav-exp':'exp',
-    'nav-projetos':'projetos','nav-stack':'stack','nav-roadmap':'roadmap','nav-formacao':'formação',
-    'nav-contacto':'contacto','nav-cv':'cv','share-btn':'partilhar',
+    'nav-sobre':'sobre','nav-journey':'trajectória','nav-exp':'exp',
+    'nav-projetos':'projetos','nav-stack':'stack','nav-roadmap':'roadmap','nav-formacao':'educação',
+    'nav-hire':'contrata-me',
+    'nav-contacto':'contacto','nav-cv':'cv','nav-hire':'contrata-me','share-btn':'partilhar',
     'hero-location':'Seixal / Lisboa · Portugal',
     'hero-status-live':'Disponível agora',
     'hero-headline':'Backend Engineer a construir sistemas potenciados por IA.',
@@ -1594,9 +1603,9 @@ const i18n = {
     'foot-right':'ver cv completo →',
   },
   en: {
-    'nav-sobre':'about','nav-filosofia':'approach','nav-exp':'exp',
+    'nav-sobre':'about','nav-journey':'trajectory','nav-exp':'exp',
     'nav-projetos':'projects','nav-stack':'stack','nav-roadmap':'roadmap','nav-formacao':'education',
-    'nav-contacto':'contact','nav-cv':'cv','share-btn':'share',
+    'nav-contacto':'contact','nav-cv':'cv','nav-hire':'hire me','share-btn':'share',
     'hero-location':'Seixal / Lisbon · Portugal',
     'hero-status-live':'Available now',
     'hero-headline':'Backend Engineer building AI-powered systems.',
