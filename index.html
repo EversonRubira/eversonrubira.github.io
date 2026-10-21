@@ -603,37 +603,61 @@ footer{background:var(--bg1);border-top:1px solid var(--line);padding:20px 32px}
 .hero-social-mob a:hover{color:var(--text2)}
 .hero-social-mob svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
 
-/* ── JOURNEY TIMELINE ── */
-.journey-track{max-width:680px;margin:0 auto;position:relative}
-.journey-step{display:flex;gap:24px;position:relative}
-.journey-left{display:flex;flex-direction:column;align-items:center;width:32px;flex-shrink:0}
-.journey-dot{
-  width:14px;height:14px;border-radius:50%;flex-shrink:0;
-  background:var(--bg2);border:2px solid var(--line);
-  margin-top:4px;z-index:1;transition:all 0.3s;
+/* ── JOURNEY TIMELINE (horizontal) ── */
+#journey{background:var(--bg1);border-top:1px solid var(--line)}
+.jt-outer{max-width:var(--max);margin:0 auto;padding:96px 32px}
+.jt-header{text-align:center;margin-bottom:72px}
+.jt-eyebrow{font-family:var(--mono);font-size:0.68rem;color:var(--accent2);letter-spacing:0.14em;text-transform:uppercase;margin-bottom:16px}
+.jt-title{font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:700;color:var(--text);letter-spacing:-0.03em;margin-bottom:12px;line-height:1.15}
+.jt-sub{font-size:0.95rem;color:var(--text3);line-height:1.7}
+.jt-scene{position:relative}
+.jt-scroll{overflow-x:auto;overflow-y:visible;scrollbar-width:none;padding-bottom:8px;-webkit-overflow-scrolling:touch;scroll-snap-type:x proximity}
+.jt-scroll::-webkit-scrollbar{display:none}
+.jt-rail{position:absolute;top:170px;left:32px;right:32px;height:1px;background:rgba(255,255,255,0.06);z-index:0;pointer-events:none}
+[data-theme="light"] .jt-rail{background:rgba(0,0,0,0.07)}
+.jt-fill{height:1px;background:linear-gradient(90deg,var(--accent),var(--accent2));width:0%;transition:width 1.8s cubic-bezier(0.25,0.46,0.45,0.94) 0.4s}
+.jt-nodes{display:flex;position:relative;z-index:1;min-width:860px}
+.jt-node{flex:1;display:flex;flex-direction:column;align-items:center;padding:0 10px;scroll-snap-align:center}
+.jt-card{
+  width:100%;
+  background:rgba(15,23,42,0.72);
+  border:1px solid rgba(255,255,255,0.07);
+  border-radius:10px;padding:20px 16px;
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  margin-bottom:22px;min-height:152px;
+  opacity:0;transform:translateY(-12px);
+  transition:opacity 0.5s ease,transform 0.5s ease,border-color 0.3s,box-shadow 0.3s;
 }
-.journey-dot.active{
-  background:var(--accent);border-color:var(--accent);
-  box-shadow:0 0 0 4px rgba(37,99,235,0.15),0 0 16px rgba(37,99,235,0.4);
+.jt-card.vis{opacity:1;transform:none}
+.jt-node:not(.active):hover .jt-card{border-color:rgba(255,255,255,0.12);transform:translateY(-3px)}
+.jt-node.active .jt-card{
+  border-color:rgba(37,99,235,0.4);
+  box-shadow:0 0 0 1px rgba(37,99,235,0.08),0 8px 32px rgba(37,99,235,0.14),inset 0 0 0 1px rgba(37,99,235,0.04);
 }
-.journey-line{flex:1;width:1px;background:var(--line);margin:8px 0}
-.journey-content{padding-bottom:40px;flex:1}
-.journey-step:last-child .journey-content{padding-bottom:0}
-.journey-tag{
-  font-size:1rem;font-weight:600;color:var(--text);
-  margin-bottom:8px;letter-spacing:-0.01em;
+[data-theme="light"] .jt-card{background:rgba(248,250,252,0.9)}
+[data-theme="light"] .jt-node.active .jt-card{background:rgba(239,246,255,0.95)}
+.jt-num{font-family:var(--mono);font-size:0.6rem;color:var(--text3);letter-spacing:0.12em;margin-bottom:10px;opacity:0.5}
+.jt-name{font-size:0.9rem;font-weight:600;color:var(--text);margin-bottom:3px;letter-spacing:-0.01em}
+.jt-system{font-family:var(--mono);font-size:0.65rem;color:var(--accent2);letter-spacing:0.06em;margin-bottom:10px}
+.jt-desc{font-size:0.76rem;color:var(--text3);line-height:1.55;margin-bottom:10px}
+.jt-chips{display:flex;flex-wrap:wrap;gap:4px}
+.jt-chips span{font-family:var(--mono);font-size:0.58rem;color:var(--text3);border:1px solid var(--line);border-radius:3px;padding:2px 6px;letter-spacing:0.02em}
+.jt-node.active .jt-chips span{border-color:rgba(37,99,235,0.3);color:var(--accent2)}
+.jt-dot{
+  width:12px;height:12px;border-radius:50%;flex-shrink:0;
+  background:var(--bg1);border:2px solid rgba(255,255,255,0.15);
+  margin-bottom:14px;transition:all 0.35s ease;position:relative;z-index:2;
 }
-.journey-tag.active-tag{color:var(--accent2)}
-.journey-tag em{font-style:normal;font-size:0.72rem;font-family:var(--mono);color:#22c55e;letter-spacing:0.08em;margin-left:8px;vertical-align:middle}
-.journey-desc{font-size:0.85rem;color:var(--text3);line-height:1.7;margin-bottom:12px;max-width:480px}
-.journey-chips{display:flex;flex-wrap:wrap;gap:6px}
-.journey-chips span{
-  font-family:var(--mono);font-size:0.65rem;color:var(--text3);
-  border:1px solid var(--line);border-radius:3px;padding:3px 8px;letter-spacing:0.02em;
+[data-theme="light"] .jt-dot{background:var(--bg1);border-color:rgba(0,0,0,0.18)}
+.jt-node:not(.active):hover .jt-dot{border-color:var(--text3)}
+.jt-node.active .jt-dot{
+  width:16px;height:16px;background:var(--accent);border-color:var(--accent);
+  box-shadow:0 0 0 5px rgba(37,99,235,0.14),0 0 20px rgba(37,99,235,0.45);
 }
-.journey-chips.active-chips span{border-color:rgba(37,99,235,0.3);color:var(--accent2)}
-.journey-step:hover .journey-dot:not(.active){border-color:var(--text3)}
-.journey-step:hover .journey-tag:not(.active-tag){color:var(--text)}
+.jt-era{font-size:0.7rem;font-weight:600;color:var(--text3);text-align:center;letter-spacing:0.04em;line-height:1.4}
+.jt-node.active .jt-era{color:var(--accent2)}
+.jt-now{font-family:var(--mono);font-size:0.58rem;color:#22c55e;letter-spacing:0.08em;display:block;margin-top:3px}
+.jt-tagline{text-align:center;margin-top:56px;font-family:var(--mono);font-size:0.82rem;color:var(--accent2);letter-spacing:0.04em;opacity:0.85}
 
 /* ── VALUE PROPS ── */
 .vp-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px}
@@ -648,6 +672,11 @@ footer{background:var(--bg1);border-top:1px solid var(--line);padding:20px 32px}
 
 /* ── RESPONSIVE ── */
 @media(max-width:900px){
+  .jt-outer{padding:60px 0}
+  .jt-header{padding:0 16px;margin-bottom:48px}
+  .jt-rail{top:165px;left:16px;right:16px}
+  .jt-scroll{padding:0 8px 16px}
+  .jt-nodes{min-width:780px}
   .hero-inner{grid-template-columns:1fr;gap:40px}
   .hero-photo-col{order:-1;align-items:flex-start}
   .sobre-grid,.form-grid,.contact-inner{grid-template-columns:1fr;gap:32px}
@@ -820,72 +849,76 @@ footer{background:var(--bg1);border-top:1px solid var(--line);padding:20px 32px}
 </section>
 
 <!-- FROM OPERATIONS TO AI SYSTEMS -->
-<section id="journey" style="background:var(--bg1);border-top:1px solid var(--line);padding:96px 32px">
-  <div style="max-width:var(--max);margin:0 auto">
-    <div class="reveal" style="text-align:center;margin-bottom:64px">
-      <div style="font-family:var(--mono);font-size:0.68rem;color:var(--accent2);letter-spacing:0.14em;text-transform:uppercase;margin-bottom:16px" data-i18n="journey-label">Career Trajectory</div>
-      <h2 style="font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:700;color:var(--text);letter-spacing:-0.03em;margin-bottom:16px" data-i18n="journey-title">From Operations to AI Systems</h2>
-      <p style="font-size:0.95rem;color:var(--text3);max-width:560px;margin:0 auto;line-height:1.7" data-i18n="journey-sub">Every stage of my career added a new layer of systems thinking. I started by managing operational complexity — today I build backend systems and AI-powered applications that solve real-world problems.</p>
+<section id="journey">
+  <div class="jt-outer">
+    <div class="jt-header reveal">
+      <div class="jt-eyebrow" data-i18n="journey-label">Career Trajectory</div>
+      <h2 class="jt-title" data-i18n="journey-title">From Operations to AI Systems</h2>
+      <p class="jt-sub" data-i18n="journey-headline-sub">12+ years of accumulated systems thinking.</p>
     </div>
-    <div class="journey-track reveal">
-      <div class="journey-step">
-        <div class="journey-left">
-          <div class="journey-dot"></div>
-          <div class="journey-line"></div>
-        </div>
-        <div class="journey-content">
-          <div class="journey-tag" data-i18n="tl-ops-tag">Operations</div>
-          <div class="journey-desc" data-i18n="tl-ops-desc">B2B process management, risk mitigation and operational efficiency across international markets.</div>
-          <div class="journey-chips"><span>B2B</span><span>Process Design</span><span>Risk Management</span></div>
-        </div>
-      </div>
-      <div class="journey-step">
-        <div class="journey-left">
-          <div class="journey-dot"></div>
-          <div class="journey-line"></div>
-        </div>
-        <div class="journey-content">
-          <div class="journey-tag" data-i18n="tl-trade-tag">International Trade</div>
-          <div class="journey-desc" data-i18n="tl-trade-desc">Import, export and global business operations. Navigating complexity across time zones, currencies and regulatory frameworks.</div>
-          <div class="journey-chips"><span>Import · Export</span><span>Global Business</span><span>Cross-border Ops</span></div>
-        </div>
-      </div>
-      <div class="journey-step">
-        <div class="journey-left">
-          <div class="journey-dot"></div>
-          <div class="journey-line"></div>
-        </div>
-        <div class="journey-content">
-          <div class="journey-tag" data-i18n="tl-ts-tag">Trust &amp; Safety</div>
-          <div class="journey-desc" data-i18n="tl-ts-desc">Risk analysis and policy enforcement at Accenture. Operating at scale with zero tolerance for ambiguity — the same discipline I apply to production systems.</div>
-          <div class="journey-chips"><span>Accenture</span><span>Risk Analysis</span><span>Policy Enforcement</span></div>
-        </div>
-      </div>
-      <div class="journey-step">
-        <div class="journey-left">
-          <div class="journey-dot"></div>
-          <div class="journey-line"></div>
-        </div>
-        <div class="journey-content">
-          <div class="journey-tag" data-i18n="tl-eng-tag">Software Engineering</div>
-          <div class="journey-desc" data-i18n="tl-eng-desc">Java, Spring Boot and backend architecture. Hexagonal Architecture, DDD, REST APIs. Building systems that reflect the operational thinking I developed over a decade.</div>
-          <div class="journey-chips"><span>Java · Spring Boot</span><span>Hexagonal Arch</span><span>DDD</span></div>
-        </div>
-      </div>
-      <div class="journey-step active">
-        <div class="journey-left">
-          <div class="journey-dot active"></div>
-        </div>
-        <div class="journey-content">
-          <div class="journey-tag active-tag" data-i18n="tl-ai-tag">Applied AI — <em data-i18n="tl-ai-now">now</em></div>
-          <div class="journey-desc" data-i18n="tl-ai-desc">LLMs, AI agents and agentic workflows integrated into production backend systems. Building intelligent systems that understand context, not just data.</div>
-          <div class="journey-chips active-chips"><span>LLMs</span><span>AI Agents</span><span>LangChain</span><span>Claude API</span></div>
+    <div class="jt-scene">
+      <div class="jt-rail"><div class="jt-fill" id="jt-fill"></div></div>
+      <div class="jt-scroll">
+        <div class="jt-nodes">
+          <div class="jt-node">
+            <div class="jt-card">
+              <div class="jt-num">01</div>
+              <div class="jt-name" data-i18n="tl-ops-tag">Operations</div>
+              <div class="jt-system" data-i18n="jt-sys-ops">Process Systems</div>
+              <div class="jt-desc" data-i18n="jt-desc-ops">B2B management, process design and risk mitigation across international markets.</div>
+              <div class="jt-chips"><span>B2B</span><span>Process Design</span><span>Risk</span></div>
+            </div>
+            <div class="jt-dot"></div>
+            <div class="jt-era" data-i18n="tl-ops-tag">Operations</div>
+          </div>
+          <div class="jt-node">
+            <div class="jt-card">
+              <div class="jt-num">02</div>
+              <div class="jt-name" data-i18n="tl-trade-tag">International Trade</div>
+              <div class="jt-system" data-i18n="jt-sys-trade">Global Systems</div>
+              <div class="jt-desc" data-i18n="jt-desc-trade">Import, export and cross-border ops across time zones, currencies and regulatory frameworks.</div>
+              <div class="jt-chips"><span>Import · Export</span><span>Global Ops</span></div>
+            </div>
+            <div class="jt-dot"></div>
+            <div class="jt-era" data-i18n="tl-trade-tag">International Trade</div>
+          </div>
+          <div class="jt-node">
+            <div class="jt-card">
+              <div class="jt-num">03</div>
+              <div class="jt-name" data-i18n="tl-ts-tag">Trust &amp; Safety</div>
+              <div class="jt-system" data-i18n="jt-sys-ts">Risk Systems</div>
+              <div class="jt-desc" data-i18n="jt-desc-ts">Risk analysis and policy enforcement at Accenture. Zero tolerance for ambiguity at scale.</div>
+              <div class="jt-chips"><span>Accenture</span><span>Risk Analysis</span><span>Policies</span></div>
+            </div>
+            <div class="jt-dot"></div>
+            <div class="jt-era" data-i18n="tl-ts-tag">Trust &amp; Safety</div>
+          </div>
+          <div class="jt-node">
+            <div class="jt-card">
+              <div class="jt-num">04</div>
+              <div class="jt-name" data-i18n="tl-eng-tag">Software Engineering</div>
+              <div class="jt-system" data-i18n="jt-sys-eng">Software Systems</div>
+              <div class="jt-desc" data-i18n="jt-desc-eng">Java, Spring Boot, Hexagonal Architecture, DDD — building systems that reflect a decade of operational thinking.</div>
+              <div class="jt-chips"><span>Java</span><span>Spring Boot</span><span>DDD</span></div>
+            </div>
+            <div class="jt-dot"></div>
+            <div class="jt-era" data-i18n="tl-eng-tag">Software Engineering</div>
+          </div>
+          <div class="jt-node active">
+            <div class="jt-card">
+              <div class="jt-num">05</div>
+              <div class="jt-name" data-i18n="tl-ai-tag">Applied AI</div>
+              <div class="jt-system" data-i18n="jt-sys-ai">Intelligent Systems</div>
+              <div class="jt-desc" data-i18n="jt-desc-ai">LLMs, AI agents and agentic workflows integrated into backend production systems. Context-aware, not just data-aware.</div>
+              <div class="jt-chips"><span>LLMs</span><span>AI Agents</span><span>LangChain</span></div>
+            </div>
+            <div class="jt-dot"></div>
+            <div class="jt-era" data-i18n="tl-ai-tag">Applied AI<span class="jt-now" data-i18n="tl-ai-now">● now</span></div>
+          </div>
         </div>
       </div>
     </div>
-    <div class="reveal" style="text-align:center;margin-top:56px">
-      <p style="font-family:var(--mono);font-size:0.78rem;color:var(--accent2);letter-spacing:0.04em" data-i18n="journey-tagline">"Turning operational complexity into intelligent systems."</p>
-    </div>
+    <div class="jt-tagline reveal" data-i18n="journey-tagline">"Turning operational complexity into intelligent systems."</div>
   </div>
 </section>
 
@@ -1437,12 +1470,18 @@ const i18n = {
     'journey-title':'Das Operações aos Sistemas de IA',
     'journey-sub':'Cada fase da minha carreira acrescentou uma nova camada de pensamento sistémico. Comecei a gerir complexidade operacional — hoje construo sistemas backend e aplicações com IA que resolvem problemas reais.',
     'journey-tagline':'"Transformar complexidade operacional em sistemas inteligentes."',
+    'journey-headline-sub':'12+ anos de pensamento sistémico acumulado.',
     'tl-ops-tag':'Operações','tl-ops-desc':'Gestão de processos B2B, mitigação de risco e eficiência operacional em mercados internacionais.',
+    'jt-sys-ops':'Process Systems','jt-desc-ops':'Gestão B2B, design de processos e mitigação de risco em mercados internacionais.',
     'tl-trade-tag':'Comércio Internacional','tl-trade-desc':'Importação, exportação e operações de negócio global. Navegar complexidade através de fusos horários, moedas e quadros regulatórios.',
+    'jt-sys-trade':'Global Systems','jt-desc-trade':'Importação, exportação e operações cross-border através de fusos horários, moedas e quadros regulatórios.',
     'tl-ts-tag':'Trust & Safety','tl-ts-desc':'Análise de risco e enforcement de políticas na Accenture. Operar à escala com tolerância zero à ambiguidade — a mesma disciplina que aplico a sistemas em produção.',
+    'jt-sys-ts':'Risk Systems','jt-desc-ts':'Análise de risco e enforcement de políticas na Accenture. Tolerância zero à ambiguidade à escala.',
     'tl-eng-tag':'Engenharia de Software','tl-eng-desc':'Java, Spring Boot e arquitectura backend. Arquitectura Hexagonal, DDD, REST APIs. A construir sistemas que reflectem o pensamento operacional desenvolvido ao longo de uma década.',
-    'tl-ai-tag':'IA Aplicada —','tl-ai-now':'agora',
+    'jt-sys-eng':'Software Systems','jt-desc-eng':'Java, Spring Boot, Arquitectura Hexagonal, DDD — sistemas que reflectem uma década de pensamento operacional.',
+    'tl-ai-tag':'IA Aplicada','tl-ai-now':'● agora',
     'tl-ai-desc':'LLMs, agentes de IA e agentic workflows integrados em sistemas backend em produção. A construir sistemas inteligentes que compreendem contexto, não apenas dados.',
+    'jt-sys-ai':'Intelligent Systems','jt-desc-ai':'LLMs, agentes de IA e agentic workflows integrados em sistemas backend em produção. Consciente do contexto, não apenas dos dados.',
     'sec-vp':'O que trago para uma equipa',
     'vp-a-title':'Pensamento Sistémico','vp-a-body':'Vejo o todo antes da parte. 12 anos a mapear cadeias operacionais significa que desenho sistemas que não funcionam apenas — encaixam num contexto maior.',
     'vp-b-title':'Contexto de Negócio','vp-b-body':'Falo de negócio antes de falar de código. Os problemas vêm primeiro; a arquitectura é a resposta, não o ponto de partida.',
@@ -1570,12 +1609,18 @@ const i18n = {
     'journey-title':'From Operations to AI Systems',
     'journey-sub':'Every stage of my career added a new layer of systems thinking. I started by managing operational complexity — today I build backend systems and AI-powered applications that solve real-world problems.',
     'journey-tagline':'"Turning operational complexity into intelligent systems."',
+    'journey-headline-sub':'12+ years of accumulated systems thinking.',
     'tl-ops-tag':'Operations','tl-ops-desc':'B2B process management, risk mitigation and operational efficiency across international markets.',
+    'jt-sys-ops':'Process Systems','jt-desc-ops':'B2B management, process design and risk mitigation across international markets.',
     'tl-trade-tag':'International Trade','tl-trade-desc':'Import, export and global business operations. Navigating complexity across time zones, currencies and regulatory frameworks.',
+    'jt-sys-trade':'Global Systems','jt-desc-trade':'Import, export and cross-border ops across time zones, currencies and regulatory frameworks.',
     'tl-ts-tag':'Trust & Safety','tl-ts-desc':'Risk analysis and policy enforcement at Accenture. Operating at scale with zero tolerance for ambiguity — the same discipline I apply to production systems.',
+    'jt-sys-ts':'Risk Systems','jt-desc-ts':'Risk analysis and policy enforcement at Accenture. Zero tolerance for ambiguity at scale.',
     'tl-eng-tag':'Software Engineering','tl-eng-desc':'Java, Spring Boot and backend architecture. Hexagonal Architecture, DDD, REST APIs. Building systems that reflect the operational thinking I developed over a decade.',
-    'tl-ai-tag':'Applied AI —','tl-ai-now':'now',
+    'jt-sys-eng':'Software Systems','jt-desc-eng':'Java, Spring Boot, Hexagonal Architecture, DDD — building systems that reflect a decade of operational thinking.',
+    'tl-ai-tag':'Applied AI','tl-ai-now':'● now',
     'tl-ai-desc':'LLMs, AI agents and agentic workflows integrated into production backend systems. Building intelligent systems that understand context, not just data.',
+    'jt-sys-ai':'Intelligent Systems','jt-desc-ai':'LLMs, AI agents and agentic workflows integrated into backend production systems. Context-aware, not just data-aware.',
     'sec-vp':'What I bring to a team',
     'vp-a-title':'Systems Thinking','vp-a-body':'I see the whole before the part. 12 years mapping operational chains means I design systems that don\'t just work — they fit into a larger context.',
     'vp-b-title':'Business Context','vp-b-body':'I speak business before I speak code. Problems come first; architecture is the answer, not the starting point.',
@@ -1799,6 +1844,22 @@ window.addEventListener('load', () => {
   if (typeof QRCode !== 'undefined') initQR();
   else { const t = setInterval(() => { if (typeof QRCode !== 'undefined') { clearInterval(t); initQR(); } }, 100); }
 });
+// ── JOURNEY TIMELINE ──
+(function(){
+  const fill = document.getElementById('jt-fill');
+  const cards = document.querySelectorAll('.jt-card');
+  if (!fill) return;
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        fill.style.width = '100%';
+        cards.forEach((c, i) => setTimeout(() => c.classList.add('vis'), i * 140 + 300));
+        obs.unobserve(e.target);
+      }
+    });
+  }, {threshold: 0.2});
+  obs.observe(document.getElementById('journey'));
+})();
 </script>
 </body>
 </html>
