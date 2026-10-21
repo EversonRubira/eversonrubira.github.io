@@ -83,11 +83,11 @@ nav{
 }
 .nav-cv-btn:hover{border-color:var(--accent);color:var(--accent)}
 .nav-hire-btn{
-  font-size:0.8rem;font-weight:600;color:#fff;
-  background:var(--accent);border:1px solid var(--accent);border-radius:var(--radius);
+  font-size:0.8rem;font-weight:500;color:var(--accent);
+  background:transparent;border:1px solid rgba(37,99,235,0.35);border-radius:var(--radius);
   padding:7px 16px;transition:all 0.2s;letter-spacing:0.01em;
 }
-.nav-hire-btn:hover{background:#1d4ed8;border-color:#1d4ed8}
+.nav-hire-btn:hover{border-color:var(--accent);background:rgba(37,99,235,0.06)}
 .ham{display:none;flex-direction:column;gap:5px;padding:4px}
 .ham span{display:block;width:22px;height:1.5px;background:var(--text3);transition:all 0.3s}
 .mob-menu{
@@ -1817,11 +1817,13 @@ const termOverlay = document.getElementById('term-overlay');
 const termInput = document.getElementById('term-input');
 const termOutput = document.getElementById('term-output');
 const termCmds = {
-  help: () => `<span style="color:var(--accent2)">comandos disponíveis:</span>\n  help · about · skills · projects · contact · clear`,
-  about: () => `Everson Rubira — Backend Engineer\n12+ anos de experiência operacional, agora a construir software.\nJava · Spring Boot · Applied AI · QA\nSeixal / Lisboa, Portugal`,
-  skills: () => `<span style="color:var(--accent2)">backend:</span> Java 21, Spring Boot 3, PostgreSQL, Docker, Flyway\n<span style="color:var(--accent2)">ai:</span> LangChain, Claude API, Groq/Llama, FastAPI, AI Agents\n<span style="color:var(--accent2)">engineering:</span> Clean Architecture, DDD, Hexagonal Arch, JUnit 5`,
-  projects: () => `ArqSync — Java architecture analyser\nFitCheck — AI health tracker (live)\nSulav Sushi Bar — Restaurant site (live)\nCriptomoedas — Real-time crypto tracker (live)`,
-  contact: () => `email: eversonrubira@gmail.com\nlinkedin: linkedin.com/in/eversonrubira\ngithub: github.com/EversonRubira`,
+  help: () => `<span style="color:var(--accent2)">available commands:</span>\n  help · about · trajectory · stack · projects · roadmap · contact · clear`,
+  about: () => `Everson Rubira — Backend Engineer · AI Systems\nBuilding AI-powered systems with Java.\nSpring Boot · LLMs · Agentic AI · Hexagonal Architecture\nSeixal / Lisbon, Portugal · Available now`,
+  trajectory: () => `<span style="color:var(--accent2)">01</span> Operations      → Process Systems\n<span style="color:var(--accent2)">02</span> Intl Trade      → Global Systems\n<span style="color:var(--accent2)">03</span> Trust & Safety  → Risk Systems\n<span style="color:var(--accent2)">04</span> Software Eng.   → Software Systems\n<span style="color:var(--accent2)">05</span> Applied AI      → Intelligent Systems  <span style="color:#22c55e">● now</span>`,
+  stack: () => `<span style="color:var(--accent2)">backend:</span>      Java 21, Spring Boot 3, PostgreSQL, Docker, Flyway\n<span style="color:var(--accent2)">ai/llm:</span>       LangChain, Claude API, AI Agents, Prompt Engineering\n<span style="color:var(--accent2)">architecture:</span> Hexagonal, DDD, Clean Architecture, Microservices\n<span style="color:var(--accent2)">practices:</span>    JUnit 5, GitHub Actions, Linux, REST APIs`,
+  projects: () => `<span style="color:var(--accent2)">Boardly</span>        — Task mgmt API · Java 17 · Spring Boot · JWT\n<span style="color:var(--accent2)">FitCheck</span>       — AI fitness app · Claude API · Node.js\n<span style="color:var(--accent2)">LangChain+Anthropic</span> — AI agents · Python · LangChain\n<span style="color:var(--accent2)">Sulav Sushi Bar</span> — Production site · sulavsushibar.pt`,
+  roadmap: () => `<span style="color:#22c55e">✅ done:</span>   Java · Spring Boot · Hexagonal Arch · DDD · Claude API\n<span style="color:var(--accent2)">🔄 wip:</span>    Agentic Workflows · RAG systems · Observability\n<span style="color:var(--text3)">🎯 next:</span>   AWS · Distributed systems · AI Platform Engineering`,
+  contact: () => `email:    eversonrubira@gmail.com\nlinkedin: linkedin.com/in/eversonrubira\ngithub:   github.com/EversonRubira\nsite:     eversonrubira.github.io`,
   clear: () => { termOutput.innerHTML = ''; return null; }
 };
 function termPrint(text, cls='') {
