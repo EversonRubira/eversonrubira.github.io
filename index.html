@@ -485,15 +485,15 @@ footer{background:var(--bg1);border-top:1px solid var(--line);padding:20px 32px}
 /* ── TERMINAL BUTTON ── */
 #term-btn{
   position:fixed;bottom:28px;right:28px;z-index:800;
-  width:44px;height:44px;border-radius:8px;
-  background:var(--bg3);border:1px solid rgba(255,255,255,0.18);
-  color:var(--text);font-family:var(--mono);font-size:1rem;
+  width:52px;height:52px;border-radius:10px;
+  background:var(--accent);border:1px solid var(--accent);
+  color:#fff;font-family:var(--mono);font-size:1.05rem;font-weight:500;
   display:flex;align-items:center;justify-content:center;
   transition:all 0.2s;
-  box-shadow:0 2px 12px rgba(0,0,0,0.4);
+  box-shadow:0 4px 20px rgba(37,99,235,0.45);
 }
-#term-btn:hover{border-color:var(--accent);color:var(--accent);box-shadow:0 0 0 3px rgba(37,99,235,0.18)}
-[data-theme="light"] #term-btn{background:#fff;border-color:rgba(0,0,0,0.18);box-shadow:0 2px 12px rgba(0,0,0,0.12)}
+#term-btn:hover{background:#1d4ed8;border-color:#1d4ed8;box-shadow:0 4px 28px rgba(37,99,235,0.6);transform:translateY(-1px)}
+[data-theme="light"] #term-btn{box-shadow:0 4px 20px rgba(37,99,235,0.35)}
 #term-cursor{animation:blink 1s step-end infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
 
@@ -1817,14 +1817,15 @@ const termOverlay = document.getElementById('term-overlay');
 const termInput = document.getElementById('term-input');
 const termOutput = document.getElementById('term-output');
 const termCmds = {
-  help: () => `<span style="color:var(--accent2)">available commands:</span>\n  help · about · trajectory · stack · projects · roadmap · contact · clear`,
+  help: () => `<span style="color:var(--accent2)">available commands:</span>\n  help · about · trajectory · stack · projects · roadmap · contact · clear · exit`,
   about: () => `Everson Rubira — Backend Engineer · AI Systems\nBuilding AI-powered systems with Java.\nSpring Boot · LLMs · Agentic AI · Hexagonal Architecture\nSeixal / Lisbon, Portugal · Available now`,
   trajectory: () => `<span style="color:var(--accent2)">01</span> Operations      → Process Systems\n<span style="color:var(--accent2)">02</span> Intl Trade      → Global Systems\n<span style="color:var(--accent2)">03</span> Trust & Safety  → Risk Systems\n<span style="color:var(--accent2)">04</span> Software Eng.   → Software Systems\n<span style="color:var(--accent2)">05</span> Applied AI      → Intelligent Systems  <span style="color:#22c55e">● now</span>`,
   stack: () => `<span style="color:var(--accent2)">backend:</span>      Java 21, Spring Boot 3, PostgreSQL, Docker, Flyway\n<span style="color:var(--accent2)">ai/llm:</span>       LangChain, Claude API, AI Agents, Prompt Engineering\n<span style="color:var(--accent2)">architecture:</span> Hexagonal, DDD, Clean Architecture, Microservices\n<span style="color:var(--accent2)">practices:</span>    JUnit 5, GitHub Actions, Linux, REST APIs`,
   projects: () => `<span style="color:var(--accent2)">Boardly</span>        — Task mgmt API · Java 17 · Spring Boot · JWT\n<span style="color:var(--accent2)">FitCheck</span>       — AI fitness app · Claude API · Node.js\n<span style="color:var(--accent2)">LangChain+Anthropic</span> — AI agents · Python · LangChain\n<span style="color:var(--accent2)">Sulav Sushi Bar</span> — Production site · sulavsushibar.pt`,
   roadmap: () => `<span style="color:#22c55e">✅ done:</span>   Java · Spring Boot · Hexagonal Arch · DDD · Claude API\n<span style="color:var(--accent2)">🔄 wip:</span>    Agentic Workflows · RAG systems · Observability\n<span style="color:var(--text3)">🎯 next:</span>   AWS · Distributed systems · AI Platform Engineering`,
   contact: () => `email:    eversonrubira@gmail.com\nlinkedin: linkedin.com/in/eversonrubira\ngithub:   github.com/EversonRubira\nsite:     eversonrubira.github.io`,
-  clear: () => { termOutput.innerHTML = ''; return null; }
+  clear: () => { termOutput.innerHTML = ''; return null; },
+  exit: () => { setTimeout(() => termOverlay.classList.remove('open'), 180); return `<span style="color:var(--text3)">session ended. see you around.</span>`; }
 };
 function termPrint(text, cls='') {
   if (text === null) return;
