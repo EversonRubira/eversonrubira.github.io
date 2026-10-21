@@ -742,7 +742,6 @@ footer{background:var(--bg1);border-top:1px solid var(--line);padding:20px 32px}
         <svg class="i-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
       </button>
       <a href="cv.html" target="_blank" class="nav-cv-btn" data-i18n="nav-cv">cv</a>
-      <a href="#contacto" class="nav-hire-btn" data-i18n="nav-hire">hire me</a>
       <button class="ham" id="ham" aria-label="Menu"><span></span><span></span><span></span></button>
     </div>
   </div>
@@ -756,7 +755,6 @@ footer{background:var(--bg1);border-top:1px solid var(--line);padding:20px 32px}
     <a href="#formacao" data-i18n="nav-formacao">education</a>
     <a href="#contacto" data-i18n="nav-contacto">contact</a>
     <a href="cv.html" target="_blank">cv</a>
-    <a href="#contacto" class="nav-hire-btn" data-i18n="nav-hire" style="text-align:center;border-radius:var(--radius)">hire me</a>
   </div>
 </nav>
 
@@ -1817,13 +1815,20 @@ const termOverlay = document.getElementById('term-overlay');
 const termInput = document.getElementById('term-input');
 const termOutput = document.getElementById('term-output');
 const termCmds = {
-  help: () => `<span style="color:var(--accent2)">available commands:</span>\n  help · about · trajectory · stack · projects · roadmap · contact · clear · exit`,
+  help: () => `<span style="color:var(--accent2)">available commands:</span>\n  help · about · trajectory · stack · projects · roadmap · contact · hire · clear · exit`,
   about: () => `Everson Rubira — Backend Engineer · AI Systems\nBuilding AI-powered systems with Java.\nSpring Boot · LLMs · Agentic AI · Hexagonal Architecture\nSeixal / Lisbon, Portugal · Available now`,
   trajectory: () => `<span style="color:var(--accent2)">01</span> Operations      → Process Systems\n<span style="color:var(--accent2)">02</span> Intl Trade      → Global Systems\n<span style="color:var(--accent2)">03</span> Trust & Safety  → Risk Systems\n<span style="color:var(--accent2)">04</span> Software Eng.   → Software Systems\n<span style="color:var(--accent2)">05</span> Applied AI      → Intelligent Systems  <span style="color:#22c55e">● now</span>`,
   stack: () => `<span style="color:var(--accent2)">backend:</span>      Java 21, Spring Boot 3, PostgreSQL, Docker, Flyway\n<span style="color:var(--accent2)">ai/llm:</span>       LangChain, Claude API, AI Agents, Prompt Engineering\n<span style="color:var(--accent2)">architecture:</span> Hexagonal, DDD, Clean Architecture, Microservices\n<span style="color:var(--accent2)">practices:</span>    JUnit 5, GitHub Actions, Linux, REST APIs`,
   projects: () => `<span style="color:var(--accent2)">Boardly</span>        — Task mgmt API · Java 17 · Spring Boot · JWT\n<span style="color:var(--accent2)">FitCheck</span>       — AI fitness app · Claude API · Node.js\n<span style="color:var(--accent2)">LangChain+Anthropic</span> — AI agents · Python · LangChain\n<span style="color:var(--accent2)">Sulav Sushi Bar</span> — Production site · sulavsushibar.pt`,
   roadmap: () => `<span style="color:#22c55e">✅ done:</span>   Java · Spring Boot · Hexagonal Arch · DDD · Claude API\n<span style="color:var(--accent2)">🔄 wip:</span>    Agentic Workflows · RAG systems · Observability\n<span style="color:var(--text3)">🎯 next:</span>   AWS · Distributed systems · AI Platform Engineering`,
   contact: () => `email:    eversonrubira@gmail.com\nlinkedin: linkedin.com/in/eversonrubira\ngithub:   github.com/EversonRubira\nsite:     eversonrubira.github.io`,
+  hire: () => {
+    setTimeout(() => {
+      const el = document.getElementById('term-hire-cta');
+      if (el) el.style.opacity = '1';
+    }, 80);
+    return `<div id="term-hire-cta" style="opacity:0;transition:opacity 0.5s ease;margin:4px 0;padding:16px 20px;border:1px solid rgba(37,99,235,0.45);border-radius:8px;background:rgba(37,99,235,0.08);backdrop-filter:blur(8px)"><div style="font-family:var(--mono);font-size:0.7rem;color:var(--accent2);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:8px">Available for new opportunities</div><div style="font-size:0.92rem;font-weight:600;color:var(--text);margin-bottom:4px">Backend Engineer · AI Systems</div><div style="font-size:0.8rem;color:var(--text3);margin-bottom:14px">Java · Spring Boot · LLMs · Agentic AI · Portugal / Remote</div><div style="display:flex;gap:10px;flex-wrap:wrap"><a href="mailto:eversonrubira@gmail.com" style="font-family:var(--mono);font-size:0.72rem;color:#fff;background:var(--accent);padding:6px 14px;border-radius:5px;text-decoration:none;transition:background 0.2s" onmouseover="this.style.background='#1d4ed8'" onmouseout="this.style.background='var(--accent)'">send email →</a><a href="https://linkedin.com/in/eversonrubira" target="_blank" style="font-family:var(--mono);font-size:0.72rem;color:var(--accent2);border:1px solid rgba(37,99,235,0.35);padding:6px 14px;border-radius:5px;text-decoration:none">linkedin ↗</a></div></div>`;
+  },
   clear: () => { termOutput.innerHTML = ''; return null; },
   exit: () => { setTimeout(() => termOverlay.classList.remove('open'), 180); return `<span style="color:var(--text3)">session ended. see you around.</span>`; }
 };
