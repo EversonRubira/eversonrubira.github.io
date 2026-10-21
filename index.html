@@ -10,7 +10,7 @@
 <meta property="og:image" content="https://eversonrubira.github.io/foto-perfil%20(2).jpeg">
 <meta property="og:url" content="https://eversonrubira.github.io">
 <meta property="og:type" content="website">
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230B0F19'/%3E%3Ctext x='6' y='22' font-family='monospace' font-weight='700' font-size='18' fill='%232563EB'%3EE%3C/text%3E%3C/svg%3E">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230B0D0F'/%3E%3Ctext x='6' y='22' font-family='monospace' font-weight='700' font-size='18' fill='%23D97757'%3EE%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -23,15 +23,15 @@ img{display:block}
 button{cursor:pointer;font-family:inherit;border:none;background:none}
 
 :root{
-  --bg:#0B0F19;
-  --bg1:#111827;
-  --bg2:#0F172A;
-  --bg3:#1E293B;
-  --text:#F8FAFC;
-  --text2:#E5E7EB;
-  --text3:#94A3B8;
-  --accent:#2563EB;
-  --accent2:#38BDF8;
+  --bg:#0B0D0F;
+  --bg1:#111214;
+  --bg2:#0E0F11;
+  --bg3:#1C1E21;
+  --text:#F5F2EB;
+  --text2:#E8E5DE;
+  --text3:#8A8680;
+  --accent:#D97757;
+  --accent2:#E8A88E;
   --line:rgba(255,255,255,0.07);
   --line2:rgba(255,255,255,0.04);
   --sans:'Inter',system-ui,sans-serif;
@@ -44,7 +44,7 @@ body{
   font-family:var(--sans);background:var(--bg);color:var(--text2);
   line-height:1.6;overflow-x:hidden;
   background-image:
-    radial-gradient(ellipse 80% 60% at 20% -10%, rgba(37,99,235,0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 80% 60% at 20% -10%, rgba(217,119,87,0.08) 0%, transparent 60%),
     radial-gradient(ellipse 60% 50% at 85% 30%, rgba(56,189,248,0.04) 0%, transparent 55%);
 }
 
@@ -84,10 +84,10 @@ nav{
 .nav-cv-btn:hover{border-color:var(--accent);color:var(--accent)}
 .nav-hire-btn{
   font-size:0.8rem;font-weight:500;color:var(--accent);
-  background:transparent;border:1px solid rgba(37,99,235,0.35);border-radius:var(--radius);
+  background:transparent;border:1px solid rgba(217,119,87,0.35);border-radius:var(--radius);
   padding:7px 16px;transition:all 0.2s;letter-spacing:0.01em;
 }
-.nav-hire-btn:hover{border-color:var(--accent);background:rgba(37,99,235,0.06)}
+.nav-hire-btn:hover{border-color:var(--accent);background:rgba(217,119,87,0.06)}
 .ham{display:none;flex-direction:column;gap:5px;padding:4px}
 .ham span{display:block;width:22px;height:1.5px;background:var(--text3);transition:all 0.3s}
 .mob-menu{
@@ -125,7 +125,7 @@ nav{
 .hero-glow{
   position:absolute;top:-20%;left:50%;transform:translateX(-50%);
   width:800px;height:600px;
-  background:radial-gradient(ellipse at center, rgba(37,99,235,0.12) 0%, transparent 70%);
+  background:radial-gradient(ellipse at center, rgba(217,119,87,0.12) 0%, transparent 70%);
   pointer-events:none;
 }
 .hero-inner{
@@ -181,7 +181,7 @@ nav{
   transition:background 0.2s, transform 0.2s, box-shadow 0.2s;
   box-shadow:0 0 0 0 rgba(37,99,235,0);
 }
-.btn-primary:hover{background:#1d4ed8;transform:translateY(-1px);box-shadow:0 8px 24px rgba(37,99,235,0.3)}
+.btn-primary:hover{background:#C4623D;transform:translateY(-1px);box-shadow:0 8px 24px rgba(217,119,87,0.3)}
 .btn-ghost{
   display:inline-flex;align-items:center;gap:8px;
   border:1px solid var(--line);color:var(--text2);
@@ -286,7 +286,7 @@ nav{
   background:var(--bg2);border:2px solid var(--line);
   margin-bottom:16px;z-index:1;transition:border-color 0.3s,background 0.3s;
 }
-.tl-node.active .tl-dot{background:var(--accent);border-color:var(--accent);box-shadow:0 0 12px rgba(37,99,235,0.5)}
+.tl-node.active .tl-dot{background:var(--accent);border-color:var(--accent);box-shadow:0 0 12px rgba(217,119,87,0.5)}
 .tl-arrow{
   position:absolute;top:26px;right:-8px;color:var(--text3);
   font-size:0.75rem;z-index:2;
@@ -302,7 +302,7 @@ nav{
 .sec-num{
   font-family:var(--mono);font-size:0.65rem;color:var(--accent);
   letter-spacing:0.12em;opacity:0.7;
-  background:rgba(37,99,235,0.08);border:1px solid rgba(37,99,235,0.2);
+  background:rgba(217,119,87,0.08);border:1px solid rgba(217,119,87,0.2);
   padding:4px 10px;border-radius:4px;
 }
 .sec-title{font-size:clamp(1.6rem,3vw,2.2rem);font-weight:700;color:var(--text);letter-spacing:-0.03em}
@@ -316,14 +316,14 @@ nav{
   font-style:italic;
   padding:28px 28px 28px 32px;
   border-left:3px solid var(--accent);
-  background:rgba(37,99,235,0.04);
+  background:rgba(217,119,87,0.04);
   border-radius:0 8px 8px 0;
   position:relative;
 }
 .sobre-quote::before{
   content:'\201C';
   position:absolute;top:-12px;left:20px;
-  font-size:5rem;color:rgba(37,99,235,0.15);
+  font-size:5rem;color:rgba(217,119,87,0.15);
   font-family:Georgia,serif;line-height:1;
 }
 .sobre-body p{color:var(--text2);margin-bottom:16px;font-size:0.95rem;line-height:1.8}
@@ -359,7 +359,7 @@ nav{
   font-family:var(--mono);font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;
   padding:2px 8px;border-radius:3px;
 }
-.exp-status.active{background:rgba(37,99,235,0.15);color:var(--accent2)}
+.exp-status.active{background:rgba(217,119,87,0.15);color:var(--accent2)}
 .exp-status.done{background:rgba(148,163,184,0.1);color:var(--text3)}
 .exp-role{font-size:0.82rem;color:var(--text3);margin-bottom:12px}
 .exp-bullets{list-style:none;display:flex;flex-direction:column;gap:4px;margin-bottom:12px}
@@ -383,7 +383,7 @@ nav{
   transition:transform 0.3s ease;
 }
 .proj-card:hover::before{transform:scaleX(1)}
-.proj-card:hover{border-color:rgba(37,99,235,0.3);transform:translateY(-3px);box-shadow:0 16px 40px rgba(0,0,0,0.3)}
+.proj-card:hover{border-color:rgba(217,119,87,0.3);transform:translateY(-3px);box-shadow:0 16px 40px rgba(0,0,0,0.3)}
 .proj-id{font-family:var(--mono);font-size:0.65rem;color:var(--text3);letter-spacing:0.1em}
 .proj-name{font-size:1.15rem;font-weight:700;color:var(--text);letter-spacing:-0.01em;margin-bottom:6px}
 .proj-desc{font-size:0.85rem;color:var(--text3);line-height:1.6;flex:1}
@@ -436,7 +436,7 @@ nav{
   font-size:0.78rem;color:var(--text2);background:var(--bg2);
   border:1px solid var(--line);border-radius:4px;padding:4px 10px;
 }
-.stack-pill.core{border-color:rgba(37,99,235,0.3);color:var(--text)}
+.stack-pill.core{border-color:rgba(217,119,87,0.3);color:var(--text)}
 
 /* ── EDUCATION ── */
 #formacao{background:var(--bg2);border-top:1px solid var(--line)}
@@ -483,50 +483,16 @@ footer{background:var(--bg1);border-top:1px solid var(--line);padding:20px 32px}
 .foot-right:hover{color:var(--text2)}
 
 /* ── TERMINAL BUTTON ── */
-#term-btn{
+#roadmap-fab{
   position:fixed;bottom:28px;right:28px;z-index:800;
-  width:52px;height:52px;border-radius:10px;
-  background:var(--accent);border:1px solid var(--accent);
-  color:#fff;font-family:var(--mono);font-size:1.05rem;font-weight:500;
-  display:flex;align-items:center;justify-content:center;
-  transition:all 0.2s;
-  box-shadow:0 4px 20px rgba(37,99,235,0.45);
+  font-family:var(--mono);font-size:0.7rem;font-weight:500;letter-spacing:0.06em;
+  color:var(--text2);background:var(--bg3);
+  border:1px solid var(--line);border-radius:var(--radius);
+  padding:10px 18px;transition:all 0.2s;
+  box-shadow:0 2px 16px rgba(0,0,0,0.35);
 }
-#term-btn:hover{background:#1d4ed8;border-color:#1d4ed8;box-shadow:0 4px 28px rgba(37,99,235,0.6);transform:translateY(-1px)}
-[data-theme="light"] #term-btn{box-shadow:0 4px 20px rgba(37,99,235,0.35)}
-#term-cursor{animation:blink 1s step-end infinite}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
-
-/* ── TERMINAL OVERLAY ── */
-#term-overlay{
-  display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);
-  backdrop-filter:blur(4px);z-index:9000;
-  align-items:center;justify-content:center;padding:24px;
-}
-#term-overlay.open{display:flex}
-#term-modal{
-  background:var(--bg1);border:1px solid var(--line);border-radius:12px;
-  width:100%;max-width:680px;max-height:70vh;display:flex;flex-direction:column;
-  overflow:hidden;
-}
-#term-titlebar{
-  display:flex;align-items:center;gap:8px;
-  padding:12px 16px;border-bottom:1px solid var(--line);
-  background:var(--bg2);
-}
-.dot{width:12px;height:12px;border-radius:50%}
-.dot-r{background:#ff5f57}.dot-y{background:#febc2e}.dot-g{background:#28c840}
-#term-titlebar span{font-family:var(--mono);font-size:0.75rem;color:var(--text3);margin-left:8px}
-#term-output{
-  flex:1;overflow-y:auto;padding:16px;
-  font-family:var(--mono);font-size:0.8rem;color:var(--text2);line-height:1.7;
-}
-#term-inputrow{display:flex;align-items:center;gap:8px;padding:10px 16px;border-top:1px solid var(--line)}
-#term-prompt{font-family:var(--mono);font-size:0.78rem;color:var(--accent2);white-space:nowrap}
-#term-input{
-  flex:1;background:none;border:none;outline:none;
-  font-family:var(--mono);font-size:0.78rem;color:var(--text);caret-color:var(--accent2);
-}
+#roadmap-fab:hover{border-color:var(--accent);color:var(--accent);background:var(--bg1);transform:translateY(-1px)}
+[data-theme="light"] #roadmap-fab{box-shadow:0 2px 12px rgba(0,0,0,0.1)}
 
 /* ── BTT ── */
 #btt{
@@ -546,26 +512,26 @@ footer{background:var(--bg1);border-top:1px solid var(--line);padding:20px 32px}
 
 /* ── LIGHT THEME ── */
 [data-theme="light"]{
-  --bg:#F8FAFC;
-  --bg1:#F1F5F9;
-  --bg2:#E2E8F0;
-  --bg3:#CBD5E1;
-  --text:#0F172A;
-  --text2:#1E293B;
-  --text3:#64748B;
-  --accent:#2563EB;
-  --accent2:#0284C7;
+  --bg:#F8F5F0;
+  --bg1:#F0EDE8;
+  --bg2:#E8E4DE;
+  --bg3:#D8D4CE;
+  --text:#1A1714;
+  --text2:#2E2B27;
+  --text3:#6B6760;
+  --accent:#C4623D;
+  --accent2:#B8855A;
   --line:rgba(0,0,0,0.08);
   --line2:rgba(0,0,0,0.04);
 }
 [data-theme="light"] body{
   background-image:
-    radial-gradient(ellipse 80% 60% at 20% -10%,rgba(37,99,235,0.06) 0%,transparent 60%),
+    radial-gradient(ellipse 80% 60% at 20% -10%,rgba(217,119,87,0.06) 0%,transparent 60%),
     radial-gradient(ellipse 60% 50% at 85% 30%,rgba(2,132,199,0.04) 0%,transparent 55%);
 }
 [data-theme="light"] nav{background:rgba(248,250,252,0.88)}
 [data-theme="light"] .hero-photo{border-color:rgba(0,0,0,0.1)}
-[data-theme="light"] .sobre-quote{background:rgba(37,99,235,0.04)}
+[data-theme="light"] .sobre-quote{background:rgba(217,119,87,0.04)}
 [data-theme="light"] .proj-card,[data-theme="light"] .highlight-card,
 [data-theme="light"] .stack-cat,[data-theme="light"] .fact-table,
 [data-theme="light"] .princ-list,[data-theme="light"] .exp-list,
@@ -574,8 +540,6 @@ footer{background:var(--bg1);border-top:1px solid var(--line);padding:20px 32px}
 }
 [data-theme="light"] .proj-card:hover{box-shadow:0 16px 40px rgba(0,0,0,0.08)}
 [data-theme="light"] .metric-cell{background:var(--bg1)}
-[data-theme="light"] #term-modal{background:var(--bg1)}
-[data-theme="light"] #term-input{color:var(--text)}
 [data-theme="light"] .highlight-card{background:var(--bg1)}
 [data-theme="light"] .princ-item{background:var(--bg2)}
 [data-theme="light"] .princ-item:hover{background:var(--bg1)}
@@ -639,8 +603,8 @@ footer{background:var(--bg1);border-top:1px solid var(--line);padding:20px 32px}
 .jt-card.vis{opacity:1;transform:none}
 .jt-node:not(.active):hover .jt-card{border-color:rgba(255,255,255,0.12);transform:translateY(-3px)}
 .jt-node.active .jt-card{
-  border-color:rgba(37,99,235,0.4);
-  box-shadow:0 0 0 1px rgba(37,99,235,0.08),0 8px 32px rgba(37,99,235,0.14),inset 0 0 0 1px rgba(37,99,235,0.04);
+  border-color:rgba(217,119,87,0.4);
+  box-shadow:0 0 0 1px rgba(217,119,87,0.08),0 8px 32px rgba(217,119,87,0.14),inset 0 0 0 1px rgba(217,119,87,0.04);
 }
 [data-theme="light"] .jt-card{background:rgba(248,250,252,0.9)}
 [data-theme="light"] .jt-node.active .jt-card{background:rgba(239,246,255,0.95)}
@@ -650,7 +614,7 @@ footer{background:var(--bg1);border-top:1px solid var(--line);padding:20px 32px}
 .jt-desc{font-size:0.76rem;color:var(--text3);line-height:1.55;margin-bottom:10px}
 .jt-chips{display:flex;flex-wrap:wrap;gap:4px}
 .jt-chips span{font-family:var(--mono);font-size:0.58rem;color:var(--text3);border:1px solid var(--line);border-radius:3px;padding:2px 6px;letter-spacing:0.02em}
-.jt-node.active .jt-chips span{border-color:rgba(37,99,235,0.3);color:var(--accent2)}
+.jt-node.active .jt-chips span{border-color:rgba(217,119,87,0.3);color:var(--accent2)}
 .jt-dot{
   width:12px;height:12px;border-radius:50%;flex-shrink:0;
   background:var(--bg1);border:2px solid rgba(255,255,255,0.15);
@@ -660,7 +624,7 @@ footer{background:var(--bg1);border-top:1px solid var(--line);padding:20px 32px}
 .jt-node:not(.active):hover .jt-dot{border-color:var(--text3)}
 .jt-node.active .jt-dot{
   width:16px;height:16px;background:var(--accent);border-color:var(--accent);
-  box-shadow:0 0 0 5px rgba(37,99,235,0.14),0 0 20px rgba(37,99,235,0.45);
+  box-shadow:0 0 0 5px rgba(217,119,87,0.14),0 0 20px rgba(217,119,87,0.45);
 }
 .jt-era{font-size:0.7rem;font-weight:600;color:var(--text3);text-align:center;letter-spacing:0.04em;line-height:1.4;margin-bottom:14px}
 .jt-node.active .jt-era{color:var(--accent2)}
@@ -673,7 +637,7 @@ footer{background:var(--bg1);border-top:1px solid var(--line);padding:20px 32px}
   background:var(--bg1);border:1px solid var(--line);border-radius:var(--radius);
   padding:24px 20px;transition:border-color 0.25s,transform 0.25s;
 }
-.vp-card:hover{border-color:rgba(37,99,235,0.4);transform:translateY(-3px)}
+.vp-card:hover{border-color:rgba(217,119,87,0.4);transform:translateY(-3px)}
 .vp-icon{font-family:var(--mono);font-size:1.2rem;color:var(--accent);margin-bottom:12px;display:block}
 .vp-title{font-size:0.92rem;font-weight:600;color:var(--text);margin-bottom:6px}
 .vp-body{font-size:0.8rem;color:var(--text3);line-height:1.65}
@@ -787,7 +751,7 @@ footer{background:var(--bg1);border-top:1px solid var(--line);padding:20px 32px}
       <p class="hero-headline reveal" data-i18n="hero-headline">Building AI-powered systems with Java.</p>
       <p class="hero-sub reveal" data-i18n="hero-sub">Backend Engineer focused on Spring Boot, APIs, LLMs and Agentic AI.</p>
       <div class="hero-actions reveal">
-        <a href="#projetos" class="btn-primary" data-i18n="hero-btn-proj">View Projects →</a>
+        <a href="#projetos" class="btn-primary" data-i18n="hero-btn-proj">View Projects</a>
         <a href="#roadmap" class="btn-ghost" data-i18n="hero-btn-roadmap">Engineering Roadmap</a>
         <button class="btn-share" id="share-btn" title="Partilhar perfil">
           <svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
@@ -1424,25 +1388,11 @@ footer{background:var(--bg1);border-top:1px solid var(--line);padding:20px 32px}
 <footer>
   <div class="foot-inner">
     <span class="foot-left" data-i18n="foot-left">© 2026 Everson Rubira · Seixal, Portugal</span>
-    <a href="cv.html" target="_blank" class="foot-right" data-i18n="foot-right">ver cv completo →</a>
+    <a href="cv.html" target="_blank" class="foot-right" data-i18n="foot-right">ver cv completo</a>
   </div>
 </footer>
 
-<button id="term-btn" aria-label="Abrir terminal">&gt;<span id="term-cursor">_</span></button>
-
-<div id="term-overlay" role="dialog" aria-modal="true" aria-label="Terminal">
-  <div id="term-modal">
-    <div id="term-titlebar">
-      <div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div>
-      <span>everson@portfolio:~</span>
-    </div>
-    <div id="term-output"></div>
-    <div id="term-inputrow">
-      <span id="term-prompt">everson@portfolio:~$</span>
-      <input id="term-input" type="text" autocomplete="off" spellcheck="false" aria-label="Comando">
-    </div>
-  </div>
-</div>
+<button id="roadmap-fab" onclick="document.getElementById('roadmap').scrollIntoView({behavior:'smooth'})">Engineering Roadmap</button>
 
 <button id="btt" aria-label="Voltar ao topo">
   <svg viewBox="0 0 24 24"><path d="M18 15l-6-6-6 6"/></svg>
@@ -1471,7 +1421,7 @@ const i18n = {
     'hero-status-live':'Disponível agora',
     'hero-headline':'Backend Engineer a construir sistemas potenciados por IA.',
     'hero-sub':'12 anos de complexidade operacional. Agora a transformar essa experiência em software fiável e inteligente.',
-    'hero-btn-proj':'Ver Projetos →','hero-btn-roadmap':'Engineering Roadmap',
+    'hero-btn-proj':'Ver Projetos','hero-btn-roadmap':'Engineering Roadmap',
     'metric-years':'Anos de Experiência','metric-projects-built':'Projetos Entregues',
     'metric-regions':'Regiões Globais','metric-llm':'Integrações LLM',
     'metric-projects':'Sistemas em Produção',
@@ -1600,7 +1550,7 @@ const i18n = {
     'contact-note':'Disponível para começar imediatamente.',
     'contact-qr-label':'aponta o telefone →',
     'foot-left':'© 2026 Everson Rubira · Seixal, Portugal',
-    'foot-right':'ver cv completo →',
+    'foot-right':'ver cv completo',
   },
   en: {
     'nav-sobre':'about','nav-journey':'trajectory','nav-exp':'exp',
@@ -1610,7 +1560,7 @@ const i18n = {
     'hero-status-live':'Available now',
     'hero-headline':'Backend Engineer building AI-powered systems.',
     'hero-sub':'12 years of operational complexity. Now turning that experience into reliable, intelligent software.',
-    'hero-btn-proj':'View Projects →','hero-btn-roadmap':'Engineering Roadmap',
+    'hero-btn-proj':'View Projects','hero-btn-roadmap':'Engineering Roadmap',
     'metric-years':'Years Experience','metric-projects-built':'Projects Shipped',
     'metric-regions':'Global Regions','metric-llm':'LLM Integrations',
     'metric-projects':'Production Systems',
@@ -1739,7 +1689,7 @@ const i18n = {
     'contact-note':'Available to start immediately.',
     'contact-qr-label':'point your phone →',
     'foot-left':'© 2026 Everson Rubira · Seixal, Portugal',
-    'foot-right':'view full cv →',
+    'foot-right':'view full cv',
   }
 };
 
@@ -1810,48 +1760,6 @@ document.getElementById('share-btn').addEventListener('click', async () => {
 });
 
 // ── TERMINAL ──
-const termBtn = document.getElementById('term-btn');
-const termOverlay = document.getElementById('term-overlay');
-const termInput = document.getElementById('term-input');
-const termOutput = document.getElementById('term-output');
-const termCmds = {
-  help: () => `<span style="color:var(--accent2)">available commands:</span>\n  help · about · trajectory · stack · projects · roadmap · contact · hire · clear · exit`,
-  about: () => `Everson Rubira — Backend Engineer · AI Systems\nBuilding AI-powered systems with Java.\nSpring Boot · LLMs · Agentic AI · Hexagonal Architecture\nSeixal / Lisbon, Portugal · Available now`,
-  trajectory: () => `<span style="color:var(--accent2)">01</span> Operations      → Process Systems\n<span style="color:var(--accent2)">02</span> Intl Trade      → Global Systems\n<span style="color:var(--accent2)">03</span> Trust & Safety  → Risk Systems\n<span style="color:var(--accent2)">04</span> Software Eng.   → Software Systems\n<span style="color:var(--accent2)">05</span> Applied AI      → Intelligent Systems  <span style="color:#22c55e">● now</span>`,
-  stack: () => `<span style="color:var(--accent2)">backend:</span>      Java 21, Spring Boot 3, PostgreSQL, Docker, Flyway\n<span style="color:var(--accent2)">ai/llm:</span>       LangChain, Claude API, AI Agents, Prompt Engineering\n<span style="color:var(--accent2)">architecture:</span> Hexagonal, DDD, Clean Architecture, Microservices\n<span style="color:var(--accent2)">practices:</span>    JUnit 5, GitHub Actions, Linux, REST APIs`,
-  projects: () => `<span style="color:var(--accent2)">Boardly</span>        — Task mgmt API · Java 17 · Spring Boot · JWT\n<span style="color:var(--accent2)">FitCheck</span>       — AI fitness app · Claude API · Node.js\n<span style="color:var(--accent2)">LangChain+Anthropic</span> — AI agents · Python · LangChain\n<span style="color:var(--accent2)">Sulav Sushi Bar</span> — Production site · sulavsushibar.pt`,
-  roadmap: () => `<span style="color:#22c55e">✅ done:</span>   Java · Spring Boot · Hexagonal Arch · DDD · Claude API\n<span style="color:var(--accent2)">🔄 wip:</span>    Agentic Workflows · RAG systems · Observability\n<span style="color:var(--text3)">🎯 next:</span>   AWS · Distributed systems · AI Platform Engineering`,
-  contact: () => `email:    eversonrubira@gmail.com\nlinkedin: linkedin.com/in/eversonrubira\ngithub:   github.com/EversonRubira\nsite:     eversonrubira.github.io`,
-  hire: () => {
-    setTimeout(() => {
-      const el = document.getElementById('term-hire-cta');
-      if (el) el.style.opacity = '1';
-    }, 80);
-    return `<div id="term-hire-cta" style="opacity:0;transition:opacity 0.5s ease;margin:4px 0;padding:16px 20px;border:1px solid rgba(37,99,235,0.45);border-radius:8px;background:rgba(37,99,235,0.08);backdrop-filter:blur(8px)"><div style="font-family:var(--mono);font-size:0.7rem;color:var(--accent2);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:8px">Available for new opportunities</div><div style="font-size:0.92rem;font-weight:600;color:var(--text);margin-bottom:4px">Backend Engineer · AI Systems</div><div style="font-size:0.8rem;color:var(--text3);margin-bottom:14px">Java · Spring Boot · LLMs · Agentic AI · Portugal / Remote</div><div style="display:flex;gap:10px;flex-wrap:wrap"><a href="mailto:eversonrubira@gmail.com" style="font-family:var(--mono);font-size:0.72rem;color:#fff;background:var(--accent);padding:6px 14px;border-radius:5px;text-decoration:none;transition:background 0.2s" onmouseover="this.style.background='#1d4ed8'" onmouseout="this.style.background='var(--accent)'">send email →</a><a href="https://linkedin.com/in/eversonrubira" target="_blank" style="font-family:var(--mono);font-size:0.72rem;color:var(--accent2);border:1px solid rgba(37,99,235,0.35);padding:6px 14px;border-radius:5px;text-decoration:none">linkedin ↗</a></div></div>`;
-  },
-  clear: () => { termOutput.innerHTML = ''; return null; },
-  exit: () => { setTimeout(() => termOverlay.classList.remove('open'), 180); return `<span style="color:var(--text3)">session ended. see you around.</span>`; }
-};
-function termPrint(text, cls='') {
-  if (text === null) return;
-  const div = document.createElement('div');
-  div.style.cssText = 'white-space:pre;margin-bottom:8px;' + (cls ? `color:${cls}` : '');
-  div.innerHTML = text;
-  termOutput.appendChild(div);
-  termOutput.scrollTop = termOutput.scrollHeight;
-}
-termBtn.addEventListener('click', () => { termOverlay.classList.toggle('open'); if (termOverlay.classList.contains('open')) { termPrint('<span style="color:var(--accent2)">everson@portfolio</span> — escreve <span style="color:var(--text)">help</span> para começar'); termInput.focus(); } });
-termOverlay.addEventListener('click', e => { if (e.target === termOverlay) termOverlay.classList.remove('open'); });
-termInput.addEventListener('keydown', e => {
-  if (e.key !== 'Enter') return;
-  const cmd = termInput.value.trim().toLowerCase();
-  termInput.value = '';
-  if (!cmd) return;
-  termPrint(`<span style="color:var(--accent2)">everson@portfolio:~$</span> ${cmd}`);
-  const fn = termCmds[cmd];
-  if (fn) termPrint(fn());
-  else termPrint(`comando não encontrado: ${cmd}. Tenta <span style="color:var(--text)">help</span>`);
-});
 
 // ── QR CODE ──
 function initQR() {
