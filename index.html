@@ -486,12 +486,14 @@ footer{background:var(--bg1);border-top:1px solid var(--line);padding:20px 32px}
 #term-btn{
   position:fixed;bottom:28px;right:28px;z-index:800;
   width:44px;height:44px;border-radius:8px;
-  background:var(--bg1);border:1px solid var(--line);
-  color:var(--text2);font-family:var(--mono);font-size:1rem;
+  background:var(--bg3);border:1px solid rgba(255,255,255,0.18);
+  color:var(--text);font-family:var(--mono);font-size:1rem;
   display:flex;align-items:center;justify-content:center;
   transition:all 0.2s;
+  box-shadow:0 2px 12px rgba(0,0,0,0.4);
 }
-#term-btn:hover{border-color:var(--accent);color:var(--accent)}
+#term-btn:hover{border-color:var(--accent);color:var(--accent);box-shadow:0 0 0 3px rgba(37,99,235,0.18)}
+[data-theme="light"] #term-btn{background:#fff;border-color:rgba(0,0,0,0.18);box-shadow:0 2px 12px rgba(0,0,0,0.12)}
 #term-cursor{animation:blink 1s step-end infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
 
