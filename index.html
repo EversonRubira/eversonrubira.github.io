@@ -691,6 +691,32 @@ footer{background:var(--bg1);border-top:1px solid var(--line);padding:20px 32px}
   .tl-node{position:relative}
   .tl-arrow{display:none}
 }
+
+/* ── AI ENGINEERING JOURNEY ─────────────────────────────────── */
+.aj-card{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:28px 32px;max-width:600px}
+@media(max-width:600px){.aj-card{padding:18px 16px}}
+.aj-skeleton{display:flex;flex-direction:column;gap:12px}
+.aj-sk-line{height:11px;border-radius:4px;width:100%;background:linear-gradient(90deg,var(--bg3) 0%,var(--bg1) 50%,var(--bg3) 100%);background-size:200% 100%;animation:aj-sh 1.4s infinite}
+@keyframes aj-sh{0%{background-position:200% 0}100%{background-position:-200% 0}}
+.aj-track{display:flex;align-items:center;margin-bottom:22px}
+.aj-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0;transition:.3s}
+.aj-dot.done{background:#22c55e}
+.aj-dot.cur{background:var(--accent);box-shadow:0 0 0 3px rgba(217,119,87,.18)}
+.aj-dot.fut{background:transparent;border:1.5px solid var(--text3)}
+.aj-line{flex:1;height:1px;background:var(--line)}
+.aj-line.done{background:rgba(34,197,94,.3)}
+.aj-stats{display:flex;gap:24px;flex-wrap:wrap;margin-bottom:22px;align-items:flex-end}
+.aj-sv{font-family:var(--mono);font-size:1.6rem;font-weight:500;line-height:1;color:var(--text);font-variant-numeric:tabular-nums}
+.aj-sv small{font-size:.85rem;color:var(--text3)}
+.aj-sl{font-family:var(--mono);font-size:.58rem;letter-spacing:.08em;text-transform:uppercase;color:var(--text3);margin-top:3px}
+.aj-kw{font-family:var(--mono);font-size:.58rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:3px}
+.aj-pname{font-size:.9rem;font-weight:600;color:var(--text);margin-bottom:12px;line-height:1.3}
+.aj-nkw{font-family:var(--mono);font-size:.58rem;letter-spacing:.08em;text-transform:uppercase;color:var(--text3);margin-bottom:2px}
+.aj-nname{font-size:.82rem;color:var(--text3)}
+.aj-footer{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;padding-top:16px;border-top:1px solid var(--line);margin-top:20px}
+.aj-sync{font-family:var(--mono);font-size:.6rem;color:var(--text3)}
+.aj-cta{font-family:var(--mono);font-size:.68rem;font-weight:500;letter-spacing:.04em;color:var(--text2);background:var(--bg3);border:1px solid var(--line);border-radius:4px;padding:7px 14px;text-decoration:none;transition:.2s}
+.aj-cta:hover{color:var(--accent);border-color:rgba(217,119,87,.35);background:var(--bg1)}
 </style>
 </head>
 <body>
@@ -1264,45 +1290,29 @@ footer{background:var(--bg1);border-top:1px solid var(--line);padding:20px 32px}
   </div>
 </section>
 
-<!-- ROADMAP -->
+<!-- AI ENGINEERING JOURNEY -->
 <section id="roadmap" style="background:var(--bg2);border-top:1px solid var(--line)">
   <div class="sec-wrap">
     <div class="sec-head reveal">
       <span class="sec-num">[ 06 ]</span>
-      <h2 class="sec-title" data-i18n="sec-roadmap">Engineering Roadmap</h2>
+      <h2 class="sec-title" data-i18n="sec-roadmap">AI Engineering Journey</h2>
       <div class="sec-rule"></div>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px">
-      <div class="stack-cat reveal" style="border-left:3px solid #22c55e">
-        <div class="stack-cat-title" style="color:#22c55e;margin-bottom:16px" data-i18n="rm-done">✅ Completed</div>
-        <ul style="list-style:none;display:flex;flex-direction:column;gap:10px">
-          <li style="font-size:0.82rem;color:var(--text2);display:flex;gap:8px"><span style="color:#22c55e;flex-shrink:0">✓</span><span data-i18n="rm-done-1">Java Foundations (OOP, Collections, Streams, SOLID)</span></li>
-          <li style="font-size:0.82rem;color:var(--text2);display:flex;gap:8px"><span style="color:#22c55e;flex-shrink:0">✓</span><span data-i18n="rm-done-2">Spring Boot 3 — REST APIs, Security, JPA</span></li>
-          <li style="font-size:0.82rem;color:var(--text2);display:flex;gap:8px"><span style="color:#22c55e;flex-shrink:0">✓</span><span data-i18n="rm-done-3">PostgreSQL · Docker · GitHub Actions</span></li>
-          <li style="font-size:0.82rem;color:var(--text2);display:flex;gap:8px"><span style="color:#22c55e;flex-shrink:0">✓</span><span data-i18n="rm-done-4">Hexagonal Architecture + DDD (internship 18/20)</span></li>
-          <li style="font-size:0.82rem;color:var(--text2);display:flex;gap:8px"><span style="color:#22c55e;flex-shrink:0">✓</span><span data-i18n="rm-done-5">AI Integrations (Claude API, LangChain, Groq)</span></li>
-          <li style="font-size:0.82rem;color:var(--text2);display:flex;gap:8px"><span style="color:#22c55e;flex-shrink:0">✓</span><span data-i18n="rm-done-6">Production deployments with real users and live systems</span></li>
-        </ul>
+    <div class="aj-card reveal" id="aj-card">
+      <div class="aj-skeleton" id="aj-sk">
+        <div class="aj-sk-line"></div>
+        <div class="aj-sk-line" style="width:55%"></div>
+        <div class="aj-sk-line" style="width:35%"></div>
       </div>
-      <div class="stack-cat reveal" style="border-left:3px solid var(--accent2)">
-        <div class="stack-cat-title" style="color:var(--accent2);margin-bottom:16px" data-i18n="rm-wip">🔄 In Progress</div>
-        <ul style="list-style:none;display:flex;flex-direction:column;gap:10px">
-          <li style="font-size:0.82rem;color:var(--text2);display:flex;gap:8px"><span style="color:var(--accent2);flex-shrink:0">→</span><span data-i18n="rm-wip-1">Advanced Backend Architecture patterns</span></li>
-          <li style="font-size:0.82rem;color:var(--text2);display:flex;gap:8px"><span style="color:var(--accent2);flex-shrink:0">→</span><span data-i18n="rm-wip-2">Agentic Workflows with LangChain + Claude</span></li>
-          <li style="font-size:0.82rem;color:var(--text2);display:flex;gap:8px"><span style="color:var(--accent2);flex-shrink:0">→</span><span data-i18n="rm-wip-3">RAG Systems (retrieval-augmented generation)</span></li>
-          <li style="font-size:0.82rem;color:var(--text2);display:flex;gap:8px"><span style="color:var(--accent2);flex-shrink:0">→</span><span data-i18n="rm-wip-4">Observability: structured logging, tracing</span></li>
-          <li style="font-size:0.82rem;color:var(--text2);display:flex;gap:8px"><span style="color:var(--accent2);flex-shrink:0">→</span><span data-i18n="rm-wip-5">Performance optimisation on Spring Boot APIs</span></li>
-          <li style="font-size:0.82rem;color:var(--text2);display:flex;gap:8px"><span style="color:var(--accent2);flex-shrink:0">→</span><span data-i18n="rm-wip-6">SDD (Spec-Driven Development)</span></li>
-        </ul>
-      </div>
-      <div class="stack-cat reveal" style="border-left:3px solid var(--text3)">
-        <div class="stack-cat-title" style="margin-bottom:16px" data-i18n="rm-next">🎯 Next Stage</div>
-        <ul style="list-style:none;display:flex;flex-direction:column;gap:10px">
-          <li style="font-size:0.82rem;color:var(--text3);display:flex;gap:8px"><span style="flex-shrink:0">◎</span><span data-i18n="rm-next-1">Cloud Architecture: AWS and Azure</span></li>
-          <li style="font-size:0.82rem;color:var(--text3);display:flex;gap:8px"><span style="flex-shrink:0">◎</span><span data-i18n="rm-next-2">Distributed Systems &amp; microservices at scale</span></li>
-          <li style="font-size:0.82rem;color:var(--text3);display:flex;gap:8px"><span style="flex-shrink:0">◎</span><span data-i18n="rm-next-3">Production AI Systems engineering</span></li>
-          <li style="font-size:0.82rem;color:var(--text3);display:flex;gap:8px"><span style="flex-shrink:0">◎</span><span data-i18n="rm-next-4">AI Platform Engineering</span></li>
-        </ul>
+      <div id="aj-content" hidden>
+        <div class="aj-track" id="aj-track"></div>
+        <div class="aj-stats" id="aj-stats"></div>
+        <div id="aj-phase"></div>
+        <div class="aj-footer">
+          <span class="aj-sync" id="aj-sync"></span>
+          <a href="https://eversonrubira.github.io/roadmap-ia/" target="_blank" rel="noopener"
+             class="aj-cta" data-i18n="aj-cta">Full Roadmap →</a>
+        </div>
       </div>
     </div>
   </div>
@@ -1475,24 +1485,8 @@ const i18n = {
     'tl-eng':'Engenharia de Software','tl-eng-sub':'Java · Spring Boot · Backend',
     'tl-ai':'IA Aplicada','tl-ai-sub':'LLMs · Agentes · Sistemas',
     'sec-sobre':'Sobre','sec-filosofia':'Abordagem de Engenharia',
-    'sec-roadmap':'Engineering Roadmap',
-    'rm-done':'✅ Concluído','rm-wip':'🔄 Em Progresso','rm-next':'🎯 Próxima Fase',
-    'rm-done-1':'Java Foundations (OOP, Collections, Streams, SOLID)',
-    'rm-done-2':'Spring Boot 3: REST APIs, Security, JPA',
-    'rm-done-3':'PostgreSQL · Docker · GitHub Actions',
-    'rm-done-4':'Arquitectura Hexagonal + DDD (estágio 18/20)',
-    'rm-done-5':'Integrações IA (Claude API, LangChain, Groq)',
-    'rm-done-6':'Deploys em produção com utilizadores reais e sistemas vivos',
-    'rm-wip-1':'Padrões avançados de Arquitectura Backend',
-    'rm-wip-2':'Agentic Workflows com LangChain + Claude',
-    'rm-wip-3':'Sistemas RAG (retrieval-augmented generation)',
-    'rm-wip-4':'Observabilidade: logging estruturado, tracing',
-    'rm-wip-5':'Optimização de performance em APIs Spring Boot',
-    'rm-wip-6':'SDD (Spec-Driven Development)',
-    'rm-next-1':'Cloud Architecture: AWS e Azure',
-    'rm-next-2':'Sistemas distribuídos & microserviços à escala',
-    'rm-next-3':'Engenharia de Sistemas de IA em produção',
-    'rm-next-4':'AI Platform Engineering',
+    'sec-roadmap':'AI Engineering Journey',
+    'aj-cta':'Roadmap Completo →',
     'sec-experiencia':'Experiência','sec-projetos':'Projetos',
     'sec-stack':'Stack Técnica','sec-formacao':'Formação & Certificações',
     'sobre-quote':'"12 anos a operar sistemas B2B complexos ensinaram-me a pensar em sistemas. Agora construo-os."',
@@ -1615,24 +1609,8 @@ const i18n = {
     'tl-eng':'Software Engineering','tl-eng-sub':'Java · Spring Boot · Backend',
     'tl-ai':'Applied AI','tl-ai-sub':'LLMs · Agents · Systems',
     'sec-sobre':'About','sec-filosofia':'Engineering Approach',
-    'sec-roadmap':'Engineering Roadmap',
-    'rm-done':'✅ Completed','rm-wip':'🔄 In Progress','rm-next':'🎯 Next Stage',
-    'rm-done-1':'Java Foundations (OOP, Collections, Streams, SOLID)',
-    'rm-done-2':'Spring Boot 3: REST APIs, Security, JPA',
-    'rm-done-3':'PostgreSQL · Docker · GitHub Actions',
-    'rm-done-4':'Hexagonal Architecture + DDD (internship 18/20)',
-    'rm-done-5':'AI Integrations (Claude API, LangChain, Groq)',
-    'rm-done-6':'Production deployments with real users and live systems',
-    'rm-wip-1':'Advanced Backend Architecture patterns',
-    'rm-wip-2':'Agentic Workflows with LangChain + Claude',
-    'rm-wip-3':'RAG Systems (retrieval-augmented generation)',
-    'rm-wip-4':'Observability: structured logging, tracing',
-    'rm-wip-5':'Performance optimisation on Spring Boot APIs',
-    'rm-wip-6':'SDD (Spec-Driven Development)',
-    'rm-next-1':'Cloud Architecture: AWS and Azure',
-    'rm-next-2':'Distributed Systems & microservices at scale',
-    'rm-next-3':'Production AI Systems engineering',
-    'rm-next-4':'AI Platform Engineering',
+    'sec-roadmap':'AI Engineering Journey',
+    'aj-cta':'Full Roadmap →',
     'sec-experiencia':'Experience','sec-projetos':'Projects',
     'sec-stack':'Tech Stack','sec-formacao':'Education & Certifications',
     'sobre-quote':'"12 years operating complex B2B systems taught me to think in systems. Now I build them."',
@@ -1800,6 +1778,64 @@ window.addEventListener('load', () => {
     });
   }, {threshold: 0.2});
   obs.observe(document.getElementById('journey'));
+})();
+
+/* ── AI ENGINEERING JOURNEY ─────────────────────────────────── */
+(function(){
+  var FALLBACK={
+    _v:1,_updated:null,label:"AI Engineering",
+    progress:{pct:9,done:2,total:23,phases_done:1,phases_total:7},
+    current_phase:{n:1,title:"Agentes com LangChain e LangGraph",courses_done:0,courses_total:4},
+    next_phase:{n:2,title:"Claude API e MCP"},
+    phases:[
+      {n:0,title:"Base concluída",done:true},
+      {n:1,title:"Agentes com LangChain e LangGraph",done:false},
+      {n:2,title:"Claude API e MCP",done:false},
+      {n:3,title:"AI-Native Software Engineering",done:false},
+      {n:4,title:"MCP avançado e AWS",done:false},
+      {n:5,title:"Avaliar e testar sistemas de LLM",done:false},
+      {n:6,title:"Arquitetura de soluções",done:false}
+    ]
+  };
+  var MONTHS=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  function fmtDate(iso){
+    if(!iso)return'';
+    var d=new Date(iso);
+    return'synced '+d.getDate()+' '+MONTHS[d.getMonth()]+' '+d.getFullYear();
+  }
+  function render(d){
+    var track=document.getElementById('aj-track');
+    var stats=document.getElementById('aj-stats');
+    var phase=document.getElementById('aj-phase');
+    if(!track)return;
+    var t='';
+    d.phases.forEach(function(p,i){
+      if(i>0)t+='<div class="aj-line'+(d.phases[i-1].done?' done':'')+'"></div>';
+      var cls=p.done?'done':(d.current_phase&&p.n===d.current_phase.n?'cur':'fut');
+      t+='<div class="aj-dot '+cls+'" title="'+p.title+'"></div>';
+    });
+    track.innerHTML=t;
+    var p=d.progress;
+    stats.innerHTML=
+      '<div><div class="aj-sv">'+p.pct+'%</div><div class="aj-sl">progress</div></div>'+
+      '<div><div class="aj-sv">'+p.done+'<small>/'+p.total+'</small></div><div class="aj-sl">courses</div></div>'+
+      '<div><div class="aj-sv">'+p.phases_done+'<small>/'+p.phases_total+'</small></div><div class="aj-sl">phases</div></div>';
+    var ph='';
+    if(d.current_phase)ph+='<div class="aj-kw">current focus</div><div class="aj-pname">'+d.current_phase.title+'</div>';
+    if(d.next_phase)ph+='<div class="aj-nkw">next</div><div class="aj-nname">'+d.next_phase.title+'</div>';
+    phase.innerHTML=ph;
+    var sync=document.getElementById('aj-sync');
+    if(sync)sync.textContent=fmtDate(d._updated);
+    document.getElementById('aj-sk').hidden=true;
+    document.getElementById('aj-content').hidden=false;
+  }
+  var done=false;
+  function fallback(){if(!done){done=true;render(FALLBACK);}}
+  var timer=setTimeout(fallback,3000);
+  fetch('/roadmap-summary.json?_='+Date.now())
+    .then(function(r){if(!r.ok)throw 0;return r.json();})
+    .then(function(data){clearTimeout(timer);done=true;render(data);})
+    .catch(function(){clearTimeout(timer);fallback();});
 })();
 </script>
 </body>
