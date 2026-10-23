@@ -722,34 +722,31 @@ footer{background:var(--bg1);border-top:1px solid var(--line);padding:20px 32px}
 /* ── HIDDEN ATTRIBUTE FIX ── */
 [hidden]{display:none!important}
 
-/* ── CRT SCAN SWEEP TRANSITION ── */
+/* ── GLITCH FLASH TRANSITION ── */
+/* steps(1,end) = hard frame jumps, no interpolation — authentic signal corruption */
+@keyframes er-glitch{
+  /* F1: R-channel shift right, warm burst */
+  0%  {opacity:1;transform:translateX(5px) skewX(-1deg);
+       background:rgba(217,80,50,0.82);clip-path:inset(15% 0 10% 0)}
+  /* F2: B-channel shift left, cold invert */
+  25% {transform:translateX(-4px) skewX(1deg);
+       background:rgba(28,110,210,0.72);clip-path:inset(0 0 40% 0)}
+  /* F3: G offset, accent noise slice */
+  50% {transform:translateX(2px);
+       background:rgba(217,119,87,0.55);clip-path:inset(50% 0 5% 0)}
+  /* F4: blackout — scroll happens here */
+  65% {transform:none;clip-path:inset(0);
+       background:rgba(11,13,15,0.97)}
+  /* F5: fade out */
+  100%{opacity:0;background:rgba(11,13,15,0.97)}
+}
 #er-curtain{
   position:fixed;inset:0;z-index:9999;
-  pointer-events:none;
-  transform:translateX(-101%);
-  will-change:transform;
-  /* Dark base + horizontal CRT scanlines (1px every 3px) */
-  background:
-    repeating-linear-gradient(
-      0deg,
-      rgba(0,0,0,0.22) 0px,
-      rgba(0,0,0,0.22) 1px,
-      transparent 1px,
-      transparent 3px
-    ),
-    rgba(11,13,15,0.91);
+  pointer-events:none;opacity:0;
 }
-/* 2px accent line at the leading edge with glow */
-#er-curtain::after{
-  content:'';position:absolute;
-  top:0;right:0;bottom:0;
-  width:2px;
-  background:linear-gradient(180deg,transparent 0%,var(--accent) 20%,var(--accent2) 50%,var(--accent) 80%,transparent 100%);
-  box-shadow:-4px 0 24px 5px rgba(217,119,87,0.5),0 0 60px 8px rgba(217,119,87,0.12);
+#er-curtain.er-go{
+  animation:er-glitch 120ms steps(1,end) forwards;
 }
-/* Reversed: line on left side */
-#er-curtain.er-rev{transform:translateX(101%)}
-#er-curtain.er-rev::after{right:auto;left:0;box-shadow:4px 0 24px 5px rgba(217,119,87,0.5),0 0 60px 8px rgba(217,119,87,0.12)}
 </style>
 </head>
 <body>
@@ -1874,52 +1871,38 @@ window.addEventListener('load', () => {
 <div id="er-curtain"></div>
 
 <script>
-// ── CRT SCAN SWEEP TRANSITION ──
-// Dark curtain with 1px horizontal scanlines sweeps across — like a monitor refresh.
-// 2px accent line at the leading edge. Alternates direction.
+// ── GLITCH FLASH TRANSITION ──
+// CSS @keyframes with steps(1,end) = hard frame cuts, no interpolation.
+// R→B→accent→blackout in 120ms. Scroll fires at the blackout frame (78ms).
 (function(){
   var curtain = document.getElementById('er-curtain');
   var busy = false;
-  var lastRight = true;
 
-  function scanTo(id) {
+  function glitchTo(id) {
     if (busy) return;
     var target = document.getElementById(id);
     if (!target) return;
     busy = true;
 
-    // Alternate direction each call
-    var goRight = !lastRight;
-    lastRight = goRight;
+    // Reset
+    curtain.classList.remove('er-go');
+    curtain.style.opacity = '0';
+    curtain.offsetHeight; // flush
 
-    // Reset to off-screen start position
-    curtain.style.transition = 'none';
-    if (goRight) {
-      curtain.classList.remove('er-rev');
-      curtain.style.transform = 'translateX(-101%)';
-    } else {
-      curtain.classList.add('er-rev');
-      curtain.style.transform = 'translateX(101%)';
-    }
-    curtain.offsetHeight; // force reflow
+    // Fire animation
+    curtain.classList.add('er-go');
 
-    // Phase 1 — sweep in (115ms, sharp ease-in)
-    curtain.style.transition = 'transform 115ms cubic-bezier(0.55,0,1,0.45)';
-    curtain.style.transform  = 'translateX(0%)';
-
+    // Scroll at blackout frame (65% of 120ms ≈ 78ms)
     setTimeout(function(){
-      // Midpoint — instant scroll
       target.scrollIntoView({behavior:'instant',block:'start'});
+    }, 78);
 
-      // Phase 2 — sweep out opposite side (155ms, ease-out)
-      curtain.style.transition = 'transform 155ms cubic-bezier(0,0.55,0.45,1)';
-      curtain.style.transform  = goRight ? 'translateX(101%)' : 'translateX(-101%)';
-
-      setTimeout(function(){
-        curtain.style.transition = 'none';
-        busy = false;
-      }, 156);
-    }, 116);
+    // Done after animation completes
+    setTimeout(function(){
+      curtain.classList.remove('er-go');
+      curtain.style.opacity = '0';
+      busy = false;
+    }, 125);
   }
 
   // Intercept ALL internal anchor links
@@ -1929,7 +1912,7 @@ window.addEventListener('load', () => {
     var id = a.getAttribute('href').slice(1);
     if (!id) return;
     e.preventDefault();
-    scanTo(id);
+    glitchTo(id);
     history.replaceState(null,'','#'+id);
   });
 
@@ -1937,7 +1920,7 @@ window.addEventListener('load', () => {
   var fab = document.getElementById('roadmap-fab');
   if(fab) fab.addEventListener('click',function(e){
     e.stopImmediatePropagation();
-    scanTo('roadmap');
+    glitchTo('roadmap');
   },true);
 })();
 </script>
