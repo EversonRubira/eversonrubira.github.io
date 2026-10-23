@@ -125,8 +125,8 @@ nav{
 
 /* ── HERO ── */
 #hero{
-  min-height:100vh;display:flex;align-items:center;
-  padding:100px 32px 80px;
+  min-height:56vh;display:flex;align-items:center;
+  padding:80px 32px 60px;
   position:relative;overflow:hidden;
 }
 .hero-glow{
@@ -789,7 +789,7 @@ footer{background:var(--bg1);border-top:1px solid var(--line);padding:20px 32px}
       <p class="hero-sub reveal" data-i18n="hero-sub">Backend Engineer focused on Spring Boot, APIs, LLMs and Agentic AI.</p>
       <div class="hero-actions reveal">
         <a href="#projetos" class="btn-primary" data-i18n="hero-btn-proj">View Projects</a>
-        <a href="#roadmap" class="btn-ghost" data-i18n="hero-btn-roadmap">Engineering Roadmap</a>
+        <a href="#projetos" class="btn-ghost" data-i18n="hero-btn-roadmap">Ver Projetos →</a>
         <button class="btn-share" id="share-btn" title="Partilhar perfil">
           <svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
           <span data-i18n="share-btn">partilhar</span>
@@ -852,6 +852,142 @@ footer{background:var(--bg1);border-top:1px solid var(--line);padding:20px 32px}
       <div class="metric-cell reveal">
         <div class="metric-num"><span class="count" data-target="3">0</span><span>+</span></div>
         <div class="metric-label" data-i18n="metric-projects">Production Projects</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJETOS -->
+<section id="projetos">
+  <div class="sec-wrap">
+    <div class="sec-head reveal">
+      <span class="sec-num">[ 04 ]</span>
+      <h2 class="sec-title" data-i18n="sec-projetos">Projetos</h2>
+      <div class="sec-rule"></div>
+    </div>
+    <div class="proj-grid">
+      <div class="proj-card reveal">
+        <div>
+          <div class="proj-id">ID_12</div>
+          <div class="proj-name">ArqSync</div>
+          <p class="proj-desc" data-i18n="proj-arqsync-desc">Static architecture analyser for Java codebases. Parses dependency graphs, detects circular imports and layer boundary violations. Generates Mermaid diagrams and HTML reports. Built with JavaParser + Spring Boot 3.</p>
+        </div>
+        <div class="proj-meta">
+          <div class="proj-meta-row"><span class="proj-meta-k">runtime</span><span class="proj-meta-v">Java 21 · Spring Boot 3</span></div>
+          <div class="proj-meta-row"><span class="proj-meta-k">analysis</span><span class="proj-meta-v">JavaParser · cycle detection</span></div>
+          <div class="proj-meta-row"><span class="proj-meta-k">output</span><span class="proj-meta-v">JSON · HTML · Mermaid</span></div>
+        </div>
+        <div class="proj-footer">
+          <span class="proj-tag wip" data-i18n="proj-status-wip">em_desenvolvimento</span>
+          <div class="proj-links">
+            <a href="https://github.com/EversonRubira/ArqSync" target="_blank" rel="noopener" class="proj-link">GitHub <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+          </div>
+        </div>
+      </div>
+      <div class="proj-card reveal">
+        <div>
+          <div class="proj-id">ID_05</div>
+          <div class="proj-name">Sulav Sushi Bar</div>
+          <p class="proj-desc" data-i18n="proj-sulav-desc">Production website for a Portuguese restaurant. Bilingual PT/EN, integrated with Uber Eats, Glovo and Bolt Food. Full client-to-deploy delivery — from brief to live site with real customers ordering through it daily.</p>
+        </div>
+        <div class="proj-meta">
+          <div class="proj-meta-row"><span class="proj-meta-k">status</span><span class="proj-meta-v">production · live</span></div>
+          <div class="proj-meta-row"><span class="proj-meta-k">integrations</span><span class="proj-meta-v">Uber Eats · Glovo · Bolt</span></div>
+          <div class="proj-meta-row"><span class="proj-meta-k">infra</span><span class="proj-meta-v">GitHub Pages · Supabase</span></div>
+        </div>
+        <div class="proj-footer">
+          <span class="proj-tag live" data-i18n="proj-tag-live">produção</span>
+          <div class="proj-links">
+            <a href="https://sulavsushibar.pt" target="_blank" rel="noopener" class="proj-link">demo <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+          </div>
+        </div>
+      </div>
+      <div class="proj-card reveal">
+        <div>
+          <div class="proj-id">ID_03</div>
+          <div class="proj-name">FitCheck</div>
+          <p class="proj-desc" data-i18n="proj-fitcheck-desc">Health habit tracker with AI-powered weekly analysis. Node.js/Express backend, MySQL on Railway — Groq/Llama 3.3 analyses user records and returns streaming suggestions. A real LLM integration in production, not a demo.</p>
+        </div>
+        <div class="proj-meta">
+          <div class="proj-meta-row"><span class="proj-meta-k">runtime</span><span class="proj-meta-v">Node.js · Express</span></div>
+          <div class="proj-meta-row"><span class="proj-meta-k">ai</span><span class="proj-meta-v">Groq · Llama 3.3 · streaming</span></div>
+          <div class="proj-meta-row"><span class="proj-meta-k">infra</span><span class="proj-meta-v">Render · MySQL · CleverCloud</span></div>
+        </div>
+        <div class="proj-footer">
+          <span class="proj-tag live" data-i18n="proj-tag-live">produção</span>
+          <div class="proj-links">
+            <a href="https://fitcheck-zpyt.onrender.com" target="_blank" rel="noopener" class="proj-link">demo <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+            <a href="https://github.com/EversonRubira/FitCheck" target="_blank" rel="noopener" class="proj-link">GitHub <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+          </div>
+        </div>
+      </div>
+      <div class="proj-card reveal">
+        <div>
+          <div class="proj-id">ID_11</div>
+          <div class="proj-name">Criptomoedas</div>
+          <p class="proj-desc" data-i18n="proj-crypto-desc">Real-time crypto dashboard on CoinGecko's public API. Framework-free Node.js — every view dynamically rendered, zero dependencies. An exercise in clean architecture without scaffolding to hide behind.</p>
+        </div>
+        <div class="proj-meta">
+          <div class="proj-meta-row"><span class="proj-meta-k">runtime</span><span class="proj-meta-v">Node.js · vanilla JS</span></div>
+          <div class="proj-meta-row"><span class="proj-meta-k">api</span><span class="proj-meta-v">CoinGecko public</span></div>
+          <div class="proj-meta-row"><span class="proj-meta-k">pattern</span><span class="proj-meta-v">no framework · clean code</span></div>
+        </div>
+        <div class="proj-footer">
+          <span class="proj-tag live" data-i18n="proj-tag-live">produção</span>
+          <div class="proj-links">
+            <a href="https://eversonrubira.github.io/criptomoedas-nodejs/" target="_blank" rel="noopener" class="proj-link">demo <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+            <a href="https://github.com/EversonRubira/criptomoedas-nodejs" target="_blank" rel="noopener" class="proj-link">GitHub <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="proj-more-label reveal" data-i18n="proj-more-label">— outros projetos —</div>
+    <div class="proj-compact reveal">
+      <div class="proj-compact-row">
+        <span class="proj-cid">ID_04</span>
+        <span class="proj-cname">LangChain + Anthropic</span>
+        <span class="proj-cstack">ai_agents · python · anthropic_api</span>
+        <div class="proj-clinks"><a href="https://github.com/EversonRubira/LangChain-Python-via-LLM-Anthropic" target="_blank" rel="noopener" class="proj-link">GitHub <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a></div>
+      </div>
+      <div class="proj-compact-row">
+        <span class="proj-cid">ID_10</span>
+        <span class="proj-cname">Meeting Analyst</span>
+        <span class="proj-cstack">fastapi · groq_llama3-70b · railway</span>
+        <div class="proj-clinks"><a href="https://github.com/EversonRubira/meeting-analyst" target="_blank" rel="noopener" class="proj-link">GitHub <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a></div>
+      </div>
+      <div class="proj-compact-row">
+        <span class="proj-cid">ID_06</span>
+        <span class="proj-cname">Gestão Saúde Mental</span>
+        <span class="proj-cstack">java · spring_boot · rest_api · postgresql</span>
+        <div class="proj-clinks"><a href="https://github.com/EversonRubira/GestaoSaudeMental" target="_blank" rel="noopener" class="proj-link">GitHub <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a></div>
+      </div>
+      <div class="proj-compact-row">
+        <span class="proj-cid">ID_09</span>
+        <span class="proj-cname">Absence Portal AI</span>
+        <span class="proj-cstack">fastapi · groq/llama_3.3 · prompt_engineering</span>
+        <div class="proj-clinks"></div>
+      </div>
+      <div class="proj-compact-row">
+        <span class="proj-cid">ID_02</span>
+        <span class="proj-cname">Boardly</span>
+        <span class="proj-cstack">java · spring_boot · jwt · clean_architecture</span>
+        <div class="proj-clinks"><a href="https://github.com/EversonRubira/Boardly" target="_blank" rel="noopener" class="proj-link">GitHub <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a></div>
+      </div>
+      <div class="proj-compact-row">
+        <span class="proj-cid">ID_07</span>
+        <span class="proj-cname">StudyFlow</span>
+        <span class="proj-cstack">android_native · mvvm · kotlin · room</span>
+        <div class="proj-clinks"><a href="https://github.com/EversonRubira/StudyFlow" target="_blank" rel="noopener" class="proj-link">GitHub <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a></div>
+      </div>
+      <div class="proj-compact-row">
+        <span class="proj-cid">ID_08</span>
+        <span class="proj-cname">Campo Minado</span>
+        <span class="proj-cstack">vanilla_js · flood-fill · portado de java/swing</span>
+        <div class="proj-clinks">
+          <a href="/minesweeper/" target="_blank" rel="noopener" class="proj-link">jogar <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+          <a href="https://github.com/EversonRubira/Campo_Minado" target="_blank" rel="noopener" class="proj-link">GitHub <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+        </div>
       </div>
     </div>
   </div>
@@ -1095,142 +1231,6 @@ footer{background:var(--bg1);border-top:1px solid var(--line);padding:20px 32px}
   </div>
 </section>
 
-<!-- PROJETOS -->
-<section id="projetos">
-  <div class="sec-wrap">
-    <div class="sec-head reveal">
-      <span class="sec-num">[ 04 ]</span>
-      <h2 class="sec-title" data-i18n="sec-projetos">Projetos</h2>
-      <div class="sec-rule"></div>
-    </div>
-    <div class="proj-grid">
-      <div class="proj-card reveal">
-        <div>
-          <div class="proj-id">ID_12</div>
-          <div class="proj-name">ArqSync</div>
-          <p class="proj-desc" data-i18n="proj-arqsync-desc">Static architecture analyser for Java codebases. Parses dependency graphs, detects circular imports and layer boundary violations. Generates Mermaid diagrams and HTML reports. Built with JavaParser + Spring Boot 3.</p>
-        </div>
-        <div class="proj-meta">
-          <div class="proj-meta-row"><span class="proj-meta-k">runtime</span><span class="proj-meta-v">Java 21 · Spring Boot 3</span></div>
-          <div class="proj-meta-row"><span class="proj-meta-k">analysis</span><span class="proj-meta-v">JavaParser · cycle detection</span></div>
-          <div class="proj-meta-row"><span class="proj-meta-k">output</span><span class="proj-meta-v">JSON · HTML · Mermaid</span></div>
-        </div>
-        <div class="proj-footer">
-          <span class="proj-tag wip" data-i18n="proj-status-wip">em_desenvolvimento</span>
-          <div class="proj-links">
-            <a href="https://github.com/EversonRubira/ArqSync" target="_blank" rel="noopener" class="proj-link">GitHub <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
-          </div>
-        </div>
-      </div>
-      <div class="proj-card reveal">
-        <div>
-          <div class="proj-id">ID_05</div>
-          <div class="proj-name">Sulav Sushi Bar</div>
-          <p class="proj-desc" data-i18n="proj-sulav-desc">Production website for a Portuguese restaurant. Bilingual PT/EN, integrated with Uber Eats, Glovo and Bolt Food. Full client-to-deploy delivery — from brief to live site with real customers ordering through it daily.</p>
-        </div>
-        <div class="proj-meta">
-          <div class="proj-meta-row"><span class="proj-meta-k">status</span><span class="proj-meta-v">production · live</span></div>
-          <div class="proj-meta-row"><span class="proj-meta-k">integrations</span><span class="proj-meta-v">Uber Eats · Glovo · Bolt</span></div>
-          <div class="proj-meta-row"><span class="proj-meta-k">infra</span><span class="proj-meta-v">GitHub Pages · Supabase</span></div>
-        </div>
-        <div class="proj-footer">
-          <span class="proj-tag live" data-i18n="proj-tag-live">produção</span>
-          <div class="proj-links">
-            <a href="https://sulavsushibar.pt" target="_blank" rel="noopener" class="proj-link">demo <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
-          </div>
-        </div>
-      </div>
-      <div class="proj-card reveal">
-        <div>
-          <div class="proj-id">ID_03</div>
-          <div class="proj-name">FitCheck</div>
-          <p class="proj-desc" data-i18n="proj-fitcheck-desc">Health habit tracker with AI-powered weekly analysis. Node.js/Express backend, MySQL on Railway — Groq/Llama 3.3 analyses user records and returns streaming suggestions. A real LLM integration in production, not a demo.</p>
-        </div>
-        <div class="proj-meta">
-          <div class="proj-meta-row"><span class="proj-meta-k">runtime</span><span class="proj-meta-v">Node.js · Express</span></div>
-          <div class="proj-meta-row"><span class="proj-meta-k">ai</span><span class="proj-meta-v">Groq · Llama 3.3 · streaming</span></div>
-          <div class="proj-meta-row"><span class="proj-meta-k">infra</span><span class="proj-meta-v">Render · MySQL · CleverCloud</span></div>
-        </div>
-        <div class="proj-footer">
-          <span class="proj-tag live" data-i18n="proj-tag-live">produção</span>
-          <div class="proj-links">
-            <a href="https://fitcheck-zpyt.onrender.com" target="_blank" rel="noopener" class="proj-link">demo <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
-            <a href="https://github.com/EversonRubira/FitCheck" target="_blank" rel="noopener" class="proj-link">GitHub <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
-          </div>
-        </div>
-      </div>
-      <div class="proj-card reveal">
-        <div>
-          <div class="proj-id">ID_11</div>
-          <div class="proj-name">Criptomoedas</div>
-          <p class="proj-desc" data-i18n="proj-crypto-desc">Real-time crypto dashboard on CoinGecko's public API. Framework-free Node.js — every view dynamically rendered, zero dependencies. An exercise in clean architecture without scaffolding to hide behind.</p>
-        </div>
-        <div class="proj-meta">
-          <div class="proj-meta-row"><span class="proj-meta-k">runtime</span><span class="proj-meta-v">Node.js · vanilla JS</span></div>
-          <div class="proj-meta-row"><span class="proj-meta-k">api</span><span class="proj-meta-v">CoinGecko public</span></div>
-          <div class="proj-meta-row"><span class="proj-meta-k">pattern</span><span class="proj-meta-v">no framework · clean code</span></div>
-        </div>
-        <div class="proj-footer">
-          <span class="proj-tag live" data-i18n="proj-tag-live">produção</span>
-          <div class="proj-links">
-            <a href="https://eversonrubira.github.io/criptomoedas-nodejs/" target="_blank" rel="noopener" class="proj-link">demo <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
-            <a href="https://github.com/EversonRubira/criptomoedas-nodejs" target="_blank" rel="noopener" class="proj-link">GitHub <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="proj-more-label reveal" data-i18n="proj-more-label">— outros projetos —</div>
-    <div class="proj-compact reveal">
-      <div class="proj-compact-row">
-        <span class="proj-cid">ID_04</span>
-        <span class="proj-cname">LangChain + Anthropic</span>
-        <span class="proj-cstack">ai_agents · python · anthropic_api</span>
-        <div class="proj-clinks"><a href="https://github.com/EversonRubira/LangChain-Python-via-LLM-Anthropic" target="_blank" rel="noopener" class="proj-link">GitHub <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a></div>
-      </div>
-      <div class="proj-compact-row">
-        <span class="proj-cid">ID_10</span>
-        <span class="proj-cname">Meeting Analyst</span>
-        <span class="proj-cstack">fastapi · groq_llama3-70b · railway</span>
-        <div class="proj-clinks"><a href="https://github.com/EversonRubira/meeting-analyst" target="_blank" rel="noopener" class="proj-link">GitHub <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a></div>
-      </div>
-      <div class="proj-compact-row">
-        <span class="proj-cid">ID_06</span>
-        <span class="proj-cname">Gestão Saúde Mental</span>
-        <span class="proj-cstack">java · spring_boot · rest_api · postgresql</span>
-        <div class="proj-clinks"><a href="https://github.com/EversonRubira/GestaoSaudeMental" target="_blank" rel="noopener" class="proj-link">GitHub <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a></div>
-      </div>
-      <div class="proj-compact-row">
-        <span class="proj-cid">ID_09</span>
-        <span class="proj-cname">Absence Portal AI</span>
-        <span class="proj-cstack">fastapi · groq/llama_3.3 · prompt_engineering</span>
-        <div class="proj-clinks"></div>
-      </div>
-      <div class="proj-compact-row">
-        <span class="proj-cid">ID_02</span>
-        <span class="proj-cname">Boardly</span>
-        <span class="proj-cstack">java · spring_boot · jwt · clean_architecture</span>
-        <div class="proj-clinks"><a href="https://github.com/EversonRubira/Boardly" target="_blank" rel="noopener" class="proj-link">GitHub <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a></div>
-      </div>
-      <div class="proj-compact-row">
-        <span class="proj-cid">ID_07</span>
-        <span class="proj-cname">StudyFlow</span>
-        <span class="proj-cstack">android_native · mvvm · kotlin · room</span>
-        <div class="proj-clinks"><a href="https://github.com/EversonRubira/StudyFlow" target="_blank" rel="noopener" class="proj-link">GitHub <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a></div>
-      </div>
-      <div class="proj-compact-row">
-        <span class="proj-cid">ID_08</span>
-        <span class="proj-cname">Campo Minado</span>
-        <span class="proj-cstack">vanilla_js · flood-fill · portado de java/swing</span>
-        <div class="proj-clinks">
-          <a href="/minesweeper/" target="_blank" rel="noopener" class="proj-link">jogar <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
-          <a href="https://github.com/EversonRubira/Campo_Minado" target="_blank" rel="noopener" class="proj-link">GitHub <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- STACK -->
 <section id="stack">
   <div class="sec-wrap">
@@ -1321,7 +1321,7 @@ footer{background:var(--bg1);border-top:1px solid var(--line);padding:20px 32px}
 <section id="formacao">
   <div class="sec-wrap">
     <div class="sec-head reveal">
-      <span class="sec-num">[ 06 ]</span>
+      <span class="sec-num">[ 07 ]</span>
       <h2 class="sec-title" data-i18n="sec-formacao">Formação &amp; Certificações</h2>
       <div class="sec-rule"></div>
     </div>
