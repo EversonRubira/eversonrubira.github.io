@@ -1,671 +1,679 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CV — Everson Rubira</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CV — Everson Rubira · Backend Engineer · AI Systems</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+/* ── DESIGN TOKENS ───────────────────────────────────────────── */
+:root {
+  --accent:    #D97757;
+  --accent2:   #B55E38;
+  --text:      #0F0D0B;
+  --text2:     #3D3830;
+  --text3:     #7A7470;
+  --border:    #E8E3DD;
+  --border2:   #F0ECE8;
+  --bg-tag:    #FAF2EC;
+  --bg-screen: #F2EEE9;
+  --green:     #16A34A;
+  --sans:      'Inter', system-ui, sans-serif;
+  --mono:      'JetBrains Mono', 'Courier New', monospace;
+}
 
-    :root {
-      --accent: #D97757;
-      --accent2: #C4623D;
-      --text: #0F172A;
-      --muted: #475569;
-      --light: #64748B;
-      --border: #E2E8F0;
-      --bg-tag: #FDF5EF;
-      --mono: 'JetBrains Mono', 'Courier New', monospace;
-    }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 14px; }
+body {
+  font-family: var(--sans);
+  color: var(--text);
+  background: #fff;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
 
-    html { font-size: 14px; }
+/* ── SCREEN CHROME ───────────────────────────────────────────── */
+.chrome {
+  background: var(--text);
+  padding: 10px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.chrome-back {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  color: rgba(255,255,255,.45);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: color .15s;
+}
+.chrome-back:hover { color: rgba(255,255,255,.85); }
+.chrome-title {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  color: rgba(255,255,255,.3);
+  letter-spacing: .04em;
+}
+.btn-pdf {
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  font-weight: 500;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 6px 14px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: opacity .15s;
+}
+.btn-pdf:hover { opacity: .85; }
 
-    body {
-      font-family: 'Inter', system-ui, sans-serif;
-      color: var(--text);
-      background: #fff;
-      line-height: 1.6;
-    }
+/* ── PAGE ────────────────────────────────────────────────────── */
+.page {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 40px 52px 48px;
+  background: #fff;
+}
 
-    a { color: var(--accent); text-decoration: none; }
+/* ── HEADER ──────────────────────────────────────────────────── */
+.cv-header {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 20px 32px;
+  align-items: start;
+  padding-bottom: 26px;
+  margin-bottom: 28px;
+  border-bottom: 1px solid var(--border);
+}
+h1 {
+  font-size: 1.85rem;
+  font-weight: 600;
+  letter-spacing: -.028em;
+  color: var(--text);
+  line-height: 1.1;
+  margin-bottom: 4px;
+}
+.cv-title {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 10px;
+}
+.cv-tagline {
+  font-size: 0.82rem;
+  color: var(--text2);
+  max-width: 420px;
+  line-height: 1.7;
+}
+.cv-contacts {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  padding-top: 5px;
+}
+.cv-contacts a,
+.cv-contacts span {
+  font-family: var(--mono);
+  font-size: 0.64rem;
+  color: var(--text3);
+  display: block;
+  white-space: nowrap;
+  transition: color .15s;
+}
+.cv-contacts a:hover { color: var(--accent); }
+.cv-loc {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  color: var(--border);
+  margin-top: 3px;
+}
 
-    /* ===== PRINT BUTTON ===== */
-    .print-bar {
-      background: var(--accent);
-      color: #fff;
-      padding: 10px 24px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      font-size: 0.875rem;
-    }
-    .print-bar span { opacity: 0.85; }
-    .btn-print {
-      background: #fff;
-      color: var(--accent);
-      border: none;
-      border-radius: 6px;
-      padding: 7px 18px;
-      font-family: 'Inter', sans-serif;
-      font-size: 0.875rem;
-      font-weight: 600;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .btn-print:hover { background: #FDF5EF; }
-    .btn-back {
-      color: rgba(255,255,255,0.85);
-      font-size: 0.8rem;
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      transition: color 0.15s;
-    }
-    .btn-back:hover { color: #fff; }
+/* ── SECTION LABEL ───────────────────────────────────────────── */
+.cv-section { margin-bottom: 26px; }
+.cv-section:last-of-type { margin-bottom: 0; }
+.cv-label {
+  font-family: var(--mono);
+  font-size: 0.57rem;
+  font-weight: 500;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.cv-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border2);
+}
 
-    /* ===== PÁGINA ===== */
-    .page {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 40px 48px 48px;
-      background: #fff;
-    }
+/* ── ABOUT ───────────────────────────────────────────────────── */
+.cv-about {
+  font-size: 0.825rem;
+  color: var(--text2);
+  line-height: 1.78;
+  max-width: 640px;
+}
+.cv-about strong { color: var(--text); font-weight: 600; }
 
-    /* ===== HEADER ===== */
-    .cv-header {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 24px;
-      align-items: start;
-      border-bottom: 2px solid var(--accent);
-      padding-bottom: 20px;
-      margin-bottom: 24px;
-    }
-    .cv-name {
-      font-size: 2rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      color: var(--text);
-      line-height: 1.1;
-      margin-bottom: 4px;
-    }
-    .cv-title {
-      font-size: 1.05rem;
-      font-weight: 600;
-      color: var(--accent);
-      margin-bottom: 6px;
-    }
-    .cv-tagline {
-      font-size: 0.875rem;
-      color: var(--muted);
-      max-width: 500px;
-      line-height: 1.55;
-    }
-    .cv-contacts {
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
-      text-align: right;
-      font-size: 0.8rem;
-      color: var(--muted);
-    }
-    .cv-contacts a { color: var(--muted); }
-    .cv-contacts a:hover { color: var(--accent); }
-    .cv-contacts span { display: flex; align-items: center; gap: 5px; justify-content: flex-end; }
+/* ── EXPERIENCE ──────────────────────────────────────────────── */
+.exp-item {
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border2);
+}
+.exp-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+.exp-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-bottom: 1px;
+}
+.exp-company { font-size: 0.88rem; font-weight: 600; color: var(--text); }
+.exp-period {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  color: var(--text3);
+  white-space: nowrap;
+}
+.exp-role { font-size: 0.78rem; font-weight: 500; color: var(--accent); margin-bottom: 2px; }
+.exp-loc { font-size: 0.72rem; color: var(--text3); margin-bottom: 9px; }
+.exp-bullets { list-style: none; margin-bottom: 10px; }
+.exp-bullets li {
+  font-size: 0.8rem;
+  color: var(--text2);
+  padding: 2.5px 0 2.5px 14px;
+  position: relative;
+  line-height: 1.6;
+}
+.exp-bullets li::before {
+  content: '–';
+  position: absolute;
+  left: 0;
+  color: var(--border);
+  font-size: .8rem;
+}
+.exp-tags { display: flex; flex-wrap: wrap; gap: 4px; }
 
-    /* ===== SECÇÕES ===== */
-    .cv-section { margin-bottom: 24px; }
-    .cv-section-title {
-      font-family: var(--mono);
-      font-size: 0.65rem;
-      font-weight: 500;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--accent2);
-      margin-bottom: 12px;
-      padding-bottom: 5px;
-      border-bottom: 1px solid var(--border);
-    }
+/* ── TAG ─────────────────────────────────────────────────────── */
+.tag {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  font-weight: 400;
+  padding: 2px 7px;
+  border-radius: 3px;
+  background: var(--bg-tag);
+  color: var(--accent2);
+  border: 1px solid rgba(217,119,87,.16);
+  white-space: nowrap;
+}
 
-    /* ===== SOBRE ===== */
-    .cv-about {
-      font-size: 0.875rem;
-      color: var(--muted);
-      line-height: 1.75;
-    }
-    .cv-about strong { color: var(--text); font-weight: 600; }
+/* ── PROJECTS ────────────────────────────────────────────────── */
+.proj-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.proj-item {
+  padding: 13px 15px 12px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+.proj-item.featured { background: #FDFAF7; border-color: rgba(217,119,87,.2); }
+.proj-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8px;
+  margin-bottom: 5px;
+}
+.proj-name { font-size: 0.84rem; font-weight: 600; color: var(--text); line-height: 1.2; }
+.proj-badge {
+  font-family: var(--mono);
+  font-size: 0.55rem;
+  font-weight: 500;
+  padding: 2px 6px;
+  border-radius: 3px;
+  letter-spacing: .04em;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.badge-live    { background: #DCFCE7; color: #15803D; }
+.badge-ai      { background: rgba(217,119,87,.1); color: var(--accent2); }
+.badge-backend { background: #EEF2FF; color: #3730A3; }
+.badge-wip     { background: #FEF3C7; color: #92400E; }
+.proj-desc {
+  font-size: 0.77rem;
+  color: var(--text2);
+  line-height: 1.55;
+  margin-bottom: 8px;
+}
+.proj-link {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  color: var(--text3);
+  transition: color .15s;
+}
+.proj-link:hover { color: var(--accent); }
 
-    /* ===== EXPERIÊNCIA ===== */
-    .exp-item {
-      margin-bottom: 18px;
-      padding-bottom: 18px;
-      border-bottom: 1px solid var(--border);
-    }
-    .exp-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
-    .exp-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      flex-wrap: wrap;
-      gap: 4px;
-      margin-bottom: 2px;
-    }
-    .exp-company { font-size: 0.975rem; font-weight: 600; color: var(--text); }
-    .exp-period { font-size: 0.78rem; color: var(--light); white-space: nowrap; }
-    .exp-role { font-size: 0.85rem; font-weight: 500; color: var(--accent); margin-bottom: 6px; }
-    .exp-location { font-size: 0.78rem; color: var(--light); margin-bottom: 8px; }
-    .exp-bullets { list-style: none; margin-bottom: 8px; }
-    .exp-bullets li {
-      font-size: 0.84rem;
-      color: var(--muted);
-      padding: 2px 0 2px 14px;
-      position: relative;
-      line-height: 1.55;
-    }
-    .exp-bullets li::before {
-      content: '·';
-      position: absolute;
-      left: 3px;
-      color: var(--accent);
-      font-weight: 700;
-    }
-    .exp-tech { display: flex; flex-wrap: wrap; gap: 5px; }
+.proj-secondary {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.proj-sec {
+  padding: 10px 12px;
+  border: 1px solid var(--border2);
+  border-radius: 5px;
+}
+.proj-sec-name {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 2px;
+}
+.proj-sec-desc { font-size: 0.72rem; color: var(--text3); line-height: 1.45; }
 
-    .tag {
-      font-family: var(--mono);
-      font-size: 0.68rem;
-      font-weight: 400;
-      padding: 2px 8px;
-      border-radius: 4px;
-      background: var(--bg-tag);
-      color: var(--accent2);
-      border: 1px solid rgba(217,119,87,0.25);
-    }
+/* ── TECHNICAL FOCUS ─────────────────────────────────────────── */
+.focus-rows { display: flex; flex-direction: column; gap: 7px; }
+.focus-row {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  gap: 10px;
+  align-items: start;
+}
+.focus-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text2);
+  padding-top: 3px;
+}
+.focus-tags { display: flex; flex-wrap: wrap; gap: 4px; }
 
-    /* ===== PROJETOS ===== */
-    .projects-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
-    .proj-item {
-      padding: 12px 14px;
-      border: 1px solid var(--border);
-      border-radius: 7px;
-      border-left: 3px solid var(--accent);
-    }
-    .proj-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 4px;
-      gap: 8px;
-    }
-    .proj-name { font-size: 0.9rem; font-weight: 600; color: var(--text); }
-    .proj-badge {
-      font-family: var(--mono);
-      font-size: 0.62rem;
-      font-weight: 500;
-      padding: 2px 7px;
-      border-radius: 10px;
-      white-space: nowrap;
-    }
-    .proj-badge.live { background: #D1FAE5; color: #065F46; }
-    .proj-badge.wip { background: #FEF3C7; color: #92400E; }
-    .proj-badge.backend { background: #EFF6FF; color: #1D4ED8; }
-    .proj-badge.ai { background: #F0FEFF; color: #0E7490; }
-    .proj-desc { font-size: 0.8rem; color: var(--muted); margin-bottom: 7px; line-height: 1.5; }
-    .proj-link { font-size: 0.75rem; color: var(--accent2); font-weight: 500; }
+/* ── EDUCATION ───────────────────────────────────────────────── */
+.edu-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.edu-item {}
+.edu-degree { font-size: 0.84rem; font-weight: 600; color: var(--text); margin-bottom: 2px; line-height: 1.3; }
+.edu-school { font-size: 0.76rem; font-weight: 500; color: var(--accent); margin-bottom: 2px; }
+.edu-period { font-family: var(--mono); font-size: 0.62rem; color: var(--text3); margin-bottom: 3px; }
+.edu-note { font-size: 0.74rem; color: var(--text3); line-height: 1.5; }
+.edu-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 5px; }
 
-    /* ===== STACK ===== */
-    .stack-rows { display: flex; flex-direction: column; gap: 7px; }
-    .stack-row {
-      display: grid;
-      grid-template-columns: 150px 1fr;
-      gap: 8px;
-      align-items: start;
-    }
-    .stack-label { font-size: 0.78rem; font-weight: 600; color: var(--muted); padding-top: 2px; }
-    .stack-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+/* ── AVAILABILITY ────────────────────────────────────────────── */
+.avail-row {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  gap: 10px;
+  align-items: start;
+  margin-bottom: 6px;
+}
+.avail-row:last-child { margin-bottom: 0; }
+.avail-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text2);
+  padding-top: 3px;
+}
+.avail-val { font-size: 0.8rem; color: var(--text2); padding-top: 3px; }
 
-    /* ===== FORMAÇÃO ===== */
-    .edu-item { margin-bottom: 14px; }
-    .edu-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      flex-wrap: wrap;
-      gap: 4px;
-    }
-    .edu-degree { font-size: 0.9rem; font-weight: 600; color: var(--text); }
-    .edu-period { font-size: 0.78rem; color: var(--light); }
-    .edu-school { font-size: 0.82rem; font-weight: 500; color: var(--accent); margin-bottom: 3px; }
-    .edu-note { font-size: 0.8rem; color: var(--muted); }
+/* ── FOOTER ──────────────────────────────────────────────────── */
+.cv-footer {
+  margin-top: 28px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border2);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.cv-footer-meta {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  color: var(--text3);
+}
+.cv-footer-journey {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  color: var(--text3);
+}
+.cv-footer-journey a { color: var(--accent); transition: opacity .15s; }
+.cv-footer-journey a:hover { opacity: .75; }
 
-    /* ===== CERTIFICAÇÕES ===== */
-    .cert-block { margin-bottom: 10px; }
-    .cert-label {
-      font-family: var(--mono);
-      font-size: 0.65rem;
-      font-weight: 500;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--accent2);
-      margin-bottom: 5px;
-    }
-    .cert-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+/* ── SCREEN ──────────────────────────────────────────────────── */
+@media screen {
+  body { background: var(--bg-screen); }
+  .page {
+    margin: 20px auto;
+    box-shadow: 0 1px 4px rgba(0,0,0,.06), 0 6px 28px rgba(0,0,0,.06);
+    border-radius: 3px;
+  }
+}
 
-    /* ===== APRENDIZAGEM ===== */
-    .learning-list { display: flex; flex-direction: column; gap: 8px; }
-    .learning-item {
-      display: grid;
-      grid-template-columns: 1fr 90px 70px;
-      align-items: center;
-      gap: 10px;
-      font-size: 0.82rem;
-    }
-    .learning-name { color: var(--text); font-weight: 500; }
-    .learning-source { color: var(--light); font-size: 0.78rem; }
-    .learning-bar-wrap { height: 5px; background: var(--border); border-radius: 3px; overflow: hidden; }
-    .learning-bar {
-      height: 100%;
-      border-radius: 3px;
-      background: var(--accent);
-      print-color-adjust: exact;
-      -webkit-print-color-adjust: exact;
-    }
-    .learning-bar.complete { background: #10B981; }
-    .learning-pct { font-size: 0.75rem; color: var(--light); text-align: right; }
-
-    /* ===== FOOTER ===== */
-    .cv-footer {
-      margin-top: 28px;
-      padding-top: 14px;
-      border-top: 1px solid var(--border);
-      font-size: 0.75rem;
-      color: var(--light);
-      text-align: center;
-    }
-
-    /* ===== PRINT ===== */
-    @media print {
-      .print-bar { display: none !important; }
-      html { font-size: 12px; }
-      .page { max-width: 100%; padding: 20pt 24pt 24pt; }
-      .proj-badge.live, .proj-badge.wip, .proj-badge.backend, .proj-badge.ai,
-      .tag, .learning-bar {
-        print-color-adjust: exact;
-        -webkit-print-color-adjust: exact;
-      }
-      .exp-item, .proj-item, .edu-item { break-inside: avoid; page-break-inside: avoid; }
-    }
-
-    @media screen {
-      body { background: #F1F5F9; }
-      .page { margin: 24px auto; box-shadow: 0 4px 24px rgba(0,0,0,0.1); border-radius: 4px; }
-    }
+/* ── PRINT ───────────────────────────────────────────────────── */
+@media print {
+  .chrome { display: none !important; }
+  html { font-size: 11px; }
+  .page { max-width: 100%; padding: 18pt 22pt 22pt; margin: 0; box-shadow: none !important; }
+  .tag, .proj-badge, .badge-live, .badge-ai, .badge-backend, .badge-wip,
+  .proj-item.featured {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+  .exp-item, .proj-item, .edu-item, .proj-sec { break-inside: avoid; page-break-inside: avoid; }
+  h1 { font-size: 1.6rem; }
+  .cv-header { padding-bottom: 20pt; margin-bottom: 22pt; }
+  .cv-section { margin-bottom: 20pt; }
+}
   </style>
 </head>
 <body>
 
-<div class="print-bar">
-  <a href="index.html" class="btn-back">← Voltar ao portfólio</a>
-  <span>Curriculum Vitae — Everson Rubira</span>
-  <button class="btn-print" onclick="window.print()">
-    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
-    Imprimir / Guardar PDF
-  </button>
+<!-- SCREEN CHROME -->
+<div class="chrome">
+  <a href="index.html" class="chrome-back">← Everson Rubira</a>
+  <span class="chrome-title">CV — Backend Engineer · AI Systems</span>
+  <button class="btn-pdf" onclick="window.print()">Guardar PDF</button>
 </div>
 
 <div class="page">
 
+  <!-- HEADER -->
   <header class="cv-header">
     <div>
-      <h1 class="cv-name">Everson Rubira</h1>
+      <h1>Everson Rubira</h1>
       <div class="cv-title">Backend Engineer · AI Systems</div>
-      <p class="cv-tagline">Building AI-powered systems with Java. Spring Boot, REST APIs, LLMs and Agentic AI. 12+ years of operational systems thinking applied to backend engineering.</p>
+      <p class="cv-tagline">Building production backend systems with Java and Spring Boot — integrated with LLMs, agentic workflows and Claude API. 12 years of operational systems thinking applied to engineering.</p>
     </div>
     <div class="cv-contacts">
-      <span>📧 <a href="mailto:eversonrubira@gmail.com">eversonrubira@gmail.com</a></span>
-      <span>📱 +351 910 625 090</span>
-      <span>🔗 <a href="https://linkedin.com/in/eversonrubira" target="_blank">linkedin.com/in/eversonrubira</a></span>
-      <span>💻 <a href="https://github.com/EversonRubira" target="_blank">github.com/EversonRubira</a></span>
-      <span>🌐 <a href="https://eversonrubira.github.io" target="_blank">eversonrubira.github.io</a></span>
+      <a href="mailto:eversonrubira@gmail.com">eversonrubira@gmail.com</a>
+      <span>+351 910 625 090</span>
+      <a href="https://linkedin.com/in/eversonrubira" target="_blank">linkedin.com/in/eversonrubira</a>
+      <a href="https://github.com/EversonRubira" target="_blank">github.com/EversonRubira</a>
+      <a href="https://eversonrubira.github.io" target="_blank">eversonrubira.github.io</a>
+      <span class="cv-loc">Portugal · Remote · Open to relocation</span>
     </div>
   </header>
 
-  <!-- SOBRE MIM -->
+  <!-- ABOUT -->
   <section class="cv-section">
-    <div class="cv-section-title">About</div>
+    <div class="cv-label">About</div>
     <p class="cv-about">
-      Backend engineer building AI-powered systems with Java and Spring Boot.
-      <strong>12+ years in international B2B operations</strong> taught me to think in systems, identify failure points and work with precision under pressure — the same discipline I apply to production code.
-      Currently completing a <strong>TeSP in Programming & Information Systems at IPS</strong> (expected: Dec 2026), with an active internship in Java/Spring Boot and Angular at Pipoca Ágil.
-      Co-founder of <strong>ImplementIQ Systems</strong>, delivering real clients in production.
-      Core focus: <strong>Java backend architecture, LLM integrations and agentic workflows</strong> — building systems that understand context, not just data.
+      Backend engineer in deliberate transition to AI Engineering.
+      <strong>12 years in international B2B operations</strong> — supply chains, cross-border payments, risk analysis at scale — taught me to model domains before opening the IDE and question requirements before implementing them.
+      Currently completing a <strong>TeSP in Programming &amp; Information Systems at IPS</strong> (Dec 2026), with an active internship at Pipoca Ágil (18/20) and co-founding <strong>ImplementIQ Systems</strong> with real clients in production.
+      Core thesis: AI systems only work when the underlying architecture is solid.
     </p>
   </section>
 
-  <!-- EXPERIÊNCIA -->
+  <!-- EXPERIENCE -->
   <section class="cv-section">
-    <div class="cv-section-title">Experience</div>
+    <div class="cv-label">Experience</div>
 
     <div class="exp-item">
-      <div class="exp-header">
+      <div class="exp-row">
         <span class="exp-company">Accenture Portugal</span>
-        <span class="exp-period">2024 – presente</span>
+        <span class="exp-period">2024 – present</span>
       </div>
       <div class="exp-role">Trust &amp; Safety Associate · Agentic AI Facilitator</div>
-      <div class="exp-location">Lisboa, Portugal</div>
+      <div class="exp-loc">Lisboa, Portugal</div>
       <ul class="exp-bullets">
-        <li>Selected as next-generation talent for the Elevate GenAI Wave 2 programme (Jun 2026)</li>
-        <li>Reverse mentoring in Generative AI for senior Accenture Portugal leaders</li>
-        <li>Delivered Agentic AI workshops to analyst colleagues — Microsoft Copilot Studio</li>
-        <li>Risk analysis and content moderation based on international policies at scale</li>
+        <li>Selected for Elevate GenAI Wave 2 — reverse mentoring of senior leaders on Generative AI (Jun 2026)</li>
+        <li>Delivered Agentic AI workshops to analyst colleagues — Microsoft Copilot Studio in practice</li>
+        <li>Risk analysis and content moderation based on international policy at scale</li>
       </ul>
-      <div class="exp-tech">
-        <span class="tag">Agentic AI</span><span class="tag">Elevate GenAI Wave 2</span>
-        <span class="tag">Copilot Studio</span><span class="tag">Risk Analysis</span><span class="tag">Reverse Mentoring</span>
+      <div class="exp-tags">
+        <span class="tag">Agentic AI</span>
+        <span class="tag">Elevate GenAI Wave 2</span>
+        <span class="tag">Copilot Studio</span>
+        <span class="tag">Reverse Mentoring</span>
       </div>
     </div>
 
     <div class="exp-item">
-      <div class="exp-header">
+      <div class="exp-row">
         <span class="exp-company">Pipoca Ágil</span>
-        <span class="exp-period">Fev 2026 – presente</span>
+        <span class="exp-period">Feb 2026 – present</span>
       </div>
-      <div class="exp-role">Estágio Curricular, Full-Stack Developer</div>
-      <div class="exp-location">Remoto · Brasil</div>
+      <div class="exp-role">Curricular Internship — Full-Stack Developer</div>
+      <div class="exp-loc">Remote · Brasil</div>
       <ul class="exp-bullets">
-        <li>Hexagonal Architecture + DDD on a real e-commerce project (18/20 final grade)</li>
-        <li>Schema migrations with Flyway; full product catalogue backend</li>
-        <li>Shopping cart backend + frontend with 160+ tests (JUnit 5 + Vitest)</li>
-        <li>MapStruct entity mapping, REST API design, Docker containerisation</li>
+        <li>Hexagonal Architecture + DDD on a real e-commerce project — final grade <strong>18/20</strong></li>
+        <li>Shopping cart backend with 160+ tests (JUnit 5), schema migrations with Flyway, full product catalogue API</li>
+        <li>MapStruct entity mapping, REST API design, Docker containerisation, Angular frontend</li>
       </ul>
-      <div class="exp-tech">
-        <span class="tag">Java 21</span><span class="tag">Spring Boot</span><span class="tag">PostgreSQL</span>
-        <span class="tag">Flyway</span><span class="tag">JUnit 5</span><span class="tag">Angular</span>
-        <span class="tag">TypeScript</span><span class="tag">Docker</span><span class="tag">DDD</span>
+      <div class="exp-tags">
+        <span class="tag">Java 21</span>
+        <span class="tag">Spring Boot</span>
+        <span class="tag">PostgreSQL</span>
+        <span class="tag">DDD</span>
+        <span class="tag">Docker</span>
+        <span class="tag">JUnit 5</span>
+        <span class="tag">Angular</span>
       </div>
     </div>
 
     <div class="exp-item">
-      <div class="exp-header">
+      <div class="exp-row">
         <span class="exp-company">ImplementIQ Systems</span>
-        <span class="exp-period">Jan 2024 – presente</span>
+        <span class="exp-period">Jan 2024 – present</span>
       </div>
       <div class="exp-role">Co-founder &amp; Developer</div>
-      <div class="exp-location">Seixal, Portugal</div>
+      <div class="exp-loc">Seixal, Portugal</div>
       <ul class="exp-bullets">
-        <li>Tech consultancy for Portuguese SMEs, full delivery from client to production deploy</li>
-        <li><strong>Sulav Sushi Bar</strong> (sulavsushibar.pt), bilingual PT/EN site with Uber Eats, Glovo and Bolt Food integrations</li>
-        <li><strong>Wedding Clinic</strong> (weddingclinic.pt), institutional site in production for real client</li>
+        <li>Tech consultancy for Portuguese SMEs — full-stack delivery from spec to production deploy</li>
+        <li><strong>Sulav Sushi Bar</strong> (sulavsushibar.pt) — bilingual PT/EN site with Uber Eats, Glovo and Bolt Food integrations, live</li>
+        <li><strong>Wedding Clinic</strong> (weddingclinic.pt) — institutional site in production</li>
       </ul>
-      <div class="exp-tech">
-        <span class="tag">GitHub Pages</span><span class="tag">Supabase</span>
-        <span class="tag">HTML/CSS/JS</span><span class="tag">SEO</span>
+      <div class="exp-tags">
+        <span class="tag">GitHub Pages</span>
+        <span class="tag">Supabase</span>
+        <span class="tag">HTML/CSS/JS</span>
+        <span class="tag">SEO</span>
       </div>
     </div>
 
   </section>
 
-  <!-- PROJETOS -->
+  <!-- PROJECTS -->
   <section class="cv-section">
-    <div class="cv-section-title">Projects</div>
-    <div class="projects-grid">
+    <div class="cv-label">Projects</div>
+    <div class="proj-grid">
 
-      <div class="proj-item">
+      <div class="proj-item featured">
         <div class="proj-header">
           <span class="proj-name">Boardly</span>
-          <span class="proj-badge backend">Backend</span>
+          <span class="proj-badge badge-backend">Backend</span>
         </div>
-        <p class="proj-desc">Task management API with JWT auth and Clean Architecture in Java 17.</p>
-        <div class="exp-tech" style="margin-bottom:5px;">
+        <p class="proj-desc">Task management REST API — JWT auth, Clean Architecture, Java 17. Solid backend fundamentals applied to a real-world domain.</p>
+        <div class="exp-tags" style="margin-bottom:7px">
           <span class="tag">Java 17</span><span class="tag">Spring Boot</span><span class="tag">MongoDB</span><span class="tag">JWT</span>
         </div>
         <a href="https://github.com/EversonRubira/boardly" class="proj-link" target="_blank">github.com/EversonRubira/boardly</a>
       </div>
 
-      <div class="proj-item">
-        <div class="proj-header">
-          <span class="proj-name">FitCheck</span>
-          <span class="proj-badge ai">AI Integration</span>
-        </div>
-        <p class="proj-desc">Fitness app with Claude API — AI-generated workout recommendations based on user profile.</p>
-        <div class="exp-tech" style="margin-bottom:5px;">
-          <span class="tag">Node.js</span><span class="tag">MySQL</span><span class="tag">Sequelize</span><span class="tag">Claude API</span>
-        </div>
-        <a href="https://github.com/EversonRubira/fitcheck" class="proj-link" target="_blank">github.com/EversonRubira/fitcheck</a>
-      </div>
-
-      <div class="proj-item">
+      <div class="proj-item featured">
         <div class="proj-header">
           <span class="proj-name">LangChain + Anthropic</span>
-          <span class="proj-badge ai">AI Agents</span>
+          <span class="proj-badge badge-ai">AI Agents</span>
         </div>
-        <p class="proj-desc">AI agents with LangChain and Python — chains, memory, tools and LLM orchestration for real use cases.</p>
-        <div class="exp-tech" style="margin-bottom:5px;">
-          <span class="tag">Python</span><span class="tag">LangChain</span><span class="tag">Anthropic API</span>
+        <p class="proj-desc">Agentic workflows with LangChain — chains, memory, tools, LLM orchestration. Applied to real use cases, not tutorials.</p>
+        <div class="exp-tags" style="margin-bottom:7px">
+          <span class="tag">Python</span><span class="tag">LangChain</span><span class="tag">Claude API</span>
         </div>
         <a href="https://github.com/EversonRubira/langchain-anthropic" class="proj-link" target="_blank">github.com/EversonRubira/langchain-anthropic</a>
       </div>
 
-      <div class="proj-item">
+      <div class="proj-item featured">
+        <div class="proj-header">
+          <span class="proj-name">FitCheck</span>
+          <span class="proj-badge badge-ai">AI Integration</span>
+        </div>
+        <p class="proj-desc">Fitness app integrated with Claude API — AI-generated workout recommendations from user profile data.</p>
+        <div class="exp-tags" style="margin-bottom:7px">
+          <span class="tag">Node.js</span><span class="tag">MySQL</span><span class="tag">Claude API</span>
+        </div>
+        <a href="https://github.com/EversonRubira/fitcheck" class="proj-link" target="_blank">github.com/EversonRubira/fitcheck</a>
+      </div>
+
+      <div class="proj-item featured">
         <div class="proj-header">
           <span class="proj-name">Sulav Sushi Bar</span>
-          <span class="proj-badge live">Production</span>
+          <span class="proj-badge badge-live">Production</span>
         </div>
-        <p class="proj-desc">Bilingual PT/EN site in production with Uber Eats, Glovo and Bolt Food integrations.</p>
-        <div class="exp-tech" style="margin-bottom:5px;">
+        <p class="proj-desc">Bilingual PT/EN site live in production — delivery platform integrations (Uber Eats, Glovo, Bolt Food). Real client, real users.</p>
+        <div class="exp-tags" style="margin-bottom:7px">
           <span class="tag">GitHub Pages</span><span class="tag">Supabase</span><span class="tag">SEO</span>
         </div>
         <a href="https://sulavsushibar.pt" class="proj-link" target="_blank">sulavsushibar.pt</a>
       </div>
 
-      <div class="proj-item">
-        <div class="proj-header">
-          <span class="proj-name">StudyFlow</span>
-          <span class="proj-badge wip">In Progress</span>
-        </div>
-        <p class="proj-desc">Native Android study management app with MVVM, Room, Pomodoro and notifications.</p>
-        <div class="exp-tech" style="margin-bottom:5px;">
-          <span class="tag">Kotlin</span><span class="tag">Android</span><span class="tag">MVVM</span><span class="tag">Room</span>
-        </div>
-        <a href="https://github.com/EversonRubira/StudyFlow" class="proj-link" target="_blank">github.com/EversonRubira/StudyFlow</a>
+    </div>
+    <div class="proj-secondary">
+      <div class="proj-sec">
+        <div class="proj-sec-name">StudyFlow</div>
+        <div class="proj-sec-desc">Android study app — MVVM, Room, Pomodoro · Kotlin</div>
       </div>
-
-      <div class="proj-item">
-        <div class="proj-header">
-          <span class="proj-name">IMC Calculator</span>
-          <span class="proj-badge live">Live Demo</span>
-        </div>
-        <p class="proj-desc">BMI calculator with WHO table, dark/light mode and dynamic classification highlight.</p>
-        <div class="exp-tech" style="margin-bottom:5px;">
-          <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span>
-        </div>
-        <a href="https://eversonrubira.github.io/imc/" class="proj-link" target="_blank">eversonrubira.github.io/imc</a>
+      <div class="proj-sec">
+        <div class="proj-sec-name">Wedding Clinic</div>
+        <div class="proj-sec-desc">Institutional site in production · weddingclinic.pt</div>
       </div>
-
     </div>
   </section>
 
-  <!-- STACK TÉCNICA -->
+  <!-- TECHNICAL FOCUS -->
   <section class="cv-section">
-    <div class="cv-section-title">Technical Stack</div>
-    <div class="stack-rows">
-      <div class="stack-row">
-        <span class="stack-label">Backend</span>
-        <div class="stack-tags">
-          <span class="tag">Java 17/21</span><span class="tag">Spring Boot</span><span class="tag">Node.js</span><span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">REST APIs</span>
+    <div class="cv-label">Technical Focus</div>
+    <div class="focus-rows">
+      <div class="focus-row">
+        <span class="focus-label">Backend</span>
+        <div class="focus-tags">
+          <span class="tag">Java 17/21</span>
+          <span class="tag">Spring Boot</span>
+          <span class="tag">REST APIs</span>
+          <span class="tag">PostgreSQL</span>
+          <span class="tag">Docker</span>
+          <span class="tag">GitHub Actions</span>
+          <span class="tag">JUnit 5</span>
         </div>
       </div>
-      <div class="stack-row">
-        <span class="stack-label">AI / LLM Engineering</span>
-        <div class="stack-tags">
-          <span class="tag">LangChain</span><span class="tag">Claude API</span><span class="tag">Anthropic SDK</span><span class="tag">AI Agents</span><span class="tag">Prompt Engineering</span><span class="tag">RAG</span>
+      <div class="focus-row">
+        <span class="focus-label">AI Engineering</span>
+        <div class="focus-tags">
+          <span class="tag">Claude API</span>
+          <span class="tag">LangChain</span>
+          <span class="tag">AI Agents</span>
+          <span class="tag">Prompt Engineering</span>
+          <span class="tag">RAG</span>
+          <span class="tag">MCP</span>
         </div>
       </div>
-      <div class="stack-row">
-        <span class="stack-label">Architecture</span>
-        <div class="stack-tags">
-          <span class="tag">Hexagonal Architecture</span><span class="tag">DDD</span><span class="tag">Clean Architecture</span><span class="tag">Microservices</span>
-        </div>
-      </div>
-      <div class="stack-row">
-        <span class="stack-label">Data</span>
-        <div class="stack-tags">
-          <span class="tag">PostgreSQL</span><span class="tag">MySQL</span><span class="tag">MongoDB</span><span class="tag">Supabase</span><span class="tag">Flyway</span>
-        </div>
-      </div>
-      <div class="stack-row">
-        <span class="stack-label">Engineering Practices</span>
-        <div class="stack-tags">
-          <span class="tag">JUnit 5</span><span class="tag">Docker</span><span class="tag">Git</span><span class="tag">GitHub Actions</span><span class="tag">Jira</span><span class="tag">Linux</span>
-        </div>
-      </div>
-      <div class="stack-row">
-        <span class="stack-label">Frontend &amp; Tools</span>
-        <div class="stack-tags">
-          <span class="tag">Angular</span><span class="tag">TypeScript</span><span class="tag">HTML/CSS/JS</span><span class="tag">Postman</span>
+      <div class="focus-row">
+        <span class="focus-label">Architecture</span>
+        <div class="focus-tags">
+          <span class="tag">Hexagonal Architecture</span>
+          <span class="tag">DDD</span>
+          <span class="tag">Clean Architecture</span>
+          <span class="tag">Microservices</span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- FORMAÇÃO -->
+  <!-- EDUCATION & CREDENTIALS -->
   <section class="cv-section">
-    <div class="cv-section-title">Education</div>
+    <div class="cv-label">Education &amp; Credentials</div>
+    <div class="edu-grid">
 
-    <div class="edu-item">
-      <div class="edu-header">
-        <span class="edu-degree">TeSP em Programação e Sistemas de Informação</span>
-        <span class="edu-period">2024 – Dez 2026 (previsto)</span>
+      <div class="edu-item">
+        <div class="edu-degree">TeSP — Programming &amp; Information Systems</div>
+        <div class="edu-school">Instituto Politécnico de Setúbal (IPS)</div>
+        <div class="edu-period">2024 – Dec 2026 (expected)</div>
+        <div class="edu-note">3rd semester · 7 active UCs · internship 18/20</div>
       </div>
-      <div class="edu-school">Instituto Politécnico de Setúbal (IPS)</div>
-      <div class="edu-note">3.º semestre, 7 UCs em curso + estágio curricular ativo na Pipoca Ágil (18/20)</div>
-    </div>
 
-    <div class="edu-item">
-      <div class="edu-header">
-        <span class="edu-degree">Certificações Alura</span>
-        <span class="edu-period">2023 – presente</span>
+      <div class="edu-item">
+        <div class="edu-degree">Elevate GenAI Wave 2</div>
+        <div class="edu-school">Accenture — Agentic AI Facilitator</div>
+        <div class="edu-period">Jun 2026</div>
+        <div class="edu-note">Credly badge: "Reinvention with Agentic AI — Facilitator" · Copilot Studio · Reverse mentoring of senior leaders</div>
       </div>
-      <div class="edu-school">Alura — Grupo AOVS</div>
-    </div>
 
-    <div class="cert-block">
-      <div class="cert-label">Java &amp; Backend Architecture</div>
-      <div class="cert-tags">
-        <span class="tag">OOP</span><span class="tag">Collections</span><span class="tag">Streams</span><span class="tag">SOLID</span>
-        <span class="tag">TDD/JUnit</span><span class="tag">Spring Boot ×3</span><span class="tag">DDD</span>
-        <span class="tag">Clean Architecture</span><span class="tag">Microservices</span><span class="tag">RabbitMQ</span>
+      <div class="edu-item">
+        <div class="edu-degree">Anthropic Academy</div>
+        <div class="edu-school">Anthropic · 2026</div>
+        <div class="edu-tags">
+          <span class="tag">Claude 101</span>
+          <span class="tag">Claude Code in Action</span>
+          <span class="tag">AI Fluency: Framework &amp; Foundations</span>
+        </div>
       </div>
-    </div>
-    <div class="cert-block">
-      <div class="cert-label">AI &amp; LLM Engineering</div>
-      <div class="cert-tags">
-        <span class="tag">Prompt Engineering</span><span class="tag">LangChain + OpenAI</span><span class="tag">Generative AI</span>
-        <span class="tag">Agentic AI — Accenture Elevate Wave 2</span>
+
+      <div class="edu-item">
+        <div class="edu-degree">Backend &amp; AI Certifications</div>
+        <div class="edu-school">Alura — 2023 to present</div>
+        <div class="edu-tags">
+          <span class="tag">Spring Boot ×3</span>
+          <span class="tag">DDD</span>
+          <span class="tag">Clean Architecture</span>
+          <span class="tag">Microservices</span>
+          <span class="tag">LangChain</span>
+          <span class="tag">Prompt Engineering</span>
+          <span class="tag">AZ-900</span>
+        </div>
       </div>
-    </div>
-    <div class="cert-block">
-      <div class="cert-label">Anthropic Academy</div>
-      <div class="cert-tags">
-        <span class="tag">Claude 101</span><span class="tag">Claude Code in Action</span>
-        <span class="tag">AI Fluency: Framework &amp; Foundations</span><span class="tag">AI Fluency for Students</span>
-      </div>
-    </div>
-    <div class="cert-block">
-      <div class="cert-label">Cloud, DevOps &amp; Other Languages</div>
-      <div class="cert-tags">
-        <span class="tag">AZ-900</span><span class="tag">Docker</span><span class="tag">Linux</span><span class="tag">Git/GitHub</span>
-        <span class="tag">Python OOP</span><span class="tag">Python TDD</span><span class="tag">Go API</span><span class="tag">TypeScript</span>
-      </div>
+
     </div>
   </section>
 
-  <!-- APRENDIZAGEM EM PROGRESSO -->
-  <section class="cv-section">
-    <div class="cv-section-title">Active Learning</div>
-    <div class="learning-list">
-      <div class="learning-item">
-        <div>
-          <div class="learning-name">LangChain: AI Agents</div>
-          <div class="learning-source">Alura</div>
-        </div>
-        <div class="learning-bar-wrap"><div class="learning-bar" style="width:61%"></div></div>
-        <div class="learning-pct">61%</div>
-      </div>
-      <div class="learning-item">
-        <div>
-          <div class="learning-name">Building with the Claude API</div>
-          <div class="learning-source">Anthropic Academy</div>
-        </div>
-        <div class="learning-bar-wrap"><div class="learning-bar" style="width:15%"></div></div>
-        <div class="learning-pct">In progress</div>
-      </div>
-      <div class="learning-item">
-        <div>
-          <div class="learning-name">Introduction to MCP</div>
-          <div class="learning-source">Anthropic Academy</div>
-        </div>
-        <div class="learning-bar-wrap"><div class="learning-bar" style="width:5%"></div></div>
-        <div class="learning-pct">Starting</div>
-      </div>
-      <div class="learning-item">
-        <div>
-          <div class="learning-name">Advanced Backend Architecture Patterns</div>
-          <div class="learning-source">Alura</div>
-        </div>
-        <div class="learning-bar-wrap"><div class="learning-bar" style="width:20%"></div></div>
-        <div class="learning-pct">In progress</div>
-      </div>
-      <div class="learning-item">
-        <div>
-          <div class="learning-name">SDD — Spec-Driven Development</div>
-          <div class="learning-source">Self-directed</div>
-        </div>
-        <div class="learning-bar-wrap"><div class="learning-bar" style="width:40%"></div></div>
-        <div class="learning-pct">In progress</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- IDIOMAS & DISPONIBILIDADE -->
+  <!-- LANGUAGES & AVAILABILITY -->
   <section class="cv-section" style="margin-bottom:0">
-    <div class="cv-section-title">Languages &amp; Availability</div>
-    <div class="stack-rows">
-      <div class="stack-row">
-        <span class="stack-label">Languages</span>
-        <div class="stack-tags">
-          <span class="tag">Portuguese — native</span>
-          <span class="tag">English — professional</span>
-          <span class="tag">Spanish — basic</span>
-        </div>
+    <div class="cv-label">Languages &amp; Availability</div>
+    <div class="avail-row">
+      <span class="avail-label">Languages</span>
+      <div class="exp-tags">
+        <span class="tag">Portuguese — native</span>
+        <span class="tag">English — professional</span>
+        <span class="tag">Spanish — basic</span>
       </div>
-      <div class="stack-row">
-        <span class="stack-label">Availability</span>
-        <div style="font-size:0.82rem;color:var(--muted);padding-top:2px;">
-          Immediate · Portugal, Spain or remote · On-site, hybrid or fully remote
-        </div>
-      </div>
+    </div>
+    <div class="avail-row">
+      <span class="avail-label">Availability</span>
+      <span class="avail-val">Immediate · Portugal, Spain or remote · on-site, hybrid or fully remote</span>
     </div>
   </section>
 
-  <div class="cv-footer">
-    CV updated October 2026 · eversonrubira.github.io/cv · eversonrubira@gmail.com
-  </div>
+  <footer class="cv-footer">
+    <div class="cv-footer-meta">October 2026 · eversonrubira@gmail.com · eversonrubira.github.io</div>
+    <div class="cv-footer-journey">AI Engineering → <a href="https://eversonrubira.github.io/learning-journey" target="_blank">eversonrubira.github.io/learning-journey</a></div>
+  </footer>
 
 </div>
 
 <script>
-  document.querySelector('.btn-print').addEventListener('click', () => window.print());
+  document.querySelector('.btn-pdf').addEventListener('click', function(){ window.print(); });
 </script>
 </body>
 </html>
