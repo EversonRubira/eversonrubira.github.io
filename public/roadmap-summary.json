@@ -1,0 +1,31 @@
+{
+  "_v": 1,
+  "_updated": "2026-10-22T00:00:00Z",
+  "label": "AI Engineering",
+  "progress": {
+    "pct": 9,
+    "done": 2,
+    "total": 23,
+    "phases_done": 1,
+    "phases_total": 7
+  },
+  "current_phase": {
+    "n": 1,
+    "title": "Agentes com LangChain e LangGraph",
+    "courses_done": 0,
+    "courses_total": 4
+  },
+  "next_phase": {
+    "n": 2,
+    "title": "Claude API e MCP"
+  },
+  "phases": [
+    { "n": 0, "title": "Base concluída", "done": true, "courses_done": 2, "courses_total": 2 },
+    { "n": 1, "title": "Agentes com LangChain e LangGraph", "done": false, "courses_done": 0, "courses_total": 4 },
+    { "n": 2, "title": "Claude API e MCP", "done": false, "courses_done": 0, "courses_total": 3 },
+    { "n": 3, "title": "AI-Native Software Engineering", "done": false, "courses_done": 0, "courses_total": 6 },
+    { "n": 4, "title": "MCP avançado e AWS", "done": false, "courses_done": 0, "courses_total": 1 },
+    { "n": 5, "title": "Avaliar e testar sistemas de LLM", "done": false, "courses_done": 0, "courses_total": 2 },
+    { "n": 6, "title": "Arquitetura de soluções", "done": false, "courses_done": 0, "courses_total": 5 }
+  ]
+}

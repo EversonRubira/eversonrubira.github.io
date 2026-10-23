@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CV — Everson Rubira · Backend Engineer · AI Systems</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+/* ── DESIGN TOKENS ───────────────────────────────────────────── */
+:root {
+  --accent:    #D97757;
+  --accent2:   #B55E38;
+  --text:      #0F0D0B;
+  --text2:     #3D3830;
+  --text3:     #7A7470;
+  --border:    #E8E3DD;
+  --border2:   #F0ECE8;
+  --bg-tag:    #FAF2EC;
+  --bg-screen: #F2EEE9;
+  --green:     #16A34A;
+  --sans:      'Inter', system-ui, sans-serif;
+  --mono:      'JetBrains Mono', 'Courier New', monospace;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 14px; }
+body {
+  font-family: var(--sans);
+  color: var(--text);
+  background: #fff;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+
+/* ── SCREEN CHROME ───────────────────────────────────────────── */
+.chrome {
+  background: var(--text);
+  padding: 10px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.chrome-back {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  color: rgba(255,255,255,.45);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: color .15s;
+}
+.chrome-back:hover { color: rgba(255,255,255,.85); }
+.chrome-title {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  color: rgba(255,255,255,.3);
+  letter-spacing: .04em;
+}
+.btn-pdf {
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  font-weight: 500;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 6px 14px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: opacity .15s;
+}
+.btn-pdf:hover { opacity: .85; }
+
+/* ── PAGE ────────────────────────────────────────────────────── */
+.page {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 40px 52px 48px;
+  background: #fff;
+}
+
+/* ── HEADER ──────────────────────────────────────────────────── */
+.cv-header {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 20px 32px;
+  align-items: start;
+  padding-bottom: 26px;
+  margin-bottom: 28px;
+  border-bottom: 1px solid var(--border);
+}
+h1 {
+  font-size: 1.85rem;
+  font-weight: 600;
+  letter-spacing: -.028em;
+  color: var(--text);
+  line-height: 1.1;
+  margin-bottom: 4px;
+}
+.cv-title {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 10px;
+}
+.cv-tagline {
+  font-size: 0.82rem;
+  color: var(--text2);
+  max-width: 420px;
+  line-height: 1.7;
+}
+.cv-contacts {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  padding-top: 5px;
+}
+.cv-contacts a,
+.cv-contacts span {
+  font-family: var(--mono);
+  font-size: 0.64rem;
+  color: var(--text3);
+  display: block;
+  white-space: nowrap;
+  transition: color .15s;
+}
+.cv-contacts a:hover { color: var(--accent); }
+.cv-loc {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  color: var(--border);
+  margin-top: 3px;
+}
+
+/* ── SECTION LABEL ───────────────────────────────────────────── */
+.cv-section { margin-bottom: 26px; }
+.cv-section:last-of-type { margin-bottom: 0; }
+.cv-label {
+  font-family: var(--mono);
+  font-size: 0.57rem;
+  font-weight: 500;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.cv-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border2);
+}
+
+/* ── ABOUT ───────────────────────────────────────────────────── */
+.cv-about {
+  font-size: 0.825rem;
+  color: var(--text2);
+  line-height: 1.78;
+  max-width: 640px;
+}
+.cv-about strong { color: var(--text); font-weight: 600; }
+
+/* ── EXPERIENCE ──────────────────────────────────────────────── */
+.exp-item {
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border2);
+}
+.exp-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+.exp-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-bottom: 1px;
+}
+.exp-company { font-size: 0.88rem; font-weight: 600; color: var(--text); }
+.exp-period {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  color: var(--text3);
+  white-space: nowrap;
+}
+.exp-role { font-size: 0.78rem; font-weight: 500; color: var(--accent); margin-bottom: 2px; }
+.exp-loc { font-size: 0.72rem; color: var(--text3); margin-bottom: 9px; }
+.exp-bullets { list-style: none; margin-bottom: 10px; }
+.exp-bullets li {
+  font-size: 0.8rem;
+  color: var(--text2);
+  padding: 2.5px 0 2.5px 14px;
+  position: relative;
+  line-height: 1.6;
+}
+.exp-bullets li::before {
+  content: '–';
+  position: absolute;
+  left: 0;
+  color: var(--border);
+  font-size: .8rem;
+}
+.exp-tags { display: flex; flex-wrap: wrap; gap: 4px; }
+
+/* ── TAG ─────────────────────────────────────────────────────── */
+.tag {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  font-weight: 400;
+  padding: 2px 7px;
+  border-radius: 3px;
+  background: var(--bg-tag);
+  color: var(--accent2);
+  border: 1px solid rgba(217,119,87,.16);
+  white-space: nowrap;
+}
+
+/* ── PROJECTS ────────────────────────────────────────────────── */
+.proj-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.proj-item {
+  padding: 13px 15px 12px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+.proj-item.featured { background: #FDFAF7; border-color: rgba(217,119,87,.2); }
+.proj-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8px;
+  margin-bottom: 5px;
+}
+.proj-name { font-size: 0.84rem; font-weight: 600; color: var(--text); line-height: 1.2; }
+.proj-badge {
+  font-family: var(--mono);
+  font-size: 0.55rem;
+  font-weight: 500;
+  padding: 2px 6px;
+  border-radius: 3px;
+  letter-spacing: .04em;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.badge-live    { background: #DCFCE7; color: #15803D; }
+.badge-ai      { background: rgba(217,119,87,.1); color: var(--accent2); }
+.badge-backend { background: #EEF2FF; color: #3730A3; }
+.badge-wip     { background: #FEF3C7; color: #92400E; }
+.proj-desc {
+  font-size: 0.77rem;
+  color: var(--text2);
+  line-height: 1.55;
+  margin-bottom: 8px;
+}
+.proj-link {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  color: var(--text3);
+  transition: color .15s;
+}
+.proj-link:hover { color: var(--accent); }
+
+.proj-secondary {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.proj-sec {
+  padding: 10px 12px;
+  border: 1px solid var(--border2);
+  border-radius: 5px;
+}
+.proj-sec-name {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 2px;
+}
+.proj-sec-desc { font-size: 0.72rem; color: var(--text3); line-height: 1.45; }
+
+/* ── TECHNICAL FOCUS ─────────────────────────────────────────── */
+.focus-rows { display: flex; flex-direction: column; gap: 7px; }
+.focus-row {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  gap: 10px;
+  align-items: start;
+}
+.focus-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text2);
+  padding-top: 3px;
+}
+.focus-tags { display: flex; flex-wrap: wrap; gap: 4px; }
+
+/* ── EDUCATION ───────────────────────────────────────────────── */
+.edu-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.edu-item {}
+.edu-degree { font-size: 0.84rem; font-weight: 600; color: var(--text); margin-bottom: 2px; line-height: 1.3; }
+.edu-school { font-size: 0.76rem; font-weight: 500; color: var(--accent); margin-bottom: 2px; }
+.edu-period { font-family: var(--mono); font-size: 0.62rem; color: var(--text3); margin-bottom: 3px; }
+.edu-note { font-size: 0.74rem; color: var(--text3); line-height: 1.5; }
+.edu-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 5px; }
+
+/* ── AVAILABILITY ────────────────────────────────────────────── */
+.avail-row {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  gap: 10px;
+  align-items: start;
+  margin-bottom: 6px;
+}
+.avail-row:last-child { margin-bottom: 0; }
+.avail-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text2);
+  padding-top: 3px;
+}
+.avail-val { font-size: 0.8rem; color: var(--text2); padding-top: 3px; }
+
+/* ── FOOTER ──────────────────────────────────────────────────── */
+.cv-footer {
+  margin-top: 28px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border2);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.cv-footer-meta {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  color: var(--text3);
+}
+.cv-footer-journey {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  color: var(--text3);
+}
+.cv-footer-journey a { color: var(--accent); transition: opacity .15s; }
+.cv-footer-journey a:hover { opacity: .75; }
+
+/* ── SCREEN ──────────────────────────────────────────────────── */
+@media screen {
+  body { background: var(--bg-screen); }
+  .page {
+    margin: 20px auto;
+    box-shadow: 0 1px 4px rgba(0,0,0,.06), 0 6px 28px rgba(0,0,0,.06);
+    border-radius: 3px;
+  }
+}
+
+/* ── PRINT ───────────────────────────────────────────────────── */
+@media print {
+  .chrome { display: none !important; }
+  html { font-size: 11px; }
+  .page { max-width: 100%; padding: 18pt 22pt 22pt; margin: 0; box-shadow: none !important; }
+  .tag, .proj-badge, .badge-live, .badge-ai, .badge-backend, .badge-wip,
+  .proj-item.featured {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+  .exp-item, .proj-item, .edu-item, .proj-sec { break-inside: avoid; page-break-inside: avoid; }
+  h1 { font-size: 1.6rem; }
+  .cv-header { padding-bottom: 20pt; margin-bottom: 22pt; }
+  .cv-section { margin-bottom: 20pt; }
+}
+  </style>
+</head>
+<body>
+
+<!-- SCREEN CHROME -->
+<div class="chrome">
+  <a href="index.html" class="chrome-back">← Everson Rubira</a>
+  <span class="chrome-title">CV — Backend Engineer · AI Systems</span>
+  <button class="btn-pdf" onclick="window.print()">Guardar PDF</button>
+</div>
+
+<div class="page">
+
+  <!-- HEADER -->
+  <header class="cv-header">
+    <div>
+      <h1>Everson Rubira</h1>
+      <div class="cv-title">Backend Engineer · AI Systems</div>
+      <p class="cv-tagline">Building production backend systems with Java and Spring Boot — integrated with LLMs, agentic workflows and Claude API. 12 years of operational systems thinking applied to engineering.</p>
+    </div>
+    <div class="cv-contacts">
+      <a href="mailto:eversonrubira@gmail.com">eversonrubira@gmail.com</a>
+      <span>+351 910 625 090</span>
+      <a href="https://linkedin.com/in/eversonrubira" target="_blank">linkedin.com/in/eversonrubira</a>
+      <a href="https://github.com/EversonRubira" target="_blank">github.com/EversonRubira</a>
+      <a href="https://eversonrubira.github.io" target="_blank">eversonrubira.github.io</a>
+      <span class="cv-loc">Portugal · Remote · Open to relocation</span>
+    </div>
+  </header>
+
+  <!-- ABOUT -->
+  <section class="cv-section">
+    <div class="cv-label">About</div>
+    <p class="cv-about">
+      Backend engineer in deliberate transition to AI Engineering.
+      <strong>12 years in international B2B operations</strong> — supply chains, cross-border payments, risk analysis at scale — taught me to model domains before opening the IDE and question requirements before implementing them.
+      Currently completing a <strong>TeSP in Programming &amp; Information Systems at IPS</strong> (Dec 2026), with an active internship at Pipoca Ágil (18/20) and co-founding <strong>ImplementIQ Systems</strong> with real clients in production.
+      Core thesis: AI systems only work when the underlying architecture is solid.
+    </p>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section class="cv-section">
+    <div class="cv-label">Experience</div>
+
+    <div class="exp-item">
+      <div class="exp-row">
+        <span class="exp-company">Accenture Portugal</span>
+        <span class="exp-period">2024 – present</span>
+      </div>
+      <div class="exp-role">Trust &amp; Safety Associate · Agentic AI Facilitator</div>
+      <div class="exp-loc">Lisboa, Portugal</div>
+      <ul class="exp-bullets">
+        <li>Selected for Elevate GenAI Wave 2 — reverse mentoring of senior leaders on Generative AI (Jun 2026)</li>
+        <li>Delivered Agentic AI workshops to analyst colleagues — Microsoft Copilot Studio in practice</li>
+        <li>Risk analysis and content moderation based on international policy at scale</li>
+      </ul>
+      <div class="exp-tags">
+        <span class="tag">Agentic AI</span>
+        <span class="tag">Elevate GenAI Wave 2</span>
+        <span class="tag">Copilot Studio</span>
+        <span class="tag">Reverse Mentoring</span>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-row">
+        <span class="exp-company">Pipoca Ágil</span>
+        <span class="exp-period">Feb 2026 – present</span>
+      </div>
+      <div class="exp-role">Curricular Internship — Full-Stack Developer</div>
+      <div class="exp-loc">Remote · Brasil</div>
+      <ul class="exp-bullets">
+        <li>Hexagonal Architecture + DDD on a real e-commerce project — final grade <strong>18/20</strong></li>
+        <li>Shopping cart backend with 160+ tests (JUnit 5), schema migrations with Flyway, full product catalogue API</li>
+        <li>MapStruct entity mapping, REST API design, Docker containerisation, Angular frontend</li>
+      </ul>
+      <div class="exp-tags">
+        <span class="tag">Java 21</span>
+        <span class="tag">Spring Boot</span>
+        <span class="tag">PostgreSQL</span>
+        <span class="tag">DDD</span>
+        <span class="tag">Docker</span>
+        <span class="tag">JUnit 5</span>
+        <span class="tag">Angular</span>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-row">
+        <span class="exp-company">ImplementIQ Systems</span>
+        <span class="exp-period">Jan 2024 – present</span>
+      </div>
+      <div class="exp-role">Co-founder &amp; Developer</div>
+      <div class="exp-loc">Seixal, Portugal</div>
+      <ul class="exp-bullets">
+        <li>Tech consultancy for Portuguese SMEs — full-stack delivery from spec to production deploy</li>
+        <li><strong>Sulav Sushi Bar</strong> (sulavsushibar.pt) — bilingual PT/EN site with Uber Eats, Glovo and Bolt Food integrations, live</li>
+        <li><strong>Wedding Clinic</strong> (weddingclinic.pt) — institutional site in production</li>
+      </ul>
+      <div class="exp-tags">
+        <span class="tag">GitHub Pages</span>
+        <span class="tag">Supabase</span>
+        <span class="tag">HTML/CSS/JS</span>
+        <span class="tag">SEO</span>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- PROJECTS -->
+  <section class="cv-section">
+    <div class="cv-label">Projects</div>
+    <div class="proj-grid">
+
+      <div class="proj-item featured">
+        <div class="proj-header">
+          <span class="proj-name">Boardly</span>
+          <span class="proj-badge badge-backend">Backend</span>
+        </div>
+        <p class="proj-desc">Task management REST API — JWT auth, Clean Architecture, Java 17. Solid backend fundamentals applied to a real-world domain.</p>
+        <div class="exp-tags" style="margin-bottom:7px">
+          <span class="tag">Java 17</span><span class="tag">Spring Boot</span><span class="tag">MongoDB</span><span class="tag">JWT</span>
+        </div>
+        <a href="https://github.com/EversonRubira/boardly" class="proj-link" target="_blank">github.com/EversonRubira/boardly</a>
+      </div>
+
+      <div class="proj-item featured">
+        <div class="proj-header">
+          <span class="proj-name">LangChain + Anthropic</span>
+          <span class="proj-badge badge-ai">AI Agents</span>
+        </div>
+        <p class="proj-desc">Agentic workflows with LangChain — chains, memory, tools, LLM orchestration. Applied to real use cases, not tutorials.</p>
+        <div class="exp-tags" style="margin-bottom:7px">
+          <span class="tag">Python</span><span class="tag">LangChain</span><span class="tag">Claude API</span>
+        </div>
+        <a href="https://github.com/EversonRubira/langchain-anthropic" class="proj-link" target="_blank">github.com/EversonRubira/langchain-anthropic</a>
+      </div>
+
+      <div class="proj-item featured">
+        <div class="proj-header">
+          <span class="proj-name">FitCheck</span>
+          <span class="proj-badge badge-ai">AI Integration</span>
+        </div>
+        <p class="proj-desc">Fitness app integrated with Claude API — AI-generated workout recommendations from user profile data.</p>
+        <div class="exp-tags" style="margin-bottom:7px">
+          <span class="tag">Node.js</span><span class="tag">MySQL</span><span class="tag">Claude API</span>
+        </div>
+        <a href="https://github.com/EversonRubira/fitcheck" class="proj-link" target="_blank">github.com/EversonRubira/fitcheck</a>
+      </div>
+
+      <div class="proj-item featured">
+        <div class="proj-header">
+          <span class="proj-name">Sulav Sushi Bar</span>
+          <span class="proj-badge badge-live">Production</span>
+        </div>
+        <p class="proj-desc">Bilingual PT/EN site live in production — delivery platform integrations (Uber Eats, Glovo, Bolt Food). Real client, real users.</p>
+        <div class="exp-tags" style="margin-bottom:7px">
+          <span class="tag">GitHub Pages</span><span class="tag">Supabase</span><span class="tag">SEO</span>
+        </div>
+        <a href="https://sulavsushibar.pt" class="proj-link" target="_blank">sulavsushibar.pt</a>
+      </div>
+
+    </div>
+    <div class="proj-secondary">
+      <div class="proj-sec">
+        <div class="proj-sec-name">StudyFlow</div>
+        <div class="proj-sec-desc">Android study app — MVVM, Room, Pomodoro · Kotlin</div>
+      </div>
+      <div class="proj-sec">
+        <div class="proj-sec-name">Wedding Clinic</div>
+        <div class="proj-sec-desc">Institutional site in production · weddingclinic.pt</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TECHNICAL FOCUS -->
+  <section class="cv-section">
+    <div class="cv-label">Technical Focus</div>
+    <div class="focus-rows">
+      <div class="focus-row">
+        <span class="focus-label">Backend</span>
+        <div class="focus-tags">
+          <span class="tag">Java 17/21</span>
+          <span class="tag">Spring Boot</span>
+          <span class="tag">REST APIs</span>
+          <span class="tag">PostgreSQL</span>
+          <span class="tag">Docker</span>
+          <span class="tag">GitHub Actions</span>
+          <span class="tag">JUnit 5</span>
+        </div>
+      </div>
+      <div class="focus-row">
+        <span class="focus-label">AI Engineering</span>
+        <div class="focus-tags">
+          <span class="tag">Claude API</span>
+          <span class="tag">LangChain</span>
+          <span class="tag">AI Agents</span>
+          <span class="tag">Prompt Engineering</span>
+          <span class="tag">RAG</span>
+          <span class="tag">MCP</span>
+        </div>
+      </div>
+      <div class="focus-row">
+        <span class="focus-label">Architecture</span>
+        <div class="focus-tags">
+          <span class="tag">Hexagonal Architecture</span>
+          <span class="tag">DDD</span>
+          <span class="tag">Clean Architecture</span>
+          <span class="tag">Microservices</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION & CREDENTIALS -->
+  <section class="cv-section">
+    <div class="cv-label">Education &amp; Credentials</div>
+    <div class="edu-grid">
+
+      <div class="edu-item">
+        <div class="edu-degree">TeSP — Programming &amp; Information Systems</div>
+        <div class="edu-school">Instituto Politécnico de Setúbal (IPS)</div>
+        <div class="edu-period">2024 – Dec 2026 (expected)</div>
+        <div class="edu-note">3rd semester · 7 active UCs · internship 18/20</div>
+      </div>
+
+      <div class="edu-item">
+        <div class="edu-degree">Elevate GenAI Wave 2</div>
+        <div class="edu-school">Accenture — Agentic AI Facilitator</div>
+        <div class="edu-period">Jun 2026</div>
+        <div class="edu-note">Credly badge: "Reinvention with Agentic AI — Facilitator" · Copilot Studio · Reverse mentoring of senior leaders</div>
+      </div>
+
+      <div class="edu-item">
+        <div class="edu-degree">Anthropic Academy</div>
+        <div class="edu-school">Anthropic · 2026</div>
+        <div class="edu-tags">
+          <span class="tag">Claude 101</span>
+          <span class="tag">Claude Code in Action</span>
+          <span class="tag">AI Fluency: Framework &amp; Foundations</span>
+        </div>
+      </div>
+
+      <div class="edu-item">
+        <div class="edu-degree">Backend &amp; AI Certifications</div>
+        <div class="edu-school">Alura — 2023 to present</div>
+        <div class="edu-tags">
+          <span class="tag">Spring Boot ×3</span>
+          <span class="tag">DDD</span>
+          <span class="tag">Clean Architecture</span>
+          <span class="tag">Microservices</span>
+          <span class="tag">LangChain</span>
+          <span class="tag">Prompt Engineering</span>
+          <span class="tag">AZ-900</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- LANGUAGES & AVAILABILITY -->
+  <section class="cv-section" style="margin-bottom:0">
+    <div class="cv-label">Languages &amp; Availability</div>
+    <div class="avail-row">
+      <span class="avail-label">Languages</span>
+      <div class="exp-tags">
+        <span class="tag">Portuguese — native</span>
+        <span class="tag">English — professional</span>
+        <span class="tag">Spanish — basic</span>
+      </div>
+    </div>
+    <div class="avail-row">
+      <span class="avail-label">Availability</span>
+      <span class="avail-val">Immediate · Portugal, Spain or remote · on-site, hybrid or fully remote</span>
+    </div>
+  </section>
+
+  <footer class="cv-footer">
+    <div class="cv-footer-meta">October 2026 · eversonrubira@gmail.com · eversonrubira.github.io</div>
+    <div class="cv-footer-journey">AI Engineering → <a href="https://eversonrubira.github.io/learning-journey" target="_blank">eversonrubira.github.io/learning-journey</a></div>
+  </footer>
+
+</div>
+
+<script>
+  document.querySelector('.btn-pdf').addEventListener('click', function(){ window.print(); });
+</script>
+</body>
+</html>
