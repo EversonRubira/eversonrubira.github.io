@@ -722,35 +722,34 @@ footer{background:var(--bg1);border-top:1px solid var(--line);padding:20px 32px}
 /* ── HIDDEN ATTRIBUTE FIX ── */
 [hidden]{display:none!important}
 
-/* ── COMPILE BAR TRANSITION ── */
+/* ── CRT SCAN SWEEP TRANSITION ── */
 #er-curtain{
-  position:fixed;
-  top:60px;left:0;
-  height:2px;width:0%;
-  z-index:9999;
+  position:fixed;inset:0;z-index:9999;
   pointer-events:none;
-  opacity:0;
-  background:linear-gradient(90deg,var(--accent),var(--accent2));
-  box-shadow:0 0 12px 3px rgba(217,119,87,0.55),0 0 32px 6px rgba(217,119,87,0.2);
-  will-change:width,opacity;
+  transform:translateX(-101%);
+  will-change:transform;
+  /* Dark base + horizontal CRT scanlines (1px every 3px) */
+  background:
+    repeating-linear-gradient(
+      0deg,
+      rgba(0,0,0,0.22) 0px,
+      rgba(0,0,0,0.22) 1px,
+      transparent 1px,
+      transparent 3px
+    ),
+    rgba(11,13,15,0.91);
 }
-/* Glowing dot at the leading edge — the "cursor" of the compile */
+/* 2px accent line at the leading edge with glow */
 #er-curtain::after{
   content:'';position:absolute;
-  right:-5px;top:50%;transform:translateY(-50%);
-  width:6px;height:6px;border-radius:50%;
-  background:var(--accent2);
-  box-shadow:0 0 10px 4px rgba(232,168,142,0.9);
+  top:0;right:0;bottom:0;
+  width:2px;
+  background:linear-gradient(180deg,transparent 0%,var(--accent) 20%,var(--accent2) 50%,var(--accent) 80%,transparent 100%);
+  box-shadow:-4px 0 24px 5px rgba(217,119,87,0.5),0 0 60px 8px rgba(217,119,87,0.12);
 }
-/* One-frame blink to hide scroll jump */
-body.er-blink{
-  opacity:0;
-  transition:none;
-}
-body.er-clear{
-  opacity:1;
-  transition:opacity 80ms ease;
-}
+/* Reversed: line on left side */
+#er-curtain.er-rev{transform:translateX(101%)}
+#er-curtain.er-rev::after{right:auto;left:0;box-shadow:4px 0 24px 5px rgba(217,119,87,0.5),0 0 60px 8px rgba(217,119,87,0.12)}
 </style>
 </head>
 <body>
@@ -1875,66 +1874,52 @@ window.addEventListener('load', () => {
 <div id="er-curtain"></div>
 
 <script>
-// ── COMPILE BAR TRANSITION ──
-// Thin progress bar fills like a build tool: fast start → brief stall → 100%.
-// One-frame blink hides the instant scroll at completion.
+// ── CRT SCAN SWEEP TRANSITION ──
+// Dark curtain with 1px horizontal scanlines sweeps across — like a monitor refresh.
+// 2px accent line at the leading edge. Alternates direction.
 (function(){
-  var bar  = document.getElementById('er-curtain');
-  var body = document.body;
+  var curtain = document.getElementById('er-curtain');
   var busy = false;
+  var lastRight = true;
 
-  function compileTo(id) {
+  function scanTo(id) {
     if (busy) return;
     var target = document.getElementById(id);
     if (!target) return;
     busy = true;
 
-    // ── Reset ──
-    bar.style.transition = 'none';
-    bar.style.width   = '0%';
-    bar.style.opacity = '1';
-    bar.offsetHeight; // force reflow
+    // Alternate direction each call
+    var goRight = !lastRight;
+    lastRight = goRight;
 
-    // ── Phase 1: eager start → 58% (130ms, cubic ease-out) ──
-    bar.style.transition = 'width 130ms cubic-bezier(0.22,1,0.36,1)';
-    bar.style.width = '58%';
+    // Reset to off-screen start position
+    curtain.style.transition = 'none';
+    if (goRight) {
+      curtain.classList.remove('er-rev');
+      curtain.style.transform = 'translateX(-101%)';
+    } else {
+      curtain.classList.add('er-rev');
+      curtain.style.transform = 'translateX(101%)';
+    }
+    curtain.offsetHeight; // force reflow
+
+    // Phase 1 — sweep in (115ms, sharp ease-in)
+    curtain.style.transition = 'transform 115ms cubic-bezier(0.55,0,1,0.45)';
+    curtain.style.transform  = 'translateX(0%)';
 
     setTimeout(function(){
-      // ── Phase 2: dependency stall → 78% (90ms, linear — feels like resolving deps) ──
-      bar.style.transition = 'width 90ms linear';
-      bar.style.width = '78%';
+      // Midpoint — instant scroll
+      target.scrollIntoView({behavior:'instant',block:'start'});
+
+      // Phase 2 — sweep out opposite side (155ms, ease-out)
+      curtain.style.transition = 'transform 155ms cubic-bezier(0,0.55,0.45,1)';
+      curtain.style.transform  = goRight ? 'translateX(101%)' : 'translateX(-101%)';
 
       setTimeout(function(){
-        // ── Phase 3: done → 100% (50ms, sharp) ──
-        bar.style.transition = 'width 50ms cubic-bezier(0.55,0,1,0.45)';
-        bar.style.width = '100%';
-
-        setTimeout(function(){
-          // ── Blink: 1 frame black flash, scroll, clear ──
-          body.classList.add('er-blink');
-          target.scrollIntoView({behavior:'instant',block:'start'});
-
-          requestAnimationFrame(function(){
-            requestAnimationFrame(function(){
-              body.classList.remove('er-blink');
-              body.classList.add('er-clear');
-
-              // ── Phase 4: bar fades out (180ms) ──
-              bar.style.transition = 'opacity 180ms ease';
-              bar.style.opacity = '0';
-
-              setTimeout(function(){
-                bar.style.transition = 'none';
-                bar.style.width   = '0%';
-                bar.style.opacity = '0';
-                body.classList.remove('er-clear');
-                busy = false;
-              }, 181);
-            });
-          });
-        }, 51);
-      }, 91);
-    }, 131);
+        curtain.style.transition = 'none';
+        busy = false;
+      }, 156);
+    }, 116);
   }
 
   // Intercept ALL internal anchor links
@@ -1944,7 +1929,7 @@ window.addEventListener('load', () => {
     var id = a.getAttribute('href').slice(1);
     if (!id) return;
     e.preventDefault();
-    compileTo(id);
+    scanTo(id);
     history.replaceState(null,'','#'+id);
   });
 
@@ -1952,7 +1937,7 @@ window.addEventListener('load', () => {
   var fab = document.getElementById('roadmap-fab');
   if(fab) fab.addEventListener('click',function(e){
     e.stopImmediatePropagation();
-    compileTo('roadmap');
+    scanTo('roadmap');
   },true);
 })();
 </script>
