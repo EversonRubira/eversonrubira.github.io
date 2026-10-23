@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>AI Engineering Journey — Everson Rubira</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --bg:#0B0D0F;--bg1:#111315;--bg2:#161819;--bg3:#1E2022;
+  --text:#F5F2EB;--text2:#C8C5BE;--text3:#7A7570;
+  --accent:#D97757;--accent2:#E8A88E;--green:#22c55e;
+  --line:rgba(255,255,255,0.07);
+  --sans:'Inter',system-ui,sans-serif;--mono:'JetBrains Mono','Courier New',monospace;
+  color-scheme:dark;
+}
+@media(prefers-color-scheme:light){:root{
+  --bg:#F8F5F0;--bg1:#F0EDE8;--bg2:#E8E4DE;--bg3:#D8D4CE;
+  --text:#1A1714;--text2:#3A3530;--text3:#6B6760;--accent:#C4623D;
+  --line:rgba(0,0,0,0.08);color-scheme:light;
+}}
+*{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px}
+body{
+  font-family:var(--sans);background:var(--bg);color:var(--text);
+  line-height:1.6;min-height:100vh;
+  padding:0 max(16px,env(safe-area-inset-left,0px));
+}
+
+/* HEADER */
+.site-header{
+  display:flex;align-items:center;
+  padding:20px 0;
+  border-bottom:1px solid var(--line);
+  max-width:680px;margin:0 auto;
+}
+.back-link{
+  font-family:var(--mono);font-size:.72rem;font-weight:500;
+  letter-spacing:.04em;color:var(--text3);text-decoration:none;
+  display:flex;align-items:center;gap:6px;transition:color .15s;
+}
+.back-link:hover{color:var(--accent)}
+.back-arrow{font-size:.8rem;line-height:1}
+
+/* MAIN */
+main{max-width:680px;margin:0 auto;padding:52px 0 80px}
+
+/* TITLE BLOCK */
+.title-block{margin-bottom:40px}
+h1{
+  font-size:clamp(1.75rem,5vw,2.5rem);font-weight:600;
+  letter-spacing:-.02em;line-height:1.15;color:var(--text);
+  margin-bottom:10px;
+}
+.subtitle{
+  font-family:var(--mono);font-size:.72rem;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--text3);
+}
+
+/* DIVIDER */
+.divider{height:1px;background:var(--line);margin:36px 0}
+
+/* STATS ROW */
+.stats-row{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1px;background:var(--line);
+  border:1px solid var(--line);border-radius:8px;overflow:hidden;
+}
+.stat-tile{
+  background:var(--bg1);padding:20px 18px;
+  display:flex;flex-direction:column;gap:5px;
+}
+.stat-val{
+  font-family:var(--mono);font-size:1.75rem;font-weight:500;
+  line-height:1;color:var(--text);font-variant-numeric:tabular-nums;
+}
+.stat-val small{font-size:1rem;color:var(--text3);font-weight:400}
+.stat-lbl{
+  font-family:var(--mono);font-size:.58rem;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--text3);
+}
+@media(max-width:420px){
+  .stats-row{grid-template-columns:1fr;background:transparent;border:none;gap:8px}
+  .stat-tile{border:1px solid var(--line);border-radius:6px}
+}
+
+/* PHASE STEPPER */
+.stepper{display:flex;flex-direction:column}
+.phase-row{display:flex;gap:0;position:relative}
+.phase-spine{
+  display:flex;flex-direction:column;align-items:center;
+  width:24px;flex-shrink:0;padding-top:3px;
+}
+.phase-dot{
+  width:12px;height:12px;border-radius:50%;flex-shrink:0;
+  position:relative;z-index:1;transition:.2s;
+}
+.phase-dot.done{background:var(--green)}
+.phase-dot.cur{
+  background:var(--accent);
+  box-shadow:0 0 0 4px rgba(217,119,87,.15);
+}
+.phase-dot.fut{background:transparent;border:1.5px solid var(--text3)}
+.phase-connector{
+  width:1.5px;flex:1;min-height:20px;
+  background:var(--line);margin-top:2px;margin-bottom:2px;
+}
+.phase-connector.done{background:rgba(34,197,94,.3)}
+.phase-connector.dashed{
+  background:repeating-linear-gradient(to bottom,var(--line) 0,var(--line) 4px,transparent 4px,transparent 8px);
+}
+.phase-body{
+  flex:1;padding:4px 0 28px 16px;
+}
+.phase-row:last-child .phase-body{padding-bottom:0}
+.phase-header{display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:2px}
+.phase-n{
+  font-family:var(--mono);font-size:.58rem;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--text3);
+}
+.phase-name{
+  font-size:.88rem;font-weight:500;color:var(--text2);line-height:1.35;
+}
+.phase-name.cur{font-weight:600;color:var(--text)}
+.phase-name.done{color:var(--text3)}
+.badge{
+  display:inline-flex;align-items:center;
+  font-family:var(--mono);font-size:.56rem;letter-spacing:.08em;text-transform:uppercase;
+  padding:2px 7px;border-radius:3px;font-weight:500;
+}
+.badge.done{background:rgba(34,197,94,.1);color:var(--green)}
+.badge.cur{background:rgba(217,119,87,.12);color:var(--accent)}
+
+/* CURRENT PHASE HIGHLIGHT */
+.phase-cur-card{
+  margin-top:8px;
+  background:var(--bg1);border:1px solid rgba(217,119,87,.18);
+  border-radius:6px;padding:12px 14px;
+}
+.phase-cur-next{
+  font-family:var(--mono);font-size:.6rem;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--text3);margin-top:8px;
+}
+.phase-cur-next-name{font-size:.82rem;color:var(--text3)}
+
+/* SKELETON */
+.skeleton{display:flex;flex-direction:column;gap:14px;padding:4px 0}
+.sk-line{
+  height:12px;border-radius:4px;
+  background:linear-gradient(90deg,var(--bg3) 0%,var(--bg1) 50%,var(--bg3) 100%);
+  background-size:200% 100%;animation:sk-sh 1.4s infinite;
+}
+@keyframes sk-sh{0%{background-position:200% 0}100%{background-position:-200% 0}}
+
+/* PAGE FOOTER */
+.page-footer{
+  margin-top:52px;padding-top:24px;border-top:1px solid var(--line);
+  display:flex;justify-content:space-between;align-items:center;
+  flex-wrap:wrap;gap:12px;
+}
+.footer-meta{font-family:var(--mono);font-size:.62rem;color:var(--text3);line-height:1.6}
+.footer-back{
+  font-family:var(--mono);font-size:.64rem;letter-spacing:.04em;
+  color:var(--text3);text-decoration:none;transition:color .15s;
+}
+.footer-back:hover{color:var(--accent)}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <a href="/" class="back-link">
+    <span class="back-arrow">←</span>
+    <span>Everson Rubira</span>
+  </a>
+</header>
+
+<main>
+  <div class="title-block">
+    <h1>AI Engineering</h1>
+    <p class="subtitle">Especialização estruturada em curso desde 2026</p>
+  </div>
+
+  <div id="sk-stats" class="skeleton">
+    <div class="sk-line" style="width:60%"></div>
+    <div class="sk-line" style="width:40%"></div>
+  </div>
+
+  <div id="content" hidden>
+    <div class="stats-row" id="stats-row"></div>
+
+    <div class="divider"></div>
+
+    <div class="stepper" id="stepper"></div>
+
+    <div class="divider"></div>
+
+    <footer class="page-footer">
+      <div class="footer-meta">
+        <div id="footer-updated"></div>
+        <div>Alura · Anthropic Academy</div>
+      </div>
+      <a href="/" class="footer-back">← eversonrubira.github.io</a>
+    </footer>
+  </div>
+</main>
+
+<script>
+var FALLBACK = {
+  _v:1,_updated:"2026-10-22T00:00:00Z",
+  progress:{pct:9,done:2,total:23,phases_done:1,phases_total:7},
+  current_phase:{n:1,title:"Agentes com LangChain e LangGraph"},
+  next_phase:{n:2,title:"Claude API e MCP"},
+  phases:[
+    {n:0,title:"Base concluída",done:true},
+    {n:1,title:"Agentes com LangChain e LangGraph",done:false},
+    {n:2,title:"Claude API e MCP",done:false},
+    {n:3,title:"AI-Native Software Engineering",done:false},
+    {n:4,title:"MCP avançado e AWS",done:false},
+    {n:5,title:"Avaliar e testar sistemas de LLM",done:false},
+    {n:6,title:"Arquitetura de soluções",done:false}
+  ]
+};
+
+var MONTHS = ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];
+
+function fmtDate(iso) {
+  if (!iso) return '';
+  var d = new Date(iso);
+  return 'Actualizado em ' + d.getDate() + ' ' + MONTHS[d.getMonth()] + ' ' + d.getFullYear();
+}
+
+function render(d) {
+  var p = d.progress;
+
+  // Stats
+  document.getElementById('stats-row').innerHTML =
+    '<div class="stat-tile"><div class="stat-val">' + p.pct + '%</div><div class="stat-lbl">progresso</div></div>' +
+    '<div class="stat-tile"><div class="stat-val">' + p.done + '<small>/' + p.total + '</small></div><div class="stat-lbl">cursos</div></div>' +
+    '<div class="stat-tile"><div class="stat-val">' + p.phases_done + '<small>/' + p.phases_total + '</small></div><div class="stat-lbl">fases</div></div>';
+
+  // Phase stepper
+  var html = '';
+  var phases = d.phases || [];
+  phases.forEach(function(phase, i) {
+    var isCur = d.current_phase && phase.n === d.current_phase.n;
+    var isDone = phase.done;
+    var dotCls = isDone ? 'done' : (isCur ? 'cur' : 'fut');
+    var nameCls = isDone ? 'done' : (isCur ? 'cur' : '');
+    var isLast = i === phases.length - 1;
+    var connCls = isDone ? 'done' : (!isCur && !isDone ? 'dashed' : '');
+
+    html += '<div class="phase-row">';
+    html += '<div class="phase-spine">';
+    html += '<div class="phase-dot ' + dotCls + '"></div>';
+    if (!isLast) html += '<div class="phase-connector ' + connCls + '"></div>';
+    html += '</div>';
+    html += '<div class="phase-body">';
+    html += '<div class="phase-header">';
+    html += '<span class="phase-n">Fase ' + phase.n + '</span>';
+    html += '<span class="phase-name ' + nameCls + '">' + phase.title + '</span>';
+    if (isDone) html += '<span class="badge done">Concluída</span>';
+    if (isCur) html += '<span class="badge cur">Em curso</span>';
+    html += '</div>';
+    if (isCur && d.next_phase) {
+      html += '<div class="phase-cur-card">';
+      html += '<div class="phase-cur-next">próxima fase</div>';
+      html += '<div class="phase-cur-next-name">' + d.next_phase.title + '</div>';
+      html += '</div>';
+    }
+    html += '</div>';
+    html += '</div>';
+  });
+  document.getElementById('stepper').innerHTML = html;
+
+  // Footer date
+  if (d._updated) {
+    document.getElementById('footer-updated').textContent = fmtDate(d._updated);
+  }
+
+  // Show content
+  document.getElementById('sk-stats').hidden = true;
+  document.getElementById('content').hidden = false;
+}
+
+var done = false;
+function fallback() { if (!done) { done = true; render(FALLBACK); } }
+var timer = setTimeout(fallback, 3000);
+
+fetch('/roadmap-summary.json?_=' + Date.now())
+  .then(function(r) { if (!r.ok) throw 0; return r.json(); })
+  .then(function(data) { clearTimeout(timer); done = true; render(data); })
+  .catch(function() { clearTimeout(timer); fallback(); });
+</script>
+</body>
+</html>
