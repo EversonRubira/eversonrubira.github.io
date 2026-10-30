@@ -1896,29 +1896,26 @@ window.addEventListener('load', () => {
     if (foot) foot.textContent = formatted + ' views';
   }
 
-  function fetchCount() {
-    // just read current count without incrementing
-    fetch(SUPABASE_URL + '/rest/v1/rpc/hit_page', {
-      method: 'POST',
-      headers: {'Content-Type':'application/json','apikey':SUPABASE_KEY,'Authorization':'Bearer '+SUPABASE_KEY},
-      body: JSON.stringify({ page_id: 'portfolio' })
-    }).then(function(r){return r.json();}).then(function(c){ if(typeof c==='number') show(c); }).catch(function(){});
-  }
-
   var today = new Date().toISOString().slice(0,10);
-  var key = 'er_viewed_' + today;
-  var alreadyViewed;
-  try { alreadyViewed = localStorage.getItem(key); } catch(e){}
+  var key = 'er_viewed';
+  var cached;
+  try { cached = JSON.parse(localStorage.getItem(key)); } catch(e){}
 
-  if (!alreadyViewed) {
-    try { localStorage.setItem(key, '1'); } catch(e){}
+  if (cached && cached.date === today) {
+    // already counted today — show cached value, no network call
+    show(cached.count);
+  } else {
+    // first visit today — increment and cache the result
     fetch(SUPABASE_URL + '/rest/v1/rpc/hit_page', {
       method: 'POST',
       headers: {'Content-Type':'application/json','apikey':SUPABASE_KEY,'Authorization':'Bearer '+SUPABASE_KEY},
       body: JSON.stringify({ page_id: 'portfolio' })
-    }).then(function(r){return r.json();}).then(function(c){ if(typeof c==='number') show(c); }).catch(function(){});
-  } else {
-    fetchCount();
+    }).then(function(r){return r.json();}).then(function(c){
+      if (typeof c === 'number') {
+        show(c);
+        try { localStorage.setItem(key, JSON.stringify({date: today, count: c})); } catch(e){}
+      }
+    }).catch(function(){});
   }
 })();
 </script>
