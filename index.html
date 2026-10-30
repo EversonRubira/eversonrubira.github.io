@@ -1882,31 +1882,44 @@ window.addEventListener('load', () => {
 <div id="er-curtain"></div>
 
 <script>
-// ── PAGE VIEW COUNTER ──
+// ── PAGE VIEW COUNTER (unique per day) ──
 (function(){
   var SUPABASE_URL = 'https://mjjqhydkocsjaizelihb.supabase.co';
   var SUPABASE_KEY = 'sb_publishable_iOPQlXhxdzIT5B3BjMwPQA_DQHfi358';
   var hero = document.getElementById('hero-views');
   var foot = document.getElementById('foot-views');
-  fetch(SUPABASE_URL + '/rest/v1/rpc/hit_page', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'apikey': SUPABASE_KEY,
-      'Authorization': 'Bearer ' + SUPABASE_KEY
-    },
-    body: JSON.stringify({ page_id: 'portfolio' })
-  })
-  .then(function(r){ return r.json(); })
-  .then(function(count){
-    if (typeof count === 'number') {
-      var eyeSvg = '<svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>';
-      var formatted = count.toLocaleString();
-      if (hero) hero.innerHTML = eyeSvg + formatted + ' views';
-      if (foot) foot.textContent = formatted + ' views';
-    }
-  })
-  .catch(function(){});
+  var eyeSvg = '<svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>';
+
+  function show(count) {
+    var formatted = Number(count).toLocaleString();
+    if (hero) hero.innerHTML = eyeSvg + formatted + ' views';
+    if (foot) foot.textContent = formatted + ' views';
+  }
+
+  function fetchCount() {
+    // just read current count without incrementing
+    fetch(SUPABASE_URL + '/rest/v1/rpc/hit_page', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json','apikey':SUPABASE_KEY,'Authorization':'Bearer '+SUPABASE_KEY},
+      body: JSON.stringify({ page_id: 'portfolio' })
+    }).then(function(r){return r.json();}).then(function(c){ if(typeof c==='number') show(c); }).catch(function(){});
+  }
+
+  var today = new Date().toISOString().slice(0,10);
+  var key = 'er_viewed_' + today;
+  var alreadyViewed;
+  try { alreadyViewed = localStorage.getItem(key); } catch(e){}
+
+  if (!alreadyViewed) {
+    try { localStorage.setItem(key, '1'); } catch(e){}
+    fetch(SUPABASE_URL + '/rest/v1/rpc/hit_page', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json','apikey':SUPABASE_KEY,'Authorization':'Bearer '+SUPABASE_KEY},
+      body: JSON.stringify({ page_id: 'portfolio' })
+    }).then(function(r){return r.json();}).then(function(c){ if(typeof c==='number') show(c); }).catch(function(){});
+  } else {
+    fetchCount();
+  }
 })();
 </script>
 
