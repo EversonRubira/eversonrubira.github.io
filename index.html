@@ -149,6 +149,13 @@ nav{
   font-family:var(--mono);font-size:0.65rem;letter-spacing:0.1em;
   color:var(--accent2);
 }
+.hero-views{
+  display:inline-flex;align-items:center;gap:5px;
+  font-family:var(--mono);font-size:0.65rem;letter-spacing:0.1em;
+  color:var(--text3);opacity:0.75;
+}
+.hero-views::before{content:'·';margin-right:2px;opacity:0.5}
+.hero-views svg{width:11px;height:11px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;opacity:0.8}
 .status-live::before{
   content:'';width:6px;height:6px;border-radius:50%;
   background:#22c55e;box-shadow:0 0 0 0 rgba(34,197,94,0.4);
@@ -815,6 +822,7 @@ footer{background:var(--bg1);border-top:1px solid var(--line);padding:20px 32px}
       <div class="hero-eyebrow reveal">
         <span data-i18n="hero-location">Seixal / Lisboa · Portugal</span>
         <span class="status-live" data-i18n="hero-status-live">Disponível agora</span>
+        <span class="hero-views" id="hero-views" aria-label="Visitas"></span>
       </div>
       <h1 class="hero-name reveal">Everson <em>Rubira</em></h1>
       <p class="hero-headline reveal" data-i18n="hero-headline">Building AI-powered systems with Java.</p>
@@ -1878,8 +1886,8 @@ window.addEventListener('load', () => {
 (function(){
   var SUPABASE_URL = 'https://mjjqhydkocsjaizelihb.supabase.co';
   var SUPABASE_KEY = 'sb_publishable_iOPQlXhxdzIT5B3BjMwPQA_DQHfi358';
-  var el = document.getElementById('foot-views');
-  if (!el) return;
+  var hero = document.getElementById('hero-views');
+  var foot = document.getElementById('foot-views');
   fetch(SUPABASE_URL + '/rest/v1/rpc/hit_page', {
     method: 'POST',
     headers: {
@@ -1892,7 +1900,10 @@ window.addEventListener('load', () => {
   .then(function(r){ return r.json(); })
   .then(function(count){
     if (typeof count === 'number') {
-      el.textContent = count.toLocaleString() + ' views';
+      var eyeSvg = '<svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>';
+      var formatted = count.toLocaleString();
+      if (hero) hero.innerHTML = eyeSvg + formatted + ' views';
+      if (foot) foot.textContent = formatted + ' views';
     }
   })
   .catch(function(){});
