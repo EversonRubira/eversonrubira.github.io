@@ -20,7 +20,7 @@
 <meta name="apple-mobile-web-app-title" content="E.Rubira">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -30,28 +30,27 @@ img{display:block}
 button{cursor:pointer;font-family:inherit;border:none;background:none}
 
 :root{
-  --bg:#0B0D0F;
-  --bg1:#111214;
-  --bg2:#0E0F11;
-  --bg3:#1C1E21;
-  --text:#F5F2EB;
-  --text2:#E8E5DE;
-  --text3:#8A8680;
-  --accent:#D97757;
-  --accent2:#E8A88E;
-  --line:rgba(255,255,255,0.07);
-  --line2:rgba(255,255,255,0.04);
-  --sans:'Inter',system-ui,sans-serif;
-  --mono:'JetBrains Mono','Courier New',monospace;
-  --radius:8px;
-  --max:1200px;
+  --background:#11110F;--background-secondary:#151512;
+  --surface:#191917;--surface-elevated:#1E1D1A;
+  --text-primary:#F1EFE8;--text-secondary:#A6A39B;--text-muted:#77736B;
+  --border:#302E29;--border-subtle:#24231F;
+  --accent:#C47A44;--accent-hover:#D6925C;
+  --accent-soft:rgba(196,122,68,0.10);--focus-ring:#D6925C;
+  /* aliases for backward compat */
+  --bg:var(--background);--bg1:var(--background-secondary);
+  --bg2:var(--surface);--bg3:var(--surface-elevated);
+  --text:var(--text-primary);--text2:var(--text-secondary);--text3:var(--text-muted);
+  --accent2:var(--accent-hover);
+  --line:var(--border);--line2:var(--border-subtle);
+  --sans:'IBM Plex Sans',system-ui,sans-serif;
+  --mono:'IBM Plex Mono','Courier New',monospace;
+  --display:'Archivo Narrow',sans-serif;
+  --radius:6px;--max:1200px;
 }
 
 body{
-  font-family:var(--sans);background:var(--bg);color:var(--text2);
+  font-family:var(--sans);background:var(--background);color:var(--text-secondary);
   line-height:1.6;overflow-x:hidden;
-  background-image:
-    radial-gradient(ellipse 80% 60% at 20% -10%, rgba(217,119,87,0.06) 0%, transparent 60%);
 }
 
 /* ── SCROLL PROGRESS ── */
@@ -121,106 +120,55 @@ nav{
 .social-bar svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
 .social-bar::after{content:'';display:block;width:1px;height:80px;background:var(--line);margin-top:8px}
 
+/* ── SYSTEM LINE ── */
+.system-line{width:100%;height:1px;background:linear-gradient(90deg,transparent 0%,var(--border) 20%,var(--border) 80%,transparent 100%);margin:0}
+
 /* ── HERO ── */
-#hero{
-  display:flex;align-items:flex-start;
-  padding:88px 32px 72px;
-  position:relative;overflow:hidden;
-}
+#hero{background:var(--background);padding:120px 32px 80px;position:relative;overflow:hidden}
 .hero-glow{display:none}
-.hero-inner{
-  max-width:var(--max);margin:0 auto;width:100%;
-  display:grid;grid-template-columns:1fr 40%;gap:64px;align-items:start;
-}
-.hero-eyebrow{
-  font-family:var(--mono);font-size:0.7rem;color:var(--text3);
-  letter-spacing:0.1em;text-transform:uppercase;margin-bottom:24px;
-  display:flex;align-items:center;gap:12px;
-}
-.status-live{
-  display:inline-flex;align-items:center;gap:6px;
-  font-family:var(--mono);font-size:0.65rem;letter-spacing:0.1em;
-  color:var(--accent2);
-}
-.hero-views{
-  display:inline-flex;align-items:center;gap:5px;
-  font-family:var(--mono);font-size:0.65rem;letter-spacing:0.1em;
-  color:var(--text3);opacity:0.75;
-}
-.hero-views::before{content:'·';margin-right:2px;opacity:0.5}
-.hero-views svg{width:11px;height:11px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;opacity:0.8}
-.status-live::before{
-  content:'';width:6px;height:6px;border-radius:50%;
-  background:#22c55e;box-shadow:0 0 0 0 rgba(34,197,94,0.4);
-  animation:pulse-green 2s ease-in-out infinite;
-}
-@keyframes pulse-green{
-  0%,100%{box-shadow:0 0 0 0 rgba(34,197,94,0.4)}
-  50%{box-shadow:0 0 0 6px rgba(34,197,94,0)}
-}
-.hero-name{
-  font-size:clamp(3.2rem,7vw,5.6rem);font-weight:800;
-  color:var(--text);line-height:1.0;letter-spacing:-0.04em;
-  margin-bottom:24px;
-}
-.hero-name em{
-  font-style:normal;
-  background:linear-gradient(135deg,var(--text) 30%,var(--accent2) 100%);
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-  background-clip:text;
-}
+.hero-inner{max-width:var(--max);margin:0 auto;display:grid;grid-template-columns:1fr 340px;gap:80px;align-items:start}
+.hero-eyebrow{font-family:var(--mono);font-size:0.72rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);margin-bottom:28px}
+.status-live{display:none}
 .hero-headline{
-  font-size:clamp(1rem,1.8vw,1.2rem);font-weight:500;
-  color:var(--text2);line-height:1.6;
-  max-width:52ch;margin-bottom:14px;letter-spacing:-0.01em;
+  font-family:var(--display);font-size:clamp(2.4rem,6vw,5rem);font-weight:700;
+  line-height:1.0;letter-spacing:-0.02em;color:var(--text-primary);margin-bottom:28px;
 }
-.hero-sub{
-  font-size:0.88rem;color:var(--text3);line-height:1.8;
-  max-width:48ch;margin-bottom:36px;
-  border-left:2px solid var(--line);padding-left:16px;
+.hl-line{display:block}
+.hl-indent{padding-left:clamp(20px,5vw,80px);font-style:italic}
+.hero-sub{font-size:1.05rem;line-height:1.65;color:var(--text-secondary);max-width:480px;margin-bottom:40px}
+.hero-meta{display:flex;align-items:center;gap:24px;flex-wrap:wrap}
+.hero-cta{
+  display:inline-block;font-size:0.85rem;font-weight:500;color:var(--text-primary);
+  border:1px solid var(--border);border-radius:4px;padding:10px 20px;
+  transition:border-color 0.2s,color 0.2s;letter-spacing:0.04em;
 }
-.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:40px}
-.btn-primary{
-  display:inline-flex;align-items:center;gap:8px;
-  background:var(--accent);color:#fff;
-  padding:12px 24px;border-radius:var(--radius);
-  font-size:0.9rem;font-weight:600;
-  transition:background 0.2s, transform 0.2s, box-shadow 0.2s;
-  box-shadow:0 0 0 0 rgba(37,99,235,0);
-}
-.btn-primary:hover{background:#C4623D;transform:translateY(-1px);box-shadow:0 8px 24px rgba(217,119,87,0.3)}
-.btn-ghost{
-  display:inline-flex;align-items:center;gap:8px;
-  border:1px solid var(--line);color:var(--text2);
-  padding:12px 24px;border-radius:var(--radius);
-  font-size:0.9rem;font-weight:500;
-  transition:all 0.2s;
-}
-.btn-ghost:hover{border-color:var(--text3);color:var(--text)}
-.btn-share{
-  display:inline-flex;align-items:center;gap:6px;
-  border:1px solid var(--line);color:var(--text3);
-  padding:11px 18px;border-radius:var(--radius);
-  font-size:0.85rem;transition:all 0.2s;
-}
-.btn-share svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round}
-.btn-share:hover{border-color:var(--text3);color:var(--text2)}
-.hero-chips{display:flex;flex-wrap:wrap;gap:8px}
-.chip{
-  font-family:var(--mono);font-size:0.72rem;color:var(--text3);
-  border:1px solid var(--line);border-radius:4px;
-  padding:4px 10px;letter-spacing:0.02em;
-}
+.hero-cta:hover{border-color:var(--accent);color:var(--accent)}
+.hero-views{font-family:var(--mono);font-size:0.78rem;color:var(--text-muted);display:inline-flex;align-items:center;gap:6px}
+.hero-views svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:1.5}
+.hero-photo-wrap{position:relative}
+.hero-photo{width:100%;aspect-ratio:3/4;max-height:520px;border-radius:4px;overflow:hidden;cursor:pointer}
+.hero-photo img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block;filter:grayscale(100%);transition:filter 0.6s ease}
+.hero-photo.color-revealed img{filter:grayscale(0%)}
+.hero-photo-hint{margin-top:10px;font-family:var(--mono);font-size:0.68rem;color:var(--text-muted);letter-spacing:0.1em;text-align:center;opacity:0.6}
+/* old hero elements hidden */
 .hero-photo-col{display:flex;flex-direction:column;align-items:stretch}
-.hero-photo{
-  width:100%;
-  aspect-ratio:3/4;
-  max-height:600px;
-  border-radius:8px;
-  overflow:hidden;
-  position:relative;
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:40px}
+.btn-primary{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#fff;padding:12px 24px;border-radius:var(--radius);font-size:0.9rem;font-weight:600;transition:background 0.2s,transform 0.2s}
+.btn-primary:hover{background:var(--accent-hover);transform:translateY(-1px)}
+.btn-ghost{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--border);color:var(--text-secondary);padding:12px 24px;border-radius:var(--radius);font-size:0.9rem;font-weight:500;transition:all 0.2s}
+.btn-ghost:hover{border-color:var(--text-muted);color:var(--text-primary)}
+.btn-share{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--border);color:var(--text-muted);padding:11px 18px;border-radius:var(--radius);font-size:0.85rem;transition:all 0.2s}
+.btn-share svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round}
+.btn-share:hover{border-color:var(--text-muted);color:var(--text-secondary)}
+.hero-chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-family:var(--mono);font-size:0.72rem;color:var(--text-muted);border:1px solid var(--border);border-radius:4px;padding:4px 10px;letter-spacing:0.02em}
+.hero-name{font-size:clamp(3.2rem,7vw,5.6rem);font-weight:800;color:var(--text-primary);line-height:1.0;letter-spacing:-0.04em;margin-bottom:24px}
+.hero-name em{font-style:normal}
+@media(max-width:768px){
+  .hero-inner{grid-template-columns:1fr;gap:48px}
+  .hero-photo-wrap{max-width:300px}
+  .hero-headline{font-size:clamp(2rem,10vw,3.5rem)}
 }
-.hero-photo img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block}
 
 /* ── METRICS ── */
 #metrics{
@@ -518,24 +466,15 @@ footer{background:var(--bg1);border-top:1px solid var(--line);padding:20px 32px}
 
 /* ── LIGHT THEME ── */
 [data-theme="light"]{
-  --bg:#F8F5F0;
-  --bg1:#F0EDE8;
-  --bg2:#E8E4DE;
-  --bg3:#D8D4CE;
-  --text:#1A1714;
-  --text2:#2E2B27;
-  --text3:#6B6760;
-  --accent:#C4623D;
-  --accent2:#B8855A;
-  --line:rgba(0,0,0,0.08);
-  --line2:rgba(0,0,0,0.04);
+  --background:#F4F1EA;--background-secondary:#ECE8DE;
+  --surface:#FCFAF5;--surface-elevated:#FFFFFF;
+  --text-primary:#191815;--text-secondary:#666159;--text-muted:#898278;
+  --border:#D9D4CA;--border-subtle:#E6E1D8;
+  --accent:#A75F32;--accent-hover:#874923;
+  --accent-soft:rgba(167,95,50,0.08);--focus-ring:#A75F32;
 }
-[data-theme="light"] body{
-  background-image:
-    radial-gradient(ellipse 80% 60% at 20% -10%,rgba(217,119,87,0.05) 0%,transparent 60%);
-}
-[data-theme="light"] nav{background:rgba(248,245,240,0.92)}
-[data-theme="light"] .sobre-quote{background:rgba(217,119,87,0.04)}
+[data-theme="light"] nav{background:rgba(244,241,234,0.92)}
+[data-theme="light"] .sobre-quote{background:var(--accent-soft)}
 [data-theme="light"] .proj-card,[data-theme="light"] .highlight-card,
 [data-theme="light"] .stack-cat,[data-theme="light"] .fact-table,
 [data-theme="light"] .princ-list,[data-theme="light"] .exp-list,
@@ -811,58 +750,35 @@ footer{background:var(--bg1);border-top:1px solid var(--line);padding:20px 32px}
 </div>
 
 <!-- HERO -->
-<section id="hero">
+<section id="hero" aria-label="Introduction">
   <div class="hero-inner">
     <div class="hero-text">
-      <div class="hero-eyebrow reveal">
-        <span data-i18n="hero-location">Seixal / Lisboa · Portugal</span>
-        <span class="status-live" data-i18n="hero-status-live">Disponível agora</span>
-        <span class="hero-views" id="hero-views" aria-label="Visitas"></span>
-      </div>
-      <h1 class="hero-name reveal">Everson <em>Rubira</em></h1>
-      <p class="hero-headline reveal" data-i18n="hero-headline">Building AI-powered systems with Java.</p>
-      <p class="hero-sub reveal" data-i18n="hero-sub">Backend Engineer focused on Spring Boot, APIs, LLMs and Agentic AI.</p>
-      <div class="hero-actions reveal">
-        <a href="#projetos" class="btn-primary" data-i18n="hero-btn-proj">View Projects</a>
-        <a href="#projetos" class="btn-ghost" data-i18n="hero-btn-roadmap">Ver Projetos →</a>
-        <button class="btn-share" id="share-btn" title="Partilhar perfil">
+      <p class="hero-eyebrow reveal" data-i18n="heroEyebrow">Backend Engineer · AI Systems</p>
+      <h1 class="hero-headline reveal">
+        <span class="hl-line" data-i18n="heroLine1">I SPENT YEARS</span>
+        <span class="hl-line hl-indent" data-i18n="heroLine2">UNDERSTANDING SYSTEMS</span>
+        <span class="hl-line" data-i18n="heroLine3">BEFORE BUILDING THEM.</span>
+      </h1>
+      <p class="hero-sub reveal" data-i18n="heroSub">12 years in operations taught me where software breaks in the real world. Now I engineer it not to.</p>
+      <div class="hero-meta reveal">
+        <span class="hero-views-wrap"><span id="hero-views" class="hero-views" aria-label="Visitas"></span></span>
+        <a href="#contacto" class="hero-cta" data-i18n="heroCta">Let's build something reliable</a>
+        <button class="btn-share" id="share-btn" title="Partilhar perfil" style="display:none">
           <svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
           <span data-i18n="share-btn">partilhar</span>
         </button>
       </div>
-      <div class="hero-chips reveal">
-        <span class="chip">Java 17/21</span>
-        <span class="chip">Spring Boot 3</span>
-        <span class="chip">AI Applications</span>
-        <span class="chip">LangChain · Claude API</span>
-        <span class="chip">Docker · PostgreSQL</span>
-      </div>
-      <div class="hero-social-mob reveal">
-        <a href="https://linkedin.com/in/eversonrubira" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-          LinkedIn
-        </a>
-        <a href="https://github.com/EversonRubira" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-          GitHub
-        </a>
-        <a href="mailto:eversonrubira@gmail.com">
-          <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-          Email
-        </a>
-        <a href="cv.html" target="_blank">
-          <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-          CV
-        </a>
-      </div>
     </div>
-    <div class="hero-photo-col reveal">
-      <div class="hero-photo">
-        <img src="foto-hero.jpg" alt="Everson Rubira — sorriso natural, óculos, camisola cinzenta, fundo neutro" width="718" height="957">
+    <div class="hero-photo-wrap reveal">
+      <div class="hero-photo" id="hero-photo-toggle" title="Click to reveal color">
+        <img src="foto-hero.jpg" alt="Everson Rubira — smiling, glasses, grey sweater, neutral background" width="718" height="957">
       </div>
+      <p class="hero-photo-hint" data-i18n="photoHint">click the photo</p>
     </div>
   </div>
 </section>
+
+<div class="system-line"></div>
 
 <!-- METRICS -->
 <section id="metrics">
@@ -891,6 +807,8 @@ footer{background:var(--bg1);border-top:1px solid var(--line);padding:20px 32px}
     </div>
   </div>
 </section>
+
+<div class="system-line"></div>
 
 <!-- PROJETOS -->
 <section id="projetos">
@@ -1027,6 +945,8 @@ footer{background:var(--bg1);border-top:1px solid var(--line);padding:20px 32px}
     </div>
   </div>
 </section>
+
+<div class="system-line"></div>
 
 <!-- FROM OPERATIONS TO AI SYSTEMS -->
 <section id="journey">
@@ -1404,6 +1324,8 @@ footer{background:var(--bg1);border-top:1px solid var(--line);padding:20px 32px}
   </div>
 </section>
 
+<div class="system-line"></div>
+
 <!-- CONTACTO -->
 <section id="contacto">
   <div class="contact-inner">
@@ -1474,6 +1396,10 @@ const i18n = {
     'nav-projetos':'projetos','nav-stack':'stack','nav-roadmap':'roadmap','nav-formacao':'educação',
     'nav-hire':'contrata-me',
     'nav-contacto':'contacto','nav-cv':'cv','nav-hire':'contrata-me','share-btn':'partilhar',
+    'heroEyebrow':'Engenheiro Backend · Sistemas de IA',
+    'heroLine1':'PASSEI ANOS','heroLine2':'ENTENDENDO SISTEMAS','heroLine3':'ANTES DE CONSTRUÍ-LOS.',
+    'heroSub':'12 anos em operações ensinaram-me onde o software quebra no mundo real. Agora desenvolvo-o para não quebrar.',
+    'heroCta':'Vamos construir algo confiável','photoHint':'clique na foto',
     'hero-location':'Seixal / Lisboa · Portugal',
     'hero-status-live':'Disponível agora',
     'hero-headline':'Backend Engineer a construir sistemas potenciados por IA.',
@@ -1598,6 +1524,10 @@ const i18n = {
     'nav-sobre':'about','nav-journey':'trajectory','nav-exp':'exp',
     'nav-projetos':'projects','nav-stack':'stack','nav-roadmap':'roadmap','nav-formacao':'education',
     'nav-contacto':'contact','nav-cv':'cv','nav-hire':'hire me','share-btn':'share',
+    'heroEyebrow':'Backend Engineer · AI Systems',
+    'heroLine1':'I SPENT YEARS','heroLine2':'UNDERSTANDING SYSTEMS','heroLine3':'BEFORE BUILDING THEM.',
+    'heroSub':'12 years in operations taught me where software breaks in the real world. Now I engineer it not to.',
+    'heroCta':'Let\'s build something reliable','photoHint':'click the photo',
     'hero-location':'Seixal / Lisbon · Portugal',
     'hero-status-live':'Available now',
     'hero-headline':'Backend Engineer building AI-powered systems.',
@@ -1798,6 +1728,17 @@ window.addEventListener('load', () => {
   if (typeof QRCode !== 'undefined') initQR();
   else { const t = setInterval(() => { if (typeof QRCode !== 'undefined') { clearInterval(t); initQR(); } }, 100); }
 });
+// ── PHOTO COLOR TOGGLE ──
+(function(){
+  var photo = document.getElementById('hero-photo-toggle');
+  var hint = photo && photo.nextElementSibling;
+  if (!photo) return;
+  photo.addEventListener('click', function(){
+    photo.classList.toggle('color-revealed');
+    if (hint) hint.style.display = 'none';
+  });
+})();
+
 // ── JOURNEY TIMELINE ──
 (function(){
   const fill = document.getElementById('jt-fill');
