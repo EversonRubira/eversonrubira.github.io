@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Everson Rubira — Backend Engineer & AI Systems</title>
-<meta name="description" content="Backend Engineer specializing in Java, Spring Boot and AI-powered systems. 15 years of operational experience building software that solves real problems.">
+<meta name="description" content="Backend Engineer specializing in Java, Spring Boot and AI-powered systems. 12 years of operational experience building software that solves real problems.">
 <meta property="og:title" content="Everson Rubira — Backend Engineer">
-<meta property="og:description" content="15 years solving business-critical problems. Now building software with the same mindset.">
+<meta property="og:description" content="12 years solving business-critical problems. Now building software with the same mindset.">
 <meta property="og:image" content="https://eversonrubira.github.io/foto-hero.jpg">
 <meta property="og:url" content="https://eversonrubira.github.io">
 <meta property="og:type" content="website">
@@ -31,7 +31,6 @@ html{scroll-behavior:auto;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 a{color:inherit;text-decoration:none}
 img{display:block}
 button{cursor:pointer;font-family:inherit;border:none;background:none}
-:focus-visible{outline:2px solid var(--focus-ring);outline-offset:3px}
 
 :root{
   --background:#11110F;--background-secondary:#151512;
@@ -56,8 +55,8 @@ button{cursor:pointer;font-family:inherit;border:none;background:none}
   --t-lead:clamp(1.2rem,1.1rem + 0.5vw,1.6rem);
   --t-md:clamp(1.5rem,1.2rem + 1.5vw,2.5rem);
   --t-lg:clamp(2rem,1.5rem + 2.5vw,4rem);
-  --t-xl:clamp(2.8rem,2rem + 4vw,4.5rem);
-  --t-2xl:clamp(3.5rem,2.5rem + 5vw,5.2rem);
+  --t-xl:clamp(2.8rem,2rem + 4vw,6rem);
+  --t-2xl:clamp(3.5rem,2.5rem + 5vw,8rem);
 }
 
 body{
@@ -135,53 +134,20 @@ nav{
 /* ── SYSTEM LINE ── */
 .system-line{width:100%;height:1px;background:linear-gradient(90deg,transparent 0%,var(--border) 20%,var(--border) 80%,transparent 100%);margin:0}
 
-
-/* ── EDITORIAL PLANES ──
-   Theme sets the dominant mood; a plane inverts it for contrast.
-   dark theme  -> .plane-flip = ivory     light theme -> .plane-flip = graphite
-   .plane-finale is graphite in light theme only (dark is already graphite). */
-html:not([data-theme="light"]) .plane-flip,
-[data-theme="light"] .plane-flip,
-[data-theme="light"] .plane-finale{
-  background:var(--background);color:var(--text-secondary);
-  --bg:var(--background);--bg1:var(--background-secondary);
-  --bg2:var(--surface);--bg3:var(--surface-elevated);
-  --text:var(--text-primary);--text2:var(--text-secondary);--text3:var(--text-muted);
-  --accent2:var(--accent-hover);--line:var(--border);--line2:var(--border-subtle);
-}
-html:not([data-theme="light"]) .plane-flip{
-  --background:#F4F1EA;--background-secondary:#ECE8DE;
-  --surface:#FCFAF5;--surface-elevated:#FFFFFF;
-  --text-primary:#191815;--text-secondary:#5C574F;--text-muted:#6F695F;
-  --border:#D9D4CA;--border-subtle:#E6E1D8;
-  --accent:#A75F32;--accent-hover:#874923;
-  --accent-soft:rgba(167,95,50,0.08);--focus-ring:#A75F32;
-}
-[data-theme="light"] .plane-flip,
-[data-theme="light"] .plane-finale{
-  --background:#11110F;--background-secondary:#151512;
-  --surface:#191917;--surface-elevated:#1E1D1A;
-  --text-primary:#F1EFE8;--text-secondary:#A6A39B;--text-muted:#8A867D;
-  --border:#302E29;--border-subtle:#24231F;
-  --accent:#C47A44;--accent-hover:#D6925C;
-  --accent-soft:rgba(196,122,68,0.10);--focus-ring:#D6925C;
-}
-
 /* ── HERO ── */
 #hero{background:var(--background);padding:120px 32px 80px;position:relative;overflow:hidden}
 .hero-glow{display:none}
-.hero-inner{max-width:var(--max);margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) clamp(320px,34vw,460px);gap:clamp(48px,6vw,96px);align-items:center}
+.hero-inner{max-width:var(--max);margin:0 auto;display:grid;grid-template-columns:1fr 340px;gap:80px;align-items:start}
 .hero-eyebrow{font-family:var(--mono);font-size:0.72rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);margin-bottom:28px}
 .status-live{display:none}
 .hero-headline{
-  text-wrap:balance;font-family:var(--sans);font-weight:800;
+  font-family:var(--sans);font-weight:800;
   line-height:0.92;letter-spacing:-0.03em;color:var(--text-primary);margin-bottom:32px;
 }
 .hl-line{display:block}
-.hl-small{font-size:clamp(1.4rem,1rem + 2.5vw,2.4rem);line-height:1.1;opacity:0.7}
-.hl-large{font-size:clamp(3rem,2rem + 6vw,4.6rem);line-height:0.9}
-.hl-copper{display:block;color:var(--accent);font-size:1.22em;line-height:0.95}
-.hl-medium{font-size:clamp(1.8rem,1.3rem + 3.5vw,2.9rem);line-height:0.95;margin-top:0.2em}
+.hl-small{font-size:clamp(1.4rem,1rem + 2.5vw,3rem);line-height:1.1;opacity:0.7}
+.hl-large{font-size:clamp(3rem,2rem + 6vw,8rem);line-height:0.88}
+.hl-medium{font-size:clamp(1.8rem,1.3rem + 3.5vw,5rem);line-height:0.95;margin-top:0.12em}
 .hero-sub{font-size:1.05rem;line-height:1.65;color:var(--text-secondary);max-width:480px;margin-bottom:40px}
 .hero-meta{display:flex;align-items:center;gap:24px;flex-wrap:wrap}
 .hero-cta{
@@ -192,13 +158,11 @@ html:not([data-theme="light"]) .plane-flip{
 .hero-cta:hover{border-color:var(--accent);color:var(--accent)}
 .hero-views{font-family:var(--mono);font-size:0.78rem;color:var(--text-muted);display:inline-flex;align-items:center;gap:6px}
 .hero-views svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:1.5}
-.hero-photo-wrap{position:relative;min-width:0}
-.hero-photo{display:block;width:100%;aspect-ratio:4/5;padding:0;border:0;border-radius:2px;overflow:hidden;cursor:pointer;background:var(--surface)}
-.hero-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 10%;display:block;filter:grayscale(1);transition:filter 0.5s ease}
-.hero-photo[aria-pressed="true"] img{filter:saturate(0.88)}
-[data-theme="light"] .hero-photo img{filter:saturate(0.88)}
-[data-theme="light"] .hero-photo[aria-pressed="true"] img{filter:grayscale(1)}
-.hero-photo:focus-visible{outline-offset:4px}
+.hero-photo-wrap{position:relative}
+.hero-photo{width:100%;aspect-ratio:3/4;max-height:520px;border-radius:4px;overflow:hidden;cursor:pointer}
+.hero-photo img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block;filter:grayscale(100%);transition:filter 0.6s ease}
+.hero-photo.color-revealed img{filter:grayscale(0%)}
+.hero-photo-hint{margin-top:10px;font-family:var(--mono);font-size:0.68rem;color:var(--text-muted);letter-spacing:0.1em;text-align:center;opacity:0.6}
 /* old hero elements hidden */
 .hero-photo-col{display:flex;flex-direction:column;align-items:stretch}
 .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:40px}
@@ -215,19 +179,27 @@ html:not([data-theme="light"]) .plane-flip{
 .hero-name em{font-style:normal}
 @media(max-width:768px){
   .hero-inner{grid-template-columns:1fr;gap:48px}
-  .hero-photo-wrap{max-width:320px}
-  .hl-large{font-size:clamp(2.5rem,10vw,4.6rem)}
+  .hero-photo-wrap{max-width:300px}
+  .hl-large{font-size:clamp(2.5rem,10vw,5rem)}
   .hl-medium{font-size:clamp(1.4rem,6vw,3rem)}
   .hl-small{font-size:clamp(1rem,4vw,1.8rem)}
 }
 
 /* ── METRICS ── */
-#metrics{background:var(--bg);padding:56px 32px 80px}
+#metrics{
+  background:var(--bg1);border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  padding:60px 32px;
+}
 .metrics-inner{max-width:var(--max);margin:0 auto}
-.metrics-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:40px}
-.metric-cell{padding:20px 0 0;border-top:1px solid var(--line)}
+.metrics-grid{
+  display:grid;grid-template-columns:repeat(5,1fr);gap:1px;
+  background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;
+}
+.metric-cell{
+  background:var(--bg1);padding:28px 24px;text-align:center;
+}
 .metric-num{
-  font-size:clamp(2.2rem,1.8rem + 1.4vw,2.8rem);font-weight:800;color:var(--text);
+  font-size:2.8rem;font-weight:800;color:var(--text);
   letter-spacing:-0.05em;font-family:var(--sans);
   margin-bottom:6px;line-height:1;
 }
@@ -291,52 +263,71 @@ html:not([data-theme="light"]) .plane-flip{
 /* ── SECTION BASE ── */
 .sec-wrap{max-width:var(--max);margin:0 auto;padding:96px 32px}
 .sec-head{display:flex;align-items:flex-end;gap:20px;margin-bottom:56px}
-.sec-title{text-wrap:balance;font-size:clamp(2rem,1.5rem + 2.5vw,3.5rem);font-weight:800;color:var(--text);letter-spacing:-0.03em;line-height:0.95}
+.sec-num{
+  font-family:var(--mono);font-size:0.65rem;color:var(--accent);
+  letter-spacing:0.12em;opacity:0.7;
+  background:rgba(217,119,87,0.08);border:1px solid rgba(217,119,87,0.2);
+  padding:4px 10px;border-radius:4px;
+}
+.sec-title{font-size:clamp(2rem,1.5rem + 2.5vw,4.5rem);font-weight:800;color:var(--text);letter-spacing:-0.03em;line-height:0.95}
 .sec-rule{flex:1;height:1px;background:linear-gradient(90deg,var(--line),transparent)}
 
 /* ── ABOUT ── */
-.sobre-grid{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:clamp(48px,7vw,112px);align-items:start}
+#sobre{border-top:1px solid var(--line)}
+.sobre-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
 .sobre-quote{
-  font-size:clamp(1.3rem,1rem + 1.6vw,2.25rem);font-weight:500;color:var(--text);line-height:1.35;
-  font-style:italic;letter-spacing:-0.01em;max-width:22em;
+  font-size:clamp(1.15rem,2vw,1.45rem);font-weight:500;color:var(--text);line-height:1.6;
+  font-style:italic;
+  padding:28px 28px 28px 32px;
+  border-left:3px solid var(--accent);
+  background:rgba(217,119,87,0.04);
+  border-radius:0 8px 8px 0;
+  position:relative;
+}
+.sobre-quote::before{
+  content:'\201C';
+  position:absolute;top:-12px;left:20px;
+  font-size:5rem;color:rgba(217,119,87,0.15);
+  font-family:Georgia,serif;line-height:1;
 }
 .sobre-body p{color:var(--text2);margin-bottom:16px;font-size:0.95rem;line-height:1.8;max-width:60ch}
-.fact-table{margin-top:40px;border-top:1px solid var(--line)}
-.fact-row{display:flex;align-items:baseline;padding:12px 0;border-bottom:1px solid var(--line2)}
+.fact-table{margin-top:24px;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.fact-row{display:flex;align-items:baseline;padding:10px 16px;border-bottom:1px solid var(--line2)}
 .fact-row:last-child{border-bottom:none}
 .fact-k{font-family:var(--mono);font-size:0.7rem;color:var(--text3);letter-spacing:0.08em;min-width:100px}
 .fact-v{font-size:0.85rem;color:var(--text2)}
 
 /* ── PRINCIPLES ── */
-#filosofia{background:var(--bg2)}
-.princ-list{display:flex;flex-direction:column;gap:clamp(64px,8vw,120px)}
-.princ-item{display:block;padding-top:32px;border-top:1px solid var(--line)}
-.princ-label{font-size:clamp(2rem,1.5rem + 3.5vw,4rem);font-weight:800;line-height:0.88;letter-spacing:-0.03em;color:var(--text-primary);margin-bottom:28px;display:block}
-.princ-item:nth-child(1){max-width:720px}
-.princ-item:nth-child(2){max-width:780px;margin-left:auto}
-.princ-item:nth-child(2) .princ-label{font-size:clamp(2.2rem,1.6rem + 4vw,4.75rem)}
-.princ-item:nth-child(3){max-width:640px;margin-left:clamp(0px,7%,96px)}
-.princ-item:nth-child(3) .princ-label{font-size:clamp(1.8rem,1.3rem + 3vw,3.5rem)}
-@media(max-width:900px){
-  .princ-item:nth-child(n){max-width:none;margin-left:0}
+#filosofia{background:var(--bg2);border-top:1px solid var(--line)}
+.princ-list{display:flex;flex-direction:column;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.princ-item{background:var(--bg2);padding:40px 32px;display:block;transition:background 0.2s}
+.princ-item:hover{background:var(--bg1)}
+.princ-code{font-family:var(--mono);font-size:var(--t-micro);color:var(--accent2);letter-spacing:0.12em;margin-bottom:14px;display:block}
+.princ-label{font-size:clamp(2rem,1.5rem + 3.5vw,5.5rem);font-weight:800;line-height:0.88;letter-spacing:-0.03em;color:var(--text-primary);margin-bottom:28px;display:block}
+.princ-item:nth-child(1) .princ-label{max-width:65%}
+.princ-item:nth-child(2) .princ-label{font-size:clamp(2.2rem,1.6rem + 4vw,6.5rem);max-width:70%;margin-left:clamp(0px,18%,240px)}
+.princ-item:nth-child(3) .princ-label{font-size:clamp(1.8rem,1.3rem + 3vw,5rem);max-width:60%;margin-left:clamp(0px,5%,64px)}
+@media(max-width:768px){
+  .princ-item:nth-child(1) .princ-label,.princ-item:nth-child(2) .princ-label,.princ-item:nth-child(3) .princ-label{margin-left:0;max-width:100%}
 }
 .princ-detail{max-width:680px}
 .princ-quote{font-size:0.88rem;color:var(--text2);font-style:italic;margin-bottom:12px;padding-left:12px;border-left:2px solid var(--line)}
 .princ-body{font-size:0.85rem;color:var(--text3);line-height:1.7;margin-bottom:16px;max-width:62ch}
-.princ-spec{border-top:1px solid var(--line)}
-.spec-row{display:flex;gap:16px;padding:10px 0;border-bottom:1px solid var(--line2);font-size:0.82rem}
+.princ-spec{border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.spec-row{display:flex;gap:16px;padding:8px 14px;border-bottom:1px solid var(--line2);font-size:0.78rem}
 .spec-row:last-child{border-bottom:none}
 .spec-k{font-family:var(--mono);color:var(--accent2);min-width:80px;font-size:0.7rem}
 .spec-v{color:var(--text3)}
 
 /* ── EXPERIENCE ── */
-#experiencia{background:var(--bg)}
-.exp-list{display:flex;flex-direction:column}
-.exp-item{display:grid;grid-template-columns:120px 1fr;gap:24px;padding:32px 0;border-top:1px solid var(--line)}
+#experiencia{border-top:1px solid var(--line)}
+.exp-list{display:flex;flex-direction:column;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.exp-item{background:var(--bg);display:grid;grid-template-columns:120px 1fr;gap:24px;padding:28px 32px;transition:background 0.2s}
+.exp-item:hover{background:var(--bg1)}
 .exp-year{font-family:var(--mono);font-size:0.72rem;color:var(--text3);padding-top:4px;line-height:1.5}
 .exp-company{font-size:1rem;font-weight:600;color:var(--text);margin-bottom:2px;display:flex;align-items:center;gap:10px}
 .exp-status{
-  font-family:var(--mono);font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;
+  font-family:var(--mono);font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;
   padding:2px 8px;border-radius:3px;
 }
 .exp-status.active{background:rgba(217,119,87,0.15);color:var(--accent2)}
@@ -348,16 +339,25 @@ html:not([data-theme="light"]) .plane-flip{
 .exp-tech{font-family:var(--mono);font-size:0.7rem;color:var(--text3);letter-spacing:0.02em}
 
 /* ── PROJECTS ── */
-#projetos{background:var(--bg)}
-#projetos .sec-wrap{padding-top:88px;padding-bottom:88px}
-.proj-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:56px 48px;margin-bottom:72px}
-.proj-card{padding-top:24px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:16px}
-.proj-card:first-child{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);grid-template-rows:1fr auto;column-gap:clamp(48px,7vw,112px);row-gap:24px;padding-top:32px}
-.proj-card:first-child>div:first-child{grid-row:1/3}
-.proj-card:first-child .proj-footer{margin-top:0}
+#projetos{background:var(--bg2);border-top:1px solid var(--line)}
+.proj-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+.proj-card{
+  background:var(--bg1);border:1px solid var(--line);border-radius:var(--radius);
+  padding:28px;display:flex;flex-direction:column;gap:16px;
+  transition:border-color 0.3s,transform 0.3s,box-shadow 0.3s;
+  position:relative;overflow:hidden;
+}
+.proj-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--accent),var(--accent2));
+  transform:scaleX(0);transform-origin:left;
+  transition:transform 0.3s ease;
+}
+.proj-card:hover::before{transform:scaleX(1)}
+.proj-card:hover{border-color:rgba(217,119,87,0.3);transform:translateY(-3px);box-shadow:0 16px 40px rgba(0,0,0,0.3)}
+.proj-id{font-family:var(--mono);font-size:0.65rem;color:var(--text3);letter-spacing:0.1em}
 .proj-name{font-size:1.15rem;font-weight:700;color:var(--text);letter-spacing:-0.01em;margin-bottom:6px}
-.proj-card:first-child .proj-name{font-size:clamp(1.8rem,1.2rem + 2.4vw,3.25rem);line-height:0.98;letter-spacing:-0.02em;margin-bottom:16px}
-.proj-card:first-child .proj-desc{font-size:var(--t-lead);line-height:1.55;max-width:34em;color:var(--text2)}
+.proj-card:first-child .proj-name{font-size:clamp(1.6rem,1.2rem + 2vw,3rem);line-height:0.95;letter-spacing:-0.02em;margin-bottom:12px}
 .proj-desc{font-size:0.85rem;color:var(--text3);line-height:1.6;flex:1}
 .proj-meta{display:flex;flex-direction:column;gap:6px}
 .proj-meta-row{display:flex;gap:10px;font-size:0.78rem}
@@ -365,10 +365,10 @@ html:not([data-theme="light"]) .plane-flip{
 .proj-meta-v{color:var(--text3)}
 .proj-footer{display:flex;align-items:center;justify-content:space-between;margin-top:auto;padding-top:16px;border-top:1px solid var(--line2)}
 .proj-tag{
-  font-family:var(--mono);font-size:0.68rem;letter-spacing:0.1em;text-transform:lowercase;
+  font-family:var(--mono);font-size:0.62rem;letter-spacing:0.1em;text-transform:lowercase;
   padding:3px 9px;border-radius:3px;
 }
-.proj-tag.live{background:var(--accent-soft);color:var(--accent2)}
+.proj-tag.live{background:rgba(56,189,248,0.1);color:var(--accent2)}
 .proj-tag.wip{background:rgba(148,163,184,0.08);color:var(--text3)}
 .proj-links{display:flex;gap:12px}
 .proj-link{
@@ -380,31 +380,38 @@ html:not([data-theme="light"]) .plane-flip{
 
 /* compact list */
 .proj-more-label{
-  font-family:var(--mono);font-size:0.72rem;color:var(--text3);
-  letter-spacing:0.1em;padding:0 0 16px;
+  font-family:var(--mono);font-size:0.68rem;color:var(--text3);
+  letter-spacing:0.1em;text-align:center;padding:12px;
 }
-.proj-compact{border-top:1px solid var(--line)}
+.proj-compact{
+  border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;
+}
 .proj-compact-row{
-  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr) auto;gap:24px;
-  align-items:center;padding:16px 0;
-  border-bottom:1px solid var(--line2);
+  display:grid;grid-template-columns:60px 1fr 1fr auto;gap:16px;
+  align-items:center;padding:14px 20px;
+  border-bottom:1px solid var(--line2);transition:background 0.2s;
 }
+.proj-compact-row:last-child{border-bottom:none}
+.proj-compact-row:hover{background:var(--bg1)}
+.proj-cid{font-family:var(--mono);font-size:0.65rem;color:var(--text3)}
 .proj-cname{font-size:0.88rem;font-weight:500;color:var(--text2)}
-.proj-cstack{font-family:var(--mono);font-size:0.72rem;color:var(--text3)}
+.proj-cstack{font-family:var(--mono);font-size:0.68rem;color:var(--text3)}
 .proj-clinks{display:flex;gap:10px;justify-content:flex-end}
 
 /* ── STACK ── */
-#stack{background:var(--bg)}
+#stack{border-top:1px solid var(--line)}
 .stack-cats{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
-.stack-cat{padding-top:20px;border-top:1px solid var(--line)}
+.stack-cat{background:var(--bg1);border:1px solid var(--line);border-radius:var(--radius);padding:24px}
 .stack-cat-title{font-family:var(--mono);font-size:0.68rem;color:var(--accent2);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:14px}
-.stack-pills{display:flex;flex-wrap:wrap;gap:4px 0}
-.stack-pill{font-size:0.9rem;color:var(--text3)}
-.stack-pill:not(:last-child)::after{content:'·';margin:0 9px;color:var(--text3)}
-.stack-pill.core{color:var(--text)}
+.stack-pills{display:flex;flex-wrap:wrap;gap:7px}
+.stack-pill{
+  font-size:0.78rem;color:var(--text2);background:var(--bg2);
+  border:1px solid var(--line);border-radius:4px;padding:4px 10px;
+}
+.stack-pill.core{border-color:rgba(217,119,87,0.3);color:var(--text)}
 
 /* ── EDUCATION ── */
-#formacao{background:var(--bg2)}
+#formacao{background:var(--bg2);border-top:1px solid var(--line)}
 .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px}
 .edu-block{padding-bottom:24px;margin-bottom:24px;border-bottom:1px solid var(--line)}
 .edu-block:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
@@ -417,21 +424,20 @@ html:not([data-theme="light"]) .plane-flip{
 .cert-group-v{font-size:0.8rem;color:var(--text3);line-height:1.6}
 
 /* ── CONTACT ── */
-#contacto{background:var(--bg)}
+#contacto{border-top:1px solid var(--line)}
 .contact-inner{
-  max-width:var(--max);margin:0 auto;padding:128px 32px;
-  display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(48px,6vw,96px);align-items:end;
+  max-width:var(--max);margin:0 auto;padding:80px 32px;
+  display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;
 }
-.contact-headline{font-family:var(--sans);font-weight:800;letter-spacing:-0.03em;margin-bottom:28px;line-height:1}
-.contact-line1{display:block;font-size:clamp(2.5rem,2rem + 4vw,4rem);opacity:0.55}
-.contact-line2{display:block;font-size:clamp(3rem,2.2rem + 5vw,5.5rem)}
+.contact-section-label{font-family:var(--mono);font-size:var(--t-micro);letter-spacing:0.15em;text-transform:uppercase;color:var(--text-muted);margin-bottom:20px}
+.contact-headline{font-family:var(--sans);font-weight:800;letter-spacing:-0.03em;margin-bottom:24px;line-height:0.9}
+.contact-line1{display:block;font-size:clamp(2.5rem,2rem + 4vw,7rem);opacity:0.55}
+.contact-line2{display:block;font-size:clamp(3rem,2.2rem + 5vw,9rem)}
 .contact-accent{font-style:normal;color:var(--accent)}
-.contact-inner>*{min-width:0}
-.contact-val{overflow-wrap:anywhere;min-width:0}
 .contact-sub{font-size:0.9rem;color:var(--text3);line-height:1.7;margin-bottom:8px}
 .contact-note{font-family:var(--mono);font-size:0.7rem;color:var(--text3);margin-bottom:28px}
 .contact-qr{display:flex;flex-direction:column;gap:8px;margin-top:28px}
-.contact-qr-label{font-family:var(--mono);font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text3)}
+.contact-qr-label{font-family:var(--mono);font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text3)}
 #qr-box{border:1px solid var(--line);border-radius:6px;padding:8px;background:#fff;display:inline-block;line-height:0;width:136px;height:136px}
 .contact-rows{display:flex;flex-direction:column}
 .contact-row{
@@ -441,7 +447,7 @@ html:not([data-theme="light"]) .plane-flip{
 }
 .contact-row:first-child{border-top:1px solid var(--line)}
 .contact-row:hover{opacity:0.6}
-.contact-type{font-family:var(--mono);font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text3);min-width:80px}
+.contact-type{font-family:var(--mono);font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text3);min-width:80px}
 .contact-val{font-size:0.88rem;font-weight:500;color:var(--text)}
 .contact-arr{font-family:var(--mono);color:var(--text3)}
 
@@ -495,6 +501,20 @@ footer{background:var(--bg1);border-top:1px solid var(--line);padding:20px 32px}
   --accent-soft:rgba(167,95,50,0.08);--focus-ring:#A75F32;
 }
 [data-theme="light"] nav{background:rgba(244,241,234,0.92)}
+[data-theme="light"] .sobre-quote{background:var(--accent-soft)}
+[data-theme="light"] .proj-card,[data-theme="light"] .highlight-card,
+[data-theme="light"] .stack-cat,[data-theme="light"] .fact-table,
+[data-theme="light"] .princ-list,[data-theme="light"] .exp-list,
+[data-theme="light"] .proj-compact{
+  background:var(--bg1);
+}
+[data-theme="light"] .proj-card:hover{box-shadow:0 16px 40px rgba(0,0,0,0.08)}
+[data-theme="light"] .metric-cell{background:var(--bg1)}
+[data-theme="light"] .highlight-card{background:var(--bg1)}
+[data-theme="light"] .princ-item{background:var(--bg2)}
+[data-theme="light"] .princ-item:hover{background:var(--bg1)}
+[data-theme="light"] .exp-item{background:var(--bg)}
+[data-theme="light"] .exp-item:hover{background:var(--bg1)}
 
 /* ── THEME BTN ── */
 #theme-btn{
@@ -526,52 +546,58 @@ footer{background:var(--bg1);border-top:1px solid var(--line);padding:20px 32px}
 .hero-social-mob svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
 
 /* ── JOURNEY TIMELINE (horizontal) ── */
-.jt-outer{max-width:var(--max);margin:0 auto;padding:128px 32px}
-.jt-header{max-width:1100px;margin-bottom:80px}
+#journey{background:var(--bg1);border-top:1px solid var(--line)}
+.jt-outer{max-width:var(--max);margin:0 auto;padding:96px 32px}
+.jt-header{text-align:center;margin-bottom:72px}
 .jt-eyebrow{font-family:var(--mono);font-size:0.68rem;color:var(--accent2);letter-spacing:0.14em;text-transform:uppercase;margin-bottom:16px}
-.jt-title{text-wrap:balance;font-size:clamp(2rem,1.5rem + 3vw,3.75rem);font-weight:800;color:var(--text);letter-spacing:-0.03em;margin-bottom:16px;line-height:0.95}
-.jt-sub{font-size:var(--t-body);color:var(--text3);line-height:1.7;max-width:36em}
+.jt-title{font-size:clamp(2rem,1.5rem + 3vw,5rem);font-weight:800;color:var(--text);letter-spacing:-0.03em;margin-bottom:16px;line-height:0.95}
+.jt-sub{font-size:0.95rem;color:var(--text3);line-height:1.7}
 .jt-scene{position:relative}
 .jt-scroll{overflow-x:auto;overflow-y:visible;scrollbar-width:none;padding-bottom:8px;-webkit-overflow-scrolling:touch;scroll-snap-type:x proximity}
 .jt-scroll::-webkit-scrollbar{display:none}
-.jt-rail{position:absolute;top:281px;left:32px;right:32px;height:1px;background:var(--line);z-index:0;pointer-events:none}
+.jt-rail{position:absolute;top:216px;left:32px;right:32px;height:1px;background:rgba(255,255,255,0.06);z-index:0;pointer-events:none}
+[data-theme="light"] .jt-rail{background:rgba(0,0,0,0.07)}
 .jt-fill{height:1px;background:linear-gradient(90deg,var(--accent),var(--accent2));width:0%;transition:width 1.8s cubic-bezier(0.25,0.46,0.45,0.94) 0.4s}
 .jt-nodes{display:flex;position:relative;z-index:1;min-width:860px}
-.jt-node{flex:1;display:flex;flex-direction:column;align-items:flex-start;padding:0 20px 0 0;scroll-snap-align:start}
+.jt-node{flex:1;display:flex;flex-direction:column;align-items:center;padding:0 10px;scroll-snap-align:center}
 .jt-card{
-  width:100%;padding:0;
-  margin-bottom:22px;min-height:200px;
-  opacity:0;transform:translateY(-8px);
-  transition:opacity 0.5s ease,transform 0.5s ease;
+  width:100%;
+  background:rgba(15,23,42,0.88);
+  border:1px solid rgba(255,255,255,0.07);
+  border-radius:8px;padding:20px 16px;
+  margin-bottom:22px;min-height:152px;
+  opacity:0;transform:translateY(-12px);
+  transition:opacity 0.5s ease,transform 0.5s ease,border-color 0.3s;
 }
 .jt-card.vis{opacity:1;transform:none}
-.jt-num{font-family:var(--mono);font-size:0.68rem;color:var(--text3);letter-spacing:0.12em;margin-bottom:10px;opacity:0.5}
-.jt-name{font-size:1rem;font-weight:600;color:var(--text);margin-bottom:3px;letter-spacing:-0.01em}
+.jt-node:not(.active):hover .jt-card{border-color:rgba(255,255,255,0.12);transform:translateY(-3px)}
+.jt-node.active .jt-card{
+  border-color:rgba(217,119,87,0.3);
+}
+[data-theme="light"] .jt-card{background:rgba(240,237,232,0.92)}
+[data-theme="light"] .jt-node.active .jt-card{border-color:rgba(196,98,61,0.3)}
+.jt-num{font-family:var(--mono);font-size:0.6rem;color:var(--text3);letter-spacing:0.12em;margin-bottom:10px;opacity:0.5}
+.jt-name{font-size:0.9rem;font-weight:600;color:var(--text);margin-bottom:3px;letter-spacing:-0.01em}
 .jt-system{font-family:var(--mono);font-size:0.65rem;color:var(--accent2);letter-spacing:0.06em;margin-bottom:10px}
-.jt-desc{font-size:0.85rem;color:var(--text3);line-height:1.55;margin-bottom:10px}
-.jt-chips{display:flex;flex-wrap:wrap;gap:2px 6px}
-.jt-chips span{font-family:var(--mono);font-size:0.68rem;color:var(--text3);letter-spacing:0.02em}
-.jt-chips span+span::before{content:"·";margin-right:6px}
-.jt-node.active .jt-chips span{color:var(--accent2)}
+.jt-desc{font-size:0.76rem;color:var(--text3);line-height:1.55;margin-bottom:10px}
+.jt-chips{display:flex;flex-wrap:wrap;gap:4px}
+.jt-chips span{font-family:var(--mono);font-size:0.58rem;color:var(--text3);border:1px solid var(--line);border-radius:3px;padding:2px 6px;letter-spacing:0.02em}
+.jt-node.active .jt-chips span{border-color:rgba(217,119,87,0.3);color:var(--accent2)}
 .jt-dot{
   width:12px;height:12px;border-radius:50%;flex-shrink:0;
-  background:var(--bg);border:2px solid var(--text3);
+  background:var(--bg1);border:2px solid rgba(255,255,255,0.15);
   margin-bottom:14px;transition:all 0.35s ease;position:relative;z-index:2;
 }
+[data-theme="light"] .jt-dot{background:var(--bg1);border-color:rgba(0,0,0,0.18)}
 .jt-node:not(.active):hover .jt-dot{border-color:var(--text3)}
 .jt-node.active .jt-dot{
   width:14px;height:14px;background:var(--accent);border-color:var(--accent);
+  box-shadow:0 0 0 4px rgba(217,119,87,0.12);
 }
-.jt-era{font-size:0.98rem;font-weight:700;color:var(--text);text-align:left;letter-spacing:-0.01em;line-height:1.3;min-height:2.6em;margin-bottom:12px}
+.jt-era{font-size:0.7rem;font-weight:600;color:var(--text3);text-align:center;letter-spacing:0.04em;line-height:1.4;margin-bottom:14px}
 .jt-node.active .jt-era{color:var(--accent2)}
-.jt-now{font-family:var(--mono);font-size:0.68rem;font-weight:500;color:var(--accent2);letter-spacing:0.08em;margin-left:8px}
-.jt-tagline{text-align:left;margin-top:72px;font-family:var(--mono);font-size:0.82rem;color:var(--accent2);letter-spacing:0.04em;opacity:0.85}
-
-@media(min-width:1101px){
-  .jt-era{min-height:1.3em}
-  .jt-card{min-height:160px}
-  .jt-rail{top:220px}
-}
+.jt-now{font-family:var(--mono);font-size:0.58rem;color:#22c55e;letter-spacing:0.08em;display:block;margin-top:3px}
+.jt-tagline{text-align:center;margin-top:56px;font-family:var(--mono);font-size:0.82rem;color:var(--accent2);letter-spacing:0.04em;opacity:0.85}
 
 /* ── VALUE PROPS ── */
 .vp-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:0}
@@ -587,40 +613,60 @@ footer{background:var(--bg1);border-top:1px solid var(--line);padding:20px 32px}
 
 /* ── RESPONSIVE ── */
 @media(max-width:900px){
-  .contact-inner{padding:80px 20px}
   .jt-outer{padding:60px 0}
   .jt-header{padding:0 16px;margin-bottom:48px}
-  .jt-card{min-height:236px}
-  .jt-rail{top:317px;left:16px;right:16px}
-  .jt-scroll{padding:0 8px 16px}
-  .jt-nodes{min-width:780px}
+  /* mobile: stack vertically */
+  .jt-scene{padding:0 16px}
+  .jt-rail{display:none}
+  .jt-scroll{overflow:visible;padding:0}
+  .jt-nodes{
+    display:flex;flex-direction:column;min-width:0;
+    gap:0;position:relative;
+    padding-left:28px;
+  }
+  .jt-nodes::before{
+    content:'';position:absolute;left:5px;top:8px;bottom:8px;width:1px;
+    background:linear-gradient(180deg,transparent,var(--line) 10%,var(--line) 90%,transparent);
+  }
+  .jt-node{
+    flex:none;flex-direction:column;align-items:stretch;
+    padding:0 0 24px 0;
+    scroll-snap-align:unset;
+    position:relative;
+  }
+  .jt-node:last-child{padding-bottom:0}
+  .jt-era{text-align:left;margin-bottom:6px;min-width:0}
+  .jt-dot{
+    position:absolute;left:-22px;top:4px;margin:0;flex-shrink:0;
+  }
+  .jt-card{margin-bottom:0;width:100%;min-height:auto;border-radius:28px}
+  .jt-tagline{padding:0 16px}
   #hero{padding:80px 20px 56px}
   .hero-inner{grid-template-columns:1fr;gap:32px}
-    .sobre-grid,.form-grid,.contact-inner{grid-template-columns:1fr;gap:32px}
-  .metrics-grid{grid-template-columns:repeat(3,1fr);gap:28px 24px}
-  .proj-grid{grid-template-columns:1fr;gap:48px}
-  .proj-card:first-child{display:flex;flex-direction:column;gap:16px}
+  .hero-photo-col{order:-1;align-items:center}
+  .hero-photo{width:56%;max-height:360px}
+  .sobre-grid,.form-grid,.contact-inner{grid-template-columns:1fr;gap:32px}
+  .metrics-grid{grid-template-columns:repeat(3,1fr)}
+  .proj-grid{grid-template-columns:1fr}
   .princ-item{grid-template-columns:1fr}
   .exp-item{grid-template-columns:1fr}
   .exp-year{font-size:0.68rem}
-  .proj-compact-row{grid-template-columns:1fr auto}
+  .proj-compact-row{grid-template-columns:50px 1fr auto}
   .proj-cstack{display:none}
   .social-bar{display:none}
   .hero-social-mob{display:flex}
 }
-@media(max-width:960px){
+@media(max-width:640px){
   .nav-links{display:none}
   .ham{display:flex}
-}
-@media(max-width:640px){
   .metrics-grid{grid-template-columns:repeat(2,1fr)}
   .nav-inner{padding:0 16px}
   .sec-wrap{padding:60px 16px}
   #hero{padding:76px 16px 48px}
+  .hero-photo{width:52%;max-height:280px}
   #metrics{padding:40px 16px}
   #highlights,#timeline{padding:60px 16px}
   .contact-inner{padding:60px 16px}
-  .metric-cell{padding-top:14px}
   footer{padding:16px}
   .tl-track{flex-direction:column;gap:0}
   .tl-track::before{display:none}
@@ -631,17 +677,10 @@ footer{background:var(--bg1);border-top:1px solid var(--line);padding:20px 32px}
 }
 
 /* ── REDUCED MOTION ── */
-@media(max-width:400px){
-  .contact-line1{font-size:min(11vw,calc(2.5rem + 4vw))}
-  .contact-line2{font-size:min(12.5vw,calc(2.2rem + 5vw))}
-  .hl-large{font-size:min(10.4vw,2.5rem)}
-}
-
 @media(prefers-reduced-motion:reduce){
   .reveal{opacity:1!important;transform:none!important;transition:none!important}
   .jt-card{opacity:1!important;transform:none!important;transition:none!important}
   .jt-fill{transition:none!important}
-  .hero-photo img{transition:none!important}
   .status-live::before{animation:none!important}
   .aj-sk-line{animation:none!important}
   *{scroll-behavior:auto!important}
@@ -712,10 +751,10 @@ footer{background:var(--bg1);border-top:1px solid var(--line);padding:20px 32px}
   <div class="nav-inner">
     <div class="nav-logo">Everson<span>.</span>Rubira</div>
     <ul class="nav-links">
-      <li><a href="#journey" data-i18n="nav-journey">trajectory</a></li>
-      <li><a href="#projetos" data-i18n="nav-projetos">projects</a></li>
       <li><a href="#sobre" data-i18n="nav-sobre">sobre</a></li>
+      <li><a href="#journey" data-i18n="nav-journey">trajectory</a></li>
       <li><a href="#experiencia" data-i18n="nav-exp">exp</a></li>
+      <li><a href="#projetos" data-i18n="nav-projetos">projects</a></li>
       <li><a href="#stack" data-i18n="nav-stack">stack</a></li>
       <li><a href="#roadmap" data-i18n="nav-roadmap">roadmap</a></li>
       <li><a href="#formacao" data-i18n="nav-formacao">education</a></li>
@@ -732,10 +771,10 @@ footer{background:var(--bg1);border-top:1px solid var(--line);padding:20px 32px}
     </div>
   </div>
   <div class="mob-menu" id="mob">
-    <a href="#journey" data-i18n="nav-journey">trajectory</a>
-    <a href="#projetos" data-i18n="nav-projetos">projects</a>
     <a href="#sobre" data-i18n="nav-sobre">sobre</a>
+    <a href="#journey" data-i18n="nav-journey">trajectory</a>
     <a href="#experiencia" data-i18n="nav-exp">exp</a>
+    <a href="#projetos" data-i18n="nav-projetos">projects</a>
     <a href="#stack" data-i18n="nav-stack">stack</a>
     <a href="#roadmap" data-i18n="nav-roadmap">roadmap</a>
     <a href="#formacao" data-i18n="nav-formacao">education</a>
@@ -767,10 +806,10 @@ footer{background:var(--bg1);border-top:1px solid var(--line);padding:20px 32px}
       <p class="hero-eyebrow reveal" data-i18n="heroEyebrow">Backend Engineer · AI Systems</p>
       <h1 class="hero-headline reveal">
         <span class="hl-line hl-small" data-i18n="heroLine1">I SPENT YEARS</span>
-        <span class="hl-line hl-large" data-i18n="heroLine2">UNDERSTANDING<br><span class="hl-copper">SYSTEMS</span></span>
+        <span class="hl-line hl-large" data-i18n="heroLine2">UNDERSTANDING<br>SYSTEMS</span>
         <span class="hl-line hl-medium" data-i18n="heroLine3">BEFORE BUILDING THEM.</span>
       </h1>
-      <p class="hero-sub reveal" data-i18n="heroSub">15 years in operations taught me where software breaks in the real world. Now I engineer it not to.</p>
+      <p class="hero-sub reveal" data-i18n="heroSub">12 years in operations taught me where software breaks in the real world. Now I engineer it not to.</p>
       <div class="hero-meta reveal">
         <span class="hero-views-wrap"><span id="hero-views" class="hero-views" aria-label="Visitas"></span></span>
         <a href="#contacto" class="hero-cta" data-i18n="heroCta">Let's build something reliable</a>
@@ -781,9 +820,10 @@ footer{background:var(--bg1);border-top:1px solid var(--line);padding:20px 32px}
       </div>
     </div>
     <div class="hero-photo-wrap reveal">
-      <button type="button" class="hero-photo" id="hero-photo-toggle" aria-pressed="false" aria-label="Foto: alternar entre preto e branco e cor">
-        <img src="foto-hero.jpg" alt="Everson Rubira — smiling, glasses, grey sweater, neutral background" width="718" height="957" fetchpriority="high" decoding="async">
-      </button>
+      <div class="hero-photo" id="hero-photo-toggle" title="Click to reveal color">
+        <img src="foto-hero.jpg" alt="Everson Rubira — smiling, glasses, grey sweater, neutral background" width="718" height="957">
+      </div>
+      <p class="hero-photo-hint" data-i18n="photoHint">click the photo</p>
     </div>
   </div>
 </section>
@@ -795,7 +835,7 @@ footer{background:var(--bg1);border-top:1px solid var(--line);padding:20px 32px}
   <div class="metrics-inner">
     <div class="metrics-grid">
       <div class="metric-cell reveal">
-        <div class="metric-num"><span class="count" data-target="15">0</span><span>+</span></div>
+        <div class="metric-num"><span class="count" data-target="12">0</span><span>+</span></div>
         <div class="metric-label" data-i18n="metric-years">Years Experience</div>
       </div>
       <div class="metric-cell reveal">
@@ -818,75 +858,20 @@ footer{background:var(--bg1);border-top:1px solid var(--line);padding:20px 32px}
   </div>
 </section>
 
-<!-- FROM OPERATIONS TO AI SYSTEMS -->
-<section id="journey" class="plane-flip">
-  <div class="jt-outer">
-    <div class="jt-header reveal">
-      <div class="jt-eyebrow" data-i18n="journey-label">Career Trajectory</div>
-      <h2 class="jt-title" data-i18n="journey-title">From Operations to AI Systems</h2>
-      <p class="jt-sub" data-i18n="journey-headline-sub">15+ years of accumulated systems thinking.</p>
-    </div>
-    <div class="jt-scene">
-      <div class="jt-rail"><div class="jt-fill" id="jt-fill"></div></div>
-      <div class="jt-scroll">
-        <div class="jt-nodes">
-          <div class="jt-node">
-            <div class="jt-era" data-i18n="tl-ops-tag">Operations</div>
-            <div class="jt-card">
-              <div class="jt-desc" data-i18n="jt-desc-ops">B2B management, process design and risk mitigation across international markets.</div>
-              <div class="jt-chips"><span>B2B</span><span>Process Design</span><span>Risk</span></div>
-            </div>
-            <div class="jt-dot"></div>
-          </div>
-          <div class="jt-node">
-            <div class="jt-era" data-i18n="tl-trade-tag">International Trade</div>
-            <div class="jt-card">
-              <div class="jt-desc" data-i18n="jt-desc-trade">Import, export and cross-border ops across time zones, currencies and regulatory frameworks.</div>
-              <div class="jt-chips"><span>Import · Export</span><span>Global Ops</span></div>
-            </div>
-            <div class="jt-dot"></div>
-          </div>
-          <div class="jt-node">
-            <div class="jt-era" data-i18n="tl-ts-tag">Trust &amp; Safety</div>
-            <div class="jt-card">
-              <div class="jt-desc" data-i18n="jt-desc-ts">Risk analysis and policy enforcement at Accenture.</div>
-              <div class="jt-chips"><span>Accenture</span><span>Risk Analysis</span><span>Policies</span></div>
-            </div>
-            <div class="jt-dot"></div>
-          </div>
-          <div class="jt-node">
-            <div class="jt-era" data-i18n="tl-eng-tag">Software Engineering</div>
-            <div class="jt-card">
-              <div class="jt-desc" data-i18n="jt-desc-eng">Java, Spring Boot, Hexagonal Architecture, DDD. Building systems that reflect a decade of operational thinking.</div>
-              <div class="jt-chips"><span>Java</span><span>Spring Boot</span><span>DDD</span></div>
-            </div>
-            <div class="jt-dot"></div>
-          </div>
-          <div class="jt-node active">
-            <div class="jt-era" data-i18n="tl-ai-tag">Applied AI<span class="jt-now" data-i18n="tl-ai-now">now</span></div>
-            <div class="jt-card">
-              <div class="jt-desc" data-i18n="jt-desc-ai">LLMs, AI agents and agentic workflows integrated into backend production systems.</div>
-              <div class="jt-chips"><span>LLMs</span><span>AI Agents</span><span>LangChain</span></div>
-            </div>
-            <div class="jt-dot"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="jt-tagline reveal" data-i18n="journey-tagline">"Turning operational complexity into intelligent systems."</div>
-  </div>
-</section>
+<div class="system-line"></div>
 
 <!-- PROJETOS -->
 <section id="projetos">
   <div class="sec-wrap">
     <div class="sec-head reveal">
+      <span class="sec-num">[ 04 ]</span>
       <h2 class="sec-title" data-i18n="sec-projetos">Projetos</h2>
       <div class="sec-rule"></div>
     </div>
     <div class="proj-grid">
       <div class="proj-card reveal">
         <div>
+          <div class="proj-id">ID_12</div>
           <div class="proj-name">ArqSync</div>
           <p class="proj-desc" data-i18n="proj-arqsync-desc">Static architecture analyser for Java codebases. Parses dependency graphs, detects circular imports and layer boundary violations. Generates Mermaid diagrams and HTML reports. Built with JavaParser + Spring Boot 3.</p>
         </div>
@@ -904,6 +889,7 @@ footer{background:var(--bg1);border-top:1px solid var(--line);padding:20px 32px}
       </div>
       <div class="proj-card reveal">
         <div>
+          <div class="proj-id">ID_05</div>
           <div class="proj-name">Sulav Sushi Bar</div>
           <p class="proj-desc" data-i18n="proj-sulav-desc">Production website for a Portuguese restaurant. Bilingual PT/EN, integrated with Uber Eats, Glovo and Bolt Food. Full client-to-deploy delivery — from brief to live site with real customers ordering through it daily.</p>
         </div>
@@ -921,6 +907,7 @@ footer{background:var(--bg1);border-top:1px solid var(--line);padding:20px 32px}
       </div>
       <div class="proj-card reveal">
         <div>
+          <div class="proj-id">ID_03</div>
           <div class="proj-name">FitCheck</div>
           <p class="proj-desc" data-i18n="proj-fitcheck-desc">Health habit tracker with AI-powered weekly analysis. Node.js/Express backend, MySQL on Railway — Groq/Llama 3.3 analyses user records and returns streaming suggestions. A real LLM integration in production, not a demo.</p>
         </div>
@@ -939,6 +926,7 @@ footer{background:var(--bg1);border-top:1px solid var(--line);padding:20px 32px}
       </div>
       <div class="proj-card reveal">
         <div>
+          <div class="proj-id">ID_11</div>
           <div class="proj-name">Criptomoedas</div>
           <p class="proj-desc" data-i18n="proj-crypto-desc">Real-time crypto dashboard on CoinGecko's public API. Framework-free Node.js — every view dynamically rendered, zero dependencies. An exercise in clean architecture without scaffolding to hide behind.</p>
         </div>
@@ -960,36 +948,43 @@ footer{background:var(--bg1);border-top:1px solid var(--line);padding:20px 32px}
     <div class="proj-more-label reveal" data-i18n="proj-more-label">— outros projetos —</div>
     <div class="proj-compact reveal">
       <div class="proj-compact-row">
+        <span class="proj-cid">ID_04</span>
         <span class="proj-cname">LangChain + Anthropic</span>
         <span class="proj-cstack">ai_agents · python · anthropic_api</span>
         <div class="proj-clinks"><a href="https://github.com/EversonRubira/LangChain-Python-via-LLM-Anthropic" target="_blank" rel="noopener" class="proj-link">GitHub <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a></div>
       </div>
       <div class="proj-compact-row">
+        <span class="proj-cid">ID_10</span>
         <span class="proj-cname">Meeting Analyst</span>
         <span class="proj-cstack">fastapi · groq_llama3-70b · railway</span>
         <div class="proj-clinks"><a href="https://github.com/EversonRubira/meeting-analyst" target="_blank" rel="noopener" class="proj-link">GitHub <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a></div>
       </div>
       <div class="proj-compact-row">
+        <span class="proj-cid">ID_06</span>
         <span class="proj-cname">Gestão Saúde Mental</span>
         <span class="proj-cstack">java · spring_boot · rest_api · postgresql</span>
         <div class="proj-clinks"><a href="https://github.com/EversonRubira/GestaoSaudeMental" target="_blank" rel="noopener" class="proj-link">GitHub <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a></div>
       </div>
       <div class="proj-compact-row">
+        <span class="proj-cid">ID_09</span>
         <span class="proj-cname">Absence Portal AI</span>
         <span class="proj-cstack">fastapi · groq/llama_3.3 · prompt_engineering</span>
-        <div class="proj-clinks"><a href="https://github.com/EversonRubira/absence-portal-ai" target="_blank" rel="noopener" class="proj-link">GitHub <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a></div>
+        <div class="proj-clinks"></div>
       </div>
       <div class="proj-compact-row">
-        <span class="proj-cname">Fit Analizer</span>
-        <span class="proj-cstack">java · spring_boot · claude_api</span>
-        <div class="proj-clinks"><a href="https://github.com/EversonRubira/Fit-Analizer" target="_blank" rel="noopener" class="proj-link">GitHub <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a></div>
+        <span class="proj-cid">ID_02</span>
+        <span class="proj-cname">Boardly</span>
+        <span class="proj-cstack">java · spring_boot · jwt · clean_architecture</span>
+        <div class="proj-clinks"><a href="https://github.com/EversonRubira/Boardly" target="_blank" rel="noopener" class="proj-link">GitHub <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a></div>
       </div>
       <div class="proj-compact-row">
+        <span class="proj-cid">ID_07</span>
         <span class="proj-cname">StudyFlow</span>
         <span class="proj-cstack">android_native · mvvm · kotlin · room</span>
         <div class="proj-clinks"><a href="https://github.com/EversonRubira/StudyFlow" target="_blank" rel="noopener" class="proj-link">GitHub <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a></div>
       </div>
       <div class="proj-compact-row">
+        <span class="proj-cid">ID_08</span>
         <span class="proj-cname">Campo Minado</span>
         <span class="proj-cstack">vanilla_js · flood-fill · portado de java/swing</span>
         <div class="proj-clinks">
@@ -1001,48 +996,100 @@ footer{background:var(--bg1);border-top:1px solid var(--line);padding:20px 32px}
   </div>
 </section>
 
-<!-- ABORDAGEM -->
-<section id="filosofia">
+<div class="system-line"></div>
+
+<!-- FROM OPERATIONS TO AI SYSTEMS -->
+<section id="journey">
+  <div class="jt-outer">
+    <div class="jt-header reveal">
+      <div class="jt-eyebrow" data-i18n="journey-label">Career Trajectory</div>
+      <h2 class="jt-title" data-i18n="journey-title">From Operations to AI Systems</h2>
+      <p class="jt-sub" data-i18n="journey-headline-sub">12+ years of accumulated systems thinking.</p>
+    </div>
+    <div class="jt-scene">
+      <div class="jt-rail"><div class="jt-fill" id="jt-fill"></div></div>
+      <div class="jt-scroll">
+        <div class="jt-nodes">
+          <div class="jt-node">
+            <div class="jt-era" data-i18n="tl-ops-tag">Operations</div>
+            <div class="jt-card">
+              <div class="jt-num">01</div>
+              <div class="jt-name" data-i18n="tl-ops-tag">Operations</div>
+              <div class="jt-system" data-i18n="jt-sys-ops">Process Systems</div>
+              <div class="jt-desc" data-i18n="jt-desc-ops">B2B management, process design and risk mitigation across international markets.</div>
+              <div class="jt-chips"><span>B2B</span><span>Process Design</span><span>Risk</span></div>
+            </div>
+            <div class="jt-dot"></div>
+          </div>
+          <div class="jt-node">
+            <div class="jt-era" data-i18n="tl-trade-tag">International Trade</div>
+            <div class="jt-card">
+              <div class="jt-num">02</div>
+              <div class="jt-name" data-i18n="tl-trade-tag">International Trade</div>
+              <div class="jt-system" data-i18n="jt-sys-trade">Global Systems</div>
+              <div class="jt-desc" data-i18n="jt-desc-trade">Import, export and cross-border ops across time zones, currencies and regulatory frameworks.</div>
+              <div class="jt-chips"><span>Import · Export</span><span>Global Ops</span></div>
+            </div>
+            <div class="jt-dot"></div>
+          </div>
+          <div class="jt-node">
+            <div class="jt-era" data-i18n="tl-ts-tag">Trust &amp; Safety</div>
+            <div class="jt-card">
+              <div class="jt-num">03</div>
+              <div class="jt-name" data-i18n="tl-ts-tag">Trust &amp; Safety</div>
+              <div class="jt-system" data-i18n="jt-sys-ts">Risk Systems</div>
+              <div class="jt-desc" data-i18n="jt-desc-ts">Risk analysis and policy enforcement at Accenture. Zero tolerance for ambiguity at scale.</div>
+              <div class="jt-chips"><span>Accenture</span><span>Risk Analysis</span><span>Policies</span></div>
+            </div>
+            <div class="jt-dot"></div>
+          </div>
+          <div class="jt-node">
+            <div class="jt-era" data-i18n="tl-eng-tag">Software Engineering</div>
+            <div class="jt-card">
+              <div class="jt-num">04</div>
+              <div class="jt-name" data-i18n="tl-eng-tag">Software Engineering</div>
+              <div class="jt-system" data-i18n="jt-sys-eng">Software Systems</div>
+              <div class="jt-desc" data-i18n="jt-desc-eng">Java, Spring Boot, Hexagonal Architecture, DDD. Building systems that reflect a decade of operational thinking.</div>
+              <div class="jt-chips"><span>Java</span><span>Spring Boot</span><span>DDD</span></div>
+            </div>
+            <div class="jt-dot"></div>
+          </div>
+          <div class="jt-node active">
+            <div class="jt-era" data-i18n="tl-ai-tag">Applied AI<span class="jt-now" data-i18n="tl-ai-now">● now</span></div>
+            <div class="jt-card">
+              <div class="jt-num">05</div>
+              <div class="jt-name" data-i18n="tl-ai-tag">Applied AI</div>
+              <div class="jt-system" data-i18n="jt-sys-ai">Intelligent Systems</div>
+              <div class="jt-desc" data-i18n="jt-desc-ai">LLMs, AI agents and agentic workflows integrated into backend production systems. Context-aware, not just data-aware.</div>
+              <div class="jt-chips"><span>LLMs</span><span>AI Agents</span><span>LangChain</span></div>
+            </div>
+            <div class="jt-dot"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="jt-tagline reveal" data-i18n="journey-tagline">"Turning operational complexity into intelligent systems."</div>
+  </div>
+</section>
+
+<!-- SOBRE -->
+<section id="sobre">
   <div class="sec-wrap">
     <div class="sec-head reveal">
-      <h2 class="sec-title" data-i18n="sec-filosofia">Abordagem de Engenharia</h2>
+      <span class="sec-num">[ 01 ]</span>
+      <h2 class="sec-title" data-i18n="sec-sobre">Sobre</h2>
       <div class="sec-rule"></div>
     </div>
-    <div class="princ-list">
-      <div class="princ-item reveal">
-        <span class="princ-label" data-i18n="princ-02a-label">Feedback<br>é inegociável</span>
-        <div class="princ-detail">
-          <div class="princ-quote" data-i18n="princ-02a-quote">"Nunca deixar o cliente sem resposta. Nunca dizer que não vai dar: encontrar o caminho."</div>
-          <p class="princ-body" data-i18n="princ-02a-body">15 anos a lidar com clientes ensinaram-me que o silêncio é sempre a pior resposta. Um sistema que falha sem dizer porquê tem um bug de comunicação antes de ter um bug de código.</p>
-          <div class="princ-spec">
-            <div class="spec-row"><span class="spec-k" data-i18n="spec-nunca">nunca</span><span class="spec-v" data-i18n="spec-v-02a-nunca">falha silenciosa · timeout sem feedback · estado indefinido</span></div>
-            <div class="spec-row"><span class="spec-k" data-i18n="spec-sempre">sempre</span><span class="spec-v" data-i18n="spec-v-02a-sempre">mensagem de erro útil · fallback explícito · estado comunicado</span></div>
-            <div class="spec-row"><span class="spec-k" data-i18n="spec-padrao">padrão</span><span class="spec-v" data-i18n="spec-v-02a-padrao">graceful degradation · circuit breaker · logging estruturado</span></div>
-          </div>
-        </div>
-      </div>
-      <div class="princ-item reveal">
-        <span class="princ-label" data-i18n="princ-02b-label">Problema<br>antes de código</span>
-        <div class="princ-detail">
-          <div class="princ-quote" data-i18n="princ-02b-quote">"Primeiro ponho-me no lugar de quem tem o problema. Depois papel. Depois código."</div>
-          <p class="princ-body" data-i18n="princ-02b-body">O editor abre por último. B2B ensinou-me que o que é pedido e o que é necessário raramente coincidem. Antes de uma linha de código: perceber o que dói, mapear o domínio, questionar o requisito.</p>
-          <div class="princ-spec">
-            <div class="spec-row"><span class="spec-k" data-i18n="spec-sequencia">sequência</span><span class="spec-v" data-i18n="spec-v-02b-sequencia">empatia → mapeamento → papel → código</span></div>
-            <div class="spec-row"><span class="spec-k" data-i18n="spec-ferramenta">ferramenta</span><span class="spec-v" data-i18n="spec-v-02b-ferramenta">domain modelling · event storming · diagrama antes de IDE</span></div>
-            <div class="spec-row"><span class="spec-k" data-i18n="spec-alerta">alerta</span><span class="spec-v" data-i18n="spec-v-02b-alerta">implementar o pedido literal sem questionar o porquê</span></div>
-          </div>
-        </div>
-      </div>
-      <div class="princ-item reveal">
-        <span class="princ-label" data-i18n="princ-02c-label">Verificar<br>antes de agir</span>
-        <div class="princ-detail">
-          <div class="princ-quote" data-i18n="princ-02c-quote">"Um ataque man-in-the-middle num pagamento ensinou-me a nunca assumir que o canal é seguro."</div>
-          <p class="princ-body" data-i18n="princ-02c-body">A lição mais cara que aprendi não foi técnica: foi operacional. Um pagamento intercetado, dinheiro desviado. Zero trust passou a ser disciplina, não paranoia.</p>
-          <div class="princ-spec">
-            <div class="spec-row"><span class="spec-k" data-i18n="spec-premissa">premissa</span><span class="spec-v" data-i18n="spec-v-02c-premissa">toda a entrada externa é potencialmente hostil</span></div>
-            <div class="spec-row"><span class="spec-k" data-i18n="spec-padrao">padrão</span><span class="spec-v" data-i18n="spec-v-02c-padrao">validação na fronteira · zero trust · confirmação antes de irreversível</span></div>
-            <div class="spec-row"><span class="spec-k" data-i18n="spec-aplica-se">aplica-se</span><span class="spec-v" data-i18n="spec-v-02c-aplica-se">APIs · pagamentos · autenticação · migrações de dados</span></div>
-          </div>
+    <div class="sobre-grid">
+      <div class="sobre-quote reveal" data-i18n="sobre-quote">"12 anos a operar sistemas B2B complexos ensinaram-me a pensar em sistemas. Agora construo-os."</div>
+      <div class="sobre-body reveal">
+        <p data-i18n="sobre-p1">Sou um engenheiro brasileiro baseado em Portugal, em transição deliberada para desenvolvimento de software. Não venho de um bootcamp — venho de uma década a gerir complexidade operacional real: cadeias de abastecimento internacionais, pagamentos transfronteiriços, análise de risco à escala.</p>
+        <p data-i18n="sobre-p2">Esse background mudou a forma como escrevo código. Modelo domínios antes de abrir o IDE. Questiono requisitos antes de os implementar. Quando integro IA, penso no fluxo de trabalho em que se encaixa — não apenas na chamada à API. Estágio na Pipoca Ágil com nota 18/20. Co-fundador da <strong>ImplementIQ Systems</strong> com clientes em produção.</p>
+        <div class="fact-table">
+          <div class="fact-row"><span class="fact-k" data-i18n="fact-localizacao">localização</span><span class="fact-v">Seixal / Lisboa, Portugal</span></div>
+          <div class="fact-row"><span class="fact-k" data-i18n="fact-procuro">procuro</span><span class="fact-v" data-i18n="fact-procuro-v">Backend Engineer · AI Engineer</span></div>
+          <div class="fact-row"><span class="fact-k" data-i18n="fact-modalidade">modalidade</span><span class="fact-v" data-i18n="fact-modalidade-v">Presencial · Híbrido · Remoto</span></div>
+          <div class="fact-row"><span class="fact-k" data-i18n="fact-idiomas">idiomas</span><span class="fact-v" data-i18n="fact-idiomas-v">PT nativo · EN profissional · ES básico</span></div>
         </div>
       </div>
     </div>
@@ -1050,9 +1097,10 @@ footer{background:var(--bg1);border-top:1px solid var(--line);padding:20px 32px}
 </section>
 
 <!-- WHAT I BRING -->
-<section id="value-props">
+<section id="value-props" style="border-top:1px solid var(--line)">
   <div class="sec-wrap">
     <div class="sec-head reveal">
+      <span class="sec-num">[ 02 ]</span>
       <h2 class="sec-title" data-i18n="sec-vp">What I bring to a team</h2>
       <div class="sec-rule"></div>
     </div>
@@ -1060,7 +1108,7 @@ footer{background:var(--bg1);border-top:1px solid var(--line);padding:20px 32px}
       <div class="vp-card reveal">
         <span class="vp-icon">⬡</span>
         <div class="vp-title" data-i18n="vp-a-title">Systems Thinking</div>
-        <p class="vp-body" data-i18n="vp-a-body">I see the whole before the part. 15 years mapping operational chains means I design systems that don't just work — they fit into a larger context.</p>
+        <p class="vp-body" data-i18n="vp-a-body">I see the whole before the part. 12 years mapping operational chains means I design systems that don't just work — they fit into a larger context.</p>
       </div>
       <div class="vp-card reveal">
         <span class="vp-icon">◈</span>
@@ -1086,23 +1134,52 @@ footer{background:var(--bg1);border-top:1px solid var(--line);padding:20px 32px}
   </div>
 </section>
 
-<!-- SOBRE -->
-<section id="sobre" class="plane-flip">
+<!-- ABORDAGEM -->
+<section id="filosofia">
   <div class="sec-wrap">
     <div class="sec-head reveal">
-      <h2 class="sec-title" data-i18n="sec-sobre">Sobre</h2>
+      <span class="sec-num">[ 02 ]</span>
+      <h2 class="sec-title" data-i18n="sec-filosofia">Abordagem de Engenharia</h2>
       <div class="sec-rule"></div>
     </div>
-    <div class="sobre-grid">
-      <div class="sobre-quote reveal" data-i18n="sobre-quote">"15 anos a operar sistemas B2B complexos ensinaram-me a pensar em sistemas. Agora construo-os."</div>
-      <div class="sobre-body reveal">
-        <p data-i18n="sobre-p1">Sou um engenheiro brasileiro baseado em Portugal, em transição deliberada para desenvolvimento de software. Não venho de um bootcamp — venho de uma década a gerir complexidade operacional real: cadeias de abastecimento internacionais, pagamentos transfronteiriços, análise de risco à escala.</p>
-        <p data-i18n="sobre-p2">Esse background mudou a forma como escrevo código. Modelo domínios antes de abrir o IDE. Questiono requisitos antes de os implementar. Quando integro IA, penso no fluxo de trabalho em que se encaixa — não apenas na chamada à API. Estágio na Pipoca Ágil com nota 18/20. Co-fundador da <strong>ImplementIQ Systems</strong> com clientes em produção.</p>
-        <div class="fact-table">
-          <div class="fact-row"><span class="fact-k" data-i18n="fact-localizacao">localização</span><span class="fact-v">Seixal / Lisboa, Portugal</span></div>
-          <div class="fact-row"><span class="fact-k" data-i18n="fact-procuro">procuro</span><span class="fact-v" data-i18n="fact-procuro-v">Backend Engineer · AI Engineer</span></div>
-          <div class="fact-row"><span class="fact-k" data-i18n="fact-modalidade">modalidade</span><span class="fact-v" data-i18n="fact-modalidade-v">Presencial · Híbrido · Remoto</span></div>
-          <div class="fact-row"><span class="fact-k" data-i18n="fact-idiomas">idiomas</span><span class="fact-v" data-i18n="fact-idiomas-v">PT nativo · EN B2 · ES básico</span></div>
+    <div class="princ-list">
+      <div class="princ-item reveal">
+        <span class="princ-code">[ 02.A ]</span>
+        <span class="princ-label" data-i18n="princ-02a-label">Feedback<br>é inegociável</span>
+        <div class="princ-detail">
+          <div class="princ-quote" data-i18n="princ-02a-quote">"Nunca deixar o cliente sem resposta. Nunca dizer que não vai dar: encontrar o caminho."</div>
+          <p class="princ-body" data-i18n="princ-02a-body">12 anos a lidar com clientes ensinaram-me que o silêncio é sempre a pior resposta. Um sistema que falha sem dizer porquê tem um bug de comunicação antes de ter um bug de código.</p>
+          <div class="princ-spec">
+            <div class="spec-row"><span class="spec-k" data-i18n="spec-nunca">nunca</span><span class="spec-v" data-i18n="spec-v-02a-nunca">falha silenciosa · timeout sem feedback · estado indefinido</span></div>
+            <div class="spec-row"><span class="spec-k" data-i18n="spec-sempre">sempre</span><span class="spec-v" data-i18n="spec-v-02a-sempre">mensagem de erro útil · fallback explícito · estado comunicado</span></div>
+            <div class="spec-row"><span class="spec-k" data-i18n="spec-padrao">padrão</span><span class="spec-v" data-i18n="spec-v-02a-padrao">graceful degradation · circuit breaker · logging estruturado</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="princ-item reveal">
+        <span class="princ-code">[ 02.B ]</span>
+        <span class="princ-label" data-i18n="princ-02b-label">Problema<br>antes de código</span>
+        <div class="princ-detail">
+          <div class="princ-quote" data-i18n="princ-02b-quote">"Primeiro ponho-me no lugar de quem tem o problema. Depois papel. Depois código."</div>
+          <p class="princ-body" data-i18n="princ-02b-body">O editor abre por último. B2B ensinou-me que o que é pedido e o que é necessário raramente coincidem. Antes de uma linha de código: perceber o que dói, mapear o domínio, questionar o requisito.</p>
+          <div class="princ-spec">
+            <div class="spec-row"><span class="spec-k" data-i18n="spec-sequencia">sequência</span><span class="spec-v" data-i18n="spec-v-02b-sequencia">empatia → mapeamento → papel → código</span></div>
+            <div class="spec-row"><span class="spec-k" data-i18n="spec-ferramenta">ferramenta</span><span class="spec-v" data-i18n="spec-v-02b-ferramenta">domain modelling · event storming · diagrama antes de IDE</span></div>
+            <div class="spec-row"><span class="spec-k" data-i18n="spec-alerta">alerta</span><span class="spec-v" data-i18n="spec-v-02b-alerta">implementar o pedido literal sem questionar o porquê</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="princ-item reveal">
+        <span class="princ-code">[ 02.C ]</span>
+        <span class="princ-label" data-i18n="princ-02c-label">Verificar<br>antes de agir</span>
+        <div class="princ-detail">
+          <div class="princ-quote" data-i18n="princ-02c-quote">"Um ataque man-in-the-middle num pagamento ensinou-me a nunca assumir que o canal é seguro."</div>
+          <p class="princ-body" data-i18n="princ-02c-body">A lição mais cara que aprendi não foi técnica: foi operacional. Um pagamento intercetado, dinheiro desviado. Zero trust passou a ser disciplina, não paranoia.</p>
+          <div class="princ-spec">
+            <div class="spec-row"><span class="spec-k" data-i18n="spec-premissa">premissa</span><span class="spec-v" data-i18n="spec-v-02c-premissa">toda a entrada externa é potencialmente hostil</span></div>
+            <div class="spec-row"><span class="spec-k" data-i18n="spec-padrao">padrão</span><span class="spec-v" data-i18n="spec-v-02c-padrao">validação na fronteira · zero trust · confirmação antes de irreversível</span></div>
+            <div class="spec-row"><span class="spec-k" data-i18n="spec-aplica-se">aplica-se</span><span class="spec-v" data-i18n="spec-v-02c-aplica-se">APIs · pagamentos · autenticação · migrações de dados</span></div>
+          </div>
         </div>
       </div>
     </div>
@@ -1113,6 +1190,7 @@ footer{background:var(--bg1);border-top:1px solid var(--line);padding:20px 32px}
 <section id="experiencia">
   <div class="sec-wrap">
     <div class="sec-head reveal">
+      <span class="sec-num">[ 03 ]</span>
       <h2 class="sec-title" data-i18n="sec-experiencia">Experiência</h2>
       <div class="sec-rule"></div>
     </div>
@@ -1165,6 +1243,7 @@ footer{background:var(--bg1);border-top:1px solid var(--line);padding:20px 32px}
 <section id="stack">
   <div class="sec-wrap">
     <div class="sec-head reveal">
+      <span class="sec-num">[ 05 ]</span>
       <h2 class="sec-title" data-i18n="sec-stack">Stack Técnica</h2>
       <div class="sec-rule"></div>
     </div>
@@ -1223,6 +1302,7 @@ footer{background:var(--bg1);border-top:1px solid var(--line);padding:20px 32px}
 <section id="roadmap" style="background:var(--bg2);border-top:1px solid var(--line)">
   <div class="sec-wrap">
     <div class="sec-head reveal">
+      <span class="sec-num">[ 06 ]</span>
       <h2 class="sec-title" data-i18n="sec-roadmap">AI Engineering Journey</h2>
       <div class="sec-rule"></div>
     </div>
@@ -1249,6 +1329,7 @@ footer{background:var(--bg1);border-top:1px solid var(--line);padding:20px 32px}
 <section id="formacao">
   <div class="sec-wrap">
     <div class="sec-head reveal">
+      <span class="sec-num">[ 07 ]</span>
       <h2 class="sec-title" data-i18n="sec-formacao">Formação &amp; Certificações</h2>
       <div class="sec-rule"></div>
     </div>
@@ -1257,8 +1338,8 @@ footer{background:var(--bg1);border-top:1px solid var(--line);padding:20px 32px}
         <div class="edu-block">
           <div class="edu-degree" data-i18n="edu-degree-ips">TeSP em Programação e Sistemas de Informação</div>
           <div class="edu-school">Instituto Politécnico de Setúbal (IPS)</div>
-          <div class="edu-period" data-i18n="edu-period-ips">2023 – Dez 2026 (previsto)</div>
-          <div class="edu-note" data-i18n="edu-note-ips">3.º semestre, 7 UCs em falta + relatório de estágio. Estágio curricular de 640h concluído na Pipoca Ágil.</div>
+          <div class="edu-period" data-i18n="edu-period-ips">2024 – Dez 2026 (previsto)</div>
+          <div class="edu-note" data-i18n="edu-note-ips">3.º semestre, 7 UCs em curso + estágio curricular activo na Pipoca Ágil.</div>
         </div>
         <div class="edu-block">
           <div class="edu-degree">Anthropic Academy</div>
@@ -1279,12 +1360,16 @@ footer{background:var(--bg1);border-top:1px solid var(--line);padding:20px 32px}
             <div class="cert-group-v">OOP · Collections · Streams · SOLID · TDD/JUnit · Spring Boot ×3 · DDD · Clean Architecture · Microservices · RabbitMQ</div>
           </div>
           <div class="cert-group">
+            <div class="cert-group-k" data-i18n="cert-qa">QA &amp; Testes</div>
+            <div class="cert-group-v" data-i18n="cert-qa-v">Gestão de bugs · QA Automação · Cypress · Robot Framework</div>
+          </div>
+          <div class="cert-group">
             <div class="cert-group-k" data-i18n="cert-outras">Outras linguagens</div>
             <div class="cert-group-v" data-i18n="cert-outras-v">Python OOP · Python TDD · Go API · Go OOP · C (3 cursos) · JavaScript · TypeScript</div>
           </div>
           <div class="cert-group">
             <div class="cert-group-k" data-i18n="cert-cloud">Cloud, DevOps &amp; IA</div>
-            <div class="cert-group-v">AZ-900 · Docker · Linux · Git/GitHub · HTTP · Prompt Engineering · Generative AI · LangChain + OpenAI · LangChain Agents (<span data-i18n="in-progress">em curso</span>) · AI Fluency</div>
+            <div class="cert-group-v">AZ-900 · Docker · Linux · Git/GitHub · HTTP · Prompt Engineering · Generative AI · LangChain + OpenAI · LangChain Agents · Claude API · AI Fluency</div>
           </div>
         </div>
       </div>
@@ -1292,10 +1377,13 @@ footer{background:var(--bg1);border-top:1px solid var(--line);padding:20px 32px}
   </div>
 </section>
 
+<div class="system-line"></div>
+
 <!-- CONTACTO -->
-<section id="contacto" class="plane-finale">
+<section id="contacto">
   <div class="contact-inner">
     <div class="reveal">
+      <p class="contact-section-label">AVAILABLE FOR COLLABORATION</p>
       <h2 class="contact-headline">
         <span class="contact-line1" data-i18n="contactLine1">LET'S BUILD</span>
         <span class="contact-line2"><em class="contact-accent" data-i18n="contactLine2a">RELIABLE</em><br><span data-i18n="contactLine2b">SYSTEMS.</span></span>
@@ -1340,7 +1428,7 @@ footer{background:var(--bg1);border-top:1px solid var(--line);padding:20px 32px}
   </div>
 </footer>
 
-<button id="roadmap-fab" data-i18n="fab-roadmap" onclick="document.getElementById('roadmap').scrollIntoView({behavior:'smooth'})">Roadmap de Engenharia</button>
+<button id="roadmap-fab" onclick="document.getElementById('roadmap').scrollIntoView({behavior:'smooth'})">Engineering Roadmap</button>
 
 <button id="btt" aria-label="Voltar ao topo">
   <svg viewBox="0 0 24 24"><path d="M18 15l-6-6-6 6"/></svg>
@@ -1366,13 +1454,13 @@ const i18n = {
     'nav-hire':'contrata-me',
     'nav-contacto':'contacto','nav-cv':'cv','nav-hire':'contrata-me','share-btn':'partilhar',
     'heroEyebrow':'Engenheiro Backend · Sistemas de IA',
-    'heroLine1':'PASSEI ANOS','heroLine2':'A ENTENDER<br><span class="hl-copper">SISTEMAS</span>','heroLine3':'ANTES DE <span style="white-space:nowrap">CONSTRUÍ-LOS.</span>',
-    'heroSub':'15 anos em operações ensinaram-me onde o software quebra no mundo real. Agora desenvolvo-o para não quebrar.',
-    'heroCta':'Vamos construir algo fiável',
+    'heroLine1':'PASSEI ANOS','heroLine2':'ENTENDENDO SISTEMAS','heroLine3':'ANTES DE CONSTRUÍ-LOS.',
+    'heroSub':'12 anos em operações ensinaram-me onde o software quebra no mundo real. Agora desenvolvo-o para não quebrar.',
+    'heroCta':'Vamos construir algo confiável','photoHint':'clique na foto',
     'hero-location':'Seixal / Lisboa · Portugal',
     'hero-status-live':'Disponível agora',
     'hero-headline':'Backend Engineer a construir sistemas potenciados por IA.',
-    'hero-sub':'15 anos de complexidade operacional. Agora a transformar essa experiência em software fiável e inteligente.',
+    'hero-sub':'12 anos de complexidade operacional. Agora a transformar essa experiência em software fiável e inteligente.',
     'hero-btn-proj':'Ver Projetos','hero-btn-roadmap':'Engineering Roadmap',
     'metric-years':'Anos de Experiência','metric-projects-built':'Projetos Entregues',
     'metric-regions':'Regiões Globais','metric-llm':'Integrações LLM',
@@ -1381,20 +1469,20 @@ const i18n = {
     'journey-title':'Das Operações aos Sistemas de IA',
     'journey-sub':'Cada fase da minha carreira acrescentou uma nova camada de pensamento sistémico. Comecei a gerir complexidade operacional — hoje construo sistemas backend e aplicações com IA que resolvem problemas reais.',
     'journey-tagline':'"Transformar complexidade operacional em sistemas inteligentes."',
-    'journey-headline-sub':'15+ anos de pensamento sistémico acumulado.',
+    'journey-headline-sub':'12+ anos de pensamento sistémico acumulado.',
     'tl-ops-tag':'Operações','tl-ops-desc':'Gestão de processos B2B, mitigação de risco e eficiência operacional em mercados internacionais.',
     'jt-sys-ops':'Process Systems','jt-desc-ops':'Gestão B2B, design de processos e mitigação de risco em mercados internacionais.',
     'tl-trade-tag':'Comércio Internacional','tl-trade-desc':'Importação, exportação e operações de negócio global. Navegar complexidade através de fusos horários, moedas e quadros regulatórios.',
     'jt-sys-trade':'Global Systems','jt-desc-trade':'Importação, exportação e operações cross-border através de fusos horários, moedas e quadros regulatórios.',
     'tl-ts-tag':'Trust & Safety','tl-ts-desc':'Análise de risco e enforcement de políticas na Accenture. Operar à escala com tolerância zero à ambiguidade — a mesma disciplina que aplico a sistemas em produção.',
-    'jt-sys-ts':'Risk Systems','jt-desc-ts':'Análise de risco e enforcement de políticas na Accenture.',
+    'jt-sys-ts':'Risk Systems','jt-desc-ts':'Análise de risco e enforcement de políticas na Accenture. Tolerância zero à ambiguidade à escala.',
     'tl-eng-tag':'Engenharia de Software','tl-eng-desc':'Java, Spring Boot e arquitectura backend. Arquitectura Hexagonal, DDD, REST APIs. A construir sistemas que reflectem o pensamento operacional desenvolvido ao longo de uma década.',
     'jt-sys-eng':'Software Systems','jt-desc-eng':'Java, Spring Boot, Arquitectura Hexagonal, DDD. Sistemas que reflectem uma década de pensamento operacional.',
-    'tl-ai-tag':'IA Aplicada','tl-ai-now':'agora',
+    'tl-ai-tag':'IA Aplicada','tl-ai-now':'● agora',
     'tl-ai-desc':'LLMs, agentes de IA e agentic workflows integrados em sistemas backend em produção. A construir sistemas inteligentes que compreendem contexto, não apenas dados.',
-    'jt-sys-ai':'Intelligent Systems','jt-desc-ai':'LLMs, agentes de IA e agentic workflows integrados em sistemas backend em produção.',
+    'jt-sys-ai':'Intelligent Systems','jt-desc-ai':'LLMs, agentes de IA e agentic workflows integrados em sistemas backend em produção. Consciente do contexto, não apenas dos dados.',
     'sec-vp':'O que trago para uma equipa',
-    'vp-a-title':'Pensamento Sistémico','vp-a-body':'Vejo o todo antes da parte. 15 anos a mapear cadeias operacionais significa que desenho sistemas que não funcionam apenas — encaixam num contexto maior.',
+    'vp-a-title':'Pensamento Sistémico','vp-a-body':'Vejo o todo antes da parte. 12 anos a mapear cadeias operacionais significa que desenho sistemas que não funcionam apenas — encaixam num contexto maior.',
     'vp-b-title':'Contexto de Negócio','vp-b-body':'Falo de negócio antes de falar de código. Os problemas vêm primeiro; a arquitectura é a resposta, não o ponto de partida.',
     'vp-c-title':'Aplicações de IA','vp-c-body':'Integro LLMs e agentes em fluxos de trabalho reais — não como experimentos, mas como ferramentas de produção que resolvem problemas concretos.',
     'vp-d-title':'Disciplina de Engenharia','vp-d-body':'Clean Architecture, DDD, Arquitectura Hexagonal. Construo sistemas legíveis, mantíveis e honestos quanto às suas fronteiras.',
@@ -1407,7 +1495,7 @@ const i18n = {
     'hl-impl-title':'Co-fundador & Developer',
     'hl-impl-sub':'Clientes reais em produção · Entrega completa do cliente ao deploy',
     'hl-pipoca-title':'Estágio Java/Spring Boot, nota 18/20',
-    'hl-pipoca-sub':'Arquitectura Hexagonal · DDD · Flyway · JUnit 5 · Vitest · Docker',
+    'hl-pipoca-sub':'Arquitectura Hexagonal · DDD · Flyway · 160+ testes · Docker',
     'timeline-label':'Percurso Profissional',
     'tl-trade':'Comércio Internacional','tl-trade-sub':'Importação · Exportação · Vendas Intl',
     'tl-ops':'Operações','tl-ops-sub':'B2B · Processos · Risco',
@@ -1415,20 +1503,20 @@ const i18n = {
     'tl-eng':'Engenharia de Software','tl-eng-sub':'Java · Spring Boot · Backend',
     'tl-ai':'IA Aplicada','tl-ai-sub':'LLMs · Agentes · Sistemas',
     'sec-sobre':'Sobre','sec-filosofia':'Abordagem de Engenharia',
-    'sec-roadmap':'Jornada em Engenharia de IA',
-    'aj-cta':'Explorar a jornada de aprendizagem',
+    'sec-roadmap':'AI Engineering Journey',
+    'aj-cta':'Explorar Learning Journey',
     'sec-experiencia':'Experiência','sec-projetos':'Projetos',
     'sec-stack':'Stack Técnica','sec-formacao':'Formação & Certificações',
-    'sobre-quote':'"15 anos a operar sistemas B2B complexos ensinaram-me a pensar em sistemas. Agora construo-os."',
+    'sobre-quote':'"12 anos a operar sistemas B2B complexos ensinaram-me a pensar em sistemas. Agora construo-os."',
     'sobre-p1':'Sou um engenheiro brasileiro baseado em Portugal, em transição deliberada para desenvolvimento de software. Não venho de um bootcamp — venho de uma década a gerir complexidade operacional real: cadeias de abastecimento internacionais, pagamentos transfronteiriços, análise de risco à escala.',
     'sobre-p2':'Esse background mudou a forma como escrevo código. Modelo domínios antes de abrir o IDE. Questiono requisitos antes de os implementar. Quando integro IA, penso no fluxo de trabalho em que se encaixa — não apenas na chamada à API. Estágio na Pipoca Ágil com nota 18/20. Co-fundador da <strong>ImplementIQ Systems</strong> com clientes em produção.',
     'fact-localizacao':'localização','fact-procuro':'procuro',
-    'fact-procuro-v':'Engenheiro Backend · Engenheiro de IA',
+    'fact-procuro-v':'Backend Engineer · AI Engineer',
     'fact-modalidade':'modalidade','fact-modalidade-v':'Presencial · Híbrido · Remoto',
-    'fact-idiomas':'idiomas','fact-idiomas-v':'PT nativo · EN B2 · ES básico',
+    'fact-idiomas':'idiomas','fact-idiomas-v':'PT nativo · EN profissional · ES básico',
     'princ-02a-label':'Feedback<br>é inegociável',
     'princ-02a-quote':'"Nunca deixar o cliente sem resposta. Nunca dizer que não vai dar: encontrar o caminho."',
-    'princ-02a-body':'15 anos a lidar com clientes ensinaram-me que o silêncio é sempre a pior resposta. Um sistema que falha sem dizer porquê tem um bug de comunicação antes de ter um bug de código.',
+    'princ-02a-body':'12 anos a lidar com clientes ensinaram-me que o silêncio é sempre a pior resposta. Um sistema que falha sem dizer porquê tem um bug de comunicação antes de ter um bug de código.',
     'princ-02b-label':'Problema<br>antes de código',
     'princ-02b-quote':'"Primeiro ponho-me no lugar de quem tem o problema. Depois papel. Depois código."',
     'princ-02b-body':'O editor abre por último. B2B ensinou-me que o que é pedido e o que é necessário raramente coincidem. Antes de uma linha de código: perceber o que dói, mapear o domínio, questionar o requisito.',
@@ -1468,41 +1556,40 @@ const i18n = {
     'proj-crypto-desc':'Dashboard de criptos em tempo real na API pública da CoinGecko. Node.js sem frameworks — cada view renderizada dinamicamente, zero dependências. Um exercício de arquitectura limpa sem scaffolding para se esconder.',
     'proj-tag-live':'produção','proj-status-wip':'em_desenvolvimento',
     'proj-more-label':'— outros projetos —',
-    'stack-backend':'Backend','stack-ai':'IA e Engenharia de LLMs','stack-engineering':'Práticas de Engenharia','stack-secondary':'Frontend e Ferramentas',
+    'stack-backend':'Backend','stack-ai':'AI / LLM Engineering','stack-engineering':'Engineering Practices','stack-secondary':'Frontend & Tools',
     'edu-degree-ips':'TeSP em Programação e Sistemas de Informação',
-    'edu-period-ips':'2023 – Dez 2026 (previsto)',
-    'edu-note-ips':'3.º semestre, 7 UCs em falta + relatório de estágio. Estágio curricular de 640h concluído na Pipoca Ágil.',
+    'edu-period-ips':'2024 – Dez 2026 (previsto)',
+    'edu-note-ips':'3.º semestre, 7 UCs em curso + estágio curricular activo na Pipoca Ágil.',
     'edu-school-anthropic':'Cursos concluídos · 2026',
     'edu-degree-elevate':'Accenture — Elevate GenAI Wave 2',
     'edu-school-elevate':'Facilitador de IA Generativa & Agentic AI · 2026',
     'edu-period-elevate':'Reverse mentoring de líderes seniores sobre GenAI · Workshops práticos de Agentic AI · Microsoft Copilot Studio · Badge Credly "Reinvention with Agentic AI — Facilitator" (Jun 2026)',
     'cert-alura-label':'Certificações Alura',
-    'cert-java':'Java & Spring Boot',
+    'cert-java':'Java & Spring Boot','cert-qa':'QA & Testes',
+    'cert-qa-v':'Gestão de bugs · QA Automação · Cypress · Robot Framework',
     'cert-outras':'Outras linguagens',
     'cert-outras-v':'Python OOP · Python TDD · Go API · Go OOP · C (3 cursos) · JavaScript · TypeScript',
     'cert-cloud':'Cloud, DevOps & IA',
     'contact-headline':'Vamos construir algo que importa.',
-    'contactLine1':'VAMOS CONSTRUIR','contactLine2a':'SISTEMAS','contactLine2b':'FIÁVEIS.',
+    'contactLine1':'VAMOS CONSTRUIR','contactLine2a':'SISTEMAS','contactLine2b':'CONFIÁVEIS.',
     'contact-sub':'Aberto a oportunidades em Backend Engineering e IA Aplicada. Portugal, Espanha ou remoto.',
     'contact-note':'Disponível para começar imediatamente.',
     'contact-qr-label':'aponta o telefone →',
     'foot-left':'© 2026 Everson Rubira · Seixal, Portugal',
     'foot-right':'ver cv completo',
-    'fab-roadmap':'Roadmap de Engenharia',
-    'in-progress':'em curso',
   },
   en: {
     'nav-sobre':'about','nav-journey':'trajectory','nav-exp':'exp',
     'nav-projetos':'projects','nav-stack':'stack','nav-roadmap':'roadmap','nav-formacao':'education',
     'nav-contacto':'contact','nav-cv':'cv','nav-hire':'hire me','share-btn':'share',
     'heroEyebrow':'Backend Engineer · AI Systems',
-    'heroLine1':'I SPENT YEARS','heroLine2':'UNDERSTANDING<br><span class="hl-copper">SYSTEMS</span>','heroLine3':'BEFORE BUILDING THEM.',
-    'heroSub':'15 years in operations taught me where software breaks in the real world. Now I engineer it not to.',
-    'heroCta':'Let\'s build something reliable',
+    'heroLine1':'I SPENT YEARS','heroLine2':'UNDERSTANDING SYSTEMS','heroLine3':'BEFORE BUILDING THEM.',
+    'heroSub':'12 years in operations taught me where software breaks in the real world. Now I engineer it not to.',
+    'heroCta':'Let\'s build something reliable','photoHint':'click the photo',
     'hero-location':'Seixal / Lisbon · Portugal',
     'hero-status-live':'Available now',
     'hero-headline':'Backend Engineer building AI-powered systems.',
-    'hero-sub':'15 years of operational complexity. Now turning that experience into reliable, intelligent software.',
+    'hero-sub':'12 years of operational complexity. Now turning that experience into reliable, intelligent software.',
     'hero-btn-proj':'View Projects','hero-btn-roadmap':'Engineering Roadmap',
     'metric-years':'Years Experience','metric-projects-built':'Projects Shipped',
     'metric-regions':'Global Regions','metric-llm':'LLM Integrations',
@@ -1511,20 +1598,20 @@ const i18n = {
     'journey-title':'From Operations to AI Systems',
     'journey-sub':'Every stage of my career added a new layer of systems thinking. I started by managing operational complexity — today I build backend systems and AI-powered applications that solve real-world problems.',
     'journey-tagline':'"Turning operational complexity into intelligent systems."',
-    'journey-headline-sub':'15+ years of accumulated systems thinking.',
+    'journey-headline-sub':'12+ years of accumulated systems thinking.',
     'tl-ops-tag':'Operations','tl-ops-desc':'B2B process management, risk mitigation and operational efficiency across international markets.',
     'jt-sys-ops':'Process Systems','jt-desc-ops':'B2B management, process design and risk mitigation across international markets.',
     'tl-trade-tag':'International Trade','tl-trade-desc':'Import, export and global business operations. Navigating complexity across time zones, currencies and regulatory frameworks.',
     'jt-sys-trade':'Global Systems','jt-desc-trade':'Import, export and cross-border ops across time zones, currencies and regulatory frameworks.',
     'tl-ts-tag':'Trust & Safety','tl-ts-desc':'Risk analysis and policy enforcement at Accenture. Operating at scale with zero tolerance for ambiguity — the same discipline I apply to production systems.',
-    'jt-sys-ts':'Risk Systems','jt-desc-ts':'Risk analysis and policy enforcement at Accenture.',
+    'jt-sys-ts':'Risk Systems','jt-desc-ts':'Risk analysis and policy enforcement at Accenture. Zero tolerance for ambiguity at scale.',
     'tl-eng-tag':'Software Engineering','tl-eng-desc':'Java, Spring Boot and backend architecture. Hexagonal Architecture, DDD, REST APIs. Building systems that reflect the operational thinking I developed over a decade.',
     'jt-sys-eng':'Software Systems','jt-desc-eng':'Java, Spring Boot, Hexagonal Architecture, DDD. Building systems that reflect a decade of operational thinking.',
-    'tl-ai-tag':'Applied AI','tl-ai-now':'now',
+    'tl-ai-tag':'Applied AI','tl-ai-now':'● now',
     'tl-ai-desc':'LLMs, AI agents and agentic workflows integrated into production backend systems. Building intelligent systems that understand context, not just data.',
-    'jt-sys-ai':'Intelligent Systems','jt-desc-ai':'LLMs, AI agents and agentic workflows integrated into backend production systems.',
+    'jt-sys-ai':'Intelligent Systems','jt-desc-ai':'LLMs, AI agents and agentic workflows integrated into backend production systems. Context-aware, not just data-aware.',
     'sec-vp':'What I bring to a team',
-    'vp-a-title':'Systems Thinking','vp-a-body':'I see the whole before the part. 15 years mapping operational chains means I design systems that don\'t just work — they fit into a larger context.',
+    'vp-a-title':'Systems Thinking','vp-a-body':'I see the whole before the part. 12 years mapping operational chains means I design systems that don\'t just work — they fit into a larger context.',
     'vp-b-title':'Business Context','vp-b-body':'I speak business before I speak code. Problems come first; architecture is the answer, not the starting point.',
     'vp-c-title':'AI Applications','vp-c-body':'I integrate LLMs and agents into real workflows — not as experiments, but as production tools that solve concrete problems.',
     'vp-d-title':'Engineering Discipline','vp-d-body':'Clean Architecture, DDD, Hexagonal Architecture. I build systems that are readable, maintainable and honest about their boundaries.',
@@ -1537,7 +1624,7 @@ const i18n = {
     'hl-impl-title':'Co-Founder & Developer',
     'hl-impl-sub':'Real clients in production · Full delivery from client to deploy',
     'hl-pipoca-title':'Java/Spring Boot Internship, grade 18/20',
-    'hl-pipoca-sub':'Hexagonal Architecture · DDD · Flyway · JUnit 5 · Vitest · Docker',
+    'hl-pipoca-sub':'Hexagonal Architecture · DDD · Flyway · 160+ tests · Docker',
     'timeline-label':'Career Path',
     'tl-trade':'International Trade','tl-trade-sub':'Import · Export · Intl Sales',
     'tl-ops':'Operations','tl-ops-sub':'B2B · Processes · Risk',
@@ -1546,21 +1633,19 @@ const i18n = {
     'tl-ai':'Applied AI','tl-ai-sub':'LLMs · Agents · Systems',
     'sec-sobre':'About','sec-filosofia':'Engineering Approach',
     'sec-roadmap':'AI Engineering Journey',
-    'fab-roadmap':'Engineering Roadmap',
-    'in-progress':'in progress',
     'aj-cta':'Explore Learning Journey',
     'sec-experiencia':'Experience','sec-projetos':'Projects',
     'sec-stack':'Tech Stack','sec-formacao':'Education & Certifications',
-    'sobre-quote':'"15 years operating complex B2B systems taught me to think in systems. Now I build them."',
+    'sobre-quote':'"12 years operating complex B2B systems taught me to think in systems. Now I build them."',
     'sobre-p1':'I\'m a Brazilian engineer based in Portugal, in a deliberate transition to software development. I don\'t come from a bootcamp — I come from a decade of managing real operational complexity: international supply chains, cross-border payments, risk analysis at scale.',
     'sobre-p2':'That background changed how I write code. I model domains before I open the IDE. I question requirements before implementing them. When I integrate AI, I think about the workflow it fits into — not just the API call. Internship at Pipoca Ágil graded 18/20. Co-founder of <strong>ImplementIQ Systems</strong> with clients in production.',
     'fact-localizacao':'location','fact-procuro':'looking for',
     'fact-procuro-v':'Backend Engineer · AI Engineer',
     'fact-modalidade':'modality','fact-modalidade-v':'On-site · Hybrid · Remote',
-    'fact-idiomas':'languages','fact-idiomas-v':'PT native · EN B2 · ES basic',
+    'fact-idiomas':'languages','fact-idiomas-v':'PT native · EN professional · ES basic',
     'princ-02a-label':'Feedback<br>is non-negotiable',
     'princ-02a-quote':'"Never leave the client without a response. Never say it won\'t work: find the way."',
-    'princ-02a-body':'15 years dealing with clients taught me that silence is always the worst response. A system that fails without saying why has a communication bug before it has a code bug.',
+    'princ-02a-body':'12 years dealing with clients taught me that silence is always the worst response. A system that fails without saying why has a communication bug before it has a code bug.',
     'princ-02b-label':'Problem<br>before code',
     'princ-02b-quote':'"First I put myself in the shoes of whoever has the problem. Then paper. Then code."',
     'princ-02b-body':'The editor opens last. B2B taught me that what\'s asked for and what\'s needed rarely coincide. Before a line of code: understand what hurts, map the domain, question the requirement.',
@@ -1602,14 +1687,15 @@ const i18n = {
     'proj-more-label':'— other projects —',
     'stack-backend':'Backend','stack-ai':'AI / LLM Engineering','stack-engineering':'Engineering Practices','stack-secondary':'Frontend & Tools',
     'edu-degree-ips':'Higher Technical Degree in Programming and Information Systems',
-    'edu-period-ips':'2023 – Dec 2026 (expected)',
-    'edu-note-ips':'3rd semester, 7 course units + internship report remaining. 640h curricular internship completed at Pipoca Ágil.',
+    'edu-period-ips':'2024 – Dec 2026 (expected)',
+    'edu-note-ips':'3rd semester, 7 active courses + curricular internship at Pipoca Ágil.',
     'edu-school-anthropic':'Completed courses · 2026',
     'edu-degree-elevate':'Accenture — Elevate GenAI Wave 2',
     'edu-school-elevate':'Generative AI & Agentic AI Facilitator · 2026',
     'edu-period-elevate':'Reverse mentoring of senior leaders on GenAI · Agentic AI practical workshops · Microsoft Copilot Studio · Credly Badge "Reinvention with Agentic AI — Facilitator" (Jun 2026)',
     'cert-alura-label':'Alura Certifications',
-    'cert-java':'Java & Spring Boot',
+    'cert-java':'Java & Spring Boot','cert-qa':'QA & Testing',
+    'cert-qa-v':'Bug management · QA Automation · Cypress · Robot Framework',
     'cert-outras':'Other languages',
     'cert-outras-v':'Python OOP · Python TDD · Go API · Go OOP · C (3 courses) · JavaScript · TypeScript',
     'cert-cloud':'Cloud, DevOps & AI',
@@ -1702,16 +1788,13 @@ window.addEventListener('load', () => {
   else { const t = setInterval(() => { if (typeof QRCode !== 'undefined') { clearInterval(t); initQR(); } }, 100); }
 });
 // ── PHOTO COLOR TOGGLE ──
-// dark: starts B&W, click -> colour. light: starts colour, click -> B&W.
 (function(){
   var photo = document.getElementById('hero-photo-toggle');
+  var hint = photo && photo.nextElementSibling;
   if (!photo) return;
   photo.addEventListener('click', function(){
-    photo.setAttribute('aria-pressed', photo.getAttribute('aria-pressed') === 'true' ? 'false' : 'true');
-  });
-  // each theme starts from its own default state
-  document.getElementById('theme-btn').addEventListener('click', function(){
-    photo.setAttribute('aria-pressed', 'false');
+    photo.classList.toggle('color-revealed');
+    if (hint) hint.style.display = 'none';
   });
 })();
 
