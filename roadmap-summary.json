@@ -1,10 +1,10 @@
 {
   "_v": 1,
-  "_updated": "2026-11-04T20:58:33.337Z",
+  "_updated": "2026-11-04T21:01:21.862Z",
   "label": "AI Engineering",
   "progress": {
-    "pct": 9,
-    "done": 2,
+    "pct": 13,
+    "done": 3,
     "total": 23,
     "phases_done": 1,
     "phases_total": 7
@@ -12,7 +12,7 @@
   "current_phase": {
     "n": 1,
     "title": "Agentes com LangChain e LangGraph",
-    "courses_done": 0,
+    "courses_done": 1,
     "courses_total": 4
   },
   "next_phase": {
@@ -31,7 +31,7 @@
       "n": 1,
       "title": "Agentes com LangChain e LangGraph",
       "done": false,
-      "courses_done": 0,
+      "courses_done": 1,
       "courses_total": 4
     },
     {
