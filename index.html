@@ -959,19 +959,18 @@ footer{background:var(--bg1);border-top:1px solid var(--line);padding:20px 32px}
       </div>
       <div class="proj-card reveal">
         <div>
-          <div class="proj-name">Criptomoedas</div>
-          <p class="proj-desc" data-i18n="proj-crypto-desc">Real-time crypto dashboard on CoinGecko's public API. Framework-free Node.js — every view dynamically rendered, zero dependencies. An exercise in clean architecture without scaffolding to hide behind.</p>
+          <div class="proj-name">TrackCargo</div>
+          <p class="proj-desc" data-i18n="proj-trackcargo-desc">Export order lifecycle tracker for animal protein commodity — built with SDD from real international trade knowledge. Full state machine (created → shipped → delivered), document checklist, partial/balance payments, ISO 6346 container validation, multilingual PDF generation (PT/EN/ES). Java 21 · Spring Boot 3 · React/Vite · ArchUnit · REST Assured.</p>
         </div>
         <div class="proj-meta">
-          <div class="proj-meta-row"><span class="proj-meta-k">runtime</span><span class="proj-meta-v">Node.js · vanilla JS</span></div>
-          <div class="proj-meta-row"><span class="proj-meta-k">api</span><span class="proj-meta-v">CoinGecko public</span></div>
-          <div class="proj-meta-row"><span class="proj-meta-k">pattern</span><span class="proj-meta-v">no framework · clean code</span></div>
+          <div class="proj-meta-row"><span class="proj-meta-k">stack</span><span class="proj-meta-v">Java 21 · Spring Boot 3 · PostgreSQL · React · Vite · TS</span></div>
+          <div class="proj-meta-row"><span class="proj-meta-k">tests</span><span class="proj-meta-v">JUnit 5 · REST Assured · ArchUnit · Vitest · CI</span></div>
+          <div class="proj-meta-row"><span class="proj-meta-k">pattern</span><span class="proj-meta-v">SDD · DDD · Hexagonal · state machine</span></div>
         </div>
         <div class="proj-footer">
-          <span class="proj-tag live" data-i18n="proj-tag-live">produção</span>
+          <span class="proj-tag">portfolio</span>
           <div class="proj-links">
-            <a href="https://eversonrubira.github.io/criptomoedas-nodejs/" target="_blank" rel="noopener" class="proj-link">demo <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
-            <a href="https://github.com/EversonRubira/criptomoedas-nodejs" target="_blank" rel="noopener" class="proj-link">GitHub <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+            <a href="https://github.com/EversonRubira/TrackCargo" target="_blank" rel="noopener" class="proj-link">GitHub <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
           </div>
         </div>
       </div>
@@ -988,11 +987,6 @@ footer{background:var(--bg1);border-top:1px solid var(--line);padding:20px 32px}
         <span class="proj-cname">Meeting Analyst</span>
         <span class="proj-cstack">fastapi · groq_llama3-70b · railway</span>
         <div class="proj-clinks"><a href="https://github.com/EversonRubira/meeting-analyst" target="_blank" rel="noopener" class="proj-link">GitHub <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a></div>
-      </div>
-      <div class="proj-compact-row">
-        <span class="proj-cname">Gestão Saúde Mental</span>
-        <span class="proj-cstack">java · spring_boot · rest_api · postgresql</span>
-        <div class="proj-clinks"><a href="https://github.com/EversonRubira/GestaoSaudeMental" target="_blank" rel="noopener" class="proj-link">GitHub <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a></div>
       </div>
       <div class="proj-compact-row">
         <span class="proj-cname">Absence Portal AI</span>
@@ -1488,7 +1482,7 @@ const i18n = {
     'proj-arqsync-desc':'Analisador estático de arquitectura para codebases Java. Analisa grafos de dependências, detecta imports circulares e violações de fronteiras de camadas. Gera diagramas Mermaid e relatórios HTML. Construído com JavaParser + Spring Boot 3.',
     'proj-sulav-desc':'Website de produção para restaurante português. Bilingue PT/EN, integrado com Uber Eats, Glovo e Bolt Food. Entrega completa do cliente ao deploy — do briefing ao site vivo com clientes reais a fazer pedidos diariamente.',
     'proj-fitcheck-desc':'Tracker de hábitos de saúde com análise semanal por IA. Backend Node.js/Express, MySQL no Railway — Groq/Llama 3.3 analisa registos e devolve sugestões em streaming. Uma integração LLM real em produção, não uma demo.',
-    'proj-crypto-desc':'Dashboard de criptos em tempo real na API pública da CoinGecko. Node.js sem frameworks — cada view renderizada dinamicamente, zero dependências. Um exercício de arquitectura limpa sem scaffolding para se esconder.',
+    'proj-trackcargo-desc':'Rastreamento do ciclo de vida completo de pedidos de exportação de commodity (proteína animal) — construído com SDD a partir de conhecimento real em comércio internacional. Máquina de estados, checklist de documentos, pagamentos parcial/saldo, validação ISO 6346, geração de PDF multilíngue (PT/EN/ES). Java 21 · Spring Boot 3 · React/Vite · ArchUnit · REST Assured.',
     'proj-tag-live':'produção','proj-status-wip':'em_desenvolvimento',
     'proj-more-label':'— outros projetos —',
     'stack-backend':'Backend','stack-ai':'IA e Engenharia de LLMs','stack-engineering':'Práticas de Engenharia','stack-secondary':'Frontend e Ferramentas',
@@ -1620,7 +1614,7 @@ const i18n = {
     'proj-arqsync-desc':'Static Java architecture analyser. Detects circular dependencies and layer violations. Supports local and remote repos via Git. Generates JSON and HTML reports with Mermaid diagrams.',
     'proj-sulav-desc':'Complete production site for a Portuguese restaurant. Bilingual PT/EN with Uber Eats, Glovo, Bolt Food and Google Maps integrated.',
     'proj-fitcheck-desc':'Health habit tracker with weekly AI analysis. Records sleep, hydration, BMI and fitness goals; Groq/Llama 3.3 analyses records and returns streaming suggestions.',
-    'proj-crypto-desc':'Top 10 cryptocurrencies in real time via CoinGecko API. Node.js without frameworks, dynamic views and clean code.',
+    'proj-trackcargo-desc':'Export order lifecycle tracker for animal protein commodity — built with SDD from real international trade knowledge. Full state machine, document checklist, partial/balance payments, ISO 6346 container validation, multilingual PDF generation (PT/EN/ES). Java 21 · Spring Boot 3 · React/Vite · ArchUnit · REST Assured.',
     'proj-tag-live':'production','proj-status-wip':'in_development',
     'proj-more-label':'— other projects —',
     'stack-backend':'Backend','stack-ai':'AI / LLM Engineering','stack-engineering':'Engineering Practices','stack-secondary':'Frontend & Tools',
