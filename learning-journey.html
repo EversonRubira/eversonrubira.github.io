@@ -1,298 +1,187 @@
 <!doctype html>
-<html lang="pt">
+<html lang="pt" data-theme="dark">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex">
-<title>AI Engineering Journey — Everson Rubira</title>
+<title>AI Engineering Journey · Everson Rubira</title>
+<script>try{document.documentElement.setAttribute('data-theme',localStorage.getItem('er-theme')||'dark');document.documentElement.lang=localStorage.getItem('er-lang')==='en'?'en':'pt'}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
 <style>
-:root{
-  --bg:#0B0D0F;--bg1:#111315;--bg2:#161819;--bg3:#1E2022;
-  --text:#F5F2EB;--text2:#C8C5BE;--text3:#7A7570;
-  --accent:#D97757;--accent2:#E8A88E;--green:#22c55e;
-  --line:rgba(255,255,255,0.07);
-  --sans:'Inter',system-ui,sans-serif;--mono:'JetBrains Mono','Courier New',monospace;
-  color-scheme:dark;
-}
-@media(prefers-color-scheme:light){:root{
-  --bg:#F8F5F0;--bg1:#F0EDE8;--bg2:#E8E4DE;--bg3:#D8D4CE;
-  --text:#1A1714;--text2:#3A3530;--text3:#6B6760;--accent:#C4623D;
-  --line:rgba(0,0,0,0.08);color-scheme:light;
-}}
+:root{--background:#11110F;--background-secondary:#151512;--surface:#191917;--surface-elevated:#1E1D1A;--text-primary:#F1EFE8;--text-secondary:#A6A39B;--text-muted:#77736B;--border:#302E29;--border-subtle:#24231F;--accent:#C47A44;--accent-hover:#D6925C;--accent-soft:rgba(196,122,68,.10);--sans:'Inter',system-ui,sans-serif;--mono:'JetBrains Mono',ui-monospace,monospace;color-scheme:dark}
+[data-theme="light"]{--background:#F4F1EA;--background-secondary:#ECE8DE;--surface:#FCFAF5;--surface-elevated:#FFFFFF;--text-primary:#191815;--text-secondary:#666159;--text-muted:#898278;--border:#D9D4CA;--border-subtle:#E6E1D8;--accent:#A75F32;--accent-hover:#874923;--accent-soft:rgba(167,95,50,.08);color-scheme:light}
 *{box-sizing:border-box;margin:0;padding:0}
-html{font-size:16px}
-body{
-  font-family:var(--sans);background:var(--bg);color:var(--text);
-  line-height:1.6;min-height:100vh;
-  padding:0 max(16px,env(safe-area-inset-left,0px));
-}
-
-/* HEADER */
-.site-header{
-  display:flex;align-items:center;
-  padding:20px 0;
-  border-bottom:1px solid var(--line);
-  max-width:680px;margin:0 auto;
-}
-.back-link{
-  font-family:var(--mono);font-size:.72rem;font-weight:500;
-  letter-spacing:.04em;color:var(--text3);text-decoration:none;
-  display:flex;align-items:center;gap:6px;transition:color .15s;
-}
-.back-link:hover{color:var(--accent)}
-.back-arrow{font-size:.8rem;line-height:1}
-
-/* MAIN */
-main{max-width:680px;margin:0 auto;padding:52px 0 80px}
-
-/* TITLE BLOCK */
-.title-block{margin-bottom:40px}
-h1{
-  font-size:clamp(1.75rem,5vw,2.5rem);font-weight:600;
-  letter-spacing:-.02em;line-height:1.15;color:var(--text);
-  margin-bottom:10px;
-}
-.subtitle{
-  font-family:var(--mono);font-size:.72rem;letter-spacing:.06em;
-  text-transform:uppercase;color:var(--text3);
-}
-
-/* DIVIDER */
-.divider{height:1px;background:var(--line);margin:36px 0}
-
-/* STATS ROW */
-.stats-row{
-  display:grid;grid-template-columns:repeat(3,1fr);
-  gap:1px;background:var(--line);
-  border:1px solid var(--line);border-radius:8px;overflow:hidden;
-}
-.stat-tile{
-  background:var(--bg1);padding:20px 18px;
-  display:flex;flex-direction:column;gap:5px;
-}
-.stat-val{
-  font-family:var(--mono);font-size:1.75rem;font-weight:500;
-  line-height:1;color:var(--text);font-variant-numeric:tabular-nums;
-}
-.stat-val small{font-size:1rem;color:var(--text3);font-weight:400}
-.stat-lbl{
-  font-family:var(--mono);font-size:.58rem;letter-spacing:.1em;
-  text-transform:uppercase;color:var(--text3);
-}
-@media(max-width:420px){
-  .stats-row{grid-template-columns:1fr;background:transparent;border:none;gap:8px}
-  .stat-tile{border:1px solid var(--line);border-radius:6px}
-}
-
-/* PHASE STEPPER */
-.stepper{display:flex;flex-direction:column}
-.phase-row{display:flex;gap:0;position:relative}
-.phase-spine{
-  display:flex;flex-direction:column;align-items:center;
-  width:24px;flex-shrink:0;padding-top:3px;
-}
-.phase-dot{
-  width:12px;height:12px;border-radius:50%;flex-shrink:0;
-  position:relative;z-index:1;transition:.2s;
-}
-.phase-dot.done{background:var(--green)}
-.phase-dot.cur{
-  background:var(--accent);
-  box-shadow:0 0 0 4px rgba(217,119,87,.15);
-}
-.phase-dot.fut{background:transparent;border:1.5px solid var(--text3)}
-.phase-connector{
-  width:1.5px;flex:1;min-height:20px;
-  background:var(--line);margin-top:2px;margin-bottom:2px;
-}
-.phase-connector.done{background:rgba(34,197,94,.3)}
-.phase-connector.dashed{
-  background:repeating-linear-gradient(to bottom,var(--line) 0,var(--line) 4px,transparent 4px,transparent 8px);
-}
-.phase-body{
-  flex:1;padding:4px 0 28px 16px;
-}
-.phase-row:last-child .phase-body{padding-bottom:0}
-.phase-header{display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:2px}
-.phase-n{
-  font-family:var(--mono);font-size:.58rem;letter-spacing:.1em;
-  text-transform:uppercase;color:var(--text3);
-}
-.phase-name{
-  font-size:.88rem;font-weight:500;color:var(--text2);line-height:1.35;
-}
-.phase-name.cur{font-weight:600;color:var(--text)}
-.phase-name.done{color:var(--text3)}
-.badge{
-  display:inline-flex;align-items:center;
-  font-family:var(--mono);font-size:.56rem;letter-spacing:.08em;text-transform:uppercase;
-  padding:2px 7px;border-radius:3px;font-weight:500;
-}
-.badge.done{background:rgba(34,197,94,.1);color:var(--green)}
-.badge.cur{background:rgba(217,119,87,.12);color:var(--accent)}
-
-/* CURRENT PHASE HIGHLIGHT */
-.phase-cur-card{
-  margin-top:8px;
-  background:var(--bg1);border:1px solid rgba(217,119,87,.18);
-  border-radius:6px;padding:12px 14px;
-}
-.phase-cur-next{
-  font-family:var(--mono);font-size:.6rem;letter-spacing:.08em;
-  text-transform:uppercase;color:var(--text3);margin-top:8px;
-}
-.phase-cur-next-name{font-size:.82rem;color:var(--text3)}
-
-/* SKELETON */
-.skeleton{display:flex;flex-direction:column;gap:14px;padding:4px 0}
-.sk-line{
-  height:12px;border-radius:4px;
-  background:linear-gradient(90deg,var(--bg3) 0%,var(--bg1) 50%,var(--bg3) 100%);
-  background-size:200% 100%;animation:sk-sh 1.4s infinite;
-}
-@keyframes sk-sh{0%{background-position:200% 0}100%{background-position:-200% 0}}
-
-/* PAGE FOOTER */
-.page-footer{
-  margin-top:52px;padding-top:24px;border-top:1px solid var(--line);
-  display:flex;justify-content:space-between;align-items:center;
-  flex-wrap:wrap;gap:12px;
-}
-.footer-meta{font-family:var(--mono);font-size:.62rem;color:var(--text3);line-height:1.6}
-.footer-back{
-  font-family:var(--mono);font-size:.64rem;letter-spacing:.04em;
-  color:var(--text3);text-decoration:none;transition:color .15s;
-}
-.footer-back:hover{color:var(--accent)}
+body{font-family:var(--sans);background:var(--background);color:var(--text-primary);line-height:1.65;-webkit-font-smoothing:antialiased;transition:background .25s,color .25s}
+a{color:inherit}
+.wrap{max-width:860px;margin:0 auto;padding:0 24px}
+header{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--background) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--border-subtle)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
+.back{font:500 .72rem var(--mono);letter-spacing:.05em;color:var(--text-muted);text-decoration:none;transition:color .15s}
+.back:hover{color:var(--accent)}
+.tools{display:flex;gap:8px}
+.tools button{height:34px;min-width:34px;padding:0 10px;border:1px solid var(--border);border-radius:8px;background:transparent;color:var(--text-secondary);font:500 .7rem var(--mono);cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:border-color .15s,color .15s}
+.tools button:hover{border-color:var(--accent);color:var(--text-primary)}
+.tools svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+[data-theme="dark"] .i-moon,[data-theme="light"] .i-sun{display:none}
+.eyebrow{font:500 .72rem var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.hero{padding:88px 0 56px}
+h1{font-size:clamp(2.1rem,6vw,3.4rem);font-weight:700;letter-spacing:-.03em;line-height:1.08;margin:16px 0 22px}
+.lead{font-size:1.1rem;color:var(--text-secondary);max-width:640px}
+section{padding:56px 0;border-top:1px solid var(--border-subtle)}
+h2{font-size:1.5rem;font-weight:650;letter-spacing:-.02em;margin:10px 0 24px}
+.how{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.how div{padding:20px;background:var(--surface);border:1px solid var(--border-subtle);border-radius:12px}
+.how h3{font-size:.98rem;font-weight:600;margin-bottom:6px}
+.how p{font-size:.9rem;color:var(--text-secondary)}
+.now{padding:28px;background:var(--surface);border:1px solid var(--border);border-radius:14px;border-left:3px solid var(--accent)}
+.now .focus{font-size:1.5rem;font-weight:650;letter-spacing:-.02em;margin:6px 0 10px}
+.now p{color:var(--text-secondary)}
+.now .k{font:500 .68rem var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin:20px 0 6px}
+.line{display:flex;align-items:center;margin-top:28px}
+.tick{flex:1;display:flex;align-items:center;min-width:0}
+.tick:before{content:"";flex:1;height:1px;background:var(--border)}
+.tick:first-child:before{display:none}
+.tick i{width:9px;height:9px;border-radius:50%;background:var(--border);flex:none}
+.tick.on i{width:15px;height:15px;background:var(--accent);box-shadow:0 0 0 5px var(--accent-soft)}
+.tick.done i{background:var(--text-muted)}
+.group{font:500 .7rem var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin:32px 0 14px}
+.group:first-of-type{margin-top:0}
+.skills{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.skill{padding:22px;background:var(--surface);border:1px solid var(--border-subtle);border-radius:12px;transition:border-color .2s}
+.skill:hover{border-color:var(--border)}
+.skill h3{font-size:1.02rem;font-weight:600;letter-spacing:-.01em}
+.skill .what{font-size:.88rem;color:var(--text-secondary);margin:6px 0 14px}
+.skill ul{list-style:none;display:grid;gap:8px}
+.skill li{font-size:.84rem;color:var(--text-secondary);padding-left:14px;position:relative}
+.skill li:before{content:"";position:absolute;left:0;top:.62em;width:5px;height:5px;border-radius:50%;background:var(--accent)}
+.skill a{display:inline-block;margin-top:14px;font:500 .72rem var(--mono);letter-spacing:.04em;color:var(--accent);text-decoration:none}
+.skill a:hover{color:var(--accent-hover)}
+.next{display:flex;flex-wrap:wrap;gap:10px}
+.next span{padding:8px 14px;border:1px solid var(--border);border-radius:999px;font-size:.88rem;color:var(--text-secondary)}
+.note{font-size:.9rem;color:var(--text-muted);margin-top:18px;max-width:620px}
+footer{padding:40px 0 64px;border-top:1px solid var(--border-subtle)}
+footer .wrap{display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-between;font:400 .74rem var(--mono);color:var(--text-muted)}
+footer a{text-decoration:none;color:var(--accent)}
+.reveal{opacity:0;transform:translateY(12px);transition:opacity .5s,transform .5s}
+.reveal.in{opacity:1;transform:none}
+[hidden]{display:none!important}
+@media(max-width:720px){.how,.skills{grid-template-columns:1fr}.hero{padding:56px 0 40px}.wrap{padding:0 18px}.now{padding:22px}}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
 </style>
 </head>
 <body>
-
-<header class="site-header">
-  <a href="/" class="back-link">
-    <span class="back-arrow">←</span>
-    <span>Everson Rubira</span>
-  </a>
-</header>
-
-<main>
-  <div class="title-block">
-    <h1>AI Engineering</h1>
-    <p class="subtitle">Especialização estruturada em curso desde 2026</p>
+<header><div class="wrap">
+  <a class="back" href="/" data-i18n="back">← Everson Rubira</a>
+  <div class="tools">
+    <button id="lang-btn" aria-label="Switch language">EN</button>
+    <button id="theme-btn" aria-label="Alternar tema"><svg class="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg><svg class="i-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button>
+  </div>
+</div></header>
+<main class="wrap">
+  <div class="hero reveal">
+    <div class="eyebrow">AI Engineering Journey</div>
+    <h1 data-i18n="h1">Como me preparo para engenharia de IA.</h1>
+    <p class="lead" data-i18n="lead">O Learning Journey é o meu método de evolução técnica: cada competência é avaliada pela evidência que existe em projetos reais, não pelos cursos que concluí. Esta página mostra o estado atual, atualizado a cada análise.</p>
   </div>
 
-  <div id="sk-stats" class="skeleton">
-    <div class="sk-line" style="width:60%"></div>
-    <div class="sk-line" style="width:40%"></div>
-  </div>
+  <section class="reveal">
+    <div class="eyebrow" data-i18n="how-k">Método</div>
+    <h2 data-i18n="how-h">Três princípios</h2>
+    <div class="how">
+      <div><h3 data-i18n="p1-h">Projetos são evidência</h3><p data-i18n="p1-p">Uma competência só conta quando está demonstrada em código, decisões e testes que podem ser verificados.</p></div>
+      <div><h3 data-i18n="p2-h">Cursos são recurso</h3><p data-i18n="p2-p">Estudo para abrir caminho, mas o que mostro é o que construí e medi com o que aprendi.</p></div>
+      <div><h3 data-i18n="p3-h">O advisor recomenda, eu decido</h3><p data-i18n="p3-p">Uma análise regular aponta a próxima lacuna relevante. A decisão do que estudar e construir é sempre minha.</p></div>
+    </div>
+  </section>
 
-  <div id="content" hidden>
-    <div class="stats-row" id="stats-row"></div>
+  <section id="now" class="reveal" hidden>
+    <div class="eyebrow" data-i18n="now-k">Agora</div>
+    <h2 data-i18n="now-h">Onde estou a investir</h2>
+    <div class="now">
+      <div class="focus" id="f-name"></div>
+      <p id="f-now"></p>
+      <div class="k" data-i18n="adv-k">Learning Advisor</div>
+      <p id="f-adv"></p>
+      <div class="k" data-i18n="next-k">Próxima evidência</div>
+      <p id="f-next"></p>
+      <div class="line" id="line" role="img"></div>
+    </div>
+  </section>
 
-    <div class="divider"></div>
+  <section id="skills" class="reveal" hidden>
+    <div class="eyebrow" data-i18n="sk-k">Competências</div>
+    <h2 data-i18n="sk-h">Já demonstradas em projeto</h2>
+    <div id="sk-body"></div>
+    <p class="note" data-i18n="sk-note">Só aparece o que tem evidência verificável. A ausência de uma competência aqui não significa que não a conheço, significa que ainda não a demonstrei.</p>
+  </section>
 
-    <div class="stepper" id="stepper"></div>
-
-    <div class="divider"></div>
-
-    <footer class="page-footer">
-      <div class="footer-meta">
-        <div id="footer-updated"></div>
-        <div>Alura · Anthropic Academy</div>
-      </div>
-      <a href="/" class="footer-back">← eversonrubira.github.io</a>
-    </footer>
-  </div>
+  <section id="up" class="reveal" hidden>
+    <div class="eyebrow" data-i18n="up-k">A seguir</div>
+    <h2 data-i18n="up-h">O que vem depois</h2>
+    <div class="next" id="up-body"></div>
+  </section>
 </main>
-
+<footer><div class="wrap">
+  <span id="meta"></span>
+  <a href="/#contacto" data-i18n="cta">Falar comigo →</a>
+</div></footer>
 <script>
-var FALLBACK = {
-  _v:1,_updated:"2026-10-22T00:00:00Z",
-  progress:{pct:9,done:2,total:23,phases_done:1,phases_total:7},
-  current_phase:{n:1,title:"Agentes com LangChain e LangGraph"},
-  next_phase:{n:2,title:"Claude API e MCP"},
-  phases:[
-    {n:0,title:"Base concluída",done:true},
-    {n:1,title:"Agentes com LangChain e LangGraph",done:false},
-    {n:2,title:"Claude API e MCP",done:false},
-    {n:3,title:"AI-Native Software Engineering",done:false},
-    {n:4,title:"MCP avançado e AWS",done:false},
-    {n:5,title:"Avaliar e testar sistemas de LLM",done:false},
-    {n:6,title:"Arquitetura de soluções",done:false}
-  ]
+const T={
+ pt:{back:'← Everson Rubira',h1:'Como me preparo para engenharia de IA.',lead:'O Learning Journey é o meu método de evolução técnica: cada competência é avaliada pela evidência que existe em projetos reais, não pelos cursos que concluí. Esta página mostra o estado atual, atualizado a cada análise.','how-k':'Método','how-h':'Três princípios','p1-h':'Projetos são evidência','p1-p':'Uma competência só conta quando está demonstrada em código, decisões e testes que podem ser verificados.','p2-h':'Cursos são recurso','p2-p':'Estudo para abrir caminho, mas o que mostro é o que construí e medi com o que aprendi.','p3-h':'O advisor recomenda, eu decido','p3-p':'Uma análise regular aponta a próxima lacuna relevante. A decisão do que estudar e construir é sempre minha.','now-k':'Agora','now-h':'Onde estou a investir','adv-k':'Learning Advisor','next-k':'Próxima evidência','sk-k':'Competências','sk-h':'Já demonstradas em projeto','sk-note':'Só aparece o que tem evidência verificável. A ausência de uma competência aqui não significa que não a conheço, significa que ainda não a demonstrei.','up-k':'A seguir','up-h':'O que vem depois',cta:'Falar comigo →',consolidated:'Consolidado',applied:'Aplicado',repo:'Ver projeto →',meta:'Última análise · {d}',line:'Percurso de competências. Foco atual: {f}.'},
+ en:{back:'← Everson Rubira',h1:'How I am preparing for AI engineering.',lead:'The Learning Journey is my method for technical growth: each skill is judged by the evidence in real projects, not by the courses I completed. This page shows the current state, refreshed with every analysis.','how-k':'Method','how-h':'Three principles','p1-h':'Projects are evidence','p1-p':'A skill only counts when it is demonstrated in code, decisions and tests that can be verified.','p2-h':'Courses are a resource','p2-p':'I study to open the way, but what I show is what I built and measured with what I learned.','p3-h':'The advisor recommends, I decide','p3-p':'A regular analysis points to the next relevant gap. What to study and build is always my decision.','now-k':'Now','now-h':'Where I am investing','adv-k':'Learning Advisor','next-k':'Next evidence','sk-k':'Skills','sk-h':'Already demonstrated in projects','sk-note':'Only what has verifiable evidence appears here. A skill missing from this list does not mean I do not know it, only that I have not demonstrated it yet.','up-k':'Up next','up-h':'What comes after',cta:'Get in touch →',consolidated:'Consolidated',applied:'Applied',repo:'View project →',meta:'Last analysis · {d}',line:'Skill path. Current focus: {f}.'}
 };
+const MONTHS={pt:['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'],en:['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']};
+const html=document.documentElement;
+let lang=localStorage.getItem('er-lang')==='en'?'en':'pt';
+let data=null,names=null;
+const el=(tag,cls,text)=>{const e=document.createElement(tag);if(cls)e.className=cls;if(text!=null)e.textContent=text;return e};
+const $=id=>document.getElementById(id);
 
-var MONTHS = ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];
-
-function fmtDate(iso) {
-  if (!iso) return '';
-  var d = new Date(iso);
-  return 'Actualizado em ' + d.getDate() + ' ' + MONTHS[d.getMonth()] + ' ' + d.getFullYear();
-}
-
-function render(d) {
-  var p = d.progress;
-
-  // Stats
-  document.getElementById('stats-row').innerHTML =
-    '<div class="stat-tile"><div class="stat-val">' + p.pct + '%</div><div class="stat-lbl">progresso</div></div>' +
-    '<div class="stat-tile"><div class="stat-val">' + p.done + '<small>/' + p.total + '</small></div><div class="stat-lbl">cursos</div></div>' +
-    '<div class="stat-tile"><div class="stat-val">' + p.phases_done + '<small>/' + p.phases_total + '</small></div><div class="stat-lbl">fases</div></div>';
-
-  // Phase stepper
-  var html = '';
-  var phases = d.phases || [];
-  phases.forEach(function(phase, i) {
-    var isCur = d.current_phase && phase.n === d.current_phase.n;
-    var isDone = phase.done;
-    var dotCls = isDone ? 'done' : (isCur ? 'cur' : 'fut');
-    var nameCls = isDone ? 'done' : (isCur ? 'cur' : '');
-    var isLast = i === phases.length - 1;
-    var connCls = isDone ? 'done' : (!isCur && !isDone ? 'dashed' : '');
-
-    html += '<div class="phase-row">';
-    html += '<div class="phase-spine">';
-    html += '<div class="phase-dot ' + dotCls + '"></div>';
-    if (!isLast) html += '<div class="phase-connector ' + connCls + '"></div>';
-    html += '</div>';
-    html += '<div class="phase-body">';
-    html += '<div class="phase-header">';
-    html += '<span class="phase-n">Fase ' + phase.n + '</span>';
-    html += '<span class="phase-name ' + nameCls + '">' + phase.title + '</span>';
-    if (isDone) html += '<span class="badge done">Concluída</span>';
-    if (isCur) html += '<span class="badge cur">Em curso</span>';
-    html += '</div>';
-    if (isCur && d.next_phase) {
-      html += '<div class="phase-cur-card">';
-      html += '<div class="phase-cur-next">próxima fase</div>';
-      html += '<div class="phase-cur-next-name">' + d.next_phase.title + '</div>';
-      html += '</div>';
+function render(){
+  html.lang=lang;$('lang-btn').textContent=lang==='pt'?'EN':'PT';
+  document.querySelectorAll('[data-i18n]').forEach(n=>{n.textContent=T[lang][n.dataset.i18n]});
+  if(!data)return;
+  const nm=id=>names[id]?names[id][lang]:id, tx=T[lang], c=data[lang];
+  $('f-name').textContent=nm(data.focus);$('f-now').textContent=c.now;$('f-adv').textContent=c.advisor;$('f-next').textContent=c.next;
+  const line=$('line');line.replaceChildren();
+  line.setAttribute('aria-label',tx.line.replace('{f}',nm(data.focus)));
+  const fi=data.path.indexOf(data.focus);
+  data.path.forEach((id,i)=>{const t=el('span','tick'+(id===data.focus?' on':'')+(i<fi?' done':''));t.title=nm(id);t.appendChild(el('i'));line.appendChild(t)});
+  const body=$('sk-body');body.replaceChildren();
+  for(const lv of ['consolidated','applied']){
+    const list=data.skills.filter(s=>s.level===lv);if(!list.length)continue;
+    body.appendChild(el('div','group',tx[lv]));
+    const grid=el('div','skills');
+    for(const s of list){
+      const card=el('div','skill');card.appendChild(el('h3',null,s.name[lang]));card.appendChild(el('p','what',s.what[lang]));
+      const ul=el('ul');s.evidence.forEach(e=>ul.appendChild(el('li',null,e[lang])));card.appendChild(ul);
+      if(s.repo&&/^https:\/\/github\.com\/EversonRubira\//.test(s.repo)){const a=el('a',null,tx.repo);a.href=s.repo;a.target='_blank';a.rel='noopener';card.appendChild(a)}
+      grid.appendChild(card);
     }
-    html += '</div>';
-    html += '</div>';
-  });
-  document.getElementById('stepper').innerHTML = html;
-
-  // Footer date
-  if (d._updated) {
-    document.getElementById('footer-updated').textContent = fmtDate(d._updated);
+    body.appendChild(grid);
   }
-
-  // Show content
-  document.getElementById('sk-stats').hidden = true;
-  document.getElementById('content').hidden = false;
+  const up=$('up-body');up.replaceChildren();data.next.forEach(n=>up.appendChild(el('span',null,n.name[lang])));
+  const [y,m,d]=data.updated.split('-').map(Number);
+  $('meta').textContent=tx.meta.replace('{d}',`${d} ${MONTHS[lang][m-1]} ${y}`);
+  $('now').hidden=false;$('skills').hidden=!data.skills.length;$('up').hidden=!data.next.length;
+  observe();
 }
+const valid=d=>d&&typeof d.focus==='string'&&Array.isArray(d.path)&&d.path.includes(d.focus)&&Array.isArray(d.skills)&&Array.isArray(d.next)&&d.pt&&d.en&&/^\d{4}-\d{2}-\d{2}$/.test(d.updated);
+const io='IntersectionObserver' in window?new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.08}):null;
+function observe(){document.querySelectorAll('.reveal:not(.in)').forEach(n=>io?io.observe(n):n.classList.add('in'))}
 
-var done = false;
-function fallback() { if (!done) { done = true; render(FALLBACK); } }
-var timer = setTimeout(fallback, 3000);
-
-fetch('/roadmap-summary.json?_=' + Date.now())
-  .then(function(r) { if (!r.ok) throw 0; return r.json(); })
-  .then(function(data) { clearTimeout(timer); done = true; render(data); })
-  .catch(function() { clearTimeout(timer); fallback(); });
+$('theme-btn').addEventListener('click',()=>{const n=html.getAttribute('data-theme')==='dark'?'light':'dark';html.setAttribute('data-theme',n);localStorage.setItem('er-theme',n)});
+$('lang-btn').addEventListener('click',()=>{lang=lang==='pt'?'en':'pt';localStorage.setItem('er-lang',lang);render()});
+render();
+Promise.all([
+  fetch('/roadmap-ia/data/public.json',{cache:'no-cache'}).then(r=>r.ok?r.json():Promise.reject()),
+  fetch('/roadmap-ia/data/competencias.json',{cache:'no-cache'}).then(r=>r.ok?r.json():Promise.reject())
+]).then(([p,m])=>{
+  if(!valid(p))throw 0;
+  names={};m.competencies.forEach(c=>{names[c.id]={pt:c.name_pt,en:c.name_en}});
+  data=p;render();
+}).catch(()=>{});
 </script>
 </body>
 </html>
