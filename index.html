@@ -722,6 +722,23 @@ footer{background:var(--bg1);border-top:1px solid var(--line);padding:20px 32px}
 #er-curtain.er-rev::after{right:auto;left:0;box-shadow:4px 0 24px 5px rgba(217,119,87,0.5),0 0 60px 8px rgba(217,119,87,0.12)}
 /* Logo as button */
 .nav-logo{cursor:pointer}
+
+/* AI ENGINEERING JOURNEY: foco atual do Learning Journey (texto discreto + linha de percurso) */
+.aij-sub{font-size:var(--t-body);color:var(--text3);line-height:1.7;max-width:36em;margin:-24px 0 48px}
+.aij-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:56px;align-items:start}
+.aij-k{font-family:var(--mono);font-size:0.68rem;color:var(--accent2);letter-spacing:0.14em;text-transform:uppercase;margin-bottom:12px}
+.aij-col .aij-k:not(:first-child){margin-top:32px}
+.aij-focus{font-size:clamp(1.75rem,1.3rem + 2vw,2.75rem);font-weight:800;color:var(--text);letter-spacing:-0.03em;line-height:1.05;margin-bottom:16px}
+.aij-body{font-size:var(--t-body);color:var(--text2);line-height:1.7;max-width:36em}
+.aij-path{position:relative;height:28px;margin:56px 4px 0}
+.aij-path::before{content:"";position:absolute;left:0;right:0;top:50%;height:1px;background:var(--line)}
+.aij-tick{position:absolute;top:50%;width:5px;height:5px;margin:-2.5px 0 0 -2.5px;border-radius:50%;background:var(--bg);border:1px solid var(--text3)}
+.aij-tick.on{width:11px;height:11px;margin:-5.5px 0 0 -5.5px;background:var(--accent);border-color:var(--accent);box-shadow:0 0 0 5px var(--accent-soft)}
+.aij-foot{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;margin-top:24px}
+.aij-meta{font-family:var(--mono);font-size:0.7rem;color:var(--text3);letter-spacing:0.08em}
+.aij-link{font-size:0.9rem;font-weight:500;color:var(--accent);transition:color 0.2s}
+.aij-link:hover{color:var(--accent-hover)}
+@media(max-width:768px){.aij-grid{grid-template-columns:1fr;gap:32px}.aij-sub{margin:-16px 0 32px}.aij-path{margin-top:40px}}
 </style>
 </head>
 <body>
@@ -1098,6 +1115,35 @@ footer{background:var(--bg1);border-top:1px solid var(--line);padding:20px 32px}
   </div>
 </section>
 
+<!-- AI ENGINEERING JOURNEY (alimentada por roadmap-ia/data/public.json; fica escondida se não carregar) -->
+<section id="ai-journey" aria-labelledby="aij-title" hidden>
+  <div class="sec-wrap">
+    <div class="sec-head reveal">
+      <h2 class="sec-title" id="aij-title">AI Engineering Journey</h2>
+      <div class="sec-rule"></div>
+    </div>
+    <p class="aij-sub reveal" data-i18n="aij-sub">Aprendizagem guiada por projetos, estudos e evidências reais.</p>
+    <div class="aij-grid reveal">
+      <div class="aij-col">
+        <div class="aij-k" data-i18n="aij-now">Agora</div>
+        <h3 class="aij-focus" id="aij-focus"></h3>
+        <p class="aij-body" id="aij-now"></p>
+      </div>
+      <div class="aij-col">
+        <div class="aij-k">Learning Advisor</div>
+        <p class="aij-body" id="aij-advisor"></p>
+        <div class="aij-k" data-i18n="aij-next">Próxima evidência</div>
+        <p class="aij-body" id="aij-next"></p>
+      </div>
+    </div>
+    <div class="aij-path reveal" id="aij-path" role="img"></div>
+    <div class="aij-foot reveal">
+      <span class="aij-meta" id="aij-meta"></span>
+      <a class="aij-link" href="/roadmap-ia/" data-i18n="aij-link">Explorar Learning Journey →</a>
+    </div>
+  </div>
+</section>
+
 <!-- SOBRE -->
 <section id="sobre" class="plane-flip">
   <div class="sec-wrap">
@@ -1381,6 +1427,7 @@ const i18n = {
     'tl-ai-desc':'LLMs, agentes de IA e agentic workflows integrados em sistemas backend em produção. A construir sistemas inteligentes que compreendem contexto, não apenas dados.',
     'jt-sys-ai':'Intelligent Systems','jt-desc-ai':'LLMs, agentes de IA e agentic workflows integrados em sistemas backend em produção.',
     'sec-vp':'O que trago para uma equipa',
+    'aij-sub':'Aprendizagem guiada por projetos, estudos e evidências reais.','aij-now':'Agora','aij-next':'Próxima evidência','aij-link':'Explorar Learning Journey →','aij-meta':'Última análise · {d}','aij-path':'Percurso de competências em engenharia de IA. Foco atual: {f}.',
     'vp-a-title':'Pensamento Sistémico','vp-a-body':'Vejo o todo antes da parte. 15 anos a mapear cadeias operacionais significa que desenho sistemas que não funcionam apenas — encaixam num contexto maior.',
     'vp-b-title':'Contexto de Negócio','vp-b-body':'Falo de negócio antes de falar de código. Os problemas vêm primeiro; a arquitectura é a resposta, não o ponto de partida.',
     'vp-c-title':'Aplicações de IA','vp-c-body':'Integro LLMs e agentes em fluxos de trabalho reais — não como experimentos, mas como ferramentas de produção que resolvem problemas concretos.',
@@ -1511,6 +1558,7 @@ const i18n = {
     'tl-ai-desc':'LLMs, AI agents and agentic workflows integrated into production backend systems. Building intelligent systems that understand context, not just data.',
     'jt-sys-ai':'Intelligent Systems','jt-desc-ai':'LLMs, AI agents and agentic workflows integrated into backend production systems.',
     'sec-vp':'What I bring to a team',
+    'aij-sub':'Learning guided by projects, studies and real evidence.','aij-now':'Now','aij-next':'Next evidence','aij-link':'Explore Learning Journey →','aij-meta':'Last analysis · {d}','aij-path':'AI engineering competency path. Current focus: {f}.',
     'vp-a-title':'Systems Thinking','vp-a-body':'I see the whole before the part. 15 years mapping operational chains means I design systems that don\'t just work — they fit into a larger context.',
     'vp-b-title':'Business Context','vp-b-body':'I speak business before I speak code. Problems come first; architecture is the answer, not the starting point.',
     'vp-c-title':'AI Applications','vp-c-body':'I integrate LLMs and agents into real workflows — not as experiments, but as production tools that solve concrete problems.',
@@ -1610,6 +1658,42 @@ const i18n = {
   }
 };
 
+// ── AI ENGINEERING JOURNEY ──
+// Lê a projeção pública do Learning Journey (só foco, textos curtos e data). Se falhar, a secção fica escondida.
+let aij = null;
+const AIJ_MONTHS = { pt: ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'], en: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'] };
+const aijStr = v => typeof v === 'string' && v.length > 0 && v.length < 600;
+function aijValid(d) {
+  return d && /^\d{4}-\d{2}-\d{2}$/.test(d.updated) && Array.isArray(d.path) && d.path.length >= 2 && d.path.length <= 20
+    && d.path.includes(d.focus) && ['pt', 'en'].every(l => d[l] && ['focus', 'now', 'advisor', 'next'].every(k => aijStr(d[l][k])));
+}
+function renderAij(lang) {
+  const sec = document.getElementById('ai-journey');
+  if (!sec || !aij) return;
+  const t = aij[lang] || aij.pt;
+  document.getElementById('aij-focus').textContent = t.focus;
+  document.getElementById('aij-now').textContent = t.now;
+  document.getElementById('aij-advisor').textContent = t.advisor;
+  document.getElementById('aij-next').textContent = t.next;
+  const [y, m, d] = aij.updated.split('-').map(Number);
+  document.getElementById('aij-meta').textContent = i18n[lang]['aij-meta'].replace('{d}', `${d} ${AIJ_MONTHS[lang][m - 1]} ${y}`);
+  const path = document.getElementById('aij-path');
+  path.setAttribute('aria-label', i18n[lang]['aij-path'].replace('{f}', t.focus));
+  if (!path.children.length) {
+    aij.path.forEach((id, i) => {
+      const tick = document.createElement('span');
+      tick.className = 'aij-tick' + (id === aij.focus ? ' on' : '');
+      tick.style.left = (i / (aij.path.length - 1) * 100) + '%';
+      path.appendChild(tick);
+    });
+  }
+  sec.hidden = false;
+}
+fetch('/roadmap-ia/data/public.json', { cache: 'no-cache' })
+  .then(r => (r.ok ? r.json() : Promise.reject()))
+  .then(d => { if (aijValid(d)) { aij = d; renderAij(html.getAttribute('data-lang') || 'pt'); } })
+  .catch(() => { /* sem dados: a secção continua escondida */ });
+
 const langBtn = document.getElementById('lang-btn');
 
 function applyLang(lang) {
@@ -1621,6 +1705,7 @@ function applyLang(lang) {
   html.lang = lang;
   langBtn.textContent = lang === 'pt' ? 'EN' : 'PT';
   localStorage.setItem('er-lang', lang);
+  if (typeof renderAij === 'function') renderAij(lang);
 }
 
 const savedLang = localStorage.getItem('er-lang') || 'pt';
