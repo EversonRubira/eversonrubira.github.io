@@ -739,6 +739,15 @@ footer{background:var(--bg1);border-top:1px solid var(--line);padding:20px 32px}
 .aij-link{font-size:0.9rem;font-weight:500;color:var(--accent);transition:color 0.2s}
 .aij-link:hover{color:var(--accent-hover)}
 @media(max-width:768px){.aij-grid{grid-template-columns:1fr;gap:32px}.aij-sub{margin:-16px 0 32px}.aij-path{margin-top:40px}}
+/* Atalho flutuante para o Learning Journey: foco atual, sem métricas */
+#aij-fab{position:fixed;right:28px;bottom:28px;z-index:800;display:none;align-items:center;gap:10px;max-width:calc(100vw - 56px);padding:10px 16px;border-radius:var(--radius);background:var(--bg1);border:1px solid var(--line);color:var(--text2);font-family:var(--mono);font-size:0.7rem;letter-spacing:0.06em;text-decoration:none;box-shadow:0 2px 16px rgba(0,0,0,0.25);transition:border-color 0.2s,color 0.2s,transform 0.2s}
+#aij-fab.show{display:inline-flex}
+#aij-fab:hover{border-color:var(--accent);color:var(--text);transform:translateY(-2px)}
+#aij-fab .dot{flex:none;width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+#aij-fab .k{flex:none;color:var(--text3);text-transform:uppercase}
+#aij-fab .f{min-width:0;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+@media(min-width:768px){#aij-fab{right:32px;bottom:32px}}
+@media(prefers-reduced-motion:reduce){#aij-fab{transition:none}#aij-fab:hover{transform:none}}
 </style>
 </head>
 <body>
@@ -1139,7 +1148,7 @@ footer{background:var(--bg1);border-top:1px solid var(--line);padding:20px 32px}
     <div class="aij-path reveal" id="aij-path" role="img"></div>
     <div class="aij-foot reveal">
       <span class="aij-meta" id="aij-meta"></span>
-      <a class="aij-link" href="/roadmap-ia/" data-i18n="aij-link">Explorar Learning Journey →</a>
+      <a class="aij-link" href="/learning-journey.html" data-i18n="aij-link">Explorar Learning Journey →</a>
     </div>
   </div>
 </section>
@@ -1375,6 +1384,8 @@ footer{background:var(--bg1);border-top:1px solid var(--line);padding:20px 32px}
   </div>
 </footer>
 
+<a id="aij-fab" href="/learning-journey.html"><span class="dot" aria-hidden="true"></span><span class="k" data-i18n="aij-now">Agora</span><span class="f" id="aij-fab-f"></span></a>
+
 <button id="btt" aria-label="Voltar ao topo">
   <svg viewBox="0 0 24 24"><path d="M18 15l-6-6-6 6"/></svg>
 </button>
@@ -1427,7 +1438,7 @@ const i18n = {
     'tl-ai-desc':'LLMs, agentes de IA e agentic workflows integrados em sistemas backend em produção. A construir sistemas inteligentes que compreendem contexto, não apenas dados.',
     'jt-sys-ai':'Intelligent Systems','jt-desc-ai':'LLMs, agentes de IA e agentic workflows integrados em sistemas backend em produção.',
     'sec-vp':'O que trago para uma equipa',
-    'aij-sub':'Aprendizagem guiada por projetos, estudos e evidências reais.','aij-now':'Agora','aij-next':'Próxima evidência','aij-link':'Explorar Learning Journey →','aij-meta':'Última análise · {d}','aij-path':'Percurso de competências em engenharia de IA. Foco atual: {f}.',
+    'aij-sub':'Aprendizagem guiada por projetos, estudos e evidências reais.','aij-now':'Agora','aij-next':'Próxima evidência','aij-link':'Explorar Learning Journey →','aij-meta':'Última análise · {d}','aij-path':'Percurso de competências em engenharia de IA. Foco atual: {f}.','aij-fab-label':'Abrir o Learning Journey. Foco atual: {f}.',
     'vp-a-title':'Pensamento Sistémico','vp-a-body':'Vejo o todo antes da parte. 15 anos a mapear cadeias operacionais significa que desenho sistemas que não funcionam apenas — encaixam num contexto maior.',
     'vp-b-title':'Contexto de Negócio','vp-b-body':'Falo de negócio antes de falar de código. Os problemas vêm primeiro; a arquitectura é a resposta, não o ponto de partida.',
     'vp-c-title':'Aplicações de IA','vp-c-body':'Integro LLMs e agentes em fluxos de trabalho reais — não como experimentos, mas como ferramentas de produção que resolvem problemas concretos.',
@@ -1558,7 +1569,7 @@ const i18n = {
     'tl-ai-desc':'LLMs, AI agents and agentic workflows integrated into production backend systems. Building intelligent systems that understand context, not just data.',
     'jt-sys-ai':'Intelligent Systems','jt-desc-ai':'LLMs, AI agents and agentic workflows integrated into backend production systems.',
     'sec-vp':'What I bring to a team',
-    'aij-sub':'Learning guided by projects, studies and real evidence.','aij-now':'Now','aij-next':'Next evidence','aij-link':'Explore Learning Journey →','aij-meta':'Last analysis · {d}','aij-path':'AI engineering competency path. Current focus: {f}.',
+    'aij-sub':'Learning guided by projects, studies and real evidence.','aij-now':'Now','aij-next':'Next evidence','aij-link':'Explore Learning Journey →','aij-meta':'Last analysis · {d}','aij-path':'AI engineering competency path. Current focus: {f}.','aij-fab-label':'Open Learning Journey. Current focus: {f}.',
     'vp-a-title':'Systems Thinking','vp-a-body':'I see the whole before the part. 15 years mapping operational chains means I design systems that don\'t just work — they fit into a larger context.',
     'vp-b-title':'Business Context','vp-b-body':'I speak business before I speak code. Problems come first; architecture is the answer, not the starting point.',
     'vp-c-title':'AI Applications','vp-c-body':'I integrate LLMs and agents into real workflows — not as experiments, but as production tools that solve concrete problems.',
@@ -1687,8 +1698,18 @@ function renderAij(lang) {
       path.appendChild(tick);
     });
   }
+  const fab = document.getElementById('aij-fab');
+  document.getElementById('aij-fab-f').textContent = t.focus;
+  fab.setAttribute('aria-label', i18n[lang]['aij-fab-label'].replace('{f}', t.focus));
+  fab.dataset.ready = '1';
+  updateAijFab();
   sec.hidden = false;
 }
+function updateAijFab() {
+  const fab = document.getElementById('aij-fab');
+  if (fab) fab.classList.toggle('show', fab.dataset.ready === '1' && window.scrollY > 400);
+}
+window.addEventListener('scroll', updateAijFab, { passive: true });
 fetch('/roadmap-ia/data/public.json', { cache: 'no-cache' })
   .then(r => (r.ok ? r.json() : Promise.reject()))
   .then(d => { if (aijValid(d)) { aij = d; renderAij(html.getAttribute('data-lang') || 'pt'); } })
