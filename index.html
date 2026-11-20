@@ -642,6 +642,8 @@ footer{background:var(--bg1);border-top:1px solid var(--line);padding:20px 32px}
   .contact-inner{padding:60px 16px}
   .metric-cell{padding-top:14px}
   footer{padding:16px}
+  .foot-inner{flex-wrap:wrap;gap:8px 20px}
+  .foot-left{flex-basis:100%}
   .tl-track{flex-direction:column;gap:0}
   .tl-track::before{display:none}
   .tl-node{flex-direction:row;text-align:left;align-items:flex-start;min-width:auto;padding:12px 0;border-left:1px solid var(--line);padding-left:20px}
@@ -1380,6 +1382,7 @@ footer{background:var(--bg1);border-top:1px solid var(--line);padding:20px 32px}
   <div class="foot-inner">
     <span class="foot-left" data-i18n="foot-left">© 2026 Everson Rubira · Seixal, Portugal</span>
     <span class="foot-views" id="foot-views" aria-label="Visitas"></span>
+    <a href="/roadmap-ia/" class="foot-right" data-i18n="foot-roadmap">entrar no roadmap</a>
     <a href="cv.html" target="_blank" class="foot-right" data-i18n="foot-right">ver cv completo</a>
   </div>
 </footer>
@@ -1532,7 +1535,7 @@ const i18n = {
     'contact-note':'Disponível para começar imediatamente.',
     'contact-qr-label':'aponta o telefone →',
     'foot-left':'© 2026 Everson Rubira · Seixal, Portugal',
-    'foot-right':'ver cv completo',
+    'foot-roadmap':'entrar no roadmap','foot-right':'ver cv completo',
     'fab-roadmap':'Roadmap de Engenharia',
     'in-progress':'em curso',
   },
@@ -1665,7 +1668,7 @@ const i18n = {
     'contact-note':'Available to start immediately.',
     'contact-qr-label':'point your phone →',
     'foot-left':'© 2026 Everson Rubira · Seixal, Portugal',
-    'foot-right':'view full cv',
+    'foot-roadmap':'open roadmap','foot-right':'view full cv',
   }
 };
 
